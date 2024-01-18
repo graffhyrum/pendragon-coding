@@ -1,9 +1,4 @@
 ---
-import fs from 'fs';
-
-const url = new URL('../../package.json', import.meta.url);
-const json = fs.readFileSync(url, 'utf8');
-const data = JSON.parse(json);
 const links = [
     {
         name: 'LinkedIn',
@@ -20,7 +15,7 @@ const links = [
 ]
 ---
 <footer class="h-max *:col-auto flex flex-row justify-end items-center">
-    <p class="text-[0.8rem] w-max m-[2%]"> Est. 2023. Version { data.version } All rights reserved.</p>
+    <p class="text-[0.8rem] w-max m-[2%]"> Est. 2023.</p>
     <div class="flex flex-row gap-x-2">
         <h2 class="w-min">Links</h2>
         <nav class="flex items-center *:px-2 *:text-xl ">
