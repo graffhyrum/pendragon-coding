@@ -1,0 +1,26 @@
+---
+import type {ImageMetadata} from 'astro';
+import {Image} from 'astro:assets';
+
+
+interface Props {
+  s: {
+    title: string;
+    imagePath: string;
+    img_alt: string;
+    skill_doc_link: string;
+  }
+  
+}
+const {s} = Astro.props;
+const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg,jpg,png,gif}');
+if (!images[`/src/assets/${s.imagePath}`]) throw new Error(`"${s.imagePath}" does not exist in glob\nList: ${Object.keys(
+  images)}`);
+---
+
+<li>
+    <Image src={images[`/src/assets/${s.imagePath}`]()} alt={s.img_alt}/>
+    <p class="text-xl">
+      {s.skill_doc_link ? <a href={s.skill_doc_link}>{s.title}</a> : s.title}
+    </p>
+</li>

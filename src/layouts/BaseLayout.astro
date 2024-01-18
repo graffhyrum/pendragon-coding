@@ -1,0 +1,24 @@
+---
+import '../styles/styles.css'
+import '../../public/styles/prism.css'
+import Footer from "../components/Footer.astro";
+import Header from "../components/Header.astro";
+import Head from "../components/Head.astro";
+
+const {pageTitle} = Astro.props;
+---
+
+<html class="scroll-smooth" lang="en">
+<Head pageTitle={pageTitle}/>
+<body class="bg-green-950 flex flex-col h-screen m-0 leading-loose font-sans box-border text-[rgb(207,207,207)] divide-y divide-green-700/80"
+      style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); font-family: 'Roboto', sans-serif;">
+<Header/>
+<main class="relative grow h-max m-1 overflow-hidden row-[2] justify-items-stretch p-[1%] overflow-y-auto">
+    <div class="w-full">
+        <slot/>
+    </div>
+</main>
+
+<Footer/>
+</body>
+</html>

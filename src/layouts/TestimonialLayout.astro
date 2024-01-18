@@ -1,0 +1,7 @@
+---
+const {frontmatter} = Astro.props;
+---
+<a href={frontmatter.href}>
+    <h3>{frontmatter.title}</h3>
+</a>
+<slot />

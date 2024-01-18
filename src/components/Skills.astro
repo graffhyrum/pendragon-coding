@@ -1,0 +1,75 @@
+---
+import Skill from "./Skill.astro";
+const skills = [
+  {
+    imagePath: `ts_logo.png`,
+    img_alt: "Typescript Logo",
+    title: "Typescript",
+    skill_doc_link: "https://www.typescriptlang.org/docs/",
+  },
+  {
+    imagePath: "playwright-logo.png",
+    img_alt: "Playwright Logo",
+    title: "Playwright",
+    skill_doc_link: "https://playwright.dev/",
+  },
+  {
+    imagePath: "automation.png",
+    img_alt: "Test Automation Icon",
+    title: "Test Automation",
+    skill_doc_link: "",
+  },
+  {
+    imagePath: "documentation.png",
+    img_alt: "Documentation Icon",
+    title: "Documentation",
+    skill_doc_link: "",
+  },
+  {
+    imagePath: "process_improvement.png",
+    img_alt: "Process Improvement Icon",
+    title: "Process Improvement",
+    skill_doc_link: "",
+  },
+  {
+    imagePath: "planning.png",
+    img_alt: "Strategic Planning Icon",
+    title: "Strategic Planning",
+    skill_doc_link: "",
+  },
+  {
+    imagePath: "leadership.png",
+    img_alt: "Leadership Icon",
+    title: "Team Leadership",
+    skill_doc_link: "",
+  },
+  {
+    imagePath: "project_management.png",
+    img_alt: "JIRA Logo",
+    title: "Project Management",
+    skill_doc_link: "",
+  },
+  {
+    imagePath: "public_speaking.png",
+    img_alt: "Public Speaking Icon",
+    title: "Public Speaking",
+    skill_doc_link: "",
+  },
+  {
+    imagePath: "accessibility.png",
+    img_alt: "Accessibility Icon",
+    title: "Accessibility",
+    skill_doc_link: "",
+  },
+] as const;
+---
+
+<section>
+    <h2 id="top-skills">Top Skills</h2>
+    <ul role="list" class="flex flex-wrap justify-between justify-items-center *:flex-[auto]
+  *:list-inside *:flex *:content-center  *:basis-1/5 *:gap-1">
+      {skills.map((s) => (
+        <Skill s={s} />
+        ))}
+    </ul>
+</section>

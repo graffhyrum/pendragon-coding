@@ -1,0 +1,79 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+const pageTitle = "Bookshelf";
+const bookshelfTemplate = {
+  sections: [
+    {
+      title: "Disciplines",
+      subtitle: "Disciplines that I'm interested in and want to learn more about.",
+      content: [
+        {
+          title: "The Twelve Factor App",
+          href: "https://12factor.net/",
+          description: "A methodology for building modern, scalable, maintainable software-as-a-service apps.",
+        },
+      ],
+    },
+    {
+      title: "Articles",
+      subtitle: "Articles that I've read and found interesting.",
+      content: [
+        {
+          title: "The Grug Brained Developer",
+          href: "https://grugbrain.dev/",
+          description: "A layman's guide to thinking like the self-aware smol brained.",
+        },
+        {
+          title: "HTMX on Locality of Behavior",
+          href: "https://htmx.org/essays/locality-of-behaviour/",
+          description: "An article on the tradeoffs of Separation of Concerns and Locality of Behavior.",
+        },
+        {
+          title: "The Website vs. Web App Dichotomy Doesn't Exist",
+          href: "https://jakelazaroff.com/words/the-website-vs-web-app-dichotomy-doesnt-exist",
+          description: "An analysis of websites across two axes: Static vs Dynamic & Online vs Offline.",
+        },
+      ],
+    },
+    {
+      title: "Cool Tools",
+      subtitle: "Tools I like to use or think are interesting",
+      content: [
+        {
+          title: "Test Automation University",
+          href: "https://testautomationu.applitools.com/",
+          description: "An excellent, free, training resource for learning QA automation.",
+        },
+        {
+          title: "Photopea",
+          href: "https://www.photopea.com/",
+          description: "Free photo editing in the browser.",
+        },
+        {
+          title: "Obsidian",
+          href: "https://obsidian.md/",
+          description: "Obsidian is the private and flexible writing app that adapts to the way you think.",
+        },
+      ],
+    }
+  ],
+} as const;
+---
+<BaseLayout pageTitle={pageTitle}>
+  {bookshelfTemplate.sections.map((section) => (
+          <section>
+              <h2>{section.title}</h2>
+              <p class="text-xl">{section.subtitle}</p>
+              <!--<ul class="flex flex-wrap max-w-max mr-8" role="list">-->
+              <ul class="flex flex-wrap mr-8" role="list">
+                {section.content.map((item) => (
+                        <li class="outline outline-2 outline-green-700 w-full max-w-lg m-4 p-2 rounded-lg">
+                            <a class="text-xl" target="_blank" href={item.href}>{item.title}</a>
+                            <br>
+                            <p class="text-lg">{item.description}</p>
+                        </li>
+                ))}
+              </ul>
+          </section>
+  ))}
+</BaseLayout>

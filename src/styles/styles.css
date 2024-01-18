@@ -1,0 +1,33 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+pre {
+    @apply w-fit mx-0 my-2.5 p-2.5 rounded-[10px];
+    background: rgba(255, 255, 255, 0.5);
+}
+
+a {
+    @apply text-[rgba(138,174,216,0.85)] w-fit visited:text-[rgba(215,193,244,0.4)] hover:text-[rgba(255,255,255,0.7)];
+}
+
+a:hover {
+    text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.7);
+    outline: 3px solid #dbd9d9;
+}
+
+section {
+    @apply flex flex-col
+}
+
+h2 {
+    @apply text-2xl;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    @apply p-2 my-2  self-center underline sticky top-0 backdrop-blur-md w-full rounded-md shadow bg-green-800 ring-1 ring-slate-300/10;
+}
+
+p {
+    @apply my-4;
+}

@@ -1,0 +1,32 @@
+---
+import fs from 'fs';
+
+const url = new URL('../../package.json', import.meta.url);
+const json = fs.readFileSync(url, 'utf8');
+const data = JSON.parse(json);
+const links = [
+    {
+        name: 'LinkedIn',
+        url: 'https://www.linkedin.com/in/pendragonjoshuag/'
+    },
+    {
+        name: 'GitHub',
+        url: 'https://github.com/graffhyrum'
+    },
+    {
+        name: 'Email Me',
+        url: "mailto:pendragon.josh@gmail.com"
+    }
+]
+---
+<footer class="h-max *:col-auto flex flex-row justify-end items-center">
+    <p class="text-[0.8rem] w-max m-[2%]"> Est. 2023. Version { data.version } All rights reserved.</p>
+    <div class="flex flex-row gap-x-2">
+        <h2 class="w-min">Links</h2>
+        <nav class="flex items-center *:px-2 *:text-xl ">
+            {links.map(({ name, url }) => (
+                <a target="_blank" href={url}>{name}</a>
+            ))}
+        </nav>
+    </div>
+</footer>
