@@ -4,8 +4,8 @@ import headshot from '../assets/headshot_sm.jpg'
 import Navigation from "./Navigation.astro";
 ---
 
-<header class="h-max p-2 grid grid-cols-3 items-center">
+<header class="h-max p-2 flex *:mx-3 items-center">
     <Image class="rounded-full" src={headshot} alt="Headshot of Joshua Pendragon" data-testid="Headshot"/>
-    <h1 class="text-5xl">Joshua Pendragon</h1>
+    <h1 class="text-5xl max-w-max">Joshua Pendragon</h1>
     <Navigation/>
 </header>
