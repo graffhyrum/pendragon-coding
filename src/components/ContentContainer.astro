@@ -11,17 +11,17 @@ const {containerContent} = Astro.props;
     <h2>{section.title}</h2>
     <p class="text-xl">{section.subtitle}</p>
     <ul class="flex flex-wrap mr-8" role="list">
-      {section.content.map((item) => (
+      {section.content.map((thisSection) => (
               <li class="outline outline-2 outline-green-700 w-full max-w-lg m-4 p-2 rounded-lg">
-                  <h3 class="text-3xl underline">{item.title}</h3>
+                  <h3 class="text-3xl underline">{thisSection.title}</h3>
                   <ul>
-                    {item.link.map((link) => (
+                    {thisSection.link.map((link) => (
                             <li>
                                 <a class="text-xl" target="_blank" href={link.href}>{link.title ?? "Link"}</a>
                             </li>
                     ))}
                   </ul>
-                  <p class="text-lg">{item.description}</p>
+                  <p class="text-lg">{thisSection.description}</p>
               </li>
       ))}
     </ul>

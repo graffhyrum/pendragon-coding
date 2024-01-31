@@ -44,6 +44,13 @@ const content: ContentTemplate = {
             href:"https://blog.cleancoder.com/uncle-bob/2018/04/13/FPvsOO.html"
           }],
           description: "Two articles from Robert Martin that talk about how FP and OO are not mutually exclusive, and how they might better be conceptualized to get the benefits of both in your projects."
+        },
+        {
+          title: "Test IDs. Always.",
+          link: [
+            {href: "https://engineering.kablamo.com.au/posts/2020/test-ids-always/"}
+          ],
+          description: "'Why automation attributes are a non-negotiable part of web development.' A good primer on how and why to use test attributes for e2e tests."
         }
       ],
     },
