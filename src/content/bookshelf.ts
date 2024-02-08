@@ -38,10 +38,10 @@ const content: ContentTemplate = {
           title: "Uncle Bob on FP & OO",
           link: [{
             title: "First Article",
-            href:"https://blog.cleancoder.com/uncle-bob/2014/11/24/FPvsOO.html"
-          },{
-            title:"Second Article",
-            href:"https://blog.cleancoder.com/uncle-bob/2018/04/13/FPvsOO.html"
+            href: "https://blog.cleancoder.com/uncle-bob/2014/11/24/FPvsOO.html"
+          }, {
+            title: "Second Article",
+            href: "https://blog.cleancoder.com/uncle-bob/2018/04/13/FPvsOO.html"
           }],
           description: "Two articles from Robert Martin that talk about how FP and OO are not mutually exclusive, and how they might better be conceptualized to get the benefits of both in your projects."
         },
@@ -51,6 +51,13 @@ const content: ContentTemplate = {
             {href: "https://engineering.kablamo.com.au/posts/2020/test-ids-always/"}
           ],
           description: "'Why automation attributes are a non-negotiable part of web development.' A good primer on how and why to use test attributes for e2e tests."
+        },
+        {
+          title: "Become an SDET Hero",
+          link: [{
+            href: "https://www.developerswhotest.com/episode-4-becoming-an-sdet-hero-with-andrew-knight/"
+          }],
+          description: 'A really insightful episode of the Developers who Test Podcast. Andrew Knight talks about distinguishing SDETs from Automation engineers and other developer roles.'
         }
       ],
     },
