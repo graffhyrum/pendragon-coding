@@ -1,0 +1,8 @@
+---
+const {frontmatter} = Astro.props;
+---
+<h3>{frontmatter.title}</h3>
+<p >{frontmatter.date}</p>
+<div class="content bullet-list">
+<slot />
+</div>

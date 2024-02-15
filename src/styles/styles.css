@@ -31,3 +31,8 @@ h1, h2, h3, h4, h5, h6 {
 p {
     @apply my-4;
 }
+
+.bullet-list > ul {
+    @apply ml-4;
+    list-style: initial;
+}

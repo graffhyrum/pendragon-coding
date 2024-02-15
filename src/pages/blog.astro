@@ -1,0 +1,23 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+const pageTitle = "Blog";
+const allBlogs = await Astro.glob('./blog/*.md');
+---
+
+<BaseLayout pageTitle={pageTitle}>
+    <h2>{pageTitle}</h2>
+    <div class="text-xl">
+        <p>
+            Putting things to paper helps me think. Come here to watch the sausage get made.
+        </p>
+        <ul class="flex flex-wrap max-w-max mr-8" role="list">
+            {allBlogs.reverse().map(({frontmatter, Content}) => (
+                    <article class="outline outline-2 outline-green-700 w-full max-w-max m-4 p-2 rounded-lg"
+                        id={frontmatter.title}>
+                        <Content />
+                    </article>
+            ))}
+        </ul>
+    </div>
+
+</BaseLayout>
