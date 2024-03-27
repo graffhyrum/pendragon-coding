@@ -58,6 +58,11 @@ const content: ContentTemplate = {
             href: "https://www.developerswhotest.com/episode-4-becoming-an-sdet-hero-with-andrew-knight/"
           }],
           description: 'A really insightful episode of the Developers who Test Podcast. Andrew Knight talks about distinguishing SDETs from Automation engineers and other developer roles.'
+        },
+        {
+          title:"I'm a Developer, not a Compiler",
+          link:[{href:"https://www.blobstreaming.org/im-a-developer-not-a-compiler/?utm_source=tldrwebdev"}],
+          description:'A short blog post that nicely captures what I dislike most about the prevalent technical interview process. "Any question that takes 5 seconds to answer with Google/ChatGPT is not a good question." Amen.'
         }
       ],
     },
