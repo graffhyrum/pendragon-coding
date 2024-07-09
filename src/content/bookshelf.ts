@@ -63,6 +63,14 @@ const content: ContentTemplate = {
           title:"I'm a Developer, not a Compiler",
           link:[{href:"https://www.blobstreaming.org/im-a-developer-not-a-compiler/?utm_source=tldrwebdev"}],
           description:'A short blog post that nicely captures what I dislike most about the prevalent technical interview process. "Any question that takes 5 seconds to answer with Google/ChatGPT is not a good question." Amen.'
+        },
+        {
+          title: "How to actually use Node environment variables",
+          link: [{href: "https://medium.com/free-code-camp/heres-how-you-can-actually-use-node-environment-variables-8fdf98f53a0a"}],
+          description: "A cheeky article (my favorite kind) on working with" +
+              " process environment variables in Node.js. It sadly does not" +
+              " mention the ability to extend the environment object with" +
+              " declaration files, but it's still a good read."
         }
       ],
     },
