@@ -6,7 +6,7 @@
     "dev": "astro dev",
     "start": "astro dev",
     "bump-caniuse": "bunx update-browserslist-db@latest",
-    "build": "bump-caniuse && astro check && astro build",
+    "build": "bun run bump-caniuse && astro check && astro build",
     "preview": "astro preview",
     "astro": "astro",
     "changeset": "bunx changeset",
@@ -20,7 +20,7 @@
     "@changesets/cli": "^2.27.10",
     "@types/node": "^20.14.10",
     "astro": "^4.11.5",
-    "caniuse-lite": "^1.0.30001640",
+    "caniuse-lite": "^1.0.30001687",
     "tailwindcss": "^3.4.4",
     "typescript": "^5.5.3"
   }
