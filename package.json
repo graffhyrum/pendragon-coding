@@ -1,7 +1,7 @@
 {
   "name": "pendragon-coding",
   "type": "module",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
@@ -11,8 +11,7 @@
     "preview": "astro preview",
     "astro": "astro",
     "changeset": "bunx changeset",
-    "version": "bunx changeset version",
-    "publish": "bunx changeset publish"
+    "version": "bunx changeset version"
   },
   "dependencies": {
     "@astrojs/check": "^0.8.0",

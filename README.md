@@ -65,13 +65,8 @@ This will update the `package.json` and create/update the `CHANGELOG.md` file.
 
 #### Publishing
 
-To publish the package, use:
+To publish the package, push to main. The site is hosted on Netlify and will automatically deploy the changes.
 
-```bash
-bunx changeset publish
-```
-
-This will publish the package to the registry and update the version.
 
 #### Summary
 
