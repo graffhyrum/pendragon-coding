@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "postinstall": "bunx update-browserslist-db@latest",
+    "postinstall": " npm install -g bun && bunx update-browserslist-db@latest",
     "prebuild": "astro check",
     "build": "astro build",
     "preview": "astro preview",
