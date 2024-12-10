@@ -5,8 +5,9 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "bump-caniuse": "bunx update-browserslist-db@latest",
-    "build": "bun run bump-caniuse && astro check && astro build",
+    "postinstall": "bunx update-browserslist-db@latest",
+    "prebuild": "astro check",
+    "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
     "changeset": "bunx changeset",
