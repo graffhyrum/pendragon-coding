@@ -8,12 +8,16 @@
     "bump-caniuse": "bunx update-browserslist-db@latest",
     "build": "bump-caniuse && astro check && astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "changeset": "bunx changeset",
+    "version": "bunx changeset version",
+    "publish": "bunx changeset publish"
   },
   "dependencies": {
     "@astrojs/check": "^0.8.0",
     "@astrojs/tailwind": "^5.1.0",
     "@astrojs/ts-plugin": "^1.9.0",
+    "@changesets/cli": "^2.27.10",
     "@types/node": "^20.14.10",
     "astro": "^4.11.5",
     "caniuse-lite": "^1.0.30001640",
