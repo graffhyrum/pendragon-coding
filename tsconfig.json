@@ -1,12 +1,13 @@
 {
-  "extends": "astro/tsconfigs/strict",
-  "paths": {
-    "@assets/*": ["src/assets/*"]
-  },
-  "compilerOptions": {
-    "plugins": [{
-      "name": "@astrojs/ts-plugin"
-    }
-    ]
-  }
+	"extends": "astro/tsconfigs/strict",
+	"paths": {
+		"@assets/*": ["src/assets/*"]
+	},
+	"compilerOptions": {
+		"plugins": [
+			{
+				"name": "@astrojs/ts-plugin"
+			}
+		]
+	}
 }

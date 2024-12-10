@@ -1,10 +1,10 @@
 ---
-import type {ContentTemplate} from '../content/types/ContentTemplate';
+import type { ContentTemplate } from '../content/types/ContentTemplate';
 interface Props {
-  containerContent: ContentTemplate
+	containerContent: ContentTemplate;
 }
 
-const {containerContent} = Astro.props;
+const { containerContent } = Astro.props;
 ---
 {containerContent.sections.map((section)=> (
 <section>
