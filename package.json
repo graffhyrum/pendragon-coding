@@ -9,7 +9,7 @@
 		"build": "astro build",
 		"preview": "astro preview",
 		"astro": "astro",
-		"changeset": "bunx changeset",
+		"add_changeset": "bunx changeset",
 		"version": "bunx changeset version",
 		"format": "bunx biome format --write .",
 		"lint": "bunx biome lint --write .",
