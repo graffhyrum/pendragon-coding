@@ -1,0 +1,8 @@
+---
+const { frontmatter, Content } = Astro.props;
+---
+<li>
+    <article class="outline outline-2 outline-green-700 w-full max-w-max m-4 p-2 rounded-lg" id={frontmatter.title.replace(/ /g, '-')}>
+        <Content />
+    </article>
+</li>
