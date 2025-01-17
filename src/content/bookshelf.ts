@@ -184,6 +184,25 @@ const content: ContentTemplate = {
 				},
 			],
 		},
+		{
+			title: 'Longform Content',
+			subtitle:
+				'Do you have too much time and not enough knowledge? Click a' +
+				' link below for at least 30 minutes of curated, high-value' +
+				' content! Act now while supplies last.',
+			content: [
+				{
+					title: 'Staff Engineer @ Meta by Age 25 | Evan King',
+					link: [
+						{
+							href: 'https://www.developing.dev/p/staff-engineer-meta-by-age-25-evan?r=2v0lru&utm_campaign=post&utm_medium=web&showWelcomeOnShare=false',
+						},
+					],
+					description:
+						'A 2 hr video between two Staff Engineers talking about their career trajectory and giving (good) advice.',
+				},
+			],
+		},
 	],
 };
 
