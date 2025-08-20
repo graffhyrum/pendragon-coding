@@ -17,13 +17,13 @@
 	},
 	"dependencies": {
 		"@astrojs/check": "^0.9.4",
-		"@astrojs/tailwind": "^5.1.4",
+		"@astrojs/tailwind": "^5.1.5",
 		"@astrojs/ts-plugin": "^1.10.4",
-		"@changesets/cli": "^2.27.11",
-		"@types/node": "^22.10.7",
-		"astro": "^5.1.7",
-		"caniuse-lite": "^1.0.30001692",
+		"@changesets/cli": "^2.29.6",
+		"@types/node": "^22.17.2",
+		"astro": "^5.13.2",
+		"caniuse-lite": "^1.0.30001735",
 		"tailwindcss": "^3.4.17",
-		"typescript": "^5.7.3"
+		"typescript": "^5.9.2"
 	}
 }

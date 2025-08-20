@@ -1,17 +1,23 @@
 ---
-import {Image} from 'astro:assets';
-import type {ImageMetadata} from 'astro';
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
 
 interface Props {
-  s: {
-    title: string; imagePath: string; img_alt: string; skill_doc_link: string;
-  };
+	s: {
+		title: string;
+		imagePath: string;
+		img_alt: string;
+		skill_doc_link: string;
+	};
 }
-const {s} = Astro.props;
+const { s } = Astro.props;
 const images = import.meta.glob<{ default: ImageMetadata }>(
-    '/src/assets/*.{jpeg,jpg,png,gif,webp}');
-if (!images[`/src/assets/${s.imagePath}`]) throw new Error(`"${s.imagePath}" does not exist in glob\nList: ${Object.keys(
-    images)}`);
+	'/src/assets/*.{jpeg,jpg,png,gif,webp}',
+);
+if (!images[`/src/assets/${s.imagePath}`])
+	throw new Error(
+		`"${s.imagePath}" does not exist in glob\nList: ${Object.keys(images)}`,
+	);
 ---
 
 <li class="flex items-center justify-between gap-4 p-4">
