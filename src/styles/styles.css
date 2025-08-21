@@ -7,11 +7,36 @@ pre {
     background: rgba(255, 255, 255, 0.5);
 }
 
-a {
+/* Ensure mermaid process overview can use full available width and intended background */
+pre.mermaid {
+    @apply w-full max-w-full;
+    background: rgba(20, 83, 45, 0.4); /* approx Tailwind bg-green-900/40 */
+}
+
+/* Make the rendered Mermaid SVG responsive and improve clarity */
+pre.mermaid svg {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Slightly thicker node borders for legibility on dark bg */
+pre.mermaid .node rect,
+pre.mermaid .node circle,
+pre.mermaid .node polygon {
+    stroke-width: 2px;
+}
+
+/* Edge label text sizing in case themeVariables don't fully apply */
+pre.mermaid .edgeLabel {
+    font-size: 1rem;
+}
+
+ a {
     @apply text-[rgba(138,174,216,0.85)] w-fit visited:text-[rgba(215,193,244,0.4)] hover:text-[rgba(255,255,255,0.7)] hover:underline transition-colors;
 }
 
-a:hover {
+ a:hover {
     text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.7);
     outline: 3px solid #dbd9d9;
 }

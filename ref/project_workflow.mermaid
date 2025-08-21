@@ -1,0 +1,69 @@
+---
+config:
+  layout: elk
+  elk:
+    mergeEdges: true
+    nodePlacementStrategy: SIMPLE
+---
+
+flowchart
+    A[Client Inquiry] --> K{Tier Recommendation}
+
+    K --> L1[Essential Assessment Proposal]
+    K --> L2[Professional Audit Proposal]
+    K --> L3[Enterprise Analysis Proposal]
+    K --> L4[Custom Proposal Development]
+
+    L1 --> M[Client Review & Approval]
+    L2 --> M
+    L3 --> M
+    L4 --> M
+
+    M --> N{Proposal Accepted?}
+    N --> O[Revise Proposal or End Process]
+    N --> S{Execute Analysis by Tier}
+
+    S --> T1[3-Day Essential Assessment]
+    S --> T2[7-Day Professional Audit]
+    S --> T3[10-Day Enterprise Analysis]
+
+    T1 --> T1A[Automated Scanning]
+    T1A --> T1B[Priority Issues Identification]
+    T1B --> T1C[Quick Report Creation]
+    T1C --> U1[Tier 1 Delivery]
+
+    T2 --> T2A[Comprehensive Manual Testing]
+    T2A --> T2B[Cross-Browser Testing]
+    T2B --> T2C[Detailed Report & Roadmap]
+    T2C --> T2D[Code Snippets & Examples]
+    T2D --> U2[Tier 2 Delivery]
+
+    T3 --> T3A[Full Technical Architecture Review]
+    T3A --> T3B[User Journey Analysis]
+    T3B --> T3C[Custom Testing Methodology]
+    T3C --> T3D[Strategic Implementation Plan]
+    T3D --> T3E[Custom Documentation Creation]
+    T3E --> U3[Tier 3 Delivery]
+
+    U1 --> V1[Email Report Delivery]
+    U2 --> V2[Report + 30min Walkthrough Call]
+    U3 --> V3[Executive Report + 1hr Strategy Call]
+
+    V1 --> W[Client Reviews Findings]
+    V2 --> W
+    V3 --> W
+
+    W --> X{Revision Needed?}
+    X --> Y[Revise Report]
+    X --> Z[Additional Revision Quote]
+    X --> AA[Final Report Approval]
+
+    Y --> W
+    Z --> BB{Client Accepts Additional Cost?}
+    BB --> Y
+    BB --> AA
+
+    AA --> CC[Email Support Period Begins]
+
+
+
