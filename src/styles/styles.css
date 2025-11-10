@@ -107,11 +107,11 @@ pre.mermaid .edgeLabel {
 }
 
 a {
-    @apply text-[rgba(138,174,216,0.85)] w-fit visited:text-[rgba(215,193,244,0.4)] hover:text-[rgba(255,255,255,0.7)] hover:underline;
+    @apply text-[rgba(138,174,216,0.85)] w-fit visited:text-[rgba(215,193,244,0.4)] hover:text-[rgba(255,255,255,0.7)] hover:underline focus-visible:text-[rgba(255,255,255,0.7)] focus-visible:underline;
     transition: all 0.3s ease;
 }
 
-a:hover {
+a:hover, a:focus-visible {
     text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.7);
     outline: 3px solid #dbd9d9;
     transform: translateY(-1px);
@@ -130,7 +130,8 @@ h1, h2, h3, h4, h5, h6 {
     transition: all 0.3s ease;
 }
 
-h1:hover, h2:hover, h3:hover, h4:hover, h5:hover, h6:hover {
+h1:hover, h2:hover, h3:hover, h4:hover, h5:hover, h6:hover,
+h1:focus-visible, h2:focus-visible, h3:focus-visible, h4:focus-visible, h5:focus-visible, h6:focus-visible {
     @apply shadow-xl ring-2 ring-green-400/20;
 }
 
