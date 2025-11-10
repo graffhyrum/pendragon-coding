@@ -1,5 +1,20 @@
 # pendragon-coding
 
+## 2.0.0
+
+### Major Changes
+
+- 9958e84: Update changeset to v4
+- 9958e84: Update Biome to v2
+
+### Minor Changes
+
+- 5243fa5: upgrade Astro to 5.15.5 and @types/node to 24.10.0
+
+### Patch Changes
+
+- 9958e84: Updated page styling. Increased side margins and adjusted responsive layouts.
+
 ## 1.1.1
 
 ### Patch Changes
