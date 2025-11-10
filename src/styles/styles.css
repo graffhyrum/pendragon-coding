@@ -1,8 +1,8 @@
 @import 'tailwindcss';
 
 @theme {
-  --font-display: Roboto, sans-serif;
-  --font-body: Roboto, sans-serif;
+    --font-display: Roboto, sans-serif;
+    --font-body: Roboto, sans-serif;
 }
 
 /*
@@ -14,13 +14,13 @@
   color utility to any element that depends on these defaults.
 */
 @layer base {
-  *,
-  ::after,
-  ::before,
-  ::backdrop,
-  ::file-selector-button {
-    border-color: var(--color-gray-200, currentcolor);
-  }
+    *,
+    ::after,
+    ::before,
+    ::backdrop,
+    ::file-selector-button {
+        border-color: var(--color-gray-200, currentcolor);
+    }
 }
 
 pre {
@@ -53,11 +53,11 @@ pre.mermaid .edgeLabel {
     font-size: 1rem;
 }
 
- a {
+a {
     @apply text-[rgba(138,174,216,0.85)] w-fit visited:text-[rgba(215,193,244,0.4)] hover:text-[rgba(255,255,255,0.7)] hover:underline transition-colors;
 }
 
- a:hover {
+a:hover {
     text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.7);
     outline: 3px solid #dbd9d9;
 }
@@ -75,8 +75,10 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1, h2 {
-    @apply sticky top-0;
+    @apply sticky top-0 z-20;
 }
+
+h3 { @apply sticky top-[3rem] z-10;}
 
 p {
     @apply my-4;
