@@ -1,5 +1,11 @@
 # pendragon-coding
 
+## 2.1.0
+
+### Minor Changes
+
+- Adds transitions and animations to the site styling
+
 ## 2.0.0
 
 ### Major Changes
