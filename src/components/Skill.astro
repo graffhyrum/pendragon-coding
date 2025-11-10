@@ -9,8 +9,10 @@ interface Props {
 		img_alt: string;
 		skill_doc_link: string;
 	};
+	index?: number;
 }
-const { s } = Astro.props;
+const { s, index = 0 } = Astro.props;
+const delayClass = `delay-${Math.min(index * 100, 400)}`;
 const images = import.meta.glob<{ default: ImageMetadata }>(
 	'/src/assets/*.{jpeg,jpg,png,gif,webp}',
 );
@@ -20,13 +22,13 @@ if (!images[`/src/assets/${s.imagePath}`])
 	);
 ---
 
-<li class="flex items-center justify-between gap-4 p-1">
-  <Image
-    src={images[`/src/assets/${s.imagePath}`]()}
-    alt={s.img_alt}
-    class="w-10 h-auto object-contain"
-  />
-  <p class="text-xl flex-1 text-left m-0">
-      {s.skill_doc_link ? <a href={s.skill_doc_link}>{s.title}</a> : s.title}
-    </p>
+<li class={`flex items-center justify-between gap-4 p-1 animate-scale-in ${delayClass} opacity-0 hover:bg-green-900/20 rounded-lg transition-all duration-300 hover:scale-105 group`}>
+	<Image
+		src={images[`/src/assets/${s.imagePath}`]()}
+		alt={s.img_alt}
+		class="w-10 h-auto object-contain transition-transform duration-300 group-hover:rotate-12 group-hover:scale-110"
+	/>
+	<p class="text-xl flex-1 text-left m-0">
+		{s.skill_doc_link ? <a href={s.skill_doc_link}>{s.title}</a> : s.title}
+	</p>
 </li>

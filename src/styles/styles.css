@@ -5,6 +5,59 @@
     --font-body: Roboto, sans-serif;
 }
 
+/* Modern Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Animation utility classes */
+.animate-fade-in {
+    animation: fadeIn 0.6s ease-out forwards;
+}
+
+.animate-slide-in {
+    animation: slideIn 0.5s ease-out forwards;
+}
+
+.animate-scale-in {
+    animation: scaleIn 0.4s ease-out forwards;
+}
+
+/* Staggered animation delays */
+.delay-100 { animation-delay: 0.1s; }
+.delay-200 { animation-delay: 0.2s; }
+.delay-300 { animation-delay: 0.3s; }
+.delay-400 { animation-delay: 0.4s; }
+
 /*
   The default border color has changed to `currentcolor` in Tailwind CSS v4,
   so we've added these compatibility styles to make sure everything still
@@ -54,12 +107,14 @@ pre.mermaid .edgeLabel {
 }
 
 a {
-    @apply text-[rgba(138,174,216,0.85)] w-fit visited:text-[rgba(215,193,244,0.4)] hover:text-[rgba(255,255,255,0.7)] hover:underline transition-colors;
+    @apply text-[rgba(138,174,216,0.85)] w-fit visited:text-[rgba(215,193,244,0.4)] hover:text-[rgba(255,255,255,0.7)] hover:underline;
+    transition: all 0.3s ease;
 }
 
 a:hover {
     text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.7);
     outline: 3px solid #dbd9d9;
+    transform: translateY(-1px);
 }
 
 section {
@@ -71,7 +126,12 @@ h2 {
 }
 
 h1, h2, h3, h4, h5, h6 {
-    @apply px-2 py-1 my-1  self-center backdrop-blur-md w-full rounded-md shadow-lg bg-green-800 ring-1 ring-slate-300/10;
+    @apply px-2 py-1 my-1 self-center backdrop-blur-md w-full rounded-md shadow-lg bg-green-800 ring-1 ring-slate-300/10;
+    transition: all 0.3s ease;
+}
+
+h1:hover, h2:hover, h3:hover, h4:hover, h5:hover, h6:hover {
+    @apply shadow-xl ring-2 ring-green-400/20;
 }
 
 h1, h2 {

@@ -65,11 +65,11 @@ const skills = [
 ] as const;
 ---
 
-<section>
-    <h2 id="top-skills">Top Skills</h2>
-    <ul role="list" class="skills-list">
-      {skills.map((s) => (
-              <Skill s={s}/>
-      ))}
-    </ul>
+<section class="animate-fade-in">
+	<h2 id="top-skills">Top Skills</h2>
+	<ul role="list" class="skills-list">
+		{skills.map((s, index) => (
+			<Skill s={s} index={index}/>
+		))}
+	</ul>
 </section>
