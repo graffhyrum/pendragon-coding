@@ -13,7 +13,7 @@ const { containerContent } = Astro.props;
     <p class="text-xl">{section.subtitle}</p>
     <ul class="flex flex-wrap mr-8" role="list">
       {section.content.map((thisSection) => (
-              <li class="outline outline-2 outline-green-700 w-full max-w-lg m-4 p-2 rounded-lg">
+              <li class="outline-solid outline-2 outline-green-700 w-full max-w-lg m-4 p-2 rounded-lg">
                   <h3 class="text-3xl underline">{thisSection.title}</h3>
                   <ul>
                     {thisSection.link.map((link) => (

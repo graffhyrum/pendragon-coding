@@ -1,6 +1,27 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+
+@theme {
+  --font-display: Roboto, sans-serif;
+  --font-body: Roboto, sans-serif;
+}
+
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
+  }
+}
 
 pre {
     @apply w-fit mx-0 my-2.5 p-2.5 rounded-[10px];
@@ -63,7 +84,7 @@ p {
 }
 
 .skills-list {
-    @apply flex flex-wrap justify-between justify-items-center *:flex-[auto]
+    @apply flex flex-wrap justify-between justify-items-center *:flex-auto
     *:list-inside *:flex *:content-center *:basis-1/5 *:gap-1;
 }
 
