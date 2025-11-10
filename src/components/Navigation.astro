@@ -2,14 +2,49 @@
 import '../styles/styles.css';
 // todo generate this list automatically from the files in /pages
 ---
-<nav>
-    <ul class="flex flex-wrap items-start p-0 *:px-3 text-lg" role="list">
-        <li><a href="/">Home</a></li>
-        <li><a href="/bookshelf/">Bookshelf</a></li>
-        <li><a href="/myWork/">My Work</a></li>
-        <li><a href="/shoutouts/">Shoutouts</a></li>
-        <li><a href="/testimonials/">Testimonials</a></li>
-        <li><a href="/blog/">Blog</a></li>
-        <li><a href="/consultancy/">Consultancy</a></li>
-    </ul>
+<nav class="animate-fade-in">
+	<ul class="flex flex-wrap items-start p-0 *:px-3 text-lg gap-2" role="list">
+		<li class="relative group">
+			<a href="/" class="relative inline-block py-1">
+				Home
+				<span class="absolute bottom-0 left-0 w-0 h-0.5 bg-green-400 transition-all duration-300 group-hover:w-full group-focus-within:w-full"></span>
+			</a>
+		</li>
+		<li class="relative group">
+			<a href="/bookshelf/" class="relative inline-block py-1">
+				Bookshelf
+				<span class="absolute bottom-0 left-0 w-0 h-0.5 bg-green-400 transition-all duration-300 group-hover:w-full group-focus-within:w-full"></span>
+			</a>
+		</li>
+		<li class="relative group">
+			<a href="/myWork/" class="relative inline-block py-1">
+				My Work
+				<span class="absolute bottom-0 left-0 w-0 h-0.5 bg-green-400 transition-all duration-300 group-hover:w-full group-focus-within:w-full"></span>
+			</a>
+		</li>
+		<li class="relative group">
+			<a href="/shoutouts/" class="relative inline-block py-1">
+				Shoutouts
+				<span class="absolute bottom-0 left-0 w-0 h-0.5 bg-green-400 transition-all duration-300 group-hover:w-full group-focus-within:w-full"></span>
+			</a>
+		</li>
+		<li class="relative group">
+			<a href="/testimonials/" class="relative inline-block py-1">
+				Testimonials
+				<span class="absolute bottom-0 left-0 w-0 h-0.5 bg-green-400 transition-all duration-300 group-hover:w-full group-focus-within:w-full"></span>
+			</a>
+		</li>
+		<li class="relative group">
+			<a href="/blog/" class="relative inline-block py-1">
+				Blog
+				<span class="absolute bottom-0 left-0 w-0 h-0.5 bg-green-400 transition-all duration-300 group-hover:w-full group-focus-within:w-full"></span>
+			</a>
+		</li>
+		<li class="relative group">
+			<a href="/consultancy/" class="relative inline-block py-1">
+				Consultancy
+				<span class="absolute bottom-0 left-0 w-0 h-0.5 bg-green-400 transition-all duration-300 group-hover:w-full group-focus-within:w-full"></span>
+			</a>
+		</li>
+	</ul>
 </nav>

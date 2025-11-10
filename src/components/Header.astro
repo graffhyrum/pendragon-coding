@@ -5,10 +5,12 @@ import Navigation from './Navigation.astro';
 ---
 
 <header class="h-max p-2 sm:p-4 flex *:mx-3 items-center">
-    <Image class="rounded-full hidden sm:block"
-           src={headshot}
-           alt="Headshot of Joshua Pendragon"
-           data-testid="Headshot"/>
-    <h1 class="text-4xl max-w-max mt-2 sm:mt-0">Joshua Pendragon</h1>
-    <Navigation class="mt-2 sm:mt-0"/>
+	<Image
+		class="rounded-full hidden sm:block transition-all duration-500 hover:scale-110 hover:rotate-6 hover:shadow-lg hover:shadow-green-500/50 animate-fade-in"
+		src={headshot}
+		alt="Headshot of Joshua Pendragon"
+		data-testid="Headshot"
+	/>
+	<h1 class="text-4xl max-w-max mt-2 sm:mt-0 animate-fade-in delay-100">Joshua Pendragon</h1>
+	<Navigation class="mt-2 sm:mt-0"/>
 </header>
