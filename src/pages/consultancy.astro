@@ -1,8 +1,7 @@
 ---
-// Import Mermaid definition from ref folder as raw text (Vite ?raw)
+// Import Mermaid definition from the ref folder as raw text (Vite ?raw)
 // This keeps the source of truth in /ref and renders it on the page.
 // Note: Using a CDN for Mermaid to avoid adding deps.
-// @ts-ignore - Vite raw import
 import workflow from '../../ref/project_workflow.mermaid?raw';
 import BaseLayout from '../layouts/BaseLayout.astro';
 
@@ -24,7 +23,7 @@ const pageTitle = 'Consultancy';
         <h2 id="process" class="text-3xl mb-2">Process overview</h2>
         <p class="mb-4">From inquiry to delivery and follow-up. This flow
             outlines the process start to finish.</p>
-        <!-- Mermaid container; script below initializes rendering on load -->
+        <!-- Mermaid container; the script below initializes rendering on-load -->
         <details>
             <summary class="cursor-pointer text-xl">View a condensed outline
             </summary>
