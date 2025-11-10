@@ -1,0 +1,11 @@
+---
+interface Props {
+	maxWidth?: string;
+	[key: string]: any;
+}
+
+const { maxWidth = 'max-w-lg', ...rest } = Astro.props;
+---
+<li class={`outline-solid outline-2 outline-green-700 w-full ${maxWidth} m-4 p-2 rounded-lg`} {...rest}>
+	<slot />
+</li>

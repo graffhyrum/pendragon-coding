@@ -1,8 +1,10 @@
 ---
+import Card from './Card.astro';
+
 const { frontmatter, Content } = Astro.props;
 ---
-<li>
-    <article class="outline-solid outline-2 outline-green-700 w-full max-w-max m-4 p-2 rounded-lg" id={frontmatter.title.replace(/ /g, '-')}>
+<Card maxWidth="max-w-max">
+    <article id={frontmatter.title.replace(/ /g, '-')}>
         <Content />
     </article>
-</li>
+</Card>

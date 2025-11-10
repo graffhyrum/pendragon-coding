@@ -1,24 +1,17 @@
 ---
 import BlogCard from '../components/BlogCard.astro';
-import BaseLayout from '../layouts/BaseLayout.astro';
+import CollectionPageLayout from '../layouts/CollectionPageLayout.astro';
 
 const pageTitle = 'Blog';
 const allBlogs = await Astro.glob('./blog/*.md');
 ---
 
-<BaseLayout pageTitle={pageTitle}>
-    <h2>{pageTitle}</h2>
-    <div class="text-xl">
-        <p>
-            Putting things to paper helps me think. Come here to watch the
-            sausage get made.
-        </p>
-        <ul class="flex flex-wrap max-w-max" role="list">
-          {allBlogs.reverse()
-                   .map(({frontmatter, Content}) => (
-                       <BlogCard frontmatter={frontmatter} Content={Content} />
-                   ))}
-        </ul>
-    </div>
-
-</BaseLayout>
+<CollectionPageLayout
+	pageTitle={pageTitle}
+	description="Putting things to paper helps me think. Come here to watch the sausage get made."
+>
+	{allBlogs.reverse()
+		.map(({frontmatter, Content}) => (
+			<BlogCard frontmatter={frontmatter} Content={Content} />
+		))}
+</CollectionPageLayout>
