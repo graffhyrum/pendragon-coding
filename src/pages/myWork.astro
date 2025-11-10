@@ -86,7 +86,7 @@ const myWorkTemplate = {
           <section>
               <h2>{section.title}</h2>
               <p class="text-xl">{section.subtitle}</p>
-              <ul class="flex flex-wrap max-w-max mr-8" role="list">
+              <ul class="flex flex-wrap max-w-max" role="list">
                 {section.content.map((item) => (
                         <li class="outline-solid outline-2 outline-green-700 w-full max-w-lg m-4 p-2 rounded-lg">
                             <a class="text-xl" target="_blank" href={item.href}>{item.title}</a>

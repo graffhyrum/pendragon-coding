@@ -11,12 +11,13 @@ const allTestimonials = await Astro.glob('./testimonials/*.md');
         <p>
             This is a collection of testimonials from people that I have worked with.
         </p>
-        <ul class="flex flex-wrap max-w-max mr-8" role="list">
+        <ul class="flex flex-wrap max-w-max" role="list">
             {allTestimonials.map(({frontmatter, Content}) => (
-                    <article class="outline-solid outline-2 outline-green-700 w-full max-w-lg m-4 p-2 rounded-lg"
-                        id={frontmatter.title}>
-                        <Content />
-                    </article>
+                    <li class="outline-solid outline-2 outline-green-700 w-full max-w-lg m-4 p-2 rounded-lg">
+                        <article id={frontmatter.title}>
+                            <Content />
+                        </article>
+                    </li>
             ))}
         </ul>
     </div>

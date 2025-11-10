@@ -71,7 +71,11 @@ h2 {
 }
 
 h1, h2, h3, h4, h5, h6 {
-    @apply px-2 py-1 my-1  self-center sticky top-0 backdrop-blur-md w-full rounded-md shadow-lg bg-green-800 ring-1 ring-slate-300/10;
+    @apply px-2 py-1 my-1  self-center backdrop-blur-md w-full rounded-md shadow-lg bg-green-800 ring-1 ring-slate-300/10;
+}
+
+h1, h2 {
+    @apply sticky top-0;
 }
 
 p {

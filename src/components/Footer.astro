@@ -15,10 +15,10 @@ const links = [
 ];
 ---
 <footer class="h-min *:col-auto flex flex-row justify-end items-center">
-    <p class="text-[0.8rem] w-max m-[2%] my-1"> Est. 2023.</p>
+    <p class="text-sm w-max m-2 my-1"> Est. 2023.</p>
     <div class="flex flex-row gap-x-2">
         <h2 class="w-min my-1 py-1">Links</h2>
-        <nav class="flex items-center *:px-2 *:text-xl ">
+        <nav class="flex items-center *:px-2 *:text-lg ">
             {links.map(({ name, url }) => (
                 <a target="_blank" href={url}>{name}</a>
             ))}
