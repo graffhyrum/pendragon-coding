@@ -1,0 +1,207 @@
+---
+import ApiContentLayout from '../../layouts/ApiContentLayout.astro';
+import workflow from '../../../ref/project_workflow.mermaid?raw';
+---
+<ApiContentLayout>
+	<section class="prose prose-invert max-w-none">
+		<h1 class="text-4xl mb-2">Consultancy</h1>
+		<p class="text-xl mb-6">
+			Pragmatic, inclusive, and developer-friendly consultancy focused on
+			web accessibility, technical audits,
+			and implementation strategy. Start small for fast wins or engage
+			deeper for enterprise-grade analysis and
+			roadmaps.
+		</p>
+	</section>
+
+	<section aria-labelledby="process" class="my-10">
+		<h2 id="process" class="text-3xl mb-2">Process overview</h2>
+		<p class="mb-4">From inquiry to delivery and follow-up. This flow
+			outlines the process start to finish.</p>
+		<!-- Mermaid container; the script below initializes rendering on-load -->
+		<details>
+			<summary class="cursor-pointer text-xl">View a condensed outline
+			</summary>
+			<pre class="mermaid block overflow-x-auto p-4 rounded-lg bg-green-900/40"
+				 style="white-space:pre-wrap">{workflow}</pre>
+		</details>
+		<script type="module" is:inline>
+			import mermaid
+				from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+
+			mermaid.initialize({
+				startOnLoad: true,
+				theme: 'dark',
+				themeVariables: {
+					fontSize: '18px',
+					fontFamily: 'Roboto, sans-serif',
+					primaryColor: '#0b1f16',
+					secondaryColor: '#0f2a1e',
+					tertiaryColor: '#113024',
+					primaryTextColor: '#e5e7eb',
+					noteTextColor: '#e5e7eb',
+					primaryBorderColor: '#d1d5db',
+					lineColor: '#d1d5db',
+					clusterBkg: '#0b1f16',
+					clusterBorder: '#d1d5db',
+				},
+				flowchart: {
+					useMaxWidth: true,
+					nodeSpacing: 50,
+					rankSpacing: 60,
+					padding: 12,
+					htmlLabels: true,
+				},
+				securityLevel: 'loose',
+			});
+		</script>
+	</section>
+
+	<section aria-labelledby="offerings" class="my-10">
+		<h2 id="offerings" class="text-3xl mb-4">Engagement tiers</h2>
+		<div class="grid gap-4 md:grid-cols-3">
+			<article class="rounded-lg border border-green-700/60 bg-green-900/20 p-4">
+				<h3 class="text-2xl">Tier 1 — Essential Assessment</h3>
+				<p class="text-sm opacity-80">Indicative price: $150 •
+					Turnaround: ~3 days</p>
+				<ul class="list-disc pl-6 mt-2 space-y-1">
+					<li>Automated scanning and priority issues</li>
+					<li>Quick report with top fixes and next steps</li>
+					<li>Great for a first pass or pre‑sales check</li>
+				</ul>
+				<details class="mt-3">
+					<summary class="cursor-pointer">Preview example
+						deliverable
+					</summary>
+					<p class="mt-2 text-sm opacity-90">Highlights from an
+						example report include alt‑text, contrast, form labels,
+						heading structure, and quick performance guidance.</p>
+				</details>
+			</article>
+			<article class="rounded-lg border border-green-700/60 bg-green-900/20 p-4">
+				<h3 class="text-2xl">Tier 2 — Professional Audit</h3>
+				<p class="text-sm opacity-80">Indicative price: $650 •
+					Turnaround: ~7 days</p>
+				<ul class="list-disc pl-6 mt-2 space-y-1">
+					<li>Comprehensive manual testing + cross‑browser</li>
+					<li>Detailed report, roadmap, and code examples</li>
+					<li>Actionable guidance for teams to implement</li>
+				</ul>
+				<details class="mt-3">
+					<summary class="cursor-pointer">Preview example
+						deliverable
+					</summary>
+					<p class="mt-2 text-sm opacity-90">Sample includes form
+						accessibility fixes, keyboard navigation, image
+						semantics, color/contrast, content structure, and
+						more.</p>
+				</details>
+			</article>
+			<article class="rounded-lg border border-green-700/60 bg-green-900/20 p-4">
+				<h3 class="text-2xl">Tier 3 — Enterprise Analysis</h3>
+				<p class="text-sm opacity-80">Indicative price: $1,850 •
+					Turnaround: ~10 days</p>
+				<ul class="list-disc pl-6 mt-2 space-y-1">
+					<li>Technical architecture review and strategy</li>
+					<li>Custom testing methodology and documentation</li>
+					<li>Executive report with implementation plan</li>
+				</ul>
+				<details class="mt-3">
+					<summary class="cursor-pointer">Preview example
+						deliverable
+					</summary>
+					<p class="mt-2 text-sm opacity-90">Enterprise sample covers
+						governance, pipelines, user journeys, maintenance plan,
+						and ROI analysis.</p>
+				</details>
+			</article>
+		</div>
+		<p class="mt-4 text-sm opacity-80">Custom scope is available when your
+			needs fall outside these tiers.</p>
+	</section>
+
+	<section aria-labelledby="contact" class="my-10">
+		<h2 id="contact" class="text-3xl mb-4">Get in touch</h2>
+		<p class="mb-4">Send a message to start the conversation. I typically
+			reply within 1–2 business days.</p>
+		<form name="consultancy-inquiry"
+			  method="POST"
+			  data-netlify="true"
+			  netlify-honeypot="bot-field"
+			  class="grid gap-4 max-w-2xl">
+			<input type="hidden" name="form-name" value="consultancy-inquiry"/>
+			<p class="hidden" aria-hidden="true">
+				<label>Don't fill this out if you're human:
+					<input name="bot-field"/></label>
+			</p>
+
+			<div>
+				<label for="name" class="block">Your name</label>
+				<input id="name"
+					   name="name"
+					   required
+					   class="w-full rounded-sm bg-green-900/30 border border-green-700/60 p-2"/>
+			</div>
+			<div>
+				<label for="email" class="block">Email</label>
+				<input id="email"
+					   name="email"
+					   type="email"
+					   required
+					   class="w-full rounded-sm bg-green-900/30 border border-green-700/60 p-2"/>
+			</div>
+			<div>
+				<label for="company" class="block">Company/Organization</label>
+				<input id="company"
+					   name="company"
+					   class="w-full rounded-sm bg-green-900/30 border border-green-700/60 p-2"/>
+			</div>
+			<div>
+				<label for="website" class="block">Website URL</label>
+				<input id="website"
+					   name="website"
+					   type="url"
+					   placeholder="https://example.com"
+					   class="w-full rounded-sm bg-green-900/30 border border-green-700/60 p-2"/>
+			</div>
+			<div>
+				<label for="tier" class="block">Interest</label>
+				<select id="tier"
+						name="tier"
+						class="w-full rounded-sm bg-green-800 text-slate-100 border border-green-500 p-2 focus:outline-hidden focus:ring-2 focus:ring-green-400 focus:border-green-300">
+					<option value="">Select an option</option>
+					<option>Tier 1 — Essential</option>
+					<option>Tier 2 — Professional</option>
+					<option>Tier 3 — Enterprise</option>
+					<option>Custom scope</option>
+				</select>
+			</div>
+			<fieldset class="border border-green-700/60 rounded-sm p-2">
+				<legend class="px-1">Urgency</legend>
+				<label class="mr-4"><input type="radio"
+										   name="urgency"
+										   value="standard"
+										   checked/> Standard</label>
+				<label class="mr-4"><input type="radio"
+										   name="urgency"
+										   value="expedited"/> Expedited</label>
+				<label><input type="radio" name="urgency" value="emergency"/>
+					Emergency</label>
+			</fieldset>
+			<div>
+				<label for="message" class="block">Message</label>
+				<textarea id="message"
+						  name="message"
+						  rows={6}
+						  class="w-full rounded-sm bg-green-900/30 border border-green-700/60 p-2"></textarea>
+			</div>
+			<button type="submit"
+					class="w-max rounded-sm bg-green-600 hover:bg-green-500 text-black font-semibold px-4 py-2">
+				Send
+			</button>
+		</form>
+		<p class="mt-3 text-sm opacity-80">Prefer email? <a class="underline"
+															href="mailto:pendragon.josh+consultancy@gmail.com?subject=Consultancy%20Inquiry">Click
+			here to send me a message!</a></p>
+	</section>
+</ApiContentLayout>
