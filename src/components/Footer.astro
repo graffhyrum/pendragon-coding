@@ -14,20 +14,17 @@ const links = [
 	},
 ];
 ---
-<footer class="h-min *:col-auto flex flex-row justify-end items-center animate-fade-in delay-400">
-	<p class="text-sm w-max m-2 my-1"> Est. 2023.</p>
-	<div class="flex flex-row gap-x-2">
-		<h2 class="w-min my-1 py-1">Links</h2>
-		<nav class="flex items-center gap-x-4 *:text-lg">
-			{links.map(({ name, url }) => (
-				<a
-					target="_blank"
-					href={url}
-					class="transition-all duration-300 hover:scale-110 hover:text-green-300 focus-visible:scale-110 focus-visible:text-green-300"
-				>
-					{name}
-				</a>
-			))}
-		</nav>
-	</div>
+<footer class="flex flex-row flex-nowrap justify-end items-center gap-x-4 py-2 px-4 animate-fade-in delay-400">
+	<p class="text-sm whitespace-nowrap">Est. 2023.</p>
+	<span class="text-sm">|</span>
+	<p class="text-base whitespace-nowrap">Links:</p>
+	{links.map(({ name, url }) => (
+		<a
+			target="_blank"
+			href={url}
+			class="text-lg whitespace-nowrap transition-all duration-300 hover:scale-110 hover:text-green-300 focus-visible:scale-110 focus-visible:text-green-300"
+		>
+			{name}
+		</a>
+	))}
 </footer>
