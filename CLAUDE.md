@@ -72,3 +72,4 @@ This is a personal portfolio website built with Astro, showcasing Joshua Pendrag
 - TypeScript paths are configured for easy asset imports
 - Biome handles all code quality checks instead of separate ESLint/Prettier setup
 - To be able to use bun, run `npm install -g bun`, then check that it is installed with `bun --version`, and , if necessary, if you’ve installed Bun but are seeing a command not found error, you may have to manually add the installation directory (~/.bun/bin) to your PATH.
+- Generate a changeset entry for each unit of work completed.
