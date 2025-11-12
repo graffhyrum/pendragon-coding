@@ -23,7 +23,7 @@ const { containerContent } = Astro.props;
                             </li>
                     ))}
                   </ul>
-                  <p class="text-lg">{thisSection.description}</p>
+                  <p class="text-lg" set:html={thisSection.description}></p>
               </Card>
       ))}
     </ul>

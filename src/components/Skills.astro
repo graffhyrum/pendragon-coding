@@ -1,6 +1,12 @@
 ---
 import Skill from './Skill.astro';
 
+interface Props {
+	noAnimation?: boolean;
+}
+
+const { noAnimation = false } = Astro.props;
+
 const skills = [
 	{
 		imagePath: 'ts_logo.webp',
@@ -65,11 +71,11 @@ const skills = [
 ] as const;
 ---
 
-<section class="animate-fade-in">
+<section class={noAnimation ? '' : 'animate-fade-in'}>
 	<h2 id="top-skills">Top Skills</h2>
 	<ul role="list" class="skills-list">
 		{skills.map((s, index) => (
-			<Skill s={s} index={index}/>
+			<Skill s={s} index={index} noAnimation={noAnimation}/>
 		))}
 	</ul>
 </section>
