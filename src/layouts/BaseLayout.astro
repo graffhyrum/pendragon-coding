@@ -9,8 +9,13 @@ const { pageTitle } = Astro.props;
 
 <html class="scroll-smooth" lang="en">
 <Head pageTitle={pageTitle}/>
-<body class="bg-green-950 flex flex-col h-screen m-0 leading-loose font-sans box-border text-[rgb(207,207,207)] divide-y divide-green-700/80"
-      style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); font-family: 'Roboto', sans-serif;">
+<body class="bg-gray-50 dark:bg-green-950 flex flex-col h-screen m-0 leading-loose font-sans box-border text-gray-900 dark:text-[rgb(207,207,207)] divide-y divide-gray-300 dark:divide-green-700/80 transition-colors duration-300"
+      style="font-family: 'Roboto', sans-serif;">
+<style>
+	.dark body {
+		text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+	}
+</style>
 <Header/>
 <main role="main" class="relative grow h-max  row-2 justify-items-stretch px-4 sm:px-6 lg:px-8 overflow-y-auto">
     <div class="w-full max-w-7xl mx-auto">
