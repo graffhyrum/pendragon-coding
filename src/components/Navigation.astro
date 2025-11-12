@@ -5,43 +5,85 @@ import '../styles/styles.css';
 <nav class="animate-fade-in">
 	<ul class="flex flex-wrap items-start p-0 *:px-3 text-lg gap-2" role="list">
 		<li class="relative group">
-			<a href="/" class="relative inline-block py-1">
+			<a
+				href="/"
+				hx-get="/api/home.html"
+				hx-target="#main-content"
+				hx-swap="innerHTML transition:true"
+				hx-push-url="/"
+				class="relative inline-block py-1">
 				Home
 				<span class="absolute bottom-0 left-0 w-0 h-0.5 bg-green-400 transition-all duration-300 group-hover:w-full group-focus-within:w-full"></span>
 			</a>
 		</li>
 		<li class="relative group">
-			<a href="/bookshelf/" class="relative inline-block py-1">
+			<a
+				href="/bookshelf/"
+				hx-get="/api/bookshelf.html"
+				hx-target="#main-content"
+				hx-swap="innerHTML transition:true"
+				hx-push-url="/bookshelf/"
+				class="relative inline-block py-1">
 				Bookshelf
 				<span class="absolute bottom-0 left-0 w-0 h-0.5 bg-green-400 transition-all duration-300 group-hover:w-full group-focus-within:w-full"></span>
 			</a>
 		</li>
 		<li class="relative group">
-			<a href="/myWork/" class="relative inline-block py-1">
+			<a
+				href="/myWork/"
+				hx-get="/api/myWork.html"
+				hx-target="#main-content"
+				hx-swap="innerHTML transition:true"
+				hx-push-url="/myWork/"
+				class="relative inline-block py-1">
 				My Work
 				<span class="absolute bottom-0 left-0 w-0 h-0.5 bg-green-400 transition-all duration-300 group-hover:w-full group-focus-within:w-full"></span>
 			</a>
 		</li>
 		<li class="relative group">
-			<a href="/shoutouts/" class="relative inline-block py-1">
+			<a
+				href="/shoutouts/"
+				hx-get="/api/shoutouts.html"
+				hx-target="#main-content"
+				hx-swap="innerHTML transition:true"
+				hx-push-url="/shoutouts/"
+				class="relative inline-block py-1">
 				Shoutouts
 				<span class="absolute bottom-0 left-0 w-0 h-0.5 bg-green-400 transition-all duration-300 group-hover:w-full group-focus-within:w-full"></span>
 			</a>
 		</li>
 		<li class="relative group">
-			<a href="/testimonials/" class="relative inline-block py-1">
+			<a
+				href="/testimonials/"
+				hx-get="/api/testimonials.html"
+				hx-target="#main-content"
+				hx-swap="innerHTML transition:true"
+				hx-push-url="/testimonials/"
+				class="relative inline-block py-1">
 				Testimonials
 				<span class="absolute bottom-0 left-0 w-0 h-0.5 bg-green-400 transition-all duration-300 group-hover:w-full group-focus-within:w-full"></span>
 			</a>
 		</li>
 		<li class="relative group">
-			<a href="/blog/" class="relative inline-block py-1">
+			<a
+				href="/blog/"
+				hx-get="/api/blog.html"
+				hx-target="#main-content"
+				hx-swap="innerHTML transition:true"
+				hx-push-url="/blog/"
+				class="relative inline-block py-1">
 				Blog
 				<span class="absolute bottom-0 left-0 w-0 h-0.5 bg-green-400 transition-all duration-300 group-hover:w-full group-focus-within:w-full"></span>
 			</a>
 		</li>
 		<li class="relative group">
-			<a href="/consultancy/" class="relative inline-block py-1">
+			<a
+				href="/consultancy/"
+				hx-get="/api/consultancy.html"
+				hx-target="#main-content"
+				hx-swap="innerHTML transition:true"
+				hx-push-url="/consultancy/"
+				class="relative inline-block py-1">
 				Consultancy
 				<span class="absolute bottom-0 left-0 w-0 h-0.5 bg-green-400 transition-all duration-300 group-hover:w-full group-focus-within:w-full"></span>
 			</a>
