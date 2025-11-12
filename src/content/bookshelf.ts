@@ -1,4 +1,4 @@
-import type {ContentTemplate} from './types/ContentTemplate.ts';
+import type {ContentTemplate} from '../types/ContentTemplate.ts';
 
 const content: ContentTemplate = {
 	sections: [
