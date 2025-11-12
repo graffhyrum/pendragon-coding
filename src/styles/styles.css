@@ -107,7 +107,7 @@ pre.mermaid .edgeLabel {
 }
 
 a {
-    @apply text-[rgba(138,174,216,0.85)] w-fit visited:text-[rgba(215,193,244,0.4)] hover:text-[rgba(255,255,255,0.7)] hover:underline focus-visible:text-[rgba(255,255,255,0.7)] focus-visible:underline;
+    @apply text-[rgba(138,174,216,0.85)] w-fit underline visited:text-[rgba(215,193,244,0.4)] hover:text-[rgba(255,255,255,0.7)] focus-visible:text-[rgba(255,255,255,0.7)];
     transition: all 0.3s ease;
 }
 
