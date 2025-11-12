@@ -4,15 +4,20 @@ import BaseLayout from './BaseLayout.astro';
 interface Props {
 	pageTitle: string;
 	description: string;
+	layoutMode?: 'single-column' | 'grid';
 }
 
-const { pageTitle, description } = Astro.props;
+const { pageTitle, description, layoutMode = 'grid' } = Astro.props;
+
+const ulClasses = layoutMode === 'single-column'
+	? 'flex flex-col items-center gap-4 max-w-4xl mx-auto'
+	: 'flex flex-wrap justify-center';
 ---
 <BaseLayout pageTitle={pageTitle}>
 	<h2>{pageTitle}</h2>
 	<div class="text-xl">
 		<p>{description}</p>
-		<ul class="flex flex-wrap justify-center" role="list">
+		<ul class={ulClasses} role="list">
 			<slot />
 		</ul>
 	</div>

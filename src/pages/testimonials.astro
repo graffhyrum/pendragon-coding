@@ -9,9 +9,10 @@ const allTestimonials = await Astro.glob('./testimonials/*.md');
 <CollectionPageLayout
 	pageTitle={pageTitle}
 	description="This is a collection of testimonials from people that I have worked with."
+	layoutMode="single-column"
 >
 	{allTestimonials.map(({frontmatter, Content}) => (
-		<Card>
+		<Card variant="long-form">
 			<article id={frontmatter.title}>
 				<Content />
 			</article>

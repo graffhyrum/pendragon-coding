@@ -3,7 +3,7 @@ import Card from './Card.astro';
 
 const { frontmatter, Content } = Astro.props;
 ---
-<Card maxWidth="max-w-max">
+<Card variant="long-form">
     <article id={frontmatter.title.replace(/ /g, '-')}>
         <Content />
     </article>
