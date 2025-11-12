@@ -19,8 +19,13 @@ This is a personal portfolio website built with Astro, showcasing Joshua Pendrag
 
 ### Code Quality
 - `bun run format` - Format code with Biome
-- `bun run lint` - Lint and auto-fix code with Biome  
+- `bun run lint` - Lint and auto-fix code with Biome
 - `bun run check` - Run comprehensive Biome checks (format + lint)
+
+### Testing
+- `bun run test` - Run all tests using Bun's built-in test runner
+- `bun run test:watch` - Run tests in watch mode for development
+- `bun run test:coverage` - Run tests with coverage reporting
 
 ### Versioning
 - `bun run add_changeset` - Create a new changeset for version management
@@ -33,6 +38,7 @@ This is a personal portfolio website built with Astro, showcasing Joshua Pendrag
 - **Styling**: Tailwind CSS with custom green theme
 - **TypeScript**: Strict configuration with Astro plugin
 - **Runtime**: Bun for package management and development
+- **Testing**: Bun's built-in test runner (bun:test)
 - **Deployment**: Netlify (auto-deploys from main branch)
 - **Code Quality**: Biome for formatting and linting
 
@@ -43,6 +49,7 @@ This is a personal portfolio website built with Astro, showcasing Joshua Pendrag
 - `src/content/` - Content data (bookshelf.ts, shoutouts.ts) with TypeScript types
 - `src/assets/` - Images and static assets optimized by Astro
 - `public/` - Static files (favicon, scripts, styles)
+- `tests/` - Test files using Bun's test runner (*.test.ts)
 
 ### Content Management
 - **Blog posts**: Markdown files in `src/pages/blog/` with frontmatter
@@ -71,5 +78,7 @@ This is a personal portfolio website built with Astro, showcasing Joshua Pendrag
 - The project uses Changesets for version management and changelog generation
 - TypeScript paths are configured for easy asset imports
 - Biome handles all code quality checks instead of separate ESLint/Prettier setup
-- To be able to use bun, run `npm install -g bun`, then check that it is installed with `bun --version`, and , if necessary, if you’ve installed Bun but are seeing a command not found error, you may have to manually add the installation directory (~/.bun/bin) to your PATH.
+- Tests are written using Bun's built-in test runner with the `bun:test` module
+- Test files should be placed in the `tests/` directory and use the `.test.ts` extension
+- To be able to use bun, run `npm install -g bun`, then check that it is installed with `bun --version`, and , if necessary, if you've installed Bun but are seeing a command not found error, you may have to manually add the installation directory (~/.bun/bin) to your PATH.
 - Generate a changeset entry for each unit of work completed.

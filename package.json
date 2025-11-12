@@ -13,7 +13,10 @@
     "version": "bunx changeset version",
     "format": "bunx biome format --write .",
     "lint": "bunx biome lint --write .",
-    "check": "bunx biome check --write ."
+    "check": "bunx biome check --write .",
+    "test": "bun test",
+    "test:watch": "bun test --watch",
+    "test:coverage": "bun test --coverage"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.5",
