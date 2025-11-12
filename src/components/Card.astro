@@ -4,10 +4,11 @@ interface Props {
 	[key: string]: any;
 }
 
-const { maxWidth = 'max-w-lg', ...rest } = Astro.props;
+const { maxWidth = '', ...rest } = Astro.props;
 ---
 <li
 	class={`outline-solid outline-2 outline-green-700 w-full ${maxWidth} m-4 p-2 rounded-lg transition-all duration-300 hover:outline-green-500 hover:shadow-lg hover:shadow-green-900/50 hover:-translate-y-1 hover:scale-[1.02] focus-within:outline-green-500 focus-within:shadow-lg focus-within:shadow-green-900/50 focus-within:-translate-y-1 focus-within:scale-[1.02]`}
+	style="min-width: 360px; max-width: 25vw;"
 	{...rest}
 >
 	<slot />
