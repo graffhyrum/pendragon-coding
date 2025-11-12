@@ -114,6 +114,11 @@ const content: ContentTemplate = {
 					title: 'The Pit of Success',
 					link: [{href: 'https://blog.codinghorror.com/falling-into-the-pit-of-success/'}],
 					description: '"...a well-designed system makes it easy to do the right things and annoying (but not impossible) to do the wrong things."'
+				},
+				{
+					title:"5-Minute DevOps",
+					link:[{href:"https://bdfinst.medium.com/5-minute-devops-solving-the-cd-talent-problem-1940302449ee"}],
+					description: "A case study for how to do DevOps and CD, for real life!"
 				}
 			],
 		},

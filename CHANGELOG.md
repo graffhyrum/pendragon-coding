@@ -1,5 +1,11 @@
 # pendragon-coding
 
+## 2.1.1
+
+### Patch Changes
+
+- Adding 5-Minute DevOps to the bookshelf
+
 ## 2.1.0
 
 ### Minor Changes
