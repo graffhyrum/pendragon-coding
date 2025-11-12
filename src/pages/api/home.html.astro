@@ -1,7 +1,8 @@
 ---
+import ApiContentLayout from '../../layouts/ApiContentLayout.astro';
 import Skills from '../../components/Skills.astro';
 ---
-<div class="w-full max-w-7xl mx-auto">
+<ApiContentLayout>
 	<Skills noAnimation={true}/>
 	<section>
 		<h2 id="about">About</h2>
@@ -51,4 +52,4 @@ import Skills from '../../components/Skills.astro';
 			</p>
 		</div>
 	</section>
-</div>
+</ApiContentLayout>

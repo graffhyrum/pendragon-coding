@@ -1,9 +1,10 @@
 ---
+import ApiContentLayout from '../../layouts/ApiContentLayout.astro';
 import BlogCard from '../../components/BlogCard.astro';
 
 const allBlogs = await Astro.glob('../blog/*.md');
 ---
-<div class="w-full max-w-7xl mx-auto">
+<ApiContentLayout>
 	<h2>Blog</h2>
 	<div class="text-xl">
 		<p>Putting things to paper helps me think. Come here to watch the sausage get made.</p>
@@ -14,4 +15,4 @@ const allBlogs = await Astro.glob('../blog/*.md');
 				))}
 		</ul>
 	</div>
-</div>
+</ApiContentLayout>

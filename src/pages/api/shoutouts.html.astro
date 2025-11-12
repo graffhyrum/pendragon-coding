@@ -1,7 +1,8 @@
 ---
+import ApiContentLayout from '../../layouts/ApiContentLayout.astro';
 import ContentContainer from '../../components/ContentContainer.astro';
 import shoutouts from '../../content/shoutouts';
 ---
-<div class="w-full max-w-7xl mx-auto">
+<ApiContentLayout>
 	<ContentContainer containerContent={shoutouts}></ContentContainer>
-</div>
+</ApiContentLayout>
