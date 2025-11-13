@@ -9,6 +9,7 @@ const allBlogs = Object.values(import.meta.glob('./blog/*.md', { eager: true }))
 <CollectionPageLayout
 	pageTitle={pageTitle}
 	description="Putting things to paper helps me think. Come here to watch the sausage get made."
+	layoutMode="single-column"
 >
 	{allBlogs.reverse()
 		.map(({frontmatter, Content}) => (
