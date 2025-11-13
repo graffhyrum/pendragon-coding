@@ -2,7 +2,7 @@
 import ApiContentLayout from '../../layouts/ApiContentLayout.astro';
 import BlogCard from '../../components/BlogCard.astro';
 
-const allBlogs = await Astro.glob('../blog/*.md');
+const allBlogs = Object.values(import.meta.glob('../blog/*.md', { eager: true })) as any[];
 ---
 <ApiContentLayout>
 	<h2>Blog</h2>

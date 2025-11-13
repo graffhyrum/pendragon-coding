@@ -2,7 +2,7 @@
 import ApiContentLayout from '../../layouts/ApiContentLayout.astro';
 import Card from '../../components/Card.astro';
 
-const allTestimonials = await Astro.glob('../testimonials/*.md');
+const allTestimonials = Object.values(import.meta.glob('../testimonials/*.md', { eager: true })) as any[];
 ---
 <ApiContentLayout>
 	<h2>Testimonials</h2>
