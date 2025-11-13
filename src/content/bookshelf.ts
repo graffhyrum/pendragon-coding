@@ -1,4 +1,4 @@
-import type {ContentTemplate} from '../types/ContentTemplate.ts';
+import type { ContentTemplate } from '../types/ContentTemplate.ts';
 
 const content: ContentTemplate = {
 	sections: [
@@ -106,20 +106,30 @@ const content: ContentTemplate = {
 				},
 				{
 					title: 'Left to Right Programming',
-					link: [{href: 'https://graic.net/p/left-to-right-programming'}],
-					description: 'A short article about the benefits of languages with progressive disclosure patterns.',
-
+					link: [{ href: 'https://graic.net/p/left-to-right-programming' }],
+					description:
+						'A short article about the benefits of languages with progressive disclosure patterns.',
 				},
 				{
 					title: 'The Pit of Success',
-					link: [{href: 'https://blog.codinghorror.com/falling-into-the-pit-of-success/'}],
-					description: '"...a well-designed system makes it easy to do the right things and annoying (but not impossible) to do the wrong things."'
+					link: [
+						{
+							href: 'https://blog.codinghorror.com/falling-into-the-pit-of-success/',
+						},
+					],
+					description:
+						'"...a well-designed system makes it easy to do the right things and annoying (but not impossible) to do the wrong things."',
 				},
 				{
-					title:"5-Minute DevOps",
-					link:[{href:"https://bdfinst.medium.com/5-minute-devops-solving-the-cd-talent-problem-1940302449ee"}],
-					description: "A case study for how to do DevOps and CD, for real life!"
-				}
+					title: '5-Minute DevOps',
+					link: [
+						{
+							href: 'https://bdfinst.medium.com/5-minute-devops-solving-the-cd-talent-problem-1940302449ee',
+						},
+					],
+					description:
+						'A case study for how to do DevOps and CD, for real life!',
+				},
 			],
 		},
 		{
@@ -202,11 +212,12 @@ const content: ContentTemplate = {
 					title: 'Hexagonal Architecture',
 					link: [
 						{
-							href: "https://docs.aws.amazon.com/prescriptive-guidance/latest/cloud-design-patterns/hexagonal-architecture.html"
-						}
+							href: 'https://docs.aws.amazon.com/prescriptive-guidance/latest/cloud-design-patterns/hexagonal-architecture.html',
+						},
 					],
-					description: "I came to this pattern by way of Uncle Bob's 'Clean Architecture' book. I've used this pattern in several projects. It's a great way to protect yourself from tech debt."
-				}
+					description:
+						"I came to this pattern by way of Uncle Bob's 'Clean Architecture' book. I've used this pattern in several projects. It's a great way to protect yourself from tech debt.",
+				},
 			],
 		},
 		{
@@ -227,28 +238,30 @@ const content: ContentTemplate = {
 						'A 2 hr video between two Staff Engineers talking about their career trajectory and giving (good) advice.',
 				},
 				{
-					title: "How to Misuse and Abuse DORA metrics",
-					link:[{href:"https://bryanfinster.com/whitepapers/dora-metrics"}],
-					description: '"This article explains how organizations often misuse DORA metrics—deployment frequency, lead time, change-fail rate, and mean time to restore—by turning them into performance targets or vanity dashboards. It shows how these metrics are intended as signals to guide continuous improvement, not as goals in themselves. The paper urges leaders to pair DORA metrics with customer-value, culture, and sustainability measures, invest in trust and team learning, and focus on improving delivery processes rather than chasing numbers."'
-				}
+					title: 'How to Misuse and Abuse DORA metrics',
+					link: [{ href: 'https://bryanfinster.com/whitepapers/dora-metrics' }],
+					description:
+						'"This article explains how organizations often misuse DORA metrics—deployment frequency, lead time, change-fail rate, and mean time to restore—by turning them into performance targets or vanity dashboards. It shows how these metrics are intended as signals to guide continuous improvement, not as goals in themselves. The paper urges leaders to pair DORA metrics with customer-value, culture, and sustainability measures, invest in trust and team learning, and focus on improving delivery processes rather than chasing numbers."',
+				},
 			],
 		},
 		{
 			title: 'AI stuff',
-			subtitle: 'AI, so hot right now. Learn how to use it effectively and 200x your salary (probably)...',
+			subtitle:
+				'AI, so hot right now. Learn how to use it effectively and 200x your salary (probably)...',
 			content: [
 				{
 					title: 'Some practical tips for building agentic AI systems',
 					link: [
 						{
-							href: 'https://userjot.com/blog/best-practices-building-agentic-ai-systems'
-						}
+							href: 'https://userjot.com/blog/best-practices-building-agentic-ai-systems',
+						},
 					],
 					description:
-						"I found a lot of value from this article. Hopefully it doesn't age out in 3 months."
-				}
-			]
-		}
+						"I found a lot of value from this article. Hopefully it doesn't age out in 3 months.",
+				},
+			],
+		},
 	],
 };
 

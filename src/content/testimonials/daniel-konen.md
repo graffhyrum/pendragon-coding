@@ -1,6 +1,7 @@
 ---
-layout: ../../layouts/TestimonialLayout.astro
-title: 'Daniel Konen | Product Manager @ TRAY'
+title: 'Daniel Konen'
+position: 'Product Manager'
+company: 'TRAY'
 href: "https://www.linkedin.com/in/danielkonen/"
 ---
 Josh is a great team member to work with. He has great organizational skills and is always looking to improve a process that can be better automated.

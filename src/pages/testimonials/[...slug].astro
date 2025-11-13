@@ -1,0 +1,19 @@
+---
+import { getCollection } from 'astro:content';
+import TestimonialLayout from '../../layouts/TestimonialLayout.astro';
+
+export async function getStaticPaths() {
+	const testimonialEntries = await getCollection('testimonials');
+	return testimonialEntries.map((entry) => ({
+		params: { slug: entry.slug },
+		props: { entry },
+	}));
+}
+
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+---
+
+<TestimonialLayout frontmatter={entry.data}>
+	<Content />
+</TestimonialLayout>

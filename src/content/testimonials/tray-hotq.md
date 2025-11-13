@@ -1,5 +1,4 @@
 ---
-layout: ../../layouts/TestimonialLayout.astro
 title: 'TRAY Hero of the Quarter - Q2 2019'
 href: "https://www.linkedin.com/company/vendsy-inc-/"
 ---

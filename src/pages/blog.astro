@@ -1,17 +1,19 @@
 ---
+import { getCollection } from 'astro:content';
 import BlogCard from '../components/BlogCard.astro';
 import CollectionPageLayout from '../layouts/CollectionPageLayout.astro';
 
 const pageTitle = 'Blog';
-const allBlogs = Object.values(import.meta.glob('./blog/*.md', { eager: true })) as any[];
+const allBlogs = (await getCollection('blog')).sort(
+	(a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
+);
 ---
 
 <CollectionPageLayout
 	pageTitle={pageTitle}
 	description="Putting things to paper helps me think. Come here to watch the sausage get made."
 >
-	{allBlogs.reverse()
-		.map(({frontmatter, Content}) => (
-			<BlogCard frontmatter={frontmatter} Content={Content} />
+	{allBlogs.map((blog) => (
+			<BlogCard entry={blog} />
 		))}
 </CollectionPageLayout>

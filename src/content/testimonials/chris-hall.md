@@ -1,6 +1,7 @@
 ---
-layout: ../../layouts/TestimonialLayout.astro
-title: 'Chris Hall | Director of Software Architecture @ OvationCXM'
+title: 'Chris Hall'
+position: 'Director of Software Architecture'
+company: 'OvationCXM'
 href: "https://www.linkedin.com/in/chris-hall-7b94a7265/"
 ---
 I had the pleasure of working with Joshua Pendragon, who served as a Support Engineer and later transitioned seamlessly into the role of a Quality Assurance professional, encompassing both manual and automation testing. 

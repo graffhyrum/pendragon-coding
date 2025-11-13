@@ -1,6 +1,7 @@
 ---
-layout: ../../layouts/TestimonialLayout.astro
-title: 'Mike Schwartz | COO @ OvationCXM'
+title: 'Mike Schwartz'
+position: 'COO'
+company: 'OvationCXM'
 href: "https://www.linkedin.com/in/michaeljasonschwartz"
 ---
 I am delighted to recommend Josh as a dedicated professional with a brilliant mind and an unwavering commitment to quality.

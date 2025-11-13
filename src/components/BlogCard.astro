@@ -1,10 +1,11 @@
 ---
 import Card from './Card.astro';
 
-const { frontmatter, Content } = Astro.props;
+const { entry } = Astro.props;
+const { Content } = await entry.render();
 ---
 <Card maxWidth="max-w-max">
-    <article id={frontmatter.title.replace(/ /g, '-')}>
+    <article id={entry.data.title.replace(/ /g, '-')}>
         <Content />
     </article>
 </Card>

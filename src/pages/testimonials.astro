@@ -1,20 +1,24 @@
 ---
+import { getCollection } from 'astro:content';
 import Card from '../components/Card.astro';
 import CollectionPageLayout from '../layouts/CollectionPageLayout.astro';
 
 const pageTitle = 'Testimonials';
-const allTestimonials = Object.values(import.meta.glob('./testimonials/*.md', { eager: true })) as any[];
+const allTestimonials = await getCollection('testimonials');
 ---
 
 <CollectionPageLayout
-	pageTitle={pageTitle}
-	description="This is a collection of testimonials from people that I have worked with."
+        pageTitle={pageTitle}
+        description="This is a collection of testimonials from people that I have worked with."
 >
-	{allTestimonials.map(({frontmatter, Content}) => (
-		<Card>
-			<article id={frontmatter.title}>
-				<Content />
-			</article>
-		</Card>
-	))}
+	{allTestimonials.map(async (testimonial) => {
+		const { Content } = await testimonial.render();
+		return (
+            <Card>
+                <article id={testimonial.data.title}>
+                    <Content/>
+                </article>
+            </Card>
+		);
+	})}
 </CollectionPageLayout>
