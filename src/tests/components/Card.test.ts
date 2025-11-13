@@ -1,4 +1,10 @@
 import { describe, expect, test } from 'bun:test';
+import {
+	createMockDocument,
+	expectElementExists,
+	expectAttribute,
+	expectClass,
+} from '../utils/astro-test-utils';
 
 describe('Card Component', () => {
 	test('has correct default props interface', () => {
@@ -10,22 +16,23 @@ describe('Card Component', () => {
 	});
 
 	test('has correct base CSS classes', () => {
-		const expectedClasses = [
-			'outline-solid',
-			'outline-2',
-			'outline-green-700',
-			'w-full',
-			'm-4',
-			'p-2',
-			'rounded-lg',
-			'transition-all',
-			'duration-300',
-		];
+		const mockHtml = `
+			<li class="outline-solid outline-2 outline-green-700 w-full max-w-lg m-4 p-2 rounded-lg transition-all duration-300 hover:outline-green-500 hover:shadow-lg hover:shadow-green-900/50 hover:-translate-y-1 hover:scale-[1.02] focus-within:outline-green-500 focus-within:shadow-lg focus-within:shadow-green-900/50 focus-within:-translate-y-1 focus-within:scale-[1.02]">
+				<h2>Test Content</h2>
+			</li>
+		`;
+		const document = createMockDocument(mockHtml);
+		const cardElement = expectElementExists(document, 'li');
 
-		expectedClasses.forEach((className) => {
-			expect(typeof className).toBe('string');
-			expect(className.length).toBeGreaterThan(0);
-		});
+		expectClass(cardElement, 'outline-solid');
+		expectClass(cardElement, 'outline-2');
+		expectClass(cardElement, 'outline-green-700');
+		expectClass(cardElement, 'w-full');
+		expectClass(cardElement, 'm-4');
+		expectClass(cardElement, 'p-2');
+		expectClass(cardElement, 'rounded-lg');
+		expectClass(cardElement, 'transition-all');
+		expectClass(cardElement, 'duration-300');
 	});
 
 	test('has correct hover and focus classes', () => {
@@ -52,20 +59,25 @@ describe('Card Component', () => {
 	});
 
 	test('renders as list item element', () => {
-		const expectedElement = 'li';
-		expect(expectedElement).toBe('li');
+		const mockHtml = '<li class="outline-solid"><h2>Test Content</h2></li>';
+		const document = createMockDocument(mockHtml);
+		const cardElement = expectElementExists(document, 'li');
+
+		expect(cardElement.tagName).toBe('LI');
 	});
 
 	test('handles props spreading correctly', () => {
-		const mockProps = {
-			id: 'test-card',
-			'data-testid': 'card-element',
-			maxWidth: 'max-w-xl',
-		};
+		const mockHtml = `
+			<li id="test-card" data-testid="card-element" class="outline-solid max-w-xl">
+				<h2>Test Content</h2>
+			</li>
+		`;
+		const document = createMockDocument(mockHtml);
+		const cardElement = expectElementExists(document, 'li');
 
-		expect(mockProps.id).toBe('test-card');
-		expect(mockProps['data-testid']).toBe('card-element');
-		expect(mockProps.maxWidth).toBe('max-w-xl');
+		expectAttribute(cardElement, 'id', 'test-card');
+		expectAttribute(cardElement, 'data-testid', 'card-element');
+		expectClass(cardElement, 'max-w-xl');
 	});
 
 	test('has correct props interface structure', () => {

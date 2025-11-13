@@ -1,8 +1,9 @@
-import { DOMParser } from 'happy-dom';
+import { Window } from 'happy-dom';
 
 export function createMockDocument(html: string) {
-	const document = new DOMParser().parseFromString(html, 'text/html');
-	return document;
+	const window = new Window();
+	window.document.write(html);
+	return window.document;
 }
 
 export function expectElementExists(document: Document, selector: string) {

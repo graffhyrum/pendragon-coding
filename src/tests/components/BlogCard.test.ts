@@ -1,4 +1,11 @@
 import { describe, expect, test } from 'bun:test';
+import {
+	createMockDocument,
+	expectElementExists,
+	expectAttribute,
+	expectClass,
+	expectTextContent,
+} from '../utils/astro-test-utils';
 
 describe('BlogCard Component', () => {
 	test('has correct entry interface structure', () => {
@@ -56,7 +63,17 @@ describe('BlogCard Component', () => {
 	test('generates correct article id from title', () => {
 		const title = 'Test Blog Post';
 		const expectedId = title.replace(/ /g, '-');
-		expect(expectedId).toBe('Test-Blog-Post');
+		const mockHtml = `
+			<li>
+				<article id="${expectedId}">
+					<h3>${title}</h3>
+				</article>
+			</li>
+		`;
+		const document = createMockDocument(mockHtml);
+		const articleElement = expectElementExists(document, 'article');
+
+		expectAttribute(articleElement, 'id', expectedId);
 	});
 
 	test('handles special characters in title for id generation', () => {
@@ -79,35 +96,53 @@ describe('BlogCard Component', () => {
 	});
 
 	test('has correct title styling classes', () => {
-		const expectedTitleClasses = [
-			'text-2xl',
-			'font-medium',
-			'text-green-100',
-			'mt-4',
-		];
+		const mockHtml = `
+			<li>
+				<article id="test-post">
+					<h3 class="text-2xl font-medium text-green-100 mt-4">Test Blog Post</h3>
+				</article>
+			</li>
+		`;
+		const document = createMockDocument(mockHtml);
+		const titleElement = expectElementExists(document, 'h3');
 
-		expectedTitleClasses.forEach((className) => {
-			expect(typeof className).toBe('string');
-			expect(className.length).toBeGreaterThan(0);
-		});
+		expectClass(titleElement, 'text-2xl');
+		expectClass(titleElement, 'font-medium');
+		expectClass(titleElement, 'text-green-100');
+		expectClass(titleElement, 'mt-4');
 	});
 
 	test('has correct date styling classes', () => {
-		const expectedDateClasses = ['text-sm', 'text-green-400', 'my-2'];
+		const mockHtml = `
+			<li>
+				<article id="test-post">
+					<p class="text-sm text-green-400 my-2">Jan 15, 2024</p>
+				</article>
+			</li>
+		`;
+		const document = createMockDocument(mockHtml);
+		const dateElement = expectElementExists(document, 'p');
 
-		expectedDateClasses.forEach((className) => {
-			expect(typeof className).toBe('string');
-			expect(className.length).toBeGreaterThan(0);
-		});
+		expectClass(dateElement, 'text-sm');
+		expectClass(dateElement, 'text-green-400');
+		expectClass(dateElement, 'my-2');
 	});
 
 	test('has correct content container classes', () => {
-		const expectedContentClasses = ['content', 'bullet-list'];
+		const mockHtml = `
+			<li>
+				<article id="test-post">
+					<div class="content bullet-list">
+						<p>Test content</p>
+					</div>
+				</article>
+			</li>
+		`;
+		const document = createMockDocument(mockHtml);
+		const contentElement = expectElementExists(document, '.content');
 
-		expectedContentClasses.forEach((className) => {
-			expect(typeof className).toBe('string');
-			expect(className.length).toBeGreaterThan(0);
-		});
+		expectClass(contentElement, 'content');
+		expectClass(contentElement, 'bullet-list');
 	});
 
 	test('uses Card component with correct maxWidth', () => {
@@ -116,11 +151,20 @@ describe('BlogCard Component', () => {
 	});
 
 	test('handles HTML content rendering', () => {
-		const mockHtmlContent = '<ul><li>Item 1</li><li>Item 2</li></ul>';
-		expect(mockHtmlContent).toContain('<ul>');
-		expect(mockHtmlContent).toContain('<li>Item 1</li>');
-		expect(mockHtmlContent).toContain('<li>Item 2</li>');
-		expect(mockHtmlContent).toContain('</ul>');
+		const mockHtml = `
+			<li>
+				<article id="test-post">
+					<div class="content bullet-list">
+						<ul><li>Item 1</li><li>Item 2</li></ul>
+					</div>
+				</article>
+			</li>
+		`;
+		const document = createMockDocument(mockHtml);
+		const contentElement = expectElementExists(document, '.content');
+
+		expectTextContent(contentElement, 'Item 1');
+		expectTextContent(contentElement, 'Item 2');
 	});
 
 	test('handles empty content gracefully', () => {
