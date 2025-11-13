@@ -1,7 +1,7 @@
 {
   "name": "pendragon-coding",
   "type": "module",
-  "version": "2.1.1",
+  "version": "2.2.0",
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
@@ -22,7 +22,7 @@
     "@changesets/cli": "^2.29.7",
     "@tailwindcss/vite": "^4.1.17",
     "@types/bun": "^1.3.2",
-    "@types/node": "^24.10.0",
+    "@types/node": "^24.10.1",
     "astro": "^5.15.5",
     "caniuse-lite": "^1.0.30001754",
     "tailwindcss": "^4.1.17",

@@ -1,5 +1,48 @@
 # pendragon-coding
 
+## 2.2.0
+
+### Minor Changes
+
+- 07b899c: Implement HTMX-based navigation with HATEOAS pattern for seamless page transitions
+
+  This release introduces a modern navigation system using HTMX that provides a single-page application experience while maintaining progressive enhancement and SEO-friendly fallbacks.
+
+  **New Features:**
+
+  - HTMX-powered navigation that swaps content without full page reloads
+  - Smooth transitions between pages using HTMX's built-in transition system
+  - Browser history and URL preservation with `hx-push-url`
+  - Seven new API endpoints (`/api/*.html`) returning HTML fragments for HTMX requests
+  - Progressive enhancement: navigation works with and without JavaScript
+
+  **Improvements:**
+
+  - Fixed animation stutter by eliminating conflicting CSS animations during HTMX transitions
+  - Added `noAnimation` prop system to Skills and Skill components for conditional animation control
+  - Faster page navigation with reduced bandwidth usage (only content updates, not full page)
+  - Maintained SEO compatibility with full-page fallbacks for search engine crawlers
+
+  **Code Quality Refactors:**
+
+  - Refactored Navigation component to use data-driven link array, reducing code from ~93 lines to ~38 lines
+  - Extracted HTMX configuration into reusable constants for maintainability
+  - Created ApiContentLayout wrapper to eliminate duplication across API endpoints
+  - Improved code maintainability: adding/removing navigation links now requires only updating the data array
+
+  **Technical Details:**
+
+  - Navigation links use `hx-get`, `hx-target`, `hx-swap`, and `hx-push-url` attributes
+  - Original page routes remain unchanged for direct access and SEO
+  - API endpoints share components with full pages, ensuring consistency
+  - HTMX library (already included) is now actively utilized
+  - Centralized HTMX configuration through constants and shared layout components
+
+### Patch Changes
+
+- 2749b2a: Fix Astro v5 deprecation warning by moving ContentTemplate type out of src/content/ directory. The src/content/ directory is reserved for content collections, so TypeScript interfaces have been moved to src/types/ where they belong.
+- 89e1eaf: Fix gist script rendering on My Work page by using Astro's set:html directive
+
 ## 2.1.1
 
 ### Patch Changes

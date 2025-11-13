@@ -1,0 +1,21 @@
+---
+import ApiContentLayout from '../../layouts/ApiContentLayout.astro';
+import Card from '../../components/Card.astro';
+
+const allTestimonials = Object.values(import.meta.glob('../testimonials/*.md', { eager: true })) as any[];
+---
+<ApiContentLayout>
+	<h2>Testimonials</h2>
+	<div class="text-xl">
+		<p>This is a collection of testimonials from people that I have worked with.</p>
+		<ul class="flex flex-wrap max-w-max" role="list">
+			{allTestimonials.map(({frontmatter, Content}) => (
+				<Card>
+					<article id={frontmatter.title}>
+						<Content />
+					</article>
+				</Card>
+			))}
+		</ul>
+	</div>
+</ApiContentLayout>

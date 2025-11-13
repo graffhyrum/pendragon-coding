@@ -19,4 +19,20 @@ import '../../public/favicon_io/site.webmanifest';
     <link rel="icon" sizes="32x32" href="/favicon_io/favicon-32x32.webp">
     <link rel="icon" sizes="16x16" href="/favicon_io/favicon-16x16.webp">
     <link rel="manifest" href="/favicon_io/site.webmanifest">
+
+    <!-- Theme initialization script - runs before page render to prevent flash -->
+    <script is:inline>
+        (function() {
+            const theme = localStorage.getItem('theme') ||
+                         (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+
+            if (theme === 'dark') {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+
+            localStorage.setItem('theme', theme);
+        })();
+    </script>
 </head>

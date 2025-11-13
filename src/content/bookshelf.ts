@@ -226,6 +226,11 @@ const content: ContentTemplate = {
 					description:
 						'A 2 hr video between two Staff Engineers talking about their career trajectory and giving (good) advice.',
 				},
+				{
+					title: "How to Misuse and Abuse DORA metrics",
+					link:[{href:"https://bryanfinster.com/whitepapers/dora-metrics"}],
+					description: '"This article explains how organizations often misuse DORA metrics—deployment frequency, lead time, change-fail rate, and mean time to restore—by turning them into performance targets or vanity dashboards. It shows how these metrics are intended as signals to guide continuous improvement, not as goals in themselves. The paper urges leaders to pair DORA metrics with customer-value, culture, and sustainability measures, invest in trust and team learning, and focus on improving delivery processes rather than chasing numbers."'
+				}
 			],
 		},
 		{

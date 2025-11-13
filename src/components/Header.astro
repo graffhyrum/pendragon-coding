@@ -2,6 +2,7 @@
 import { Image } from 'astro:assets';
 import headshot from '../assets/headshot_sm.webp';
 import Navigation from './Navigation.astro';
+import ThemeToggle from './ThemeToggle.astro';
 ---
 
 <header class="h-max p-2 sm:p-4 flex *:mx-3 items-center">
@@ -13,4 +14,7 @@ import Navigation from './Navigation.astro';
 	/>
 	<h1 class="text-4xl max-w-max mt-2 sm:mt-0 animate-fade-in delay-100">Joshua Pendragon</h1>
 	<Navigation class="mt-2 sm:mt-0"/>
+	<div class="ml-auto">
+		<ThemeToggle />
+	</div>
 </header>

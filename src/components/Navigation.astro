@@ -1,50 +1,38 @@
 ---
 import '../styles/styles.css';
-// todo generate this list automatically from the files in /pages
+
+// HTMX configuration constants
+const HTMX_CONFIG = {
+	target: '#main-content',
+	swap: 'innerHTML transition:true',
+} as const;
+
+// Navigation links configuration
+const navLinks = [
+	{ href: '/', api: '/api/home.html', label: 'Home' },
+	{ href: '/bookshelf/', api: '/api/bookshelf.html', label: 'Bookshelf' },
+	{ href: '/myWork/', api: '/api/myWork.html', label: 'My Work' },
+	{ href: '/shoutouts/', api: '/api/shoutouts.html', label: 'Shoutouts' },
+	{ href: '/testimonials/', api: '/api/testimonials.html', label: 'Testimonials' },
+	{ href: '/blog/', api: '/api/blog.html', label: 'Blog' },
+	{ href: '/consultancy/', api: '/api/consultancy.html', label: 'Consultancy' },
+] as const;
 ---
 <nav class="animate-fade-in">
 	<ul class="flex flex-wrap items-start p-0 *:px-3 text-lg gap-2" role="list">
-		<li class="relative group">
-			<a href="/" class="relative inline-block py-1">
-				Home
-				<span class="absolute bottom-0 left-0 w-0 h-0.5 bg-green-400 transition-all duration-300 group-hover:w-full group-focus-within:w-full"></span>
-			</a>
-		</li>
-		<li class="relative group">
-			<a href="/bookshelf/" class="relative inline-block py-1">
-				Bookshelf
-				<span class="absolute bottom-0 left-0 w-0 h-0.5 bg-green-400 transition-all duration-300 group-hover:w-full group-focus-within:w-full"></span>
-			</a>
-		</li>
-		<li class="relative group">
-			<a href="/myWork/" class="relative inline-block py-1">
-				My Work
-				<span class="absolute bottom-0 left-0 w-0 h-0.5 bg-green-400 transition-all duration-300 group-hover:w-full group-focus-within:w-full"></span>
-			</a>
-		</li>
-		<li class="relative group">
-			<a href="/shoutouts/" class="relative inline-block py-1">
-				Shoutouts
-				<span class="absolute bottom-0 left-0 w-0 h-0.5 bg-green-400 transition-all duration-300 group-hover:w-full group-focus-within:w-full"></span>
-			</a>
-		</li>
-		<li class="relative group">
-			<a href="/testimonials/" class="relative inline-block py-1">
-				Testimonials
-				<span class="absolute bottom-0 left-0 w-0 h-0.5 bg-green-400 transition-all duration-300 group-hover:w-full group-focus-within:w-full"></span>
-			</a>
-		</li>
-		<li class="relative group">
-			<a href="/blog/" class="relative inline-block py-1">
-				Blog
-				<span class="absolute bottom-0 left-0 w-0 h-0.5 bg-green-400 transition-all duration-300 group-hover:w-full group-focus-within:w-full"></span>
-			</a>
-		</li>
-		<li class="relative group">
-			<a href="/consultancy/" class="relative inline-block py-1">
-				Consultancy
-				<span class="absolute bottom-0 left-0 w-0 h-0.5 bg-green-400 transition-all duration-300 group-hover:w-full group-focus-within:w-full"></span>
-			</a>
-		</li>
+		{navLinks.map(({ href, api, label }) => (
+			<li class="relative group">
+				<a
+					href={href}
+					hx-get={api}
+					hx-target={HTMX_CONFIG.target}
+					hx-swap={HTMX_CONFIG.swap}
+					hx-push-url={href}
+					class="relative inline-block py-1">
+					{label}
+					<span class="absolute bottom-0 left-0 w-0 h-0.5 bg-green-600 dark:bg-green-400 transition-all duration-300 group-hover:w-full group-focus-within:w-full"></span>
+				</a>
+			</li>
+		))}
 	</ul>
 </nav>

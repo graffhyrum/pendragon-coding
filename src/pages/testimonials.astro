@@ -3,7 +3,7 @@ import Card from '../components/Card.astro';
 import CollectionPageLayout from '../layouts/CollectionPageLayout.astro';
 
 const pageTitle = 'Testimonials';
-const allTestimonials = await Astro.glob('./testimonials/*.md');
+const allTestimonials = Object.values(import.meta.glob('./testimonials/*.md', { eager: true })) as any[];
 ---
 
 <CollectionPageLayout

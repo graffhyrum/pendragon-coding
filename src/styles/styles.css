@@ -1,5 +1,7 @@
 @import 'tailwindcss';
 
+@variant dark (&:where(.dark, .dark *));
+
 @theme {
     --font-display: Roboto, sans-serif;
     --font-body: Roboto, sans-serif;
@@ -107,13 +109,14 @@ pre.mermaid .edgeLabel {
 }
 
 a {
-    @apply text-[rgba(138,174,216,0.85)] w-fit underline visited:text-[rgba(215,193,244,0.4)] hover:text-[rgba(255,255,255,0.7)] focus-visible:text-[rgba(255,255,255,0.7)];
+    @apply text-blue-700 dark:text-blue-300 w-fit underline visited:text-purple-700 visited:dark:text-purple-300 hover:text-blue-900 hover:dark:text-blue-100 focus-visible:text-blue-900 focus-visible:dark:text-blue-100;
     transition: all 0.3s ease;
 }
 
 a:hover, a:focus-visible {
-    text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.7);
-    outline: 3px solid #dbd9d9;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
     transform: translateY(-1px);
 }
 
