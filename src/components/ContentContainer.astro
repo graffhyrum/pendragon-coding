@@ -11,7 +11,7 @@ const { containerContent } = Astro.props;
 {containerContent.sections.map((section)=> {
     const layoutMode = section.layoutMode || 'grid';
     const ulClasses = layoutMode === 'single-column'
-        ? 'flex flex-col items-center gap-4 max-w-4xl mx-auto'
+        ? 'flex flex-col items-center gap-4 max-w-9/10 mx-auto'
         : 'flex flex-wrap justify-center';
     const cardVariant = layoutMode === 'single-column' ? 'long-form' : 'short-form';
 
