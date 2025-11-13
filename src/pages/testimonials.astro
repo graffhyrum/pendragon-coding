@@ -16,6 +16,9 @@ const allTestimonials = await getCollection('testimonials');
 		return (
             <Card>
                 <article id={testimonial.data.title}>
+                    <a href={testimonial.data.href}>
+                        <h3>{testimonial.data.title}{testimonial.data.position && testimonial.data.company ? ` | ${testimonial.data.position} @ ${testimonial.data.company}` : ''}</h3>
+                    </a>
                     <Content/>
                 </article>
             </Card>

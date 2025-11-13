@@ -10,3 +10,5 @@ Migrate blog and testimonials to Astro Content Collections API
 - Add optional metadata fields (description, author, tags, company, position)
 - Replace import.meta.glob() with getCollection() for better performance
 - Add dynamic routes for individual blog/testimonial pages
+- Fix BlogCard to display title and date in listings
+- Fix testimonials to show title, position, company, and href in listings
