@@ -5,7 +5,8 @@
 	"scripts": {
 		"dev": "astro dev",
 		"start": "astro dev",
-		"prebuild": "astro check",
+		"typecheck": "tsgo --noEmit",
+		"prebuild": "tsgo --noEmit && astro check",
 		"build": "astro build",
 		"preview": "astro preview",
 		"astro": "astro",
@@ -17,7 +18,7 @@
 		"test": "bun test",
 		"test:watch": "bun test --watch",
 		"test:coverage": "bun test --coverage",
-		"vet": "bun check && bun test"
+		"vet": "tsgo --noEmit && bun check && bun test"
 	},
 	"devDependencies": {
 		"@astrojs/check": "^0.9.5",
