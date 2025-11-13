@@ -3,7 +3,7 @@ import BlogCard from '../components/BlogCard.astro';
 import CollectionPageLayout from '../layouts/CollectionPageLayout.astro';
 
 const pageTitle = 'Blog';
-const allBlogs = await Astro.glob('./blog/*.md');
+const allBlogs = Object.values(import.meta.glob('./blog/*.md', { eager: true })) as any[];
 ---
 
 <CollectionPageLayout
