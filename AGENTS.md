@@ -22,3 +22,18 @@
 - **Classes**: Revealing modules, no ES6 classes
 - **Comments**: None unless requested
 - **Error handling**: Standard try/catch, no custom patterns
+
+## Development Notes
+
+- The site uses a custom green color scheme (`bg-green-950`, `text-green-*`)
+- HTMX is included for potential interactivity
+- Images are processed through Astro's Image component for optimization
+- The project uses Changesets for version management and changelog generation
+- TypeScript paths are configured for easy asset imports
+- Biome handles all code quality checks instead of separate ESLint/Prettier setup
+- Tests are written using Bun's built-in test runner with the `bun:test` module
+- Unit test files should use the `.test.ts` extension
+- To be able to use bun, run `npm install -g bun`, then check that it is installed with `bun --version`, and , if
+  necessary, if you've installed Bun but are seeing a command not found error, you may have to manually add the
+  installation directory (~/.bun/bin) to your PATH.
+- Generate a changeset entry for each unit of work completed.
