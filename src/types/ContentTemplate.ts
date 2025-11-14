@@ -2,7 +2,7 @@ export interface ContentTemplate {
 	sections: Array<{
 		title: string;
 		subtitle: string;
-		layoutMode?: 'single-column' | 'grid';
+		layoutMode?: 'grid' | 'single-column';
 		content: Array<{
 			title: string;
 			link: Link[];

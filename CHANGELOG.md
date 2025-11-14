@@ -1,5 +1,74 @@
 # pendragon-coding
 
+## 2.3.0
+
+### Minor Changes
+
+- c332da7: Add light and dark mode toggle with sliding animation
+
+  Implemented a theme toggle component that allows users to switch between light and dark modes with a smooth sliding animation. The theme preference is persisted in localStorage and respects system preferences on first visit.
+
+  **New Features:**
+
+  - Theme toggle button with sliding animation positioned at the right edge of the header
+  - Sun and moon icons that smoothly transition based on the selected theme
+  - localStorage persistence to remember user's theme preference across sessions
+  - System preference detection on first visit (respects `prefers-color-scheme`)
+  - Smooth color transitions throughout the site when switching themes (300ms duration)
+
+  **Improvements:**
+
+  - Light mode uses a clean gray-50 background with dark text for improved readability during daytime
+  - Dark mode maintains the existing green-950 background with light text optimized for low-light environments
+  - Navigation underlines adapt to theme: green-600 in light mode, green-400 in dark mode
+  - Footer links have theme-aware hover states for better visual feedback
+  - Accessible implementation with proper ARIA attributes and keyboard focus states
+
+  **Technical Details:**
+
+  - Created ThemeToggle.astro component with inline script for theme management
+  - Configured Tailwind CSS with class-based dark mode strategy
+  - Added tailwind.config.js with dark mode enabled
+  - Updated BaseLayout, Header, Navigation, and Footer components with dark mode variants
+  - Theme toggle uses CSS transitions for smooth visual changes
+  - Focus ring styling for keyboard navigation accessibility
+
+### Patch Changes
+
+- e5e448b: Add Bun test runner tooling to the project. Includes test scripts in package.json (test, test:watch, test:coverage), example test file demonstrating Bun's test syntax, and updated documentation in CLAUDE.md with testing commands and conventions.
+- b090c8e: Add GitHub Action for opencode integration on issue comments
+
+  - Add .github/workflows/opencode.yml to enable opencode AI assistance
+  - Triggers on issue comments containing '/oc' or '/opencode' commands
+  - Uses sst/opencode/github action with opencode/big-pickle model
+  - Includes proper permissions for repository access
+
+- 201f90b: Migrate blog and testimonials to Astro Content Collections API
+
+  - Create content config with Zod schemas for type safety
+  - Move markdown files from pages to content directory
+  - Standardize blog dates to ISO format
+  - Add optional metadata fields (description, author, tags, company, position)
+  - Replace import.meta.glob() with getCollection() for better performance
+  - Add dynamic routes for individual blog/testimonial pages
+  - Fix BlogCard to display title and date in listings
+  - Fix testimonials to show title, position, company, and href in listings
+
+- 930f48e: Add article on DORA metrics misuse to bookshelf
+- b090c8e: Refactor testimonials to use ContentSection component like myWork page
+
+  - Convert testimonials from Astro Content Collections to static TypeScript data file
+  - Update testimonials page to use ContentContainer and BaseLayout instead of CollectionPageLayout
+  - Remove individual testimonial markdown files and dynamic routing
+  - Update API testimonials endpoint to use static content approach
+  - Clean up obsolete TestimonialLayout and content collection configuration
+  - Update documentation to reflect new testimonials structure
+
+  This change makes testimonials consistent with other content pages (myWork, bookshelf) by using the same ContentSection/ContentCard architecture instead of content collections.
+
+- 4233ed8: Refactor SectionList, ContentSection, and CollectionPageLayout components to consolidate UL elements with their corresponding .map() calls, improving code organization and reducing separation of related rendering logic.
+- cf991b0: Replace deprecated Astro.glob with import.meta.glob for future compatibility
+
 ## 2.2.0
 
 ### Minor Changes

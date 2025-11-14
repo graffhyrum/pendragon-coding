@@ -1,21 +1,11 @@
 ---
-import Card from '../components/Card.astro';
-import CollectionPageLayout from '../layouts/CollectionPageLayout.astro';
+import ContentContainer from '../components/ContentContainer.astro';
+import testimonials from '../content/testimonials.ts';
+import BaseLayout from '../layouts/BaseLayout.astro';
 
 const pageTitle = 'Testimonials';
-const allTestimonials = Object.values(import.meta.glob('./testimonials/*.md', { eager: true })) as any[];
 ---
 
-<CollectionPageLayout
-	pageTitle={pageTitle}
-	description="This is a collection of testimonials from people that I have worked with."
-	layoutMode="single-column"
->
-	{allTestimonials.map(({frontmatter, Content}) => (
-		<Card variant="long-form">
-			<article id={frontmatter.title}>
-				<Content />
-			</article>
-		</Card>
-	))}
-</CollectionPageLayout>
+<BaseLayout pageTitle={pageTitle}>
+	<ContentContainer containerContent={testimonials}></ContentContainer>
+</BaseLayout>

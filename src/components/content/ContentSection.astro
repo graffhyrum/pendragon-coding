@@ -1,0 +1,22 @@
+---
+import SectionList from './SectionList.astro';
+
+interface Props {
+	title: string;
+	subtitle: string;
+	layoutMode: 'grid' | 'single-column';
+	content: Array<{
+		title: string;
+		link: Array<{ title?: string; href: string }>;
+		description: string;
+	}>;
+}
+
+const { title, subtitle, layoutMode, content } = Astro.props;
+---
+
+<section>
+	<h2>{title}</h2>
+	<p class="text-xl">{subtitle}</p>
+	<SectionList layoutMode={layoutMode} content={content} />
+</section>
