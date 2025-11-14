@@ -1,0 +1,42 @@
+---
+import ContentCard from './ContentCard.astro';
+
+interface Props {
+	layoutMode: 'grid' | 'single-column';
+	content: Array<{
+		title: string;
+		link: Array<{ title?: string; href: string }>;
+		description: string;
+	}>;
+}
+
+const { layoutMode, content } = Astro.props;
+
+const ulClasses =
+	layoutMode === 'single-column'
+		? [
+				// Layout
+				'flex flex-col items-center',
+				// Spacing
+				'gap-4',
+				// Sizing and positioning
+				'max-w-9/10 mx-auto',
+			].join(' ')
+		: [
+				// Layout
+				'flex flex-wrap justify-center',
+				// Sizing and positioning
+				'max-w-9/10 mx-auto',
+			].join(' ');
+---
+
+<ul class={ulClasses} role="list">
+	{content.map((contentItem) => (
+		<ContentCard
+			title={contentItem.title}
+			links={contentItem.link}
+			description={contentItem.description}
+			layoutMode={layoutMode}
+		/>
+	))}
+</ul>

@@ -1,32 +1,16 @@
 ---
 import '../styles/styles.css';
-
-// HTMX configuration constants
-const HTMX_CONFIG = {
-	target: '#main-content',
-	swap: 'innerHTML transition:true',
-} as const;
-
-// Navigation links configuration
-const navLinks = [
-	{ href: '/', api: '/api/home.html', label: 'Home' },
-	{ href: '/bookshelf/', api: '/api/bookshelf.html', label: 'Bookshelf' },
-	{ href: '/myWork/', api: '/api/myWork.html', label: 'My Work' },
-	{ href: '/shoutouts/', api: '/api/shoutouts.html', label: 'Shoutouts' },
-	{ href: '/testimonials/', api: '/api/testimonials.html', label: 'Testimonials' },
-	{ href: '/blog/', api: '/api/blog.html', label: 'Blog' },
-	{ href: '/consultancy/', api: '/api/consultancy.html', label: 'Consultancy' },
-] as const;
+import { NAVIGATION_CONFIG } from '../config/navigation';
 ---
 <nav class="animate-fade-in">
 	<ul class="flex flex-wrap items-start p-0 *:px-3 text-lg gap-2" role="list">
-		{navLinks.map(({ href, api, label }) => (
+		{NAVIGATION_CONFIG.links.map(({ href, api, label }) => (
 			<li class="relative group">
 				<a
 					href={href}
 					hx-get={api}
-					hx-target={HTMX_CONFIG.target}
-					hx-swap={HTMX_CONFIG.swap}
+					hx-target={NAVIGATION_CONFIG.htmx.target}
+					hx-swap={NAVIGATION_CONFIG.htmx.swap}
 					hx-push-url={href}
 					class="relative inline-block py-1">
 					{label}

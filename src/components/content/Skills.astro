@@ -1,0 +1,19 @@
+---
+import skills from '../../content/skills';
+import Skill from '../ui/Skill.astro';
+
+interface Props {
+	noAnimation?: boolean;
+}
+
+const { noAnimation = false } = Astro.props;
+---
+
+<section class={noAnimation ? '' : 'animate-fade-in'}>
+	<h2 id="top-skills">Top Skills</h2>
+	<ul role="list" class="skills-list">
+		{skills.map((s, index) => (
+			<Skill s={s} index={index} noAnimation={noAnimation}/>
+		))}
+	</ul>
+</section>

@@ -1,6 +1,6 @@
 ---
-import Card from './Card.astro';
 import type { ContentTemplate } from '../types/ContentTemplate';
+import ContentSection from './content/ContentSection.astro';
 
 interface Props {
 	containerContent: ContentTemplate;
@@ -8,32 +8,16 @@ interface Props {
 
 const { containerContent } = Astro.props;
 ---
-{containerContent.sections.map((section)=> {
-    const layoutMode = section.layoutMode || 'grid';
-    const ulClasses = layoutMode === 'single-column'
-        ? 'flex flex-col items-center gap-4 max-w-9/10 mx-auto'
-        : 'flex flex-wrap justify-center';
-    const cardVariant = layoutMode === 'single-column' ? 'long-form' : 'short-form';
 
-    return (
-        <section>
-            <h2>{section.title}</h2>
-            <p class="text-xl">{section.subtitle}</p>
-            <ul class={ulClasses} role="list">
-              {section.content.map((thisSection) => (
-                      <Card variant={cardVariant}>
-                          <h3 class="text-3xl">{thisSection.title}</h3>
-                          <ul>
-                            {thisSection.link.map((link) => (
-                                    <li>
-                                        <a class="text-xl" target="_blank" href={link.href}>{link.title ?? "Link"}</a>
-                                    </li>
-                            ))}
-                          </ul>
-                          <p class="text-lg" set:html={thisSection.description}></p>
-                      </Card>
-              ))}
-            </ul>
-        </section>
-    );
-  })}
+{containerContent.sections.map((section) => {
+	const layoutMode = section.layoutMode || 'grid';
+
+	return (
+		<ContentSection
+			title={section.title}
+			subtitle={section.subtitle}
+			layoutMode={layoutMode}
+			content={section.content}
+		/>
+	);
+})}

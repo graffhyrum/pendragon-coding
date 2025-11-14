@@ -1,31 +1,38 @@
 {
-  "name": "pendragon-coding",
-  "type": "module",
-  "version": "2.2.0",
-  "scripts": {
-    "dev": "astro dev",
-    "start": "astro dev",
-    "prebuild": "astro check",
-    "build": "astro build",
-    "preview": "astro preview",
-    "astro": "astro",
-    "add_changeset": "bunx changeset",
-    "version": "bunx changeset version",
-    "format": "bunx biome format --write .",
-    "lint": "bunx biome lint --write .",
-    "check": "bunx biome check --write ."
-  },
-  "devDependencies": {
-    "@astrojs/check": "^0.9.5",
-    "@astrojs/ts-plugin": "^1.10.5",
-    "@biomejs/biome": "2.3.4",
-    "@changesets/cli": "^2.29.7",
-    "@tailwindcss/vite": "^4.1.17",
-    "@types/bun": "^1.3.2",
-    "@types/node": "^24.10.1",
-    "astro": "^5.15.5",
-    "caniuse-lite": "^1.0.30001754",
-    "tailwindcss": "^4.1.17",
-    "typescript": "^5.9.3"
-  }
+	"name": "pendragon-coding",
+	"type": "module",
+	"version": "2.2.0",
+	"scripts": {
+		"dev": "astro dev",
+		"start": "astro dev",
+		"typecheck": "tsgo --noEmit",
+		"prebuild": "tsgo --noEmit && astro check",
+		"build": "astro build",
+		"preview": "astro preview",
+		"astro": "astro",
+		"add_changeset": "bunx changeset",
+		"version": "bunx changeset version",
+		"format": "bunx biome format --write .",
+		"lint": "bunx biome lint --write .",
+		"check": "bunx biome check --write .",
+		"test": "bun test",
+		"test:watch": "bun test --watch",
+		"test:coverage": "bun test --coverage",
+		"vet": "tsgo --noEmit && bun check && bun test"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "2.3.4",
+		"@changesets/cli": "^2.29.7",
+		"@tailwindcss/vite": "^4.1.17",
+		"@types/bun": "^1.3.2",
+		"@typescript/native-preview": "^7.0.0-dev.20251113.1",
+		"astro": "^5.15.6",
+		"caniuse-lite": "^1.0.30001754",
+		"happy-dom": "^20.0.10",
+		"tailwindcss": "^4.1.17",
+		"typescript": "^5.9.3"
+	},
+	"dependencies": {
+		"@astrojs/check": "^0.9.5"
+	}
 }
