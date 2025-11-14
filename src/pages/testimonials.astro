@@ -10,11 +10,12 @@ const allTestimonials = await getCollection('testimonials');
 <CollectionPageLayout
         pageTitle={pageTitle}
         description="This is a collection of testimonials from people that I have worked with."
+	layoutMode="single-column"
 >
 	{allTestimonials.map(async (testimonial) => {
 		const { Content } = await testimonial.render();
 		return (
-            <Card>
+            <Card variant="long-form">
                 <article id={testimonial.data.title}>
                     <a href={testimonial.data.href}>
                         <h3>{testimonial.data.title}{testimonial.data.position && testimonial.data.company ? ` | ${testimonial.data.position} @ ${testimonial.data.company}` : ''}</h3>

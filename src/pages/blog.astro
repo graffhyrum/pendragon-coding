@@ -12,6 +12,7 @@ const allBlogs = (await getCollection('blog')).sort(
 <CollectionPageLayout
 	pageTitle={pageTitle}
 	description="Putting things to paper helps me think. Come here to watch the sausage get made."
+	layoutMode="single-column"
 >
 	{allBlogs.map((blog) => (
 			<BlogCard entry={blog} />

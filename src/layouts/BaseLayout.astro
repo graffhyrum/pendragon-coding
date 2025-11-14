@@ -17,10 +17,8 @@ const { pageTitle } = Astro.props;
 	}
 </style>
 <Header/>
-<main id="main-content" role="main" class="relative grow h-max  row-2 justify-items-stretch px-4 sm:px-6 lg:px-8 overflow-y-auto">
-    <div class="w-full max-w-7xl mx-auto">
-        <slot/>
-    </div>
+<main id="main-content" role="main" class="relative grow h-max row-2 justify-items-stretch px-4 sm:px-6 lg:px-8 overflow-y-auto">
+	<slot/>
 </main>
 <Footer/>
 <script is:inline src="/scripts/htmx.min.js"></script>
