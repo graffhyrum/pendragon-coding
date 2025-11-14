@@ -37,3 +37,6 @@
   necessary, if you've installed Bun but are seeing a command not found error, you may have to manually add the
   installation directory (~/.bun/bin) to your PATH.
 - Generate a changeset entry for each unit of work completed.
+
+## GitHub CLI Usage
+- **PR Description**: Use `--body-file <file>` to set PR descriptions with markdown content. Create a markdown file first, then use `gh pr edit <number> --body-file <file>` for proper formatting. Verify the description was applied correctly with `gh pr view <number>`, then clean up the markdown file. 
