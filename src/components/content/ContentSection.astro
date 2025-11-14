@@ -1,6 +1,5 @@
 ---
 import SectionList from './SectionList.astro';
-import ContentCard from './ContentCard.astro';
 
 interface Props {
 	title: string;
@@ -19,14 +18,5 @@ const { title, subtitle, layoutMode, content } = Astro.props;
 <section>
 	<h2>{title}</h2>
 	<p class="text-xl">{subtitle}</p>
-	<SectionList layoutMode={layoutMode}>
-		{content.map((contentItem) => (
-			<ContentCard
-				title={contentItem.title}
-				links={contentItem.link}
-				description={contentItem.description}
-				layoutMode={layoutMode}
-			/>
-		))}
-	</SectionList>
+	<SectionList layoutMode={layoutMode} content={content} />
 </section>

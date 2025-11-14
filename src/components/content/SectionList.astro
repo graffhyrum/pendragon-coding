@@ -1,9 +1,16 @@
 ---
+import ContentCard from './ContentCard.astro';
+
 interface Props {
 	layoutMode: 'grid' | 'single-column';
+	content: Array<{
+		title: string;
+		link: Array<{ title?: string; href: string }>;
+		description: string;
+	}>;
 }
 
-const { layoutMode } = Astro.props;
+const { layoutMode, content } = Astro.props;
 
 const ulClasses =
 	layoutMode === 'single-column'
@@ -24,5 +31,12 @@ const ulClasses =
 ---
 
 <ul class={ulClasses} role="list">
-	<slot />
+	{content.map((contentItem) => (
+		<ContentCard
+			title={contentItem.title}
+			links={contentItem.link}
+			description={contentItem.description}
+			layoutMode={layoutMode}
+		/>
+	))}
 </ul>
