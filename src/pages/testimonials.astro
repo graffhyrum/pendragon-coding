@@ -1,28 +1,11 @@
 ---
-import { getCollection } from 'astro:content';
-import Card from '../components/Card.astro';
-import CollectionPageLayout from '../layouts/CollectionPageLayout.astro';
+import ContentContainer from '../components/ContentContainer.astro';
+import testimonials from '../content/testimonials.ts';
+import BaseLayout from '../layouts/BaseLayout.astro';
 
 const pageTitle = 'Testimonials';
-const allTestimonials = await getCollection('testimonials');
 ---
 
-<CollectionPageLayout
-        pageTitle={pageTitle}
-        description="This is a collection of testimonials from people that I have worked with."
-	layoutMode="single-column"
->
-	{allTestimonials.map(async (testimonial) => {
-		const { Content } = await testimonial.render();
-		return (
-            <Card variant="long-form">
-                <article id={testimonial.data.title}>
-                    <a href={testimonial.data.href}>
-                        <h3>{testimonial.data.title}{testimonial.data.position && testimonial.data.company ? ` | ${testimonial.data.position} @ ${testimonial.data.company}` : ''}</h3>
-                    </a>
-                    <Content/>
-                </article>
-            </Card>
-		);
-	})}
-</CollectionPageLayout>
+<BaseLayout pageTitle={pageTitle}>
+	<ContentContainer containerContent={testimonials}></ContentContainer>
+</BaseLayout>

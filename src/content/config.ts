@@ -11,17 +11,6 @@ const blog = defineCollection({
 	}),
 });
 
-const testimonials = defineCollection({
-	type: 'content',
-	schema: z.object({
-		title: z.string(),
-		href: z.string().url(),
-		company: z.string().optional(),
-		position: z.string().optional(),
-	}),
-});
-
 export const collections = {
 	blog,
-	testimonials,
 };

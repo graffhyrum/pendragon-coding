@@ -1,28 +1,8 @@
 ---
-import { getCollection } from 'astro:content';
-import Card from '../../components/Card.astro';
+import ContentContainer from '../../components/ContentContainer.astro';
+import testimonials from '../../content/testimonials.ts';
 import ApiContentLayout from '../../layouts/ApiContentLayout.astro';
-
-const allTestimonials = await getCollection('testimonials');
 ---
 <ApiContentLayout>
-	<h2>Testimonials</h2>
-	<div class="text-xl">
-		<p>This is a collection of testimonials from people that I have worked with.</p>
-		<ul class="flex flex-wrap max-w-max" role="list">
-			{allTestimonials.map(async (testimonial) => {
-				const { Content } = await testimonial.render();
-				return (
-				<Card>
-					<article id={testimonial.data.title}>
-						<a href={testimonial.data.href}>
-							<h3>{testimonial.data.title}{testimonial.data.position && testimonial.data.company ? ` | ${testimonial.data.position} @ ${testimonial.data.company}` : ''}</h3>
-						</a>
-						<Content />
-					</article>
-				</Card>
-				);
-			})}
-		</ul>
-	</div>
+	<ContentContainer containerContent={testimonials}></ContentContainer>
 </ApiContentLayout>

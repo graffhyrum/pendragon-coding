@@ -1,0 +1,26 @@
+---
+import Card from '../ui/Card.astro';
+
+interface Props {
+	title: string;
+	links: Array<{ title?: string; href: string }>;
+	description: string;
+	layoutMode: 'grid' | 'single-column';
+}
+
+const { title, links, description, layoutMode } = Astro.props;
+
+const cardVariant = layoutMode === 'single-column' ? 'long-form' : 'short-form';
+---
+
+<Card variant={cardVariant}>
+	<h3 class="text-3xl">{title}</h3>
+	<ul>
+		{links.map((link) => (
+			<li>
+				<a class="text-xl" target="_blank" href={link.href}>{link.title ?? "Link"}</a>
+			</li>
+		))}
+	</ul>
+	<p class="text-lg" set:html={description}></p>
+</Card>

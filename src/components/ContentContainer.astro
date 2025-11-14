@@ -1,51 +1,32 @@
 ---
-import type {ContentTemplate} from '../types/ContentTemplate';
-import Card from './Card.astro';
+import type { ContentTemplate } from '../types/ContentTemplate';
+import ContentCard from './content/ContentCard.astro';
+import ContentSection from './content/ContentSection.astro';
 
 interface Props {
 	containerContent: ContentTemplate;
 }
 
-const {containerContent} = Astro.props;
+const { containerContent } = Astro.props;
 ---
-{containerContent.sections.map((section)=> {
+
+{containerContent.sections.map((section) => {
 	const layoutMode = section.layoutMode || 'grid';
-	const ulClasses = layoutMode === 'single-column'
-		? [
-			// Layout
-			'flex flex-col items-center',
-			// Spacing
-			'gap-4',
-			// Sizing and positioning
-			'max-w-9/10 mx-auto'
-		].join(' ')
-		: [
-			// Layout
-			'flex flex-wrap justify-center',
-			// Sizing and positioning
-			'max-w-9/10 mx-auto'
-		].join(' ');
-	const cardVariant = layoutMode === 'single-column' ? 'long-form' : 'short-form';
 
 	return (
-    <section>
-        <h2>{section.title}</h2>
-        <p class="text-xl">{section.subtitle}</p>
-        <ul class={ulClasses} role="list">
-			{section.content.map((thisSection) => (
-                    <Card variant={cardVariant}>
-                        <h3 class="text-3xl">{thisSection.title}</h3>
-                        <ul>
-							{thisSection.link.map((link) => (
-                                    <li>
-                                        <a class="text-xl" target="_blank" href={link.href}>{link.title ?? "Link"}</a>
-                                    </li>
-							))}
-                        </ul>
-                        <p class="text-lg" set:html={thisSection.description}></p>
-                    </Card>
+		<ContentSection
+			title={section.title}
+			subtitle={section.subtitle}
+			layoutMode={layoutMode}
+		>
+			{section.content.map((contentItem) => (
+				<ContentCard
+					title={contentItem.title}
+					links={contentItem.link}
+					description={contentItem.description}
+					layoutMode={layoutMode}
+				/>
 			))}
-        </ul>
-    </section>
-		);
-	})}
+		</ContentSection>
+	);
+})}

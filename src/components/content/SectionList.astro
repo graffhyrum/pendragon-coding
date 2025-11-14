@@ -1,0 +1,28 @@
+---
+interface Props {
+	layoutMode: 'grid' | 'single-column';
+}
+
+const { layoutMode } = Astro.props;
+
+const ulClasses =
+	layoutMode === 'single-column'
+		? [
+				// Layout
+				'flex flex-col items-center',
+				// Spacing
+				'gap-4',
+				// Sizing and positioning
+				'max-w-9/10 mx-auto',
+			].join(' ')
+		: [
+				// Layout
+				'flex flex-wrap justify-center',
+				// Sizing and positioning
+				'max-w-9/10 mx-auto',
+			].join(' ');
+---
+
+<ul class={ulClasses} role="list">
+	<slot />
+</ul>

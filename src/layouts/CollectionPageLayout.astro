@@ -9,9 +9,10 @@ interface Props {
 
 const { pageTitle, description, layoutMode = 'grid' } = Astro.props;
 
-const ulClasses = layoutMode === 'single-column'
-	? 'flex flex-col items-center mx-auto'
-	: 'flex flex-wrap justify-center';
+const ulClasses =
+	layoutMode === 'single-column'
+		? 'flex flex-col items-center mx-auto'
+		: 'flex flex-wrap justify-center';
 ---
 <BaseLayout pageTitle={pageTitle}>
 	<h2>{pageTitle}</h2>

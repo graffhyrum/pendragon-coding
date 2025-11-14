@@ -57,7 +57,7 @@ bookshelf of resources.
 
 ### Project Structure
 
-- `src/layouts/` - Base layouts (BaseLayout, BlogLayout, MarkdownPostLayout, TestimonialLayout)
+- `src/layouts/` - Base layouts (BaseLayout, BlogLayout, MarkdownPostLayout)
 - `src/components/` - Reusable Astro components (Header, Footer, Navigation, Skills, etc.)
 - `src/pages/` - File-based routing with Astro pages and markdown content
 - `src/content/` - Content data (bookshelf.ts, shoutouts.ts) with TypeScript types
@@ -68,7 +68,7 @@ bookshelf of resources.
 ### Content Management
 
 - **Blog posts**: Markdown files in `src/pages/blog/` with frontmatter
-- **Testimonials**: Markdown files in `src/pages/testimonials/`
+- **Testimonials**: TypeScript data file (`src/content/testimonials.ts`) using ContentTemplate interface
 - **Bookshelf**: TypeScript data file (`src/content/bookshelf.ts`) using ContentTemplate interface
 - **Skills**: Component-based with image assets and structured data
 
