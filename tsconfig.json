@@ -4,6 +4,7 @@
 		"@assets/*": ["src/assets/*"]
 	},
 	"compilerOptions": {
+		"types": ["bun-types"],
 		"plugins": [
 			{
 				"name": "@astrojs/ts-plugin"
