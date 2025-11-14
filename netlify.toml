@@ -5,8 +5,8 @@
 
 # Disable auto-deploys from branch pushes
 # Production deploys only happen via GitHub Actions on version tags
-[[context.production]]
+[context.production]
   ignore = "exit 0"
 
-[[context.branch-deploy]]
+[context.branch-deploy]
   ignore = "exit 0"
