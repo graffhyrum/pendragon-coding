@@ -2,21 +2,35 @@
 interface Props {
 	variant?: 'long-form' | 'short-form';
 	maxWidth?: string;
+
 	[key: string]: unknown;
 }
 
-const { variant = 'short-form', maxWidth = '', ...rest } = Astro.props;
+const {variant = 'short-form', maxWidth = '', ...rest} = Astro.props;
 
-const baseClasses = 'outline-solid outline-2 outline-green-700 w-full m-4 p-2 rounded-lg transition-all duration-300 hover:outline-green-500 hover:shadow-lg hover:shadow-green-900/50 hover:-translate-y-1 hover:scale-[1.02] focus-within:outline-green-500 focus-within:shadow-lg focus-within:shadow-green-900/50 focus-within:-translate-y-1 focus-within:scale-[1.02]';
+const baseClasses = [
+	// Base styles
+	'outline-solid outline-2 outline-green-700',
+	'w-full m-4 p-2 rounded-lg',
+
+	// Transitions
+	'transition-all duration-300',
+
+	// Interactive states
+	'hover:outline-green-500 hover:shadow-lg hover:shadow-green-900/50',
+	'hover:-translate-y-1 hover:scale-[1.02]',
+	'focus-within:outline-green-500 focus-within:shadow-lg focus-within:shadow-green-900/50',
+	'focus-within:-translate-y-1 focus-within:scale-[1.02]'
+].join(' ');
 
 const sizeStyle = variant === 'long-form'
 	? 'max-width: 100%;'
-	: 'min-width: 360px; max-width: 25vw;';
+	: 'min-width: 360px; max-width: 20vw;';
 ---
 <li
-	class={`${baseClasses} ${maxWidth}`}
-	style={sizeStyle}
-	{...rest}
+        class={`${baseClasses} ${maxWidth}`}
+        style={sizeStyle}
+		{...rest}
 >
-	<slot />
+    <slot/>
 </li>
