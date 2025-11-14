@@ -1,6 +1,5 @@
 ---
 import { getCollection } from 'astro:content';
-import BlogCard from '../components/BlogCard.astro';
 import CollectionPageLayout from '../layouts/CollectionPageLayout.astro';
 
 const pageTitle = 'Blog';
@@ -13,8 +12,5 @@ const allBlogs = (await getCollection('blog')).sort(
 	pageTitle={pageTitle}
 	description="Putting things to paper helps me think. Come here to watch the sausage get made."
 	layoutMode="single-column"
->
-	{allBlogs.map((blog) => (
-			<BlogCard entry={blog} />
-		))}
-</CollectionPageLayout>
+	items={allBlogs}
+/>

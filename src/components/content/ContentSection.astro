@@ -1,19 +1,32 @@
 ---
 import SectionList from './SectionList.astro';
+import ContentCard from './ContentCard.astro';
 
 interface Props {
 	title: string;
 	subtitle: string;
 	layoutMode: 'grid' | 'single-column';
+	content: Array<{
+		title: string;
+		link: Array<{ title?: string; href: string }>;
+		description: string;
+	}>;
 }
 
-const { title, subtitle, layoutMode } = Astro.props;
+const { title, subtitle, layoutMode, content } = Astro.props;
 ---
 
 <section>
 	<h2>{title}</h2>
 	<p class="text-xl">{subtitle}</p>
 	<SectionList layoutMode={layoutMode}>
-		<slot />
+		{content.map((contentItem) => (
+			<ContentCard
+				title={contentItem.title}
+				links={contentItem.link}
+				description={contentItem.description}
+				layoutMode={layoutMode}
+			/>
+		))}
 	</SectionList>
 </section>

@@ -1,13 +1,16 @@
 ---
 import BaseLayout from './BaseLayout.astro';
+import BlogCard from '../components/BlogCard.astro';
+import type { CollectionEntry } from 'astro:content';
 
 interface Props {
 	pageTitle: string;
 	description: string;
 	layoutMode?: 'single-column' | 'grid';
+	items: CollectionEntry<'blog'>[];
 }
 
-const { pageTitle, description, layoutMode = 'grid' } = Astro.props;
+const { pageTitle, description, layoutMode = 'grid', items } = Astro.props;
 
 const ulClasses =
 	layoutMode === 'single-column'
@@ -19,7 +22,9 @@ const ulClasses =
 	<div class="text-xl">
 		<p>{description}</p>
 		<ul class={ulClasses} role="list">
-			<slot />
+			{items.map((item) => (
+				<BlogCard entry={item} />
+			))}
 		</ul>
 	</div>
 </BaseLayout>

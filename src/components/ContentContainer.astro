@@ -1,6 +1,5 @@
 ---
 import type { ContentTemplate } from '../types/ContentTemplate';
-import ContentCard from './content/ContentCard.astro';
 import ContentSection from './content/ContentSection.astro';
 
 interface Props {
@@ -18,15 +17,7 @@ const { containerContent } = Astro.props;
 			title={section.title}
 			subtitle={section.subtitle}
 			layoutMode={layoutMode}
-		>
-			{section.content.map((contentItem) => (
-				<ContentCard
-					title={contentItem.title}
-					links={contentItem.link}
-					description={contentItem.description}
-					layoutMode={layoutMode}
-				/>
-			))}
-		</ContentSection>
+			content={section.content}
+		/>
 	);
 })}
