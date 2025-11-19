@@ -1,5 +1,12 @@
 # pendragon-coding
 
+## 2.3.1
+
+### Patch Changes
+
+- Remove animations and HTMX functionality from components. Clean up unused UI config file and improve script tags with is:inline attribute.
+- 8c194b1: Configure CI/CD for tag-based deployments with automated releases. Production deploys only on version tags. Changeset release workflow automates version bumping and tagging.
+
 ## 2.3.0
 
 ### Minor Changes

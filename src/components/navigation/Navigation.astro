@@ -2,16 +2,12 @@
 import '../../styles/styles.css';
 import { NAVIGATION_CONFIG } from '../../config/navigation';
 ---
-<nav class="animate-fade-in">
+<nav>
 	<ul class="flex flex-wrap items-start p-0 *:px-3 text-lg gap-2" role="list">
 		{NAVIGATION_CONFIG.links.map(({ href, api, label }) => (
 			<li class="relative group">
 				<a
 					href={href}
-					hx-get={api}
-					hx-target={NAVIGATION_CONFIG.htmx.target}
-					hx-swap={NAVIGATION_CONFIG.htmx.swap}
-					hx-push-url={href}
 					class="relative inline-block py-1">
 					{label}
 					<span class="absolute bottom-0 left-0 w-0 h-0.5 bg-green-600 dark:bg-green-400 transition-all duration-300 group-hover:w-full group-focus-within:w-full"></span>

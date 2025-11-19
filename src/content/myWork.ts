@@ -72,7 +72,7 @@ const content: ContentTemplate = {
 						},
 					],
 					description:
-						'<script src="https://gist.github.com/graffhyrum/7f267cea2021ad4246be23ec5f6d4a4e.js"></script>',
+						'<script is:inline src="https://gist.github.com/graffhyrum/7f267cea2021ad4246be23ec5f6d4a4e.js"></script>',
 				},
 				{
 					title: "Typescript - 'One of' Type",
@@ -82,7 +82,7 @@ const content: ContentTemplate = {
 						},
 					],
 					description:
-						'<script src="https://gist.github.com/graffhyrum/d705dc05cf3890303dd9aa1c9598b08d.js"></script>',
+						'<script is:inline src="https://gist.github.com/graffhyrum/d705dc05cf3890303dd9aa1c9598b08d.js"></script>',
 				},
 				{
 					title: 'Typescript - Type-safe Entries',
@@ -92,7 +92,7 @@ const content: ContentTemplate = {
 						},
 					],
 					description:
-						'<script src="https://gist.github.com/graffhyrum/1253b24fbe80d5f508544736d83d9532.js"></script>',
+						'<script is:inline src="https://gist.github.com/graffhyrum/1253b24fbe80d5f508544736d83d9532.js"></script>',
 				},
 				{
 					title: 'Typescript - Branded Types',
@@ -102,7 +102,7 @@ const content: ContentTemplate = {
 						},
 					],
 					description:
-						'<script src="https://gist.github.com/graffhyrum/bdf39a9e7fe18876fcc1dabf11c92457.js"></script>',
+						'<script is:inline src="https://gist.github.com/graffhyrum/bdf39a9e7fe18876fcc1dabf11c92457.js"></script>',
 				},
 				{
 					title: 'Typescript - Retry Wrapper',
@@ -112,7 +112,7 @@ const content: ContentTemplate = {
 						},
 					],
 					description:
-						'<script src="https://gist.github.com/graffhyrum/ffb48dee28a7739d444e22791d95028f.js"></script>',
+						'<script is:inline src="https://gist.github.com/graffhyrum/ffb48dee28a7739d444e22791d95028f.js"></script>',
 				},
 			],
 		},

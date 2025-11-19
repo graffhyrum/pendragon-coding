@@ -6,10 +6,8 @@ import type { SkillData } from '../../types/Skill';
 interface Props {
 	s: SkillData;
 	index?: number;
-	noAnimation?: boolean;
 }
-const { s, index = 0, noAnimation = false } = Astro.props;
-const delayClass = `delay-${Math.min(index * 100, 400)}`;
+const { s, index = 0 } = Astro.props;
 const images = import.meta.glob<{ default: ImageMetadata }>(
 	'/src/assets/*.{jpeg,jpg,png,gif,webp}',
 );
@@ -19,7 +17,7 @@ if (!images[`/src/assets/${s.imagePath}`])
 	);
 ---
 
-<li class={`flex items-center justify-between gap-4 p-1 ${noAnimation ? '' : `animate-scale-in ${delayClass} opacity-0`} hover:bg-green-900/20 rounded-lg transition-all duration-300 hover:scale-105 focus-within:bg-green-900/20 focus-within:scale-105 group`}>
+<li class={`flex items-center justify-between gap-4 p-1 hover:bg-green-900/20 rounded-lg transition-all duration-300 hover:scale-105 focus-within:bg-green-900/20 focus-within:scale-105 group`}>
 	<Image
 		src={images[`/src/assets/${s.imagePath}`]()}
 		alt={s.img_alt}
