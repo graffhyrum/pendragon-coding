@@ -1,8 +1,8 @@
 ---
 import ContentContainer from '../components/ContentContainer.astro';
 import bookshelf from '../content/bookshelf';
-import BaseLayout from '../layouts/BaseLayout.astro';
+import ContentWithSidebarLayout from '../layouts/ContentWithSidebarLayout.astro';
 ---
-<BaseLayout pageTitle={"Bookshelf"}>
+<ContentWithSidebarLayout pageTitle={"Bookshelf"} content={bookshelf}>
     <ContentContainer containerContent={bookshelf}></ContentContainer>
-</BaseLayout>
+</ContentWithSidebarLayout>

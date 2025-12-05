@@ -1,11 +1,11 @@
 ---
 import ContentContainer from '../components/ContentContainer.astro';
 import myWork from '../content/myWork.ts';
-import BaseLayout from '../layouts/BaseLayout.astro';
+import ContentWithSidebarLayout from '../layouts/ContentWithSidebarLayout.astro';
 
 const pageTitle = 'My Work';
 ---
 
-<BaseLayout pageTitle={pageTitle}>
+<ContentWithSidebarLayout pageTitle={pageTitle} content={myWork}>
 	<ContentContainer containerContent={myWork}></ContentContainer>
-</BaseLayout>
+</ContentWithSidebarLayout>
