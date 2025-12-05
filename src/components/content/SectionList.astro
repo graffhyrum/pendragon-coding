@@ -12,22 +12,19 @@ interface Props {
 
 const { layoutMode, content } = Astro.props;
 
-const ulClasses =
-	layoutMode === 'single-column'
-		? [
-				// Layout
-				'flex flex-col items-center',
-				// Spacing
-				'gap-4',
-				// Sizing and positioning
-				'max-w-9/10 mx-auto',
-			].join(' ')
-		: [
-				// Layout
-				'flex flex-wrap justify-center',
-				// Sizing and positioning
-				'max-w-9/10 mx-auto',
-			].join(' ');
+const baseClasses = [
+	'flex',
+	'max-w-9/10',
+	'mx-auto'
+]
+
+if (layoutMode === 'single-column'){
+	baseClasses.push(...['flex-col', 'items-center', 'gap-4'])
+} else {
+	baseClasses.push(...['flex-wrap', 'justify-center'])
+}
+
+const ulClasses = baseClasses.join(' ')
 ---
 
 <ul class={ulClasses} role="list">
