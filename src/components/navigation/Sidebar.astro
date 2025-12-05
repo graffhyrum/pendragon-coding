@@ -9,7 +9,7 @@ interface Props {
 	}>;
 }
 
-const {sections} = Astro.props;
+const { sections } = Astro.props;
 
 // Generate section ID from title
 function getSectionId(title: string): string {
@@ -72,18 +72,17 @@ function getSectionId(title: string): string {
 </aside>
 
 <style>
-    .sidebar {
-        width: 16rem;
-        position: sticky;
-        top: 2rem;
-        max-height: calc(100vh - 4rem);
-        overflow-y: auto;
-        background: rgb(240 253 244);
-        border: 1px solid rgb(134 239 172);
-        border-radius: 0.5rem;
-        padding: 1.5rem;
-        margin-right: 2rem;
-    }
+	.sidebar {
+		width: 16rem;
+		position: sticky;
+		top: 2rem;
+			overflow-y: auto;
+		background: rgb(240 253 244);
+		border: 1px solid rgb(134 239 172);
+		border-radius: 0.5rem;
+		padding: 1.5rem;
+		margin-right: 2rem;
+	}
 
     .sidebar-title {
         font-size: 1.125rem;
