@@ -90,8 +90,6 @@ h1, h2 {
     @apply sticky top-0 z-20;
 }
 
-h3 { @apply sticky top-[3rem] z-10;}
-
 p {
     @apply my-4;
 }

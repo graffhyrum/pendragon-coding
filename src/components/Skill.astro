@@ -8,7 +8,7 @@ interface Props {
 	index?: number;
 }
 const { s, index = 0 } = Astro.props;
-const delayClass = `delay-${Math.min(index * 100, 400)}`;
+
 const images = import.meta.glob<{ default: ImageMetadata }>(
 	'/src/assets/*.{jpeg,jpg,png,gif,webp}',
 );
@@ -18,7 +18,7 @@ if (!images[`/src/assets/${s.imagePath}`])
 	);
 ---
 
-<li class={`flex items-center justify-between gap-4 p-1 opacity-0`} hover:bg-green-900/20 rounded-lg transition-all duration-300 hover:scale-105 focus-within:bg-green-900/20 focus-within:scale-105 group`}>
+<li class="flex items-center justify-between gap-4 p-1 hover:bg-green-900/20 rounded-lg transition-all duration-300 hover:scale-105 focus-within:bg-green-900/20 focus-within:scale-105 group">
 	<Image
 		src={images[`/src/assets/${s.imagePath}`]()}
 		alt={s.img_alt}
