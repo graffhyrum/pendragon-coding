@@ -1,4 +1,4 @@
-import type {ContentTemplate} from '../types/ContentTemplate.ts';
+import type { ContentTemplate } from '../types/ContentTemplate.ts';
 
 const content: ContentTemplate = {
 	sections: [
@@ -106,7 +106,7 @@ const content: ContentTemplate = {
 				},
 				{
 					title: 'Left to Right Programming',
-					link: [{href: 'https://graic.net/p/left-to-right-programming'}],
+					link: [{ href: 'https://graic.net/p/left-to-right-programming' }],
 					description:
 						'A short article about the benefits of languages with progressive disclosure patterns.',
 				},
@@ -192,10 +192,10 @@ const content: ContentTemplate = {
 						'A polyglot web converter. I found this especially useful when trying to infer undocumented API interfaces for testing.',
 				},
 				{
-					title: "DummyJSON",
-					link: [{href:"https://dummyjson.com/"}],
-					description: "'Free Fake REST API for Placeholder JSON Data"
-				}
+					title: 'DummyJSON',
+					link: [{ href: 'https://dummyjson.com/' }],
+					description: "'Free Fake REST API for Placeholder JSON Data",
+				},
 			],
 		},
 		{
@@ -244,7 +244,7 @@ const content: ContentTemplate = {
 				},
 				{
 					title: 'How to Misuse and Abuse DORA metrics',
-					link: [{href: 'https://bryanfinster.com/whitepapers/dora-metrics'}],
+					link: [{ href: 'https://bryanfinster.com/whitepapers/dora-metrics' }],
 					description:
 						'"This article explains how organizations often misuse DORA metrics—deployment frequency, lead time, change-fail rate, and mean time to restore—by turning them into performance targets or vanity dashboards. It shows how these metrics are intended as signals to guide continuous improvement, not as goals in themselves. The paper urges leaders to pair DORA metrics with customer-value, culture, and sustainability measures, invest in trust and team learning, and focus on improving delivery processes rather than chasing numbers."',
 				},
