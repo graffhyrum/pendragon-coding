@@ -6,14 +6,15 @@ interface Props {
 	links: Array<{ title?: string; href: string }>;
 	description: string;
 	layoutMode: 'grid' | 'single-column';
+	contentId?: string;
 }
 
-const { title, links, description, layoutMode } = Astro.props;
+const { title, links, description, layoutMode, contentId } = Astro.props;
 
 const cardVariant = layoutMode === 'single-column' ? 'long-form' : 'short-form';
 ---
 
-<Card variant={cardVariant}>
+<Card variant={cardVariant} id={contentId}>
 	<h3 class="text-3xl">{title}</h3>
 	<ul>
 		{links.map((link) => (

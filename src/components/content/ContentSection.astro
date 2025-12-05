@@ -13,10 +13,20 @@ interface Props {
 }
 
 const { title, subtitle, layoutMode, content } = Astro.props;
+
+// Generate section ID from title for anchor linking
+function getSectionId(title: string): string {
+	return title
+		.toLowerCase()
+		.replace(/[^a-z0-9\s-]/g, '')
+		.replace(/\s+/g, '-');
+}
+
+const sectionId = getSectionId(title);
 ---
 
-<section>
+<section id={sectionId}>
 	<h2>{title}</h2>
 	<p class="text-xl">{subtitle}</p>
-	<SectionList layoutMode={layoutMode} content={content} />
+	<SectionList layoutMode={layoutMode} content={content} sectionTitle={title} />
 </section>
