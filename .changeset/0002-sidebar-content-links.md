@@ -1,0 +1,5 @@
+---
+"pendragon-coding": minor
+---
+
+Enhanced sidebar navigation to include links to content items within each section. The sidebar now displays section titles with nested links that jump to specific content items within the page (not external links). Refactored active tracking to use mouse hover instead of scroll position for immediate visual feedback. Added smooth scrolling, hover-based active highlighting for both sections and content items, proper styling with hover effects and dark mode support. Content items now have unique IDs for precise anchor navigation. Added independent scrolling to sidebar with custom scrollbar styling and mobile responsiveness. Fixed blog page by enhancing existing CollectionPageLayout to conditionally show sidebar only for blog page, preserving all original styling and component architecture. Fixed bookshelf page sidebar height issue by implementing CSS custom properties to properly calculate sidebar height accounting for header and footer elements.
