@@ -1,5 +1,12 @@
 # pendragon-coding
 
+## 2.4.1
+
+### Patch Changes
+
+- 124d897: Normalize line endings config in biome
+- 9250868: Update dependencies and improve build scripts with bun typecheck
+
 ## 2.4.0
 
 ### Minor Changes
