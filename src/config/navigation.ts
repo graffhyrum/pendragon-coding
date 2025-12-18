@@ -12,7 +12,6 @@ export const NAV_LINKS = [
 		label: 'Testimonials',
 	},
 	{ href: '/blog/', api: '/api/blog.html', label: 'Blog' },
-	{ href: '/consultancy/', api: '/api/consultancy.html', label: 'Consultancy' },
 ] as const;
 
 export const NAVIGATION_CONFIG = {

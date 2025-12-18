@@ -4,14 +4,14 @@ import Footer from '../components/Footer.astro';
 import Head from '../components/Head.astro';
 import Header from '../components/Header.astro';
 import Sidebar from '../components/navigation/Sidebar.astro';
-import type {ContentTemplate} from '../types/ContentTemplate';
+import type { ContentTemplate } from '../types/ContentTemplate';
 
 interface Props {
 	pageTitle: string;
 	content: ContentTemplate;
 }
 
-const {pageTitle, content} = Astro.props;
+const { pageTitle, content } = Astro.props;
 ---
 
 <html class="scroll-smooth" lang="en">
