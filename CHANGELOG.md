@@ -1,5 +1,11 @@
 # pendragon-coding
 
+## 2.5.0
+
+### Minor Changes
+
+- 60e5a6e: Remove unused props from components to clean up interfaces and improve code maintainability.
+
 ## 2.4.1
 
 ### Patch Changes
