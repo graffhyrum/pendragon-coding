@@ -1,5 +1,21 @@
 # pendragon-coding
 
+## 2.4.0
+
+### Minor Changes
+
+- 68d911f: Standardize object literal spacing and add DummyJSON tool to bookshelf content
+- 68d911f: Enhanced sidebar navigation to include links to content items within each section. The sidebar now displays section titles with nested links that jump to specific content items within the page (not external links). Refactored active tracking to use mouse hover instead of scroll position for immediate visual feedback. Added smooth scrolling, hover-based active highlighting for both sections and content items, proper styling with hover effects and dark mode support. Content items now have unique IDs for precise anchor navigation. Added independent scrolling to sidebar with custom scrollbar styling and mobile responsiveness. Fixed blog page by enhancing existing CollectionPageLayout to conditionally show sidebar only for blog page, preserving all original styling and component architecture. Fixed bookshelf page sidebar height issue by implementing CSS custom properties to properly calculate sidebar height accounting for header and footer elements.
+- 68d911f: Add anchor link support to content components for precise navigation. Content items now have unique IDs that enable sidebar navigation to jump directly to specific content within sections.
+- 68d911f: Integrate sidebar layout across content pages. Bookshelf, myWork, shoutouts, and testimonials pages now use ContentWithSidebarLayout for improved navigation and content discovery.
+- 68d911f: Enhance blog page with sidebar navigation. CollectionPageLayout now supports optional sidebar, and blog page displays post navigation for improved content browsing.
+- 68d911f: Remove consultancy section and pages from the website, including navigation updates and page cleanup.
+
+### Patch Changes
+
+- 68d911f: Remove unnecessary animations and sticky positioning. Clean up visual inconsistencies by removing opacity delays from Skill component and sticky positioning from h3 elements.
+- 6d4838c: Fix release workflow permissions to allow changesets action to create release branches and PRs.
+
 ## 2.3.1
 
 ### Patch Changes
