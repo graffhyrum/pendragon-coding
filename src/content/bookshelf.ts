@@ -156,6 +156,16 @@ const content: ContentTemplate = {
 					description:
 						'An excellent, free, training resource for learning QA automation.',
 				},
+				{
+					title: 'Testing Accessibility',
+					link: [
+						{
+							href: 'https://testingaccessibility.com/',
+						},
+					],
+					description:
+						'A comprehensive resource for learning about accessibility testing and ensuring web applications are usable by everyone.',
+				},
 			],
 		},
 		{
