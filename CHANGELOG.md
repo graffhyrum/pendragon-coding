@@ -1,5 +1,11 @@
 # pendragon-coding
 
+## 2.6.0
+
+### Minor Changes
+
+- 8857928: Add Testing Accessibility resource to bookshelf
+
 ## 2.5.0
 
 ### Minor Changes
