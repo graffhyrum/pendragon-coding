@@ -1,5 +1,19 @@
 # pendragon-coding
 
+## 1.2.0
+
+### Minor Changes
+
+- Add "AI Stuff" and "Hexagonal Architecture" sections to bookshelf data with new learning resources.
+- Add consultancy page with process overview and pricing tiers, update navigation, and improve mermaid diagram styling.
+- Add CLAUDE.md and .junie/guidelines.md with detailed project documentation and development guidelines for better contributor onboarding.
+
+### Patch Changes
+
+- Enhance consultancy page form styling with improved accessibility and focus states for better user experience.
+- Update dependencies to latest versions for security and performance improvements.
+- Update homepage "About" section to refine QA Engineer role description and professional experience.
+
 ## 1.1.1
 
 ### Patch Changes
