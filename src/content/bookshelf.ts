@@ -166,6 +166,16 @@ const content: ContentTemplate = {
 					description:
 						'A comprehensive resource for learning about accessibility testing and ensuring web applications are usable by everyone.',
 				},
+				{
+					title: '"Getting started with QA Automation"',
+					link: [
+						{
+							href: 'https://www.reddit.com/r/QualityAssurance/comments/mo5num/guide_getting_started_with_qa_automation/',
+						},
+					],
+					description:
+						'A good reddit post by u/Fissherin on r/QualityAssurance about how to 0 > 1 a QAE career',
+				},
 			],
 		},
 		{
