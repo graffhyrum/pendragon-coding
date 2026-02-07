@@ -1,0 +1,32 @@
+---
+import SectionList from './SectionList.astro';
+
+interface Props {
+	title: string;
+	subtitle: string;
+	layoutMode: 'grid' | 'single-column';
+	content: Array<{
+		title: string;
+		link: Array<{ title?: string; href: string }>;
+		description: string;
+	}>;
+}
+
+const { title, subtitle, layoutMode, content } = Astro.props;
+
+// Generate section ID from title for anchor linking
+function getSectionId(title: string): string {
+	return title
+		.toLowerCase()
+		.replace(/[^a-z0-9\s-]/g, '')
+		.replace(/\s+/g, '-');
+}
+
+const sectionId = getSectionId(title);
+---
+
+<section id={sectionId}>
+	<h2>{title}</h2>
+	<p class="text-xl">{subtitle}</p>
+	<SectionList layoutMode={layoutMode} content={content} sectionTitle={title} />
+</section>

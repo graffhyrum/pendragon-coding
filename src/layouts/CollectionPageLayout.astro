@@ -1,0 +1,88 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import BlogCard from '../components/BlogCard.astro';
+import Sidebar from '../components/navigation/Sidebar.astro';
+import BaseLayout from './BaseLayout.astro';
+
+interface Props {
+	pageTitle: string;
+	description: string;
+	layoutMode?: 'single-column' | 'grid';
+	items: CollectionEntry<'blog'>[];
+	showSidebar?: boolean;
+}
+
+const {
+	pageTitle,
+	description,
+	layoutMode = 'grid',
+	items,
+	showSidebar = false,
+} = Astro.props;
+
+const ulClasses =
+	layoutMode === 'single-column'
+		? 'flex flex-col items-center mx-auto'
+		: 'flex flex-wrap justify-center';
+
+// Generate section data for sidebar
+const blogSections = [
+	{
+		title: 'All Posts',
+		content: items.map((item) => ({
+			title: item.data.title,
+			link: [
+				{
+					href: `#${item.data.title
+						.replace(/\s/g, '-')
+						.toLowerCase()
+						.replace(/[^a-z0-9\s-]/g, '')
+						.replace(/\s+/g, '-')}`,
+				},
+			],
+		})),
+	},
+];
+---
+<BaseLayout pageTitle={pageTitle}>
+	<div class="content-layout">
+		{showSidebar && <Sidebar sections={blogSections} />}
+		<div class="main-content">
+			<h2>{pageTitle}</h2>
+			<div class="text-xl">
+				<p>{description}</p>
+			</div>
+			<ul class={ulClasses} role="list">
+				{items.map((item) => (
+					<BlogCard entry={item} />
+				))}
+			</ul>
+		</div>
+	</div>
+</BaseLayout>
+
+<style>
+	.content-layout {
+		display: flex;
+		gap: 2rem;
+		max-width: 100%;
+		position: relative;
+	}
+
+	.main-content {
+		flex: 1;
+		min-width: 0; /* Prevent flex overflow */
+	}
+
+	/* Mobile responsive */
+	@media (max-width: 768px) {
+		.content-layout {
+			flex-direction: column;
+			gap: 1rem;
+		}
+
+		.main-content {
+			width: 100%;
+		}
+	}
+</style>

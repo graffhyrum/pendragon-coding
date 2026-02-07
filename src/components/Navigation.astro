@@ -1,15 +1,22 @@
 ---
 import '../styles/styles.css';
-// todo generate this list automatically from the files in /pages
+import { NAVIGATION_CONFIG } from '../config/navigation';
 ---
 <nav>
-    <ul class="flex flex-wrap items-start p-0 *:px-3 text-lg" role="directory">
-        <li><a href="/">Home</a></li>
-        <li><a href="/bookshelf/">Bookshelf</a></li>
-        <li><a href="/myWork/">My Work</a></li>
-        <li><a href="/shoutouts/">Shoutouts</a></li>
-        <li><a href="/testimonials/">Testimonials</a></li>
-        <li><a href="/blog/">Blog</a></li>
-        <li><a href="/consultancy/">Consultancy</a></li>
-    </ul>
+	<ul class="flex flex-wrap items-start p-0 *:px-3 text-lg gap-2" role="list">
+		{NAVIGATION_CONFIG.links.map(({ href, api, label }) => (
+			<li class="relative group">
+				<a
+					href={href}
+					hx-get={api}
+					hx-target={NAVIGATION_CONFIG.htmx.target}
+					hx-swap={NAVIGATION_CONFIG.htmx.swap}
+					hx-push-url={href}
+					class="relative inline-block py-1">
+					{label}
+					<span class="absolute bottom-0 left-0 w-0 h-0.5 bg-green-600 dark:bg-green-400 transition-all duration-300 group-hover:w-full group-focus-within:w-full"></span>
+				</a>
+			</li>
+		))}
+	</ul>
 </nav>

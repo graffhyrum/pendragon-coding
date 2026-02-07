@@ -1,29 +1,23 @@
 ---
-import type { ContentTemplate } from '../content/types/ContentTemplate';
+import type { ContentTemplate } from '../types/ContentTemplate';
+import ContentSection from './content/ContentSection.astro';
+
 interface Props {
 	containerContent: ContentTemplate;
 }
 
 const { containerContent } = Astro.props;
 ---
-{containerContent.sections.map((section)=> (
-<section>
-    <h2>{section.title}</h2>
-    <p class="text-xl">{section.subtitle}</p>
-    <ul class="flex flex-wrap mr-8" role="list">
-      {section.content.map((thisSection) => (
-              <li class="outline outline-2 outline-green-700 w-full max-w-lg m-4 p-2 rounded-lg">
-                  <h3 class="text-3xl underline">{thisSection.title}</h3>
-                  <ul>
-                    {thisSection.link.map((link) => (
-                            <li>
-                                <a class="text-xl" target="_blank" href={link.href}>{link.title ?? "Link"}</a>
-                            </li>
-                    ))}
-                  </ul>
-                  <p class="text-lg">{thisSection.description}</p>
-              </li>
-      ))}
-    </ul>
-</section>
-  ))}
+
+{containerContent.sections.map((section) => {
+	const layoutMode = section.layoutMode || 'grid';
+
+	return (
+		<ContentSection
+			title={section.title}
+			subtitle={section.subtitle}
+			layoutMode={layoutMode}
+			content={section.content}
+		/>
+	);
+})}

@@ -1,0 +1,48 @@
+---
+import ContentCard from './ContentCard.astro';
+
+interface Props {
+	layoutMode: 'grid' | 'single-column';
+	content: Array<{
+		title: string;
+		link: Array<{ title?: string; href: string }>;
+		description: string;
+	}>;
+	sectionTitle: string;
+}
+
+const { layoutMode, content, sectionTitle } = Astro.props;
+
+// Generate content ID from title for anchor linking
+function getContentId(title: string): string {
+	return title
+		.toLowerCase()
+		.replace(/[^a-z0-9\s-]/g, '')
+		.replace(/\s+/g, '-');
+}
+
+const baseClasses = ['flex', 'max-w-9/10', 'mx-auto'];
+
+if (layoutMode === 'single-column') {
+	baseClasses.push(...['flex-col', 'items-center', 'gap-4']);
+} else {
+	baseClasses.push(...['flex-wrap', 'justify-center']);
+}
+
+const ulClasses = baseClasses.join(' ');
+---
+
+<ul class={ulClasses} role="list">
+	{content.map((contentItem) => {
+		const contentId = `${getContentId(sectionTitle)}-${getContentId(contentItem.title)}`;
+		return (
+			<ContentCard
+				title={contentItem.title}
+				links={contentItem.link}
+				description={contentItem.description}
+				layoutMode={layoutMode}
+				contentId={contentId}
+			/>
+		);
+	})}
+</ul>

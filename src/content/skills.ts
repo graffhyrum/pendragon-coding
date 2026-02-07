@@ -1,0 +1,66 @@
+import type { SkillData } from '../types/Skill';
+
+const skills: SkillData[] = [
+	{
+		imagePath: 'ts_logo.webp',
+		img_alt: 'Typescript Logo',
+		title: 'Typescript',
+		skill_doc_link: 'https://www.typescriptlang.org/docs/',
+	},
+	{
+		imagePath: 'playwright-logo.webp',
+		img_alt: 'Playwright Logo',
+		title: 'Playwright',
+		skill_doc_link: 'https://playwright.dev/',
+	},
+	{
+		imagePath: 'automation.webp',
+		img_alt: 'Test Automation Icon',
+		title: 'Test Automation',
+		skill_doc_link: '',
+	},
+	{
+		imagePath: 'documentation.webp',
+		img_alt: 'Documentation Icon',
+		title: 'Documentation',
+		skill_doc_link: '',
+	},
+	{
+		imagePath: 'process_improvement.webp',
+		img_alt: 'Process Improvement Icon',
+		title: 'Process Improvement',
+		skill_doc_link: '',
+	},
+	{
+		imagePath: 'planning.webp',
+		img_alt: 'Strategic Planning Icon',
+		title: 'Strategic Planning',
+		skill_doc_link: '',
+	},
+	{
+		imagePath: 'leadership.webp',
+		img_alt: 'Leadership Icon',
+		title: 'Team Leadership',
+		skill_doc_link: '',
+	},
+	{
+		imagePath: 'project_management.webp',
+		img_alt: 'JIRA Logo',
+		title: 'Project Management',
+		skill_doc_link: '',
+	},
+	{
+		imagePath: 'public_speaking.webp',
+		img_alt: 'Public Speaking Icon',
+		title: 'Public Speaking',
+		skill_doc_link: '',
+	},
+	{
+		imagePath: 'accessibility.webp',
+		img_alt: 'Accessibility Icon',
+		title: 'Accessibility',
+		skill_doc_link: '',
+	},
+];
+
+export default skills;

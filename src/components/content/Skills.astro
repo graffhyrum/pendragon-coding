@@ -1,0 +1,13 @@
+---
+import skills from '../../content/skills';
+import Skill from '../ui/Skill.astro';
+---
+
+<section>
+	<h2 id="top-skills">Top Skills</h2>
+	<ul role="list" class="skills-list">
+		{skills.map((s) => (
+			<Skill s={s} />
+		))}
+	</ul>
+</section>

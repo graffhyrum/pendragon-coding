@@ -1,0 +1,20 @@
+---
+import { getCollection } from 'astro:content';
+import BlogCard from '../../components/BlogCard.astro';
+import ApiContentLayout from '../../layouts/ApiContentLayout.astro';
+
+const allBlogs = (await getCollection('blog')).sort(
+	(a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
+);
+---
+<ApiContentLayout>
+	<h2>Blog</h2>
+	<div class="text-xl">
+		<p>Putting things to paper helps me think. Come here to watch the sausage get made.</p>
+		<ul class="flex flex-wrap max-w-max" role="list">
+			{allBlogs.map((blog) => (
+					<BlogCard entry={blog} />
+				))}
+		</ul>
+	</div>
+</ApiContentLayout>

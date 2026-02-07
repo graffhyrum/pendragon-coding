@@ -1,8 +1,8 @@
 ---
 import ContentContainer from '../components/ContentContainer.astro';
 import shoutouts from '../content/shoutouts';
-import BaseLayout from '../layouts/BaseLayout.astro';
+import ContentWithSidebarLayout from '../layouts/ContentWithSidebarLayout.astro';
 ---
-<BaseLayout pageTitle={"Shoutouts"}>
+<ContentWithSidebarLayout pageTitle={"Shoutouts"} content={shoutouts}>
     <ContentContainer containerContent={shoutouts}></ContentContainer>
-</BaseLayout>
+</ContentWithSidebarLayout>

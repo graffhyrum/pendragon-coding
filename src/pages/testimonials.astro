@@ -1,23 +1,11 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
+import ContentContainer from '../components/ContentContainer.astro';
+import testimonials from '../content/testimonials.ts';
+import ContentWithSidebarLayout from '../layouts/ContentWithSidebarLayout.astro';
+
 const pageTitle = 'Testimonials';
-const allTestimonials = await Astro.glob('./testimonials/*.md');
 ---
 
-<BaseLayout pageTitle={pageTitle}>
-    <h2>{pageTitle}</h2>
-    <div class="text-xl">
-        <p>
-            This is a collection of testimonials from people that I have worked with.
-        </p>
-        <ul class="flex flex-wrap max-w-max mr-8" role="list">
-            {allTestimonials.map(({frontmatter, Content}) => (
-                    <article class="outline outline-2 outline-green-700 w-full max-w-lg m-4 p-2 rounded-lg"
-                        id={frontmatter.title}>
-                        <Content />
-                    </article>
-            ))}
-        </ul>
-    </div>
-
-</BaseLayout>
+<ContentWithSidebarLayout pageTitle={pageTitle} content={testimonials}>
+	<ContentContainer containerContent={testimonials}></ContentContainer>
+</ContentWithSidebarLayout>

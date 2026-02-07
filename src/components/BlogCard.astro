@@ -1,8 +1,15 @@
 ---
-const { frontmatter, Content } = Astro.props;
+import Card from './ui/Card.astro';
+
+const { entry } = Astro.props;
+const { Content } = await entry.render();
 ---
-<li>
-    <article class="outline outline-2 outline-green-700 w-full max-w-max m-4 p-2 rounded-lg" id={frontmatter.title.replace(/ /g, '-')}>
-        <Content />
+<Card variant="long-form" maxWidth="max-w-max">
+    <article id={entry.data.title.replace(/ /g, '-')}>
+        <h3 class="text-2xl font-medium text-green-100 mt-4">{entry.data.title}</h3>
+        <p class="text-sm text-green-400 my-2">{entry.data.date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}</p>
+        <div class="content bullet-list">
+            <Content />
+        </div>
     </article>
-</li>
+</Card>
