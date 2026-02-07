@@ -114,6 +114,56 @@ const content: ContentTemplate = {
 					description:
 						'<script is:inline src="https://gist.github.com/graffhyrum/ffb48dee28a7739d444e22791d95028f.js"></script>',
 				},
+				{
+					title: 'Playwright - Page & Component Object Model Template',
+					link: [
+						{
+							href: 'https://gist.github.com/graffhyrum/84e1d65450a8e1485212543a490e44c2',
+						},
+					],
+					description:
+						'<script is:inline src="https://gist.github.com/graffhyrum/84e1d65450a8e1485212543a490e44c2.js"></script>',
+				},
+				{
+					title: 'ArkType - Environment Variable Validation',
+					link: [
+						{
+							href: 'https://gist.github.com/graffhyrum/1e136ffdb5abdc8f54cbb8bcbfb32d42',
+						},
+					],
+					description:
+						'<script is:inline src="https://gist.github.com/graffhyrum/1e136ffdb5abdc8f54cbb8bcbfb32d42.js"></script>',
+				},
+				{
+					title: 'Playwright - Browser Console Error Fixture',
+					link: [
+						{
+							href: 'https://gist.github.com/graffhyrum/d0b4a3aa5f74cdaa42c306a33e088668',
+						},
+					],
+					description:
+						'<script is:inline src="https://gist.github.com/graffhyrum/d0b4a3aa5f74cdaa42c306a33e088668.js"></script>',
+				},
+				{
+					title: 'ArkType + Neverthrow - Type Validation Wrapper',
+					link: [
+						{
+							href: 'https://gist.github.com/graffhyrum/a0ef0fa1c4c3eae9703f075b67b457a1',
+						},
+					],
+					description:
+						'<script is:inline src="https://gist.github.com/graffhyrum/a0ef0fa1c4c3eae9703f075b67b457a1.js"></script>',
+				},
+				{
+					title: 'TypeScript - Custom Rule Validator',
+					link: [
+						{
+							href: 'https://gist.github.com/graffhyrum/fd128170c1d53f430b41dc3861e94338',
+						},
+					],
+					description:
+						'<script is:inline src="https://gist.github.com/graffhyrum/fd128170c1d53f430b41dc3861e94338.js"></script>',
+				},
 			],
 		},
 	],

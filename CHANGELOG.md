@@ -1,5 +1,18 @@
 # pendragon-coding
 
+## 2.6.0
+
+### Minor Changes
+
+- 8857928: Add Testing Accessibility resource to bookshelf
+- Add 5 new gists to portfolio showcase
+
+  - Playwright Page & Component Object Model Template
+  - ArkType Environment Variable Validation
+  - Playwright Browser Console Error Fixture
+  - ArkType + Neverthrow Type Validation Wrapper
+  - TypeScript Custom Rule Validator
+
 ## 2.5.0
 
 ### Minor Changes
