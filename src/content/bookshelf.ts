@@ -3,8 +3,9 @@ import type { ContentTemplate } from '../types/ContentTemplate.ts';
 const content: ContentTemplate = {
 	sections: [
 		{
-			title: 'Articles',
-			subtitle: "Articles that I've read and found interesting.",
+			title: 'Engineering Culture',
+			subtitle:
+				'Thoughts on how we work, learn, and think about software development.',
 			content: [
 				{
 					title: 'The Grug Brained Developer',
@@ -17,71 +18,6 @@ const content: ContentTemplate = {
 						"A layman's guide to thinking like the self-aware smol brained. Complexity bad, you say now.",
 				},
 				{
-					title: 'HTMX on Locality of Behavior',
-					link: [
-						{
-							href: 'https://htmx.org/essays/locality-of-behaviour/',
-						},
-					],
-					description:
-						'An article on the tradeoffs of Separation of Concerns and Locality of Behavior.',
-				},
-				{
-					title: "The Website vs. Web App Dichotomy Doesn't Exist",
-					link: [
-						{
-							href: 'https://jakelazaroff.com/words/the-website-vs-web-app-dichotomy-doesnt-exist',
-						},
-					],
-					description:
-						'An analysis of websites across two axes: Static vs Dynamic & Online vs Offline.',
-				},
-				{
-					title: 'As a JS Developer, ES6 Classes are what keep me up at night.',
-					link: [
-						{
-							href: 'https://www.toptal.com/javascript/es6-class-chaos-keeps-js-developer-up',
-						},
-					],
-					description:
-						'JavaScript is an oddball of a language with numerous approaches to almost any problem. When ES6 added the “class” keyword, did it save the day or just muddy the waters? In this article, Toptal Freelance JavaScript Developer Justen Robertson explores OOP in modern JS.',
-				},
-				{
-					title: 'Uncle Bob on FP & OO',
-					link: [
-						{
-							title: 'First Article',
-							href: 'https://blog.cleancoder.com/uncle-bob/2014/11/24/FPvsOO.html',
-						},
-						{
-							title: 'Second Article',
-							href: 'https://blog.cleancoder.com/uncle-bob/2018/04/13/FPvsOO.html',
-						},
-					],
-					description:
-						'Two articles from Robert Martin that talk about how FP and OO are not mutually exclusive, and how they might better be conceptualized to get the benefits of both in your projects.',
-				},
-				{
-					title: 'Test IDs. Always.',
-					link: [
-						{
-							href: 'https://engineering.kablamo.com.au/posts/2020/test-ids-always/',
-						},
-					],
-					description:
-						"'Why automation attributes are a non-negotiable part of web development.' A good primer on how and why to use test attributes for e2e tests.",
-				},
-				{
-					title: 'Become an SDET Hero',
-					link: [
-						{
-							href: 'https://www.developerswhotest.com/episode-4-becoming-an-sdet-hero-with-andrew-knight/',
-						},
-					],
-					description:
-						'A really insightful episode of the Developers who Test Podcast. Andrew Knight talks about distinguishing SDETs from Automation engineers and other developer roles.',
-				},
-				{
 					title: "I'm a Developer, not a Compiler",
 					link: [
 						{
@@ -90,19 +26,6 @@ const content: ContentTemplate = {
 					],
 					description:
 						'A short blog post that nicely captures what I dislike most about the prevalent technical interview process. "Any question that takes 5 seconds to answer with Google/ChatGPT is not a good question." Amen.',
-				},
-				{
-					title: 'How to actually use Node environment variables',
-					link: [
-						{
-							href: 'https://medium.com/free-code-camp/heres-how-you-can-actually-use-node-environment-variables-8fdf98f53a0a',
-						},
-					],
-					description:
-						'A cheeky article (my favorite kind) on working with' +
-						' process environment variables in Node.js. It sadly does not' +
-						' mention the ability to extend the environment object with' +
-						" declaration files, but it's still a good read.",
 				},
 				{
 					title: 'Left to Right Programming',
@@ -130,12 +53,118 @@ const content: ContentTemplate = {
 					description:
 						'A case study for how to do DevOps and CD, for real life!',
 				},
+				{
+					title: 'As a JS Developer, ES6 Classes are what keep me up at night.',
+					link: [
+						{
+							href: 'https://www.toptal.com/javascript/es6-class-chaos-keeps-js-developer-up',
+						},
+					],
+					description:
+						'JavaScript is an oddball of a language with numerous approaches to almost any problem. When ES6 added the "class" keyword, did it save the day or just muddy the waters? In this article, Toptal Freelance JavaScript Developer Justen Robertson explores OOP in modern JS.',
+				},
 			],
 		},
 		{
-			title: 'Testing Tools',
-			subtitle: 'Tools for QA automation and software testing',
+			title: 'Architecture & Design',
+			subtitle:
+				'Patterns, principles, and philosophies for building software systems.',
 			content: [
+				{
+					title: 'HTMX on Locality of Behavior',
+					link: [
+						{
+							href: 'https://htmx.org/essays/locality-of-behaviour/',
+						},
+					],
+					description:
+						'An article on the tradeoffs of Separation of Concerns and Locality of Behavior.',
+				},
+				{
+					title: "The Website vs. Web App Dichotomy Doesn't Exist",
+					link: [
+						{
+							href: 'https://jakelazaroff.com/words/the-website-vs-web-app-dichotomy-doesnt-exist',
+						},
+					],
+					description:
+						'An analysis of websites across two axes: Static vs Dynamic & Online vs Offline.',
+				},
+				{
+					title: 'Uncle Bob on FP & OO',
+					link: [
+						{
+							title: 'First Article',
+							href: 'https://blog.cleancoder.com/uncle-bob/2014/11/24/FPvsOO.html',
+						},
+						{
+							title: 'Second Article',
+							href: 'https://blog.cleancoder.com/uncle-bob/2018/04/13/FPvsOO.html',
+						},
+					],
+					description:
+						'Two articles from Robert Martin that talk about how FP and OO are not mutually exclusive, and how they might better be conceptualized to get the benefits of both in your projects.',
+				},
+				{
+					title: 'How to actually use Node environment variables',
+					link: [
+						{
+							href: 'https://medium.com/free-code-camp/heres-how-you-can-actually-use-node-environment-variables-8fdf98f53a0a',
+						},
+					],
+					description:
+						'A cheeky article (my favorite kind) on working with' +
+						' process environment variables in Node.js. It sadly does not' +
+						' mention the ability to extend the environment object with' +
+						" declaration files, but it's still a good read.",
+				},
+				{
+					title: 'The Twelve Factor App',
+					link: [
+						{
+							href: 'https://12factor.net/',
+						},
+					],
+					description:
+						'A methodology for building modern, scalable, maintainable software-as-a-service apps.',
+				},
+				{
+					title: 'Hexagonal Architecture',
+					link: [
+						{
+							href: 'https://docs.aws.amazon.com/prescriptive-guidance/latest/cloud-design-patterns/hexagonal-architecture.html',
+						},
+					],
+					description:
+						"I came to this pattern by way of Uncle Bob's 'Clean Architecture' book. I've used this pattern in several projects. It's a great way to protect yourself from tech debt.",
+				},
+			],
+		},
+		{
+			title: 'Testing & QA',
+			subtitle:
+				'Resources for quality assurance, test automation, and building confidence in your code.',
+			content: [
+				{
+					title: 'Test IDs. Always.',
+					link: [
+						{
+							href: 'https://engineering.kablamo.com.au/posts/2020/test-ids-always/',
+						},
+					],
+					description:
+						"'Why automation attributes are a non-negotiable part of web development.' A good primer on how and why to use test attributes for e2e tests.",
+				},
+				{
+					title: 'Become an SDET Hero',
+					link: [
+						{
+							href: 'https://www.developerswhotest.com/episode-4-becoming-an-sdet-hero-with-andrew-knight/',
+						},
+					],
+					description:
+						'A really insightful episode of the Developers who Test Podcast. Andrew Knight talks about distinguishing SDETs from Automation engineers and other developer roles.',
+				},
 				{
 					title: 'Playwright',
 					link: [
@@ -179,8 +208,8 @@ const content: ContentTemplate = {
 			],
 		},
 		{
-			title: 'Cool Tools',
-			subtitle: 'Tools I like to use or think are interesting',
+			title: 'Tooling',
+			subtitle: 'Practical tools and utilities that make development easier.',
 			content: [
 				{
 					title: 'Photopea',
@@ -216,41 +245,31 @@ const content: ContentTemplate = {
 					link: [{ href: 'https://dummyjson.com/' }],
 					description: "'Free Fake REST API for Placeholder JSON Data",
 				},
-			],
-		},
-		{
-			title: 'Disciplines',
-			subtitle:
-				"Disciplines that I'm interested in and want to learn more about.",
-			content: [
 				{
-					title: 'The Twelve Factor App',
+					title: 'Override the Type of a JSON File',
 					link: [
 						{
-							href: 'https://12factor.net/',
+							href: 'https://www.totaltypescript.com/override-the-type-of-a-json-file',
 						},
 					],
 					description:
-						'A methodology for building modern, scalable, maintainable software-as-a-service apps.',
+						'Learn how to use .d.json.ts files with allowArbitraryExtensions to manually type JSON imports, improving TypeScript performance with large test fixtures.',
 				},
 				{
-					title: 'Hexagonal Architecture',
+					title: 'Some practical tips for building agentic AI systems',
 					link: [
 						{
-							href: 'https://docs.aws.amazon.com/prescriptive-guidance/latest/cloud-design-patterns/hexagonal-architecture.html',
+							href: 'https://userjot.com/blog/best-practices-building-agentic-ai-systems',
 						},
 					],
 					description:
-						"I came to this pattern by way of Uncle Bob's 'Clean Architecture' book. I've used this pattern in several projects. It's a great way to protect yourself from tech debt.",
+						"I found a lot of value from this article. Hopefully it doesn't age out in 3 months.",
 				},
 			],
 		},
 		{
-			title: 'Longform Content',
-			subtitle:
-				'Do you have too much time and not enough knowledge? Click a' +
-				' link below for at least 30 minutes of curated, high-value' +
-				' content! Act now while supplies last.',
+			title: 'Deep Dives',
+			subtitle: 'Long-form content for when you have time to really dig in.',
 			content: [
 				{
 					title: 'Staff Engineer @ Meta by Age 25 | Evan King',
@@ -267,23 +286,6 @@ const content: ContentTemplate = {
 					link: [{ href: 'https://bryanfinster.com/whitepapers/dora-metrics' }],
 					description:
 						'"This article explains how organizations often misuse DORA metrics—deployment frequency, lead time, change-fail rate, and mean time to restore—by turning them into performance targets or vanity dashboards. It shows how these metrics are intended as signals to guide continuous improvement, not as goals in themselves. The paper urges leaders to pair DORA metrics with customer-value, culture, and sustainability measures, invest in trust and team learning, and focus on improving delivery processes rather than chasing numbers."',
-				},
-			],
-		},
-		{
-			title: 'AI stuff',
-			subtitle:
-				'AI, so hot right now. Learn how to use it effectively and 200x your salary (probably)...',
-			content: [
-				{
-					title: 'Some practical tips for building agentic AI systems',
-					link: [
-						{
-							href: 'https://userjot.com/blog/best-practices-building-agentic-ai-systems',
-						},
-					],
-					description:
-						"I found a lot of value from this article. Hopefully it doesn't age out in 3 months.",
 				},
 			],
 		},
