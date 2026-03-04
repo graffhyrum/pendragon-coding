@@ -1,12 +1,16 @@
 ---
+import { SITE_CONFIG } from '../config/site';
+
 interface Props {
     pageTitle: string;
     description?: string;
+    ogType?: 'website' | 'article';
 }
 
 const {
     pageTitle,
-    description = 'Joshua Pendragon — SDET / QA Engineer. Portfolio, blog, and curated resources.',
+    description = SITE_CONFIG.description,
+    ogType = 'website',
 } = Astro.props;
 ---
 
@@ -16,7 +20,7 @@ const {
     <meta name="description" content={description}/>
     <meta property="og:title" content={pageTitle}/>
     <meta property="og:description" content={description}/>
-    <meta property="og:type" content="website"/>
+    <meta property="og:type" content={ogType}/>
     <link rel="icon" type="image/ico" href="/favicon_io/favicon.ico"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">

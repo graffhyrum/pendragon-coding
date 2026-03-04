@@ -7,7 +7,7 @@ const currentPath = Astro.url.pathname;
 <nav>
 	<ul class="flex flex-wrap items-start p-0 *:px-3 text-lg gap-2" role="list">
 		{NAVIGATION_CONFIG.links.map(({ href, api, label }) => {
-			const isActive = href === currentPath || (href !== '/' && currentPath.startsWith(href));
+			const isActive = href === currentPath || (href !== '/' && (currentPath + '/').startsWith(href + '/'));
 			return (
 				<li class="relative group">
 					<a

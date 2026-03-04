@@ -4,11 +4,17 @@ import Footer from '../components/Footer.astro';
 import Head from '../components/Head.astro';
 import Header from '../components/Header.astro';
 
-const { pageTitle } = Astro.props;
+interface Props {
+	pageTitle: string;
+	description?: string;
+	ogType?: 'website' | 'article';
+}
+
+const { pageTitle, description, ogType } = Astro.props;
 ---
 
 <html class="scroll-smooth" lang="en">
-<Head pageTitle={pageTitle}/>
+<Head pageTitle={pageTitle} description={description} ogType={ogType}/>
 <body class="bg-green-200 dark:bg-green-950 flex flex-col h-screen m-0 leading-loose font-sans box-border text-gray-900 dark:text-gray-100 divide-y divide-green-200 dark:divide-green-700/80 transition-colors duration-300"
       style="font-family: 'Roboto', sans-serif;">
 <a
