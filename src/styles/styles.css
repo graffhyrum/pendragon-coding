@@ -85,7 +85,10 @@ h1, h2 {
     transition: box-shadow 0.3s ease;
 }
 
-h3, h4, h5, h6 {
+.content h3,
+.content h4,
+.content h5,
+.content h6 {
     @apply px-1 py-0.5 my-1 font-semibold text-green-800 dark:text-green-200;
     transition: color 0.3s ease;
 }
