@@ -61,7 +61,11 @@ a {
     transition: all 0.3s ease;
 }
 
-a:hover, a:focus-visible {
+a:hover {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+a:focus-visible {
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
     outline: 2px solid currentColor;
     outline-offset: 2px;
@@ -76,18 +80,14 @@ h2 {
     @apply text-2xl;
 }
 
-h1, h2, h3, h4, h5, h6 {
-    @apply px-2 py-1 my-1 self-center backdrop-blur-md w-full rounded-md shadow-lg bg-green-800 ring-1 ring-slate-300/10;
-    transition: all 0.3s ease;
-}
-
-h1:hover, h2:hover, h3:hover, h4:hover, h5:hover, h6:hover,
-h1:focus-visible, h2:focus-visible, h3:focus-visible, h4:focus-visible, h5:focus-visible, h6:focus-visible {
-    @apply shadow-xl ring-2 ring-green-400/20;
-}
-
 h1, h2 {
-    @apply sticky top-0 z-20;
+    @apply px-2 py-1 my-1 w-full rounded-md shadow-md bg-green-800 ring-1 ring-slate-300/10 sticky top-0 z-20;
+    transition: box-shadow 0.3s ease;
+}
+
+h3, h4, h5, h6 {
+    @apply px-1 py-0.5 my-1 font-semibold text-green-800 dark:text-green-200;
+    transition: color 0.3s ease;
 }
 
 p {

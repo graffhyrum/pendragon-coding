@@ -35,7 +35,7 @@ const baseClasses = [
 const sizeStyle =
 	variant === 'long-form'
 		? `max-width: 100%; ${minWidth ? `min-width: ${minWidth};` : ''}`
-		: `min-width: 360px; max-width: 20vw; ${minWidth ? `min-width: ${minWidth};` : ''}`;
+		: `min-width: min(360px, 100%); max-width: min(20vw, 100%); ${minWidth ? `min-width: ${minWidth};` : ''}`;
 ---
 <li
 	class={`${baseClasses} ${maxWidth} ${className}`}

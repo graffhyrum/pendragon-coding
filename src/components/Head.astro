@@ -1,14 +1,22 @@
 ---
-const { pageTitle } = Astro.props;
-import '../../public/favicon_io/favicon.ico';
-import '../../public/favicon_io/favicon-32x32.webp';
-import '../../public/favicon_io/favicon-16x16.webp';
-import '../../public/favicon_io/site.webmanifest';
+interface Props {
+    pageTitle: string;
+    description?: string;
+}
+
+const {
+    pageTitle,
+    description = 'Joshua Pendragon — SDET / QA Engineer. Portfolio, blog, and curated resources.',
+} = Astro.props;
 ---
 
 <head>
     <title>{pageTitle}</title>
     <meta charset="utf-8"/>
+    <meta name="description" content={description}/>
+    <meta property="og:title" content={pageTitle}/>
+    <meta property="og:description" content={description}/>
+    <meta property="og:type" content="website"/>
     <link rel="icon" type="image/ico" href="/favicon_io/favicon.ico"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
