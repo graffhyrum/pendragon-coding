@@ -30,6 +30,7 @@ package-lock.json
 webP.sh
 /.claude/
 .claude/
+documents/post-mortem-*
 
 # bv (beads viewer) local config and caches
 .bv/
