@@ -2,15 +2,15 @@
 import { SITE_CONFIG } from '../config/site';
 
 interface Props {
-    pageTitle: string;
-    description?: string;
-    ogType?: 'website' | 'article';
+	pageTitle: string;
+	description?: string;
+	ogType?: 'website' | 'article';
 }
 
 const {
-    pageTitle,
-    description = SITE_CONFIG.description,
-    ogType = 'website',
+	pageTitle,
+	description = SITE_CONFIG.description,
+	ogType = 'website',
 } = Astro.props;
 ---
 

@@ -243,7 +243,7 @@ const content: ContentTemplate = {
 				{
 					title: 'DummyJSON',
 					link: [{ href: 'https://dummyjson.com/' }],
-					description: "'Free Fake REST API for Placeholder JSON Data",
+					description: 'Free Fake REST API for Placeholder JSON Data',
 				},
 				{
 					title: 'Override the Type of a JSON File',
