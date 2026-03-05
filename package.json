@@ -1,7 +1,7 @@
 {
 	"name": "pendragon-coding",
 	"type": "module",
-	"version": "2.6.1",
+	"version": "2.6.2",
 	"scripts": {
 		"dev": "bunx astro dev",
 		"start": "bunx astro dev",
