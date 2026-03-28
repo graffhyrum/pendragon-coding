@@ -31,29 +31,3 @@ const { pageTitle, content } = Astro.props;
 <script is:inline src="/scripts/htmx.min.js"></script>
 </body>
 </html>
-
-<style>
-    .content-layout {
-        display: flex;
-        gap: 2rem;
-        max-width: 100%;
-        position: relative;
-    }
-
-    .main-content {
-        flex: 1;
-        min-width: 0; /* Prevent flex overflow */
-    }
-
-    /* Mobile responsive */
-    @media (max-width: 768px) {
-        .content-layout {
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        .main-content {
-            width: 100%;
-        }
-    }
-</style>

@@ -113,3 +113,12 @@ p {
         @apply basis-1/5;
     }
 }
+
+/* Shared sidebar + content layout */
+.content-layout {
+    @apply flex gap-8 max-w-full relative max-md:flex-col max-md:gap-4;
+}
+
+.content-layout > .main-content {
+    @apply flex-1 min-w-0 max-md:w-full;
+}
