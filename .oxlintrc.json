@@ -1,0 +1,28 @@
+{
+	"$schema": "./node_modules/oxlint/configuration_schema.json",
+	"categories": {
+		"correctness": "error",
+		"suspicious": "warn"
+	},
+	"plugins": ["typescript", "unicorn", "oxc"],
+	"rules": {
+		"prefer-const": "warn",
+		"typescript/consistent-type-imports": "warn"
+	},
+	"ignorePatterns": [
+		"**/public/**/*.*",
+		"src/styles/styles.css",
+		"src/env.d.ts"
+	],
+	"overrides": [
+		{
+			"files": ["**/*.astro", "**/*.svelte", "**/*.vue"],
+			"rules": {
+				"prefer-const": "off",
+				"typescript/consistent-type-imports": "off",
+				"typescript/no-unused-vars": "off",
+				"no-unused-vars": "off"
+			}
+		}
+	]
+}

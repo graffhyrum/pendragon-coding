@@ -23,9 +23,9 @@ bookshelf of resources.
 
 ### Code Quality
 
-- `bun run format` - Format code with Biome
-- `bun run lint` - Lint and auto-fix code with Biome
-- `bun run check` - Run comprehensive Biome checks (format + lint)
+- `bun run format` - Format code with oxfmt
+- `bun run lint` - Lint and auto-fix code with oxlint
+- `bun run check` - Run oxlint + oxfmt (lint then format)
 
 ### Testing
 
@@ -53,7 +53,7 @@ bookshelf of resources.
 - **Runtime**: Bun for package management and development
 - **Testing**: Bun's built-in test runner (bun:test)
 - **Deployment**: Netlify (auto-deploys from main branch)
-- **Code Quality**: Biome for formatting and linting
+- **Code Quality**: oxlint (linting) + oxfmt (formatting)
 
 ### Project Structure
 
@@ -76,15 +76,16 @@ bookshelf of resources.
 
 ### Code Conventions
 
-- **Indentation**: Tabs (configured in Biome)
+- **Indentation**: Tabs (configured in oxfmt)
 - **Quotes**: Single quotes for JavaScript/TypeScript
-- **CSS**: Disabled Biome formatting (Tailwind classes)
+- **CSS**: Excluded from oxfmt/oxlint (Tailwind classes)
 - **Images**: WebP format for optimization
 - **TypeScript**: Strict mode with path aliases (`@assets/*` → `src/assets/*`)
 
 ### Important Files
 
-- `biome.json` - Code formatting and linting configuration
+- `.oxlintrc.json` - Linting configuration (oxlint)
+- `.oxfmtrc.json` - Formatting configuration (oxfmt)
 - `astro.config.mjs` - Astro configuration with Tailwind integration
 - `netlify.toml` - Deployment configuration for Netlify
 - `src/content/types/ContentTemplate.ts` - TypeScript interfaces for content structure
@@ -96,7 +97,7 @@ bookshelf of resources.
 - Images are processed through Astro's Image component for optimization
 - The project uses Changesets for version management and changelog generation
 - TypeScript paths are configured for easy asset imports
-- Biome handles all code quality checks instead of separate ESLint/Prettier setup
+- oxlint + oxfmt handle all code quality checks (linting and formatting)
 - Tests are written using Bun's built-in test runner with the `bun:test` module
 - Test files live alongside source files in `src/` using the `.test.ts` suffix (bunfig.toml root = `src`)
 - To be able to use bun, run `npm install -g bun`, then check that it is installed with `bun --version`, and , if

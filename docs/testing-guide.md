@@ -30,20 +30,23 @@ import { describe, expect, it } from 'bun:test';
 import { getEntries } from './entries';
 
 describe('getEntries', () => {
-  it('should return entries for a simple object', () => {
-    const obj = { a: 1, b: 2 };
-    const result = getEntries(obj);
-    expect(result).toEqual([['a', 1], ['b', 2]]);
-  });
+	it('should return entries for a simple object', () => {
+		const obj = { a: 1, b: 2 };
+		const result = getEntries(obj);
+		expect(result).toEqual([
+			['a', 1],
+			['b', 2],
+		]);
+	});
 });
 ```
 
 ## Running Tests
 
-| Command | Purpose |
-|---------|---------|
-| `bun test` | Run all tests once |
-| `bun test --watch` | Re-run tests on file changes |
+| Command               | Purpose                        |
+| --------------------- | ------------------------------ |
+| `bun test`            | Run all tests once             |
+| `bun test --watch`    | Re-run tests on file changes   |
 | `bun test --coverage` | Run tests with coverage report |
 
 ## Writing New Tests
@@ -69,7 +72,7 @@ bun typecheck && bun check && bun test
 ```
 
 - `bun typecheck` -- TypeScript compiler check (`tsgo --noEmit`)
-- `bun check` -- Biome formatting and linting
+- `bun check` -- oxlint linting and oxfmt formatting
 - `bun test` -- all test suites
 
 Use `bun vet` as the primary command to verify code health during development.

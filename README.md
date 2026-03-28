@@ -27,7 +27,7 @@ The dev server starts with hot reload at `http://localhost:4321`.
 bun vet
 ```
 
-Runs TypeScript type checking, Biome linting/formatting, and all tests in one command.
+Runs TypeScript type checking, oxlint linting, oxfmt formatting, and all tests in one command.
 
 ## Built with
 

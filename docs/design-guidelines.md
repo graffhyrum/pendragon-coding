@@ -8,21 +8,21 @@ The site uses Tailwind's built-in green palette as its primary color scheme. Col
 
 ### Light Mode
 
-| Role       | Class            | Usage                          |
-| ---------- | ---------------- | ------------------------------ |
-| Background | `bg-green-200`   | Page body background           |
-| Text       | `text-green-900` | Headings, accent text          |
-| Borders    | `border-green-200` | Card and section dividers    |
-| Body text  | `text-gray-900`  | Paragraph and content text     |
+| Role       | Class              | Usage                      |
+| ---------- | ------------------ | -------------------------- |
+| Background | `bg-green-200`     | Page body background       |
+| Text       | `text-green-900`   | Headings, accent text      |
+| Borders    | `border-green-200` | Card and section dividers  |
+| Body text  | `text-gray-900`    | Paragraph and content text |
 
 ### Dark Mode
 
-| Role       | Class                | Usage                          |
-| ---------- | -------------------- | ------------------------------ |
-| Background | `bg-green-950`       | Page body background           |
-| Text       | `text-green-100`     | Headings, accent text          |
+| Role       | Class                 | Usage                                   |
+| ---------- | --------------------- | --------------------------------------- |
+| Background | `bg-green-950`        | Page body background                    |
+| Text       | `text-green-100`      | Headings, accent text                   |
 | Borders    | `border-green-700/80` | Card and section dividers (80% opacity) |
-| Body text  | `text-gray-100`      | Paragraph and content text     |
+| Body text  | `text-gray-100`       | Paragraph and content text              |
 
 ### Green Palette Usage
 
@@ -43,12 +43,12 @@ The site uses **Roboto** from Google Fonts as the primary typeface, applied via 
 
 Type scale applied via Tailwind utilities:
 
-| Token       | Class       | Tailwind Size | Usage              |
-| ----------- | ----------- | ------------- | ------------------ |
-| `heading`   | `text-4xl`  | 2.25rem       | Page titles (h1)   |
-| `subheading`| `text-xl`   | 1.25rem       | Section titles (h2) |
-| `body`      | `text-lg`   | 1.125rem      | Body content       |
-| `base`      | (composite) | --            | Default text style |
+| Token        | Class       | Tailwind Size | Usage               |
+| ------------ | ----------- | ------------- | ------------------- |
+| `heading`    | `text-4xl`  | 2.25rem       | Page titles (h1)    |
+| `subheading` | `text-xl`   | 1.25rem       | Section titles (h2) |
+| `body`       | `text-lg`   | 1.125rem      | Body content        |
+| `base`       | (composite) | --            | Default text style  |
 
 ### Line Height
 
@@ -110,10 +110,10 @@ The site uses a flex-based layout with a sidebar on desktop:
 
 The `LayoutMode` type (`src/types/Layout.ts`) controls how content sections arrange their items:
 
-| Mode            | Behavior                                       |
-| --------------- | ---------------------------------------------- |
+| Mode            | Behavior                                        |
+| --------------- | ----------------------------------------------- |
 | `grid`          | Items in a responsive grid (cards side by side) |
-| `single-column` | Items stacked vertically (full-width cards)    |
+| `single-column` | Items stacked vertically (full-width cards)     |
 
 Content data files set `layoutMode` per section in their `ContentTemplate` data.
 
@@ -123,10 +123,10 @@ Content data files set `layoutMode` per section in their `ContentTemplate` data.
 
 The `CardVariant` type (`src/types/Card.ts`) defines two card presentations:
 
-| Variant      | Usage                                    |
-| ------------ | ---------------------------------------- |
-| `long-form`  | Full description visible, larger card    |
-| `short-form` | Compact card with truncated description  |
+| Variant      | Usage                                   |
+| ------------ | --------------------------------------- |
+| `long-form`  | Full description visible, larger card   |
+| `short-form` | Compact card with truncated description |
 
 ### Content Section Structure
 
@@ -153,13 +153,13 @@ A skip-to-content link is the first focusable element on every page:
 
 ### Semantic HTML
 
-| Element             | Usage                                        |
-| ------------------- | -------------------------------------------- |
-| `role="main"`       | Main content area                            |
-| `role="list"`       | Content card collections                     |
-| `role="switch"`     | Theme toggle button                          |
-| `aria-checked`      | Theme toggle state (light/dark)              |
-| `aria-label`        | Descriptive labels on interactive elements   |
+| Element         | Usage                                      |
+| --------------- | ------------------------------------------ |
+| `role="main"`   | Main content area                          |
+| `role="list"`   | Content card collections                   |
+| `role="switch"` | Theme toggle button                        |
+| `aria-checked`  | Theme toggle state (light/dark)            |
+| `aria-label`    | Descriptive labels on interactive elements |
 
 ### Heading Hierarchy
 
@@ -200,11 +200,11 @@ Navigation links use a group-hover underline animation:
 
 ## Responsive Breakpoints
 
-| Breakpoint           | Trigger     | Behavior                                      |
-| -------------------- | ----------- | --------------------------------------------- |
-| `sm` (640px)         | Min-width   | Header layout adjustments                     |
-| 768px                | Min-width   | Sidebar becomes visible; mobile nav collapses |
-| `orientation: landscape` | Media query | Skills grid switches to landscape layout  |
+| Breakpoint               | Trigger     | Behavior                                      |
+| ------------------------ | ----------- | --------------------------------------------- |
+| `sm` (640px)             | Min-width   | Header layout adjustments                     |
+| 768px                    | Min-width   | Sidebar becomes visible; mobile nav collapses |
+| `orientation: landscape` | Media query | Skills grid switches to landscape layout      |
 
 The site is mobile-first -- base styles target small screens, and breakpoints layer on desktop-specific layouts.
 
@@ -220,4 +220,4 @@ The site uses HTMX for client-side navigation without full page reloads:
 ## See Also
 
 - [Code Standards](code-standards.md) -- component conventions and naming patterns
-- [Configuration Guide](configuration-guide.md) -- Tailwind and Biome configuration details
+- [Configuration Guide](configuration-guide.md) -- Tailwind, oxlint, and oxfmt configuration details
