@@ -1,5 +1,29 @@
 # pendragon-coding
 
+## 2.7.0
+
+### Minor Changes
+
+- d6bd63b: refactor: deepen frontend architecture — extract utilities, fix bugs, consolidate components
+
+  - Extract shared slug utility (toSlug) from 4 duplicated implementations, fixing a regex ordering bug in CollectionPageLayout
+  - Consolidate 4 duplicate component pairs (Card, Skill, Skills, Navigation) into canonical locations
+  - Merge HTMX attributes and active-page detection into Navigation (was missing from live site)
+  - Fix Card responsive sizing with min() wrapper to prevent mobile overflow
+  - Fix sidebar dark mode bug: convert from broken @media prefers-color-scheme to class-based dark: utilities
+  - Extract sidebar client script to standalone module with htmx:afterSwap support
+  - Add theme contract constants with sync guard tests for inline scripts
+  - Extract shared layout CSS from duplicate style blocks
+  - Delete dead STYLING_CONFIG (zero imports)
+
+### Patch Changes
+
+- ab5582d: fix: remove dark-mode text-shadow from ContentWithSidebarLayout
+
+  Removes the `html.dark body { text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }` block from
+  ContentWithSidebarLayout that was missed when the same rule was removed from BaseLayout.
+  Bookshelf, MyWork, Shoutouts, and Testimonials pages now render sharp text in dark mode.
+
 ## 2.6.1
 
 ### Patch Changes
