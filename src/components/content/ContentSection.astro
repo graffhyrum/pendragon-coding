@@ -1,4 +1,5 @@
 ---
+import { toSlug } from '../../utils/slugify';
 import SectionList from './SectionList.astro';
 
 interface Props {
@@ -14,15 +15,7 @@ interface Props {
 
 const { title, subtitle, layoutMode, content } = Astro.props;
 
-// Generate section ID from title for anchor linking
-function getSectionId(title: string): string {
-	return title
-		.toLowerCase()
-		.replace(/[^a-z0-9\s-]/g, '')
-		.replace(/\s+/g, '-');
-}
-
-const sectionId = getSectionId(title);
+const sectionId = toSlug(title);
 ---
 
 <section id={sectionId}>
