@@ -1,4 +1,6 @@
 ---
+import { toSlug } from '../../utils/slugify';
+
 interface Props {
 	sections: Array<{
 		title: string;
@@ -11,13 +13,6 @@ interface Props {
 
 const { sections } = Astro.props;
 
-// Generate section ID from title
-function getSectionId(title: string): string {
-	return title
-		.toLowerCase()
-		.replace(/[^a-z0-9\s-]/g, '')
-		.replace(/\s+/g, '-');
-}
 ---
 
 <aside class="sidebar" aria-label="Section navigation">
@@ -25,7 +20,7 @@ function getSectionId(title: string): string {
         <h3 class="sidebar-title">Sections</h3>
         <ul class="section-list">
 			{sections.map((section) => {
-				const sectionId = getSectionId(section.title);
+				const sectionId = toSlug(section.title);
 				return (
                         <li>
                             <a
@@ -38,8 +33,8 @@ function getSectionId(title: string): string {
 							{section.content.length > 0 && (
                                     <ul class="content-list">
 										{section.content.map((item) => {
-											const sectionId = getSectionId(section.title);
-											const contentId = `${sectionId}-${getSectionId(item.title)}`;
+											const sectionId = toSlug(section.title);
+											const contentId = `${sectionId}-${toSlug(item.title)}`;
 											return (
                                                     <li>
                                                         <a

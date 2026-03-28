@@ -2,6 +2,7 @@
 import type { CollectionEntry } from 'astro:content';
 import BlogCard from '../components/BlogCard.astro';
 import Sidebar from '../components/navigation/Sidebar.astro';
+import { toSlug } from '../utils/slugify';
 import BaseLayout from './BaseLayout.astro';
 
 interface Props {
@@ -33,11 +34,7 @@ const blogSections = [
 			title: item.data.title,
 			link: [
 				{
-					href: `#${item.data.title
-						.replace(/\s/g, '-')
-						.toLowerCase()
-						.replace(/[^a-z0-9\s-]/g, '')
-						.replace(/\s+/g, '-')}`,
+					href: `#${toSlug(item.data.title)}`,
 				},
 			],
 		})),
