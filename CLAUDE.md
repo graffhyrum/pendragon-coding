@@ -63,7 +63,9 @@ bookshelf of resources.
 - `src/content/` - Content data (bookshelf.ts, shoutouts.ts) with TypeScript types
 - `src/assets/` - Images and static assets optimized by Astro
 - `public/` - Static files (favicon, scripts, styles)
-- `tests/` - Test files using Bun's test runner (*.test.ts)
+- `src/utils/` - Shared TypeScript utilities (slugify, theme constants, typed entries)
+- `src/scripts/` - Client-side behavior modules (sidebar interactivity)
+- `src/e2e/` - E2E tests against the preview server
 
 ### Content Management
 
@@ -96,7 +98,7 @@ bookshelf of resources.
 - TypeScript paths are configured for easy asset imports
 - Biome handles all code quality checks instead of separate ESLint/Prettier setup
 - Tests are written using Bun's built-in test runner with the `bun:test` module
-- Test files should be placed in the `tests/` directory and use the `.test.ts` extension
+- Test files live alongside source files in `src/` using the `.test.ts` suffix (bunfig.toml root = `src`)
 - To be able to use bun, run `npm install -g bun`, then check that it is installed with `bun --version`, and , if
   necessary, if you've installed Bun but are seeing a command not found error, you may have to manually add the
   installation directory (~/.bun/bin) to your PATH.

@@ -104,7 +104,7 @@ The site showcases Joshua Pendragon's professional experience as a Software Deve
 - Class-based dark mode (`dark:` prefix activated by a class on `<html>`) allows theme persistence via `localStorage`. A script in `Head.astro` reads the stored preference before first paint to prevent FOUC.
 - The custom green color scheme (`bg-green-950`, `text-green-100`, etc.) is applied directly through Tailwind utilities -- no custom theme extension needed.
 
-**Consequence**: Styling configuration is split between `src/styles/styles.css` (Tailwind imports, custom overrides) and `src/config/styling.ts` (semantic color/spacing/typography constants used in components).
+**Consequence**: Styling is managed in `src/styles/styles.css` (Tailwind imports, custom overrides, shared layout utilities). Colors and spacing are applied directly via Tailwind utility classes on components.
 
 ### PDR-7: Tag-based deployment via Changesets
 

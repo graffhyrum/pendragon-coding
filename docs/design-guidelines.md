@@ -4,7 +4,7 @@ Visual design system and accessibility patterns for the pendragon-coding portfol
 
 ## Color System
 
-The site uses Tailwind's built-in green palette as its primary color scheme. Colors are centralized in `src/config/styling.ts` as `STYLING_CONFIG.colors`.
+The site uses Tailwind's built-in green palette as its primary color scheme. Colors are applied directly through Tailwind utility classes on components.
 
 ### Light Mode
 
@@ -41,7 +41,7 @@ The site uses **Roboto** from Google Fonts as the primary typeface, applied via 
 
 ### Type Scale
 
-Defined in `STYLING_CONFIG.typography`:
+Type scale applied via Tailwind utilities:
 
 | Token       | Class       | Tailwind Size | Usage              |
 | ----------- | ----------- | ------------- | ------------------ |
@@ -76,10 +76,10 @@ The toggle button in the header provides manual theme switching:
 
 ### Authoring Dark Mode Styles
 
-Use Tailwind's `dark:` variant prefix. The `STYLING_CONFIG` provides paired light/dark tokens:
+Use Tailwind's `dark:` variant prefix directly on elements:
 
 ```astro
-<body class={`${STYLING_CONFIG.colors.primary.light} dark:${STYLING_CONFIG.colors.primary.dark}`}>
+<body class="bg-green-200 dark:bg-green-950 text-gray-900 dark:text-gray-100">
 ```
 
 ## Layout Patterns

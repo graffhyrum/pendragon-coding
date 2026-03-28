@@ -12,13 +12,12 @@ Tests use Bun's built-in test runner via the `bun:test` module. No external test
 
 ## Current Coverage
 
-There is one test file: `src/utils/entries.test.ts` (53 lines) with 5 test cases covering the `getEntries()` typed utility function:
+Test files (4 files, 37 tests):
 
-- Simple object entries with correct type preservation
-- Mixed value types (strings, numbers, booleans)
-- Empty object handling
-- Null and undefined value handling
-- Type preservation verification
+- `src/utils/entries.test.ts` — 5 tests for the `getEntries()` typed utility function
+- `src/utils/slugify.test.ts` — 6 tests for the `toSlug()` slug generation utility
+- `src/utils/theme.test.ts` — 4 sync-guard tests verifying inline scripts match theme constants
+- `src/e2e/sidebar.test.ts` — 22 E2E tests for sidebar, navigation, and theme (requires preview server)
 
 Tests live alongside source files in `src/` using the `.test.ts` suffix -- not in a separate `tests/` directory.
 
