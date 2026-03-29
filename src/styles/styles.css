@@ -120,16 +120,41 @@ p {
     list-style: initial;
 }
 
-.skills-list {
-    @apply flex flex-wrap justify-between justify-items-center *:flex-auto
-    *:list-inside *:flex *:content-center *:basis-1/2 *:gap-1;
+/* Skills: category card grid */
+.skills-categories {
+    @apply grid gap-4 mt-4;
+    grid-template-columns: 1fr;
 }
 
-/* Horizontal layout for wider screens */
 @media (orientation: landscape) {
-    .skills-list * {
-        @apply basis-1/5;
+    .skills-categories {
+        grid-template-columns: repeat(3, 1fr);
     }
+}
+
+.skill-category-card {
+    @apply rounded-lg border border-green-800/50 bg-green-950/60 p-4
+    transition-all duration-300 hover:border-green-600/50 hover:shadow-lg;
+}
+
+.skill-category-heading {
+    @apply text-lg font-semibold text-green-300 m-0 pb-1
+    border-b border-green-800/40;
+}
+
+.skill-category-desc {
+    @apply text-xs text-green-500 mt-1 mb-3;
+}
+
+.skill-category-list {
+    @apply flex flex-col gap-1 list-none p-0 m-0;
+}
+
+.skill-item {
+    @apply flex items-center justify-between gap-4 p-2
+    rounded-lg transition-all duration-300
+    hover:bg-green-900/20 hover:scale-[1.02]
+    focus-within:bg-green-900/20 focus-within:scale-[1.02];
 }
 
 /* Shared sidebar + content layout */
