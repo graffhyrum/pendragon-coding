@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'bun:test';
+
 import { DARK_CLASS, THEME_STORAGE_KEY } from './theme';
 
 describe('theme contract sync guard', () => {
