@@ -246,6 +246,39 @@ p {
     transform: translateY(0);
 }
 
+/* Action buttons container within the toast */
+.nav-error-toast-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-shrink: 0;
+}
+
+/* Retry button -- more prominent than dismiss */
+.nav-error-toast-retry {
+    all: unset;
+    cursor: pointer;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    padding: 0.25rem 0.625rem;
+    border-radius: 0.25rem;
+    background: rgba(254, 226, 226, 0.2);
+    color: rgb(254 226 226);
+    transition:
+        background var(--duration-fast) var(--ease-default),
+        opacity var(--duration-fast) var(--ease-default);
+}
+
+.nav-error-toast-retry:hover,
+.nav-error-toast-retry:focus-visible {
+    background: rgba(254, 226, 226, 0.35);
+}
+
+.nav-error-toast-retry:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+}
+
 .nav-error-toast-dismiss {
     all: unset;
     cursor: pointer;
