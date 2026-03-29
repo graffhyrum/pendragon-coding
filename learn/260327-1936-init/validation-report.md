@@ -2,17 +2,17 @@
 
 ## Size Compliance (all pass)
 
-| File | LOC | Limit | Status |
-|------|-----|-------|--------|
-| configuration-guide.md | 330 | 800 | Pass |
-| system-architecture.md | 242 | 800 | Pass |
-| design-guidelines.md | 223 | 800 | Pass |
-| code-standards.md | 194 | 800 | Pass |
-| codebase-summary.md | 148 | 800 | Pass |
-| project-overview-pdr.md | 123 | 800 | Pass |
-| deployment-guide.md | 112 | 800 | Pass |
-| testing-guide.md | 99 | 800 | Pass |
-| README.md | 57 | 300 | Pass |
+| File                    | LOC | Limit | Status |
+| ----------------------- | --- | ----- | ------ |
+| configuration-guide.md  | 330 | 800   | Pass   |
+| system-architecture.md  | 242 | 800   | Pass   |
+| design-guidelines.md    | 223 | 800   | Pass   |
+| code-standards.md       | 194 | 800   | Pass   |
+| codebase-summary.md     | 148 | 800   | Pass   |
+| project-overview-pdr.md | 123 | 800   | Pass   |
+| deployment-guide.md     | 112 | 800   | Pass   |
+| testing-guide.md        | 99  | 800   | Pass   |
+| README.md               | 57  | 300   | Pass   |
 
 ## Cross-Reference Links (14 total, all resolve)
 

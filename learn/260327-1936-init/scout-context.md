@@ -31,7 +31,7 @@ src/
 
 ## Key Patterns
 
-- HTMX navigation: hx-get to /api/*.html.astro, swap into #main-content
+- HTMX navigation: hx-get to /api/\*.html.astro, swap into #main-content
 - ContentTemplate: TypeScript interface for structured data (myWork, bookshelf, testimonials, shoutouts)
 - Content collections: Blog posts with Zod schema (title, date, description, author, tags)
 - Dark mode: class-based, localStorage, Head.astro initialization

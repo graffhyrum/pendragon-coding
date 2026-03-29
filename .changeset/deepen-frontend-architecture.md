@@ -1,5 +1,5 @@
 ---
-"pendragon-coding": minor
+'pendragon-coding': minor
 ---
 
 refactor: deepen frontend architecture — extract utilities, fix bugs, consolidate components

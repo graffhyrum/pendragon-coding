@@ -104,8 +104,8 @@ The HTMX behavior is centralized in `src/config/htmx.ts`:
 
 ```typescript
 export const HTMX_CONFIG = {
-    target: '#main-content',
-    swap: 'innerHTML transition:true',
+	target: '#main-content',
+	swap: 'innerHTML transition:true',
 } as const;
 ```
 
@@ -115,14 +115,14 @@ Navigation links in `src/config/navigation.ts` define both the full-page `href` 
 
 Every navigable page has a paired API endpoint:
 
-| Full Page               | HTMX Fragment             |
-| ----------------------- | ------------------------- |
-| `/` (index.astro)       | `/api/home.html`          |
-| `/bookshelf/`           | `/api/bookshelf.html`     |
-| `/myWork/`              | `/api/myWork.html`        |
-| `/shoutouts/`           | `/api/shoutouts.html`     |
-| `/testimonials/`        | `/api/testimonials.html`  |
-| `/blog/`                | `/api/blog.html`          |
+| Full Page         | HTMX Fragment            |
+| ----------------- | ------------------------ |
+| `/` (index.astro) | `/api/home.html`         |
+| `/bookshelf/`     | `/api/bookshelf.html`    |
+| `/myWork/`        | `/api/myWork.html`       |
+| `/shoutouts/`     | `/api/shoutouts.html`    |
+| `/testimonials/`  | `/api/testimonials.html` |
+| `/blog/`          | `/api/blog.html`         |
 
 Full pages render through `BaseLayout` or `ContentWithSidebarLayout` (complete HTML documents). API fragments render through `ApiContentLayout` (a plain `<div>` wrapper with no document shell).
 
@@ -159,16 +159,16 @@ ContentTemplate interface
 
 ```typescript
 interface ContentTemplate {
-    sections: Array<{
-        title: string;
-        subtitle: string;
-        layoutMode?: 'grid' | 'single-column';
-        content: Array<{
-            title: string;
-            link: Link[];
-            description: string;
-        }>;
-    }>;
+	sections: Array<{
+		title: string;
+		subtitle: string;
+		layoutMode?: 'grid' | 'single-column';
+		content: Array<{
+			title: string;
+			link: Link[];
+			description: string;
+		}>;
+	}>;
 }
 ```
 
@@ -176,21 +176,21 @@ Each content page passes its `ContentTemplate` data through the same component c
 
 ## Page-to-Layout Mapping
 
-| Page                    | Layout                      | Notes                              |
-| ----------------------- | --------------------------- | ---------------------------------- |
-| `index.astro`           | BaseLayout                  | Home page with skills showcase     |
-| `bookshelf.astro`       | ContentWithSidebarLayout    | ContentTemplate data               |
-| `myWork.astro`          | ContentWithSidebarLayout    | ContentTemplate data               |
-| `testimonials.astro`    | ContentWithSidebarLayout    | ContentTemplate data               |
-| `shoutouts.astro`       | ContentWithSidebarLayout    | ContentTemplate data               |
-| `blog.astro`            | CollectionPageLayout        | Blog listing with optional sidebar |
-| `blog/[...slug].astro`  | BlogPostLayout              | Individual blog post               |
-| `api/home.html.astro`   | ApiContentLayout            | HTMX fragment                      |
-| `api/bookshelf.html`    | ApiContentLayout            | HTMX fragment                      |
-| `api/myWork.html`       | ApiContentLayout            | HTMX fragment                      |
-| `api/shoutouts.html`    | ApiContentLayout            | HTMX fragment                      |
-| `api/testimonials.html` | ApiContentLayout            | HTMX fragment                      |
-| `api/blog.html`         | ApiContentLayout            | HTMX fragment                      |
+| Page                    | Layout                   | Notes                              |
+| ----------------------- | ------------------------ | ---------------------------------- |
+| `index.astro`           | BaseLayout               | Home page with skills showcase     |
+| `bookshelf.astro`       | ContentWithSidebarLayout | ContentTemplate data               |
+| `myWork.astro`          | ContentWithSidebarLayout | ContentTemplate data               |
+| `testimonials.astro`    | ContentWithSidebarLayout | ContentTemplate data               |
+| `shoutouts.astro`       | ContentWithSidebarLayout | ContentTemplate data               |
+| `blog.astro`            | CollectionPageLayout     | Blog listing with optional sidebar |
+| `blog/[...slug].astro`  | BlogPostLayout           | Individual blog post               |
+| `api/home.html.astro`   | ApiContentLayout         | HTMX fragment                      |
+| `api/bookshelf.html`    | ApiContentLayout         | HTMX fragment                      |
+| `api/myWork.html`       | ApiContentLayout         | HTMX fragment                      |
+| `api/shoutouts.html`    | ApiContentLayout         | HTMX fragment                      |
+| `api/testimonials.html` | ApiContentLayout         | HTMX fragment                      |
+| `api/blog.html`         | ApiContentLayout         | HTMX fragment                      |
 
 ## Routing Architecture
 
@@ -216,11 +216,11 @@ Blog posts are defined as an Astro content collection with a Zod schema in `src/
 
 ```typescript
 const blog = defineCollection({
-    type: 'content',
-    schema: z.object({
-        title: z.string(),
-        date: z.date(),
-    }),
+	type: 'content',
+	schema: z.object({
+		title: z.string(),
+		date: z.date(),
+	}),
 });
 ```
 

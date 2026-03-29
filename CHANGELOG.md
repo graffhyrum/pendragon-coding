@@ -12,7 +12,6 @@
 
 - 8857928: Add Testing Accessibility resource to bookshelf
 - Add 5 new gists to portfolio showcase
-
   - Playwright Page & Component Object Model Template
   - ArkType Environment Variable Validation
   - Playwright Browser Console Error Fixture
@@ -64,7 +63,6 @@
   Implemented a theme toggle component that allows users to switch between light and dark modes with a smooth sliding animation. The theme preference is persisted in localStorage and respects system preferences on first visit.
 
   **New Features:**
-
   - Theme toggle button with sliding animation positioned at the right edge of the header
   - Sun and moon icons that smoothly transition based on the selected theme
   - localStorage persistence to remember user's theme preference across sessions
@@ -72,7 +70,6 @@
   - Smooth color transitions throughout the site when switching themes (300ms duration)
 
   **Improvements:**
-
   - Light mode uses a clean gray-50 background with dark text for improved readability during daytime
   - Dark mode maintains the existing green-950 background with light text optimized for low-light environments
   - Navigation underlines adapt to theme: green-600 in light mode, green-400 in dark mode
@@ -80,7 +77,6 @@
   - Accessible implementation with proper ARIA attributes and keyboard focus states
 
   **Technical Details:**
-
   - Created ThemeToggle.astro component with inline script for theme management
   - Configured Tailwind CSS with class-based dark mode strategy
   - Added tailwind.config.js with dark mode enabled
@@ -92,14 +88,12 @@
 
 - e5e448b: Add Bun test runner tooling to the project. Includes test scripts in package.json (test, test:watch, test:coverage), example test file demonstrating Bun's test syntax, and updated documentation in CLAUDE.md with testing commands and conventions.
 - b090c8e: Add GitHub Action for opencode integration on issue comments
-
   - Add .github/workflows/opencode.yml to enable opencode AI assistance
   - Triggers on issue comments containing '/oc' or '/opencode' commands
   - Uses sst/opencode/github action with opencode/big-pickle model
   - Includes proper permissions for repository access
 
 - 201f90b: Migrate blog and testimonials to Astro Content Collections API
-
   - Create content config with Zod schemas for type safety
   - Move markdown files from pages to content directory
   - Standardize blog dates to ISO format
@@ -111,7 +105,6 @@
 
 - 930f48e: Add article on DORA metrics misuse to bookshelf
 - b090c8e: Refactor testimonials to use ContentSection component like myWork page
-
   - Convert testimonials from Astro Content Collections to static TypeScript data file
   - Update testimonials page to use ContentContainer and BaseLayout instead of CollectionPageLayout
   - Remove individual testimonial markdown files and dynamic routing
@@ -133,7 +126,6 @@
   This release introduces a modern navigation system using HTMX that provides a single-page application experience while maintaining progressive enhancement and SEO-friendly fallbacks.
 
   **New Features:**
-
   - HTMX-powered navigation that swaps content without full page reloads
   - Smooth transitions between pages using HTMX's built-in transition system
   - Browser history and URL preservation with `hx-push-url`
@@ -141,21 +133,18 @@
   - Progressive enhancement: navigation works with and without JavaScript
 
   **Improvements:**
-
   - Fixed animation stutter by eliminating conflicting CSS animations during HTMX transitions
   - Added `noAnimation` prop system to Skills and Skill components for conditional animation control
   - Faster page navigation with reduced bandwidth usage (only content updates, not full page)
   - Maintained SEO compatibility with full-page fallbacks for search engine crawlers
 
   **Code Quality Refactors:**
-
   - Refactored Navigation component to use data-driven link array, reducing code from ~93 lines to ~38 lines
   - Extracted HTMX configuration into reusable constants for maintainability
   - Created ApiContentLayout wrapper to eliminate duplication across API endpoints
   - Improved code maintainability: adding/removing navigation links now requires only updating the data array
 
   **Technical Details:**
-
   - Navigation links use `hx-get`, `hx-target`, `hx-swap`, and `hx-push-url` attributes
   - Original page routes remain unchanged for direct access and SEO
   - API endpoints share components with full pages, ensuring consistency

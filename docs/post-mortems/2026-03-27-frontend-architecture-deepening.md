@@ -7,12 +7,12 @@
 
 Deepened 4 shallow modules following Ousterhout's "small interface, large hidden implementation" principle:
 
-| Module | Before | After | Bug fixes |
-|--------|--------|-------|-----------|
-| **Slug utility** | 4 copies of same regex in 4 files | Single `toSlug()` in `src/utils/slugify.ts` | Fixed CollectionPageLayout regex ordering bug |
-| **Component dedup** | 4 duplicate component pairs | Canonical locations with consistent imports | Restored missing HTMX navigation + active-page detection; fixed Card mobile overflow |
-| **Sidebar dark mode** | 435-line monolith, broken `@media prefers-color-scheme` | ~150 lines, Tailwind `dark:` classes | Fixed dark mode not responding to toggle button |
-| **Sidebar script** | 97-line inline `<script>` | Extracted `initSidebar()` in `src/scripts/sidebar.ts` | Added `htmx:afterSwap` re-initialization |
+| Module                | Before                                                  | After                                                 | Bug fixes                                                                            |
+| --------------------- | ------------------------------------------------------- | ----------------------------------------------------- | ------------------------------------------------------------------------------------ |
+| **Slug utility**      | 4 copies of same regex in 4 files                       | Single `toSlug()` in `src/utils/slugify.ts`           | Fixed CollectionPageLayout regex ordering bug                                        |
+| **Component dedup**   | 4 duplicate component pairs                             | Canonical locations with consistent imports           | Restored missing HTMX navigation + active-page detection; fixed Card mobile overflow |
+| **Sidebar dark mode** | 435-line monolith, broken `@media prefers-color-scheme` | ~150 lines, Tailwind `dark:` classes                  | Fixed dark mode not responding to toggle button                                      |
+| **Sidebar script**    | 97-line inline `<script>`                               | Extracted `initSidebar()` in `src/scripts/sidebar.ts` | Added `htmx:afterSwap` re-initialization                                             |
 
 **Net change**: -598 lines removed, +618 lines added (including 195 lines of new tests).
 **Files deleted**: 5 (4 duplicate components + dead STYLING_CONFIG).

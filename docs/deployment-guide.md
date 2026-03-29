@@ -35,30 +35,30 @@ flowchart TD
 
 ### deploy.yml
 
-| Field | Value |
-|-------|-------|
-| **Trigger** | Git tags matching `v*` |
-| **Runner** | Ubuntu latest |
-| **Steps** | Checkout -> Setup Bun -> `bun install` -> `bun run build` -> Deploy to Netlify |
-| **Action** | `nwtgck/actions-netlify@v3.0` |
-| **Secrets** | `NETLIFY_AUTH_TOKEN`, `NETLIFY_SITE_ID`, `GITHUB_TOKEN` |
+| Field       | Value                                                                          |
+| ----------- | ------------------------------------------------------------------------------ |
+| **Trigger** | Git tags matching `v*`                                                         |
+| **Runner**  | Ubuntu latest                                                                  |
+| **Steps**   | Checkout -> Setup Bun -> `bun install` -> `bun run build` -> Deploy to Netlify |
+| **Action**  | `nwtgck/actions-netlify@v3.0`                                                  |
+| **Secrets** | `NETLIFY_AUTH_TOKEN`, `NETLIFY_SITE_ID`, `GITHUB_TOKEN`                        |
 
 ### release.yml
 
-| Field | Value |
-|-------|-------|
-| **Trigger** | Push to `main` |
-| **Concurrency** | Serialized per workflow (prevents race conditions) |
-| **Permissions** | Write access to `contents` and `pull-requests` |
-| **Steps** | Checkout -> Setup Bun -> `bun install` -> Changesets action |
-| **On publish** | Creates git tag `v{version}` and pushes, which triggers `deploy.yml` |
+| Field           | Value                                                                |
+| --------------- | -------------------------------------------------------------------- |
+| **Trigger**     | Push to `main`                                                       |
+| **Concurrency** | Serialized per workflow (prevents race conditions)                   |
+| **Permissions** | Write access to `contents` and `pull-requests`                       |
+| **Steps**       | Checkout -> Setup Bun -> `bun install` -> Changesets action          |
+| **On publish**  | Creates git tag `v{version}` and pushes, which triggers `deploy.yml` |
 
 ### opencode.yml
 
-| Field | Value |
-|-------|-------|
+| Field       | Value                                          |
+| ----------- | ---------------------------------------------- |
 | **Trigger** | Issue comments containing `/oc` or `/opencode` |
-| **Purpose** | AI code review integration |
+| **Purpose** | AI code review integration                     |
 
 ## Pre-build Checks
 

@@ -1,5 +1,5 @@
 ---
-"pendragon-coding": patch
+'pendragon-coding': patch
 ---
 
 fix: remove dark-mode text-shadow from ContentWithSidebarLayout

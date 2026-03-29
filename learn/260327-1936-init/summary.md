@@ -2,12 +2,12 @@
 
 ## Configuration
 
-| Setting | Value |
-|---------|-------|
-| Mode | Init |
-| Scope | Everything |
-| Depth | Standard |
-| Format | Markdown |
+| Setting | Value      |
+| ------- | ---------- |
+| Mode    | Init       |
+| Scope   | Everything |
+| Depth   | Standard   |
+| Format  | Markdown   |
 
 ## Baseline State
 
@@ -21,32 +21,32 @@
 
 ## Docs Created
 
-| File | LOC | Description |
-|------|-----|-------------|
+| File                    | LOC | Description                                                    |
+| ----------------------- | --- | -------------------------------------------------------------- |
 | project-overview-pdr.md | 123 | Project identity, tech stack, 7 architectural decision records |
-| codebase-summary.md | 148 | Directory structure, file inventory, dependency table |
-| system-architecture.md | 242 | 3 Mermaid diagrams, layout hierarchy, HTMX flow, routing |
-| code-standards.md | 194 | Biome rules, TypeScript conventions, quality commands |
-| configuration-guide.md | 330 | All config files documented with settings breakdown |
-| design-guidelines.md | 223 | Color system, typography, dark mode, accessibility, responsive |
-| deployment-guide.md | 112 | Tag-based pipeline, GitHub Actions workflows, rollback |
-| testing-guide.md | 99 | Bun test runner, patterns, coverage, testing opportunities |
+| codebase-summary.md     | 148 | Directory structure, file inventory, dependency table          |
+| system-architecture.md  | 242 | 3 Mermaid diagrams, layout hierarchy, HTMX flow, routing       |
+| code-standards.md       | 194 | Biome rules, TypeScript conventions, quality commands          |
+| configuration-guide.md  | 330 | All config files documented with settings breakdown            |
+| design-guidelines.md    | 223 | Color system, typography, dark mode, accessibility, responsive |
+| deployment-guide.md     | 112 | Tag-based pipeline, GitHub Actions workflows, rollback         |
+| testing-guide.md        | 99  | Bun test runner, patterns, coverage, testing opportunities     |
 
 ## Docs Updated
 
-| File | Before | After | Changes |
-|------|--------|-------|---------|
-| README.md | 82 | 57 | Fixed typo, added docs section, corrected deploy info, condensed changesets |
+| File      | Before | After | Changes                                                                     |
+| --------- | ------ | ----- | --------------------------------------------------------------------------- |
+| README.md | 82     | 57    | Fixed typo, added docs section, corrected deploy info, condensed changesets |
 
 ## Metrics
 
-| Metric | Value |
-|--------|-------|
-| Validation score | 100% |
-| Docs coverage | 100% (8/8 expected docs created) |
-| Size compliance | 100% (all under 800 LOC) |
-| Fix iterations | 0 |
-| **Learn score** | **100** |
+| Metric           | Value                            |
+| ---------------- | -------------------------------- |
+| Validation score | 100%                             |
+| Docs coverage    | 100% (8/8 expected docs created) |
+| Size compliance  | 100% (all under 800 LOC)         |
+| Fix iterations   | 0                                |
+| **Learn score**  | **100**                          |
 
 ## Recommended Next Steps
 
