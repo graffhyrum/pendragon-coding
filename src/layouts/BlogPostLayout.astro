@@ -1,6 +1,11 @@
 ---
 import BaseLayout from './BaseLayout.astro';
 import Breadcrumb from '../components/Breadcrumb.astro';
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+	frontmatter: CollectionEntry<'blog'>['data'];
+}
 
 const { frontmatter } = Astro.props;
 
