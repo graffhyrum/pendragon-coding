@@ -1,11 +1,7 @@
 ---
-import { SITE_CONFIG } from '../config/site';
+import { SITE_CONFIG, type PageMetaProps } from '../config/site';
 
-interface Props {
-	pageTitle: string;
-	description?: string;
-	ogType?: 'website' | 'article';
-}
+type Props = PageMetaProps;
 
 const {
 	pageTitle,
@@ -15,7 +11,7 @@ const {
 ---
 
 <head>
-    <title>{pageTitle}</title>
+    <title>{pageTitle} | {SITE_CONFIG.title}</title>
     <meta charset="utf-8"/>
     <meta name="description" content={description}/>
     <meta property="og:title" content={pageTitle}/>
