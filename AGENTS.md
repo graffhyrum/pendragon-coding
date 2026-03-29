@@ -57,14 +57,15 @@ bv --robot-plan --format toon | toon -d     # Parallel execution tracks
 
 Never run bare `bv` — it opens an interactive TUI that blocks the session.
 
-### bd — Beads Issue Tracker
+### br — Beads Issue Tracker
 
 ```bash
-bd ready --json                             # Next unblocked issue
-bd create "<title>" --type bug --priority p0 --label security --json
-bd update <id> --status in_progress --json
-bd close <id> --reason "Completed" --json
-bd list --json
+br ready --json                             # Next unblocked issue
+br create "<title>" --type bug --priority p0 --label security --json
+br update <id> --status in_progress --json
+br close <id> --reason "Completed" --json
+br list --json
+br sync --flush-only                        # Export SQLite → JSONL (no auto git commit)
 ```
 
 ### toon — Token-Optimized Output
@@ -115,7 +116,7 @@ Run `ubs --diff` before every commit. Convert critical/high findings to P0/P1 be
 
 ## Beads Workflow Integration
 
-This project uses [beads_viewer](https://github.com/Dicklesworthstone/beads_viewer) for issue tracking. Issues are stored in `.beads/` and tracked in git.
+This project uses [beads_rust](https://github.com/Dicklesworthstone/beads_rust) (br) for issue tracking. Issues are stored in `.beads/` (SQLite + JSONL) and tracked in git.
 
 ### Essential Commands
 
@@ -124,30 +125,30 @@ This project uses [beads_viewer](https://github.com/Dicklesworthstone/beads_view
 bv
 
 # CLI commands for agents (use these instead)
-bd ready              # Show issues ready to work (no blockers)
-bd list --status=open # All open issues
-bd show <id>          # Full issue details with dependencies
-bd create --title="..." --type=task --priority=2
-bd update <id> --status=in_progress
-bd close <id> --reason="Completed"
-bd close <id1> <id2>  # Close multiple issues at once
-bd sync               # Commit and push changes
+br ready              # Show issues ready to work (no blockers)
+br list --status=open # All open issues
+br show <id>          # Full issue details with dependencies
+br create --title="..." --type=task --priority=2
+br update <id> --status=in_progress
+br close <id> --reason="Completed"
+br close <id1> <id2>  # Close multiple issues at once
+br sync --flush-only  # Export SQLite → JSONL (does NOT auto-commit to git)
 ```
 
 ### Workflow Pattern
 
-1. **Start**: Run `bd ready` to find actionable work
-2. **Claim**: Use `bd update <id> --status=in_progress`
+1. **Start**: Run `br ready` to find actionable work
+2. **Claim**: Use `br update <id> --status=in_progress`
 3. **Work**: Implement the task
-4. **Complete**: Use `bd close <id>`
-5. **Sync**: Always run `bd sync` at session end
+4. **Complete**: Use `br close <id>`
+5. **Sync**: Run `br sync --flush-only` then `git add .beads/ && git commit`
 
 ### Key Concepts
 
-- **Dependencies**: Issues can block other issues. `bd ready` shows only unblocked work.
+- **Dependencies**: Issues can block other issues. `br ready` shows only unblocked work.
 - **Priority**: P0=critical, P1=high, P2=medium, P3=low, P4=backlog (use numbers, not words)
 - **Types**: task, bug, feature, epic, question, docs
-- **Blocking**: `bd dep add <issue> <depends-on>` to add dependencies
+- **Blocking**: `br dep add <issue> <depends-on>` to add dependencies
 
 ### Session Protocol
 
@@ -156,33 +157,34 @@ bd sync               # Commit and push changes
 ```bash
 git status              # Check what changed
 git add <files>         # Stage code changes
-bd sync                 # Commit beads changes
-git commit -m "..."     # Commit code
-bd sync                 # Commit any new beads changes
+br sync --flush-only    # Export beads to JSONL
+git add .beads/         # Stage beads changes
+git commit -m "..."     # Commit code + beads
 git push                # Push to remote
 ```
 
 ### Best Practices
 
-- Check `bd ready` at session start to find available work
+- Check `br ready` at session start to find available work
 - Update status as you work (in_progress → closed)
-- Create new issues with `bd create` when you discover tasks
+- Create new issues with `br create` when you discover tasks
 - Use descriptive titles and set appropriate priority/type
-- Always `bd sync` before ending session
+- Always `br sync --flush-only` + `git add .beads/` before ending session
 
 <!-- end-bv-agent-instructions -->
 
 <!-- BEGIN BEADS INTEGRATION -->
 
-## Issue Tracking with bd (beads)
+## Issue Tracking with br (beads)
 
-**IMPORTANT**: This project uses **bd (beads)** for ALL issue tracking. Do NOT use markdown TODOs, task lists, or other tracking methods.
+**IMPORTANT**: This project uses **br (beads_rust)** for ALL issue tracking. Do NOT use markdown TODOs, task lists, or other tracking methods.
 
-### Why bd?
+### Why br?
 
 - Dependency-aware: Track blockers and relationships between issues
-- Git-friendly: Dolt-powered version control with native sync
+- SQLite-backed: Fast local queries, no daemon required
 - Agent-optimized: JSON output, ready work detection, discovered-from links
+- Explicit sync: br never touches git — you control when to commit
 - Prevents duplicate tracking systems and confusion
 
 ### Quick Start
@@ -190,27 +192,27 @@ git push                # Push to remote
 **Check for ready work:**
 
 ```bash
-bd ready --json
+br ready --json
 ```
 
 **Create new issues:**
 
 ```bash
-bd create "Issue title" --description="Detailed context" -t bug|feature|task -p 0-4 --json
-bd create "Issue title" --description="What this issue is about" -p 1 --deps discovered-from:bd-123 --json
+br create "Issue title" --description="Detailed context" -t bug|feature|task -p 0-4 --json
+br create "Issue title" --description="What this issue is about" -p 1 --deps discovered-from:<parent-id> --json
 ```
 
 **Claim and update:**
 
 ```bash
-bd update <id> --claim --json
-bd update bd-42 --priority 1 --json
+br update <id> --claim --json
+br update <id> --priority 1 --json
 ```
 
 **Complete work:**
 
 ```bash
-bd close bd-42 --reason "Completed" --json
+br close <id> --reason "Completed" --json
 ```
 
 ### Issue Types
@@ -231,32 +233,30 @@ bd close bd-42 --reason "Completed" --json
 
 ### Workflow for AI Agents
 
-1. **Check ready work**: `bd ready` shows unblocked issues
-2. **Claim your task atomically**: `bd update <id> --claim`
+1. **Check ready work**: `br ready` shows unblocked issues
+2. **Claim your task atomically**: `br update <id> --claim`
 3. **Work on it**: Implement, test, document
 4. **Discover new work?** Create linked issue:
-   - `bd create "Found bug" --description="Details about what was found" -p 1 --deps discovered-from:<parent-id>`
-5. **Complete**: `bd close <id> --reason "Done"`
+   - `br create "Found bug" --description="Details about what was found" -p 1 --deps discovered-from:<parent-id>`
+5. **Complete**: `br close <id> --reason "Done"`
 
-### Auto-Sync
+### Sync Model
 
-bd automatically syncs via Dolt:
+br uses an explicit two-step sync — it never auto-commits to git:
 
-- Each write auto-commits to Dolt history
-- Use `bd dolt push`/`bd dolt pull` for remote sync
-- No manual export/import needed!
+- `br sync --flush-only` — exports SQLite database to `.beads/issues.jsonl`
+- `br sync --import-only` — imports `.beads/issues.jsonl` into SQLite (after git pull)
+- You must `git add .beads/` and commit manually after flushing
 
 ### Important Rules
 
-- ✅ Use bd for ALL task tracking
-- ✅ Always use `--json` flag for programmatic use
-- ✅ Link discovered work with `discovered-from` dependencies
-- ✅ Check `bd ready` before asking "what should I work on?"
-- ❌ Do NOT create markdown TODO lists
-- ❌ Do NOT use external issue trackers
-- ❌ Do NOT duplicate tracking systems
-
-For more details, see README.md and docs/QUICKSTART.md.
+- Use br for ALL task tracking
+- Always use `--json` flag for programmatic use
+- Link discovered work with `discovered-from` dependencies
+- Check `br ready` before asking "what should I work on?"
+- Do NOT create markdown TODO lists
+- Do NOT use external issue trackers
+- Do NOT duplicate tracking systems
 
 ## Landing the Plane (Session Completion)
 
@@ -270,7 +270,10 @@ For more details, see README.md and docs/QUICKSTART.md.
 4. **PUSH TO REMOTE** - This is MANDATORY:
    ```bash
    git pull --rebase
-   bd sync
+   br sync --flush-only
+   git add .beads/
+   git add <other files>
+   git commit -m "..."
    git push
    git status  # MUST show "up to date with origin"
    ```
