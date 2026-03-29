@@ -54,6 +54,7 @@
 
 			const nowDark = element.classList.contains('dark');
 			localStorage.setItem('theme', nowDark ? 'dark' : 'light');
+			localStorage.setItem('theme-explicit', 'true');
 
 			// Update aria-checked attribute
 			this.setAttribute('aria-checked', nowDark ? 'true' : 'false');
