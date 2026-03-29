@@ -1,9 +1,17 @@
 ---
 import BaseLayout from './BaseLayout.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
 
 const { frontmatter } = Astro.props;
+
+const crumbs = [
+	{ label: 'Home', href: '/' },
+	{ label: 'Blog', href: '/blog' },
+	{ label: frontmatter.title },
+];
 ---
 <BaseLayout pageTitle={frontmatter.title} description={frontmatter.description} ogType="article">
+	<Breadcrumb crumbs={crumbs} />
 	<h3 class="text-2xl font-medium text-green-100 mt-4"
 	>{frontmatter.title}</h3>
 	<p class="text-sm text-green-400 my-2"
