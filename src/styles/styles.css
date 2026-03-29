@@ -266,3 +266,58 @@ p {
     outline-offset: 2px;
     border-radius: 0.25rem;
 }
+
+/* --- Testimonial card styles --- */
+
+.testimonial-card {
+    @apply relative;
+}
+
+.testimonial-quote-icon {
+    @apply absolute top-0 right-0 w-12 h-12 text-green-800/30;
+}
+
+.testimonial-linkedin-link {
+    @apply inline-flex items-center justify-center w-9 h-9 rounded-lg
+    bg-green-800/40 text-green-300
+    transition-all duration-200
+    hover:bg-green-700/60 hover:text-green-100 hover:shadow-none
+    focus-visible:outline-2 focus-visible:outline-green-400 focus-visible:outline-offset-2;
+    /* Override global anchor styles for icon buttons */
+    text-decoration: none !important;
+    text-shadow: none !important;
+}
+
+.testimonial-linkedin-link:visited {
+    @apply text-green-300;
+}
+
+.testimonial-quote-text {
+    @apply border-l-3 border-green-600/50 pl-4 mt-2;
+}
+
+.testimonial-quote-text p {
+    @apply text-base text-green-200/90 leading-relaxed italic;
+}
+
+/* --- Bookshelf card styles --- */
+
+.bookshelf-card {
+    @apply flex flex-col h-full;
+}
+
+.bookshelf-link-pill {
+    @apply inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full
+    text-xs font-medium
+    bg-green-800/50 text-green-300
+    transition-all duration-200
+    hover:bg-green-700/60 hover:text-green-100 hover:shadow-none
+    focus-visible:outline-2 focus-visible:outline-green-400 focus-visible:outline-offset-2;
+    /* Override global anchor styles for pill links */
+    text-decoration: none !important;
+    text-shadow: none !important;
+}
+
+.bookshelf-link-pill:visited {
+    @apply text-green-300;
+}
