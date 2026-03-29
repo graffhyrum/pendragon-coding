@@ -26,6 +26,9 @@ bun.lockb
 package-lock.json
 
 
+# MCP data/caches
+.mcp_data/
+
 # misc
 webP.sh
 /.claude/
