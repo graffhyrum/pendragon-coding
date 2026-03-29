@@ -16,6 +16,7 @@ const currentPath = Astro.url.pathname;
 						hx-target={NAVIGATION_CONFIG.htmx.target}
 						hx-swap={NAVIGATION_CONFIG.htmx.swap}
 						hx-push-url={href}
+						hx-request='{"timeout": 10000}'
 						aria-current={isActive ? 'page' : undefined}
 						class={`relative inline-block py-1 ${isActive ? 'font-semibold text-green-700 dark:text-green-300' : ''}`}>
 						{label}

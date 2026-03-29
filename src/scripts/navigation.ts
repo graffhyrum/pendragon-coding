@@ -6,6 +6,9 @@
  * Idempotent -- safe to call multiple times (e.g. on htmx:afterSwap).
  */
 
+/** Tracks the URL of the last failed HTMX request for retry functionality */
+let lastFailedUrl: string | null = null;
+
 const ACTIVE_CLASSES = [
 	'font-semibold',
 	'text-green-700',
@@ -71,7 +74,22 @@ function hideLoadingState(): void {
 	main.querySelector('.nav-progress-bar')?.remove();
 }
 
-/** Show an accessible error toast that auto-dismisses */
+/** Retry the last failed HTMX navigation request */
+function retryLastRequest(): void {
+	if (!lastFailedUrl) return;
+	const url = lastFailedUrl;
+	lastFailedUrl = null;
+	// Remove the toast before retrying
+	document.querySelector('.nav-error-toast')?.remove();
+	// Re-issue the request via htmx's JS API
+	(
+		window as unknown as {
+			htmx: { ajax: (method: string, url: string, target: string) => void };
+		}
+	).htmx.ajax('GET', url, MAIN_CONTENT_SELECTOR);
+}
+
+/** Show an accessible error toast that auto-dismisses, with optional retry */
 function showErrorToast(message: string): void {
 	// Remove any existing toast to avoid stacking
 	document.querySelector('.nav-error-toast')?.remove();
@@ -84,13 +102,27 @@ function showErrorToast(message: string): void {
 	const text = document.createElement('span');
 	text.textContent = message;
 
+	const actions = document.createElement('span');
+	actions.className = 'nav-error-toast-actions';
+
+	// Retry button -- only shown when a failed URL is available
+	if (lastFailedUrl) {
+		const retryBtn = document.createElement('button');
+		retryBtn.textContent = 'Retry';
+		retryBtn.className = 'nav-error-toast-retry';
+		retryBtn.setAttribute('aria-label', 'Retry failed request');
+		retryBtn.addEventListener('click', retryLastRequest);
+		actions.append(retryBtn);
+	}
+
 	const dismissBtn = document.createElement('button');
 	dismissBtn.textContent = '\u00d7';
 	dismissBtn.setAttribute('aria-label', 'Dismiss error');
 	dismissBtn.className = 'nav-error-toast-dismiss';
 	dismissBtn.addEventListener('click', () => toast.remove());
 
-	toast.append(text, dismissBtn);
+	actions.append(dismissBtn);
+	toast.append(text, actions);
 	document.body.append(toast);
 
 	// Trigger reflow so CSS transition activates
@@ -132,17 +164,28 @@ export function initNavigation(): void {
 		}
 	});
 
-	// Error handling
+	// Error handling -- track failed URL for retry
 	document.body.addEventListener('htmx:responseError', (evt) => {
 		const detail = (evt as CustomEvent).detail;
 		const status = detail?.xhr?.status ?? 'unknown';
+		lastFailedUrl = detail?.requestConfig?.path ?? null;
 		showErrorToast(`Failed to load page (${status}). Please try again.`);
 	});
 
-	document.body.addEventListener('htmx:sendError', () => {
+	document.body.addEventListener('htmx:sendError', (evt) => {
+		const detail = (evt as CustomEvent).detail;
+		lastFailedUrl = detail?.requestConfig?.path ?? null;
 		showErrorToast(
 			'Network error. Please check your connection and try again.',
 		);
+	});
+
+	// Timeout-specific error message
+	document.body.addEventListener('htmx:timeout', (evt) => {
+		const detail = (evt as CustomEvent).detail;
+		lastFailedUrl = detail?.requestConfig?.path ?? null;
+		hideLoadingState();
+		showErrorToast('Request timed out. Please try again.');
 	});
 
 	// Scroll to top + active link sync after content swap
