@@ -17,9 +17,9 @@ const { layoutMode, content, sectionTitle } = Astro.props;
 const baseClasses = ['flex', 'max-w-9/10', 'mx-auto'];
 
 if (layoutMode === 'single-column') {
-	baseClasses.push(...['flex-col', 'items-center', 'gap-4']);
+	baseClasses.push('flex-col', 'items-center', 'gap-4');
 } else {
-	baseClasses.push(...['flex-wrap', 'justify-center']);
+	baseClasses.push('flex-wrap', 'justify-center');
 }
 
 const ulClasses = baseClasses.join(' ');

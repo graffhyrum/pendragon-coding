@@ -3,7 +3,7 @@ import { getCollection } from 'astro:content';
 import CollectionPageLayout from '../layouts/CollectionPageLayout.astro';
 
 const pageTitle = 'Blog';
-const allBlogs = (await getCollection('blog')).sort(
+const allBlogs = (await getCollection('blog')).toSorted(
 	(a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
 );
 ---
