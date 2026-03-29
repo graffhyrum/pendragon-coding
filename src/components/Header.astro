@@ -1,15 +1,19 @@
 ---
-import { Image } from 'astro:assets';
+import { Picture } from 'astro:assets';
 import headshot from '../assets/headshot_sm.webp';
 import Navigation from './navigation/Navigation.astro';
 import ThemeToggle from './ThemeToggle.astro';
 ---
 
 <header class="h-max p-2 sm:p-4 flex *:mx-3 items-center">
-	<Image
+	<Picture
 		class="rounded-full hidden sm:block transition-all duration-500 hover:scale-110 hover:rotate-6 hover:shadow-lg hover:shadow-green-500/50 "
 		src={headshot}
+		formats={['avif', 'webp']}
+		widths={[64, 96, 128]}
+		sizes="64px"
 		alt="Headshot of Joshua Pendragon"
+		loading="eager"
 		data-testid="Headshot"
 	/>
 	<h1 class="text-4xl max-w-max mt-2 sm:mt-0  delay-100">Joshua Pendragon</h1>

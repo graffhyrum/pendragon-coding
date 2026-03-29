@@ -1,5 +1,5 @@
 ---
-import { Image } from 'astro:assets';
+import { Picture } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
 import type { SkillData, SkillProficiency } from '../../types/Skill';
 
@@ -8,7 +8,7 @@ interface Props {
 }
 const { s } = Astro.props;
 const images = import.meta.glob<{ default: ImageMetadata }>(
-	'/src/assets/*.{jpeg,jpg,png,gif,webp}',
+	'/src/assets/*.{jpeg,jpg,png,gif,webp,avif}',
 );
 if (!images[`/src/assets/${s.imagePath}`])
 	throw new Error(
@@ -30,9 +30,11 @@ const proficiencyLabel = `${s.proficiency} proficiency`;
 
 <li class="skill-item group">
 	<div class="flex items-center gap-3 min-w-0">
-		<Image
+		<Picture
 			src={images[`/src/assets/${s.imagePath}`]()}
+			formats={['avif', 'webp']}
 			alt={s.img_alt}
+			loading="lazy"
 			class="w-10 h-10 object-contain shrink-0 transition-transform duration-300 group-hover:rotate-12 group-hover:scale-110 group-focus-within:rotate-12 group-focus-within:scale-110"
 		/>
 		<p class="text-base m-0 truncate">
