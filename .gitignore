@@ -34,6 +34,7 @@ webP.sh
 /.claude/
 .claude/
 documents/post-mortem-*
+human_todo.md
 
 # bv (beads viewer) local config and caches
 .bv/
