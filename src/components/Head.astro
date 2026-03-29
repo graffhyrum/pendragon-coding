@@ -35,8 +35,15 @@ const {
     <!-- Theme initialization script - runs before page render to prevent flash -->
     <script is:inline>
         (function() {
-            const theme = localStorage.getItem('theme') ||
-                         (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+            var explicit = localStorage.getItem('theme-explicit');
+            var mq = window.matchMedia('(prefers-color-scheme: dark)');
+            var theme;
+
+            if (explicit) {
+                theme = localStorage.getItem('theme') || 'light';
+            } else {
+                theme = mq.matches ? 'dark' : 'light';
+            }
 
             if (theme === 'dark') {
                 document.documentElement.classList.add('dark');
@@ -44,7 +51,17 @@ const {
                 document.documentElement.classList.remove('dark');
             }
 
-            localStorage.setItem('theme', theme);
+            // Listen for system preference changes when no explicit choice
+            if (!explicit) {
+                mq.addEventListener('change', function(e) {
+                    if (localStorage.getItem('theme-explicit')) return;
+                    if (e.matches) {
+                        document.documentElement.classList.add('dark');
+                    } else {
+                        document.documentElement.classList.remove('dark');
+                    }
+                });
+            }
         })();
     </script>
 </head>

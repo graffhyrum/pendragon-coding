@@ -5,4 +5,5 @@
  * theme.test.ts verifies they stay in sync.
  */
 export const THEME_STORAGE_KEY = 'theme' as const;
+export const THEME_EXPLICIT_KEY = 'theme-explicit' as const;
 export const DARK_CLASS = 'dark' as const;
