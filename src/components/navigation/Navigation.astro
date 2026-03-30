@@ -19,7 +19,7 @@ const currentPath = Astro.url.pathname;
 						hx-push-url={href}
 						hx-request='{"timeout": 10000}'
 						aria-current={isActive ? 'page' : undefined}
-						class={`relative inline-block py-3 sm:py-1 min-h-[48px] flex items-center ${isActive ? 'font-semibold text-green-700 dark:text-green-300' : ''}`}>
+						class={`relative inline-block py-3 sm:py-1 min-h-[48px] flex items-center ${isActive ? 'font-semibold text-green-900 dark:text-green-300' : ''}`}>
 						{label}
 						<span class={`absolute bottom-0 left-0 h-[3px] bg-green-600 dark:bg-green-400 transition-all duration-300 ${isActive ? 'w-full' : 'w-0 group-hover:w-full group-focus-within:w-full'}`}></span>
 					</a>

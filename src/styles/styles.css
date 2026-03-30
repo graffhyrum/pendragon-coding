@@ -49,6 +49,12 @@ pre {
     background: rgba(255, 255, 255, 0.5);
 }
 
+/* Override Shiki github-dark comment color for WCAG AA contrast on #24292e bg */
+pre[data-language] code .line span[style*="color:#6A737D"],
+pre[data-language] code .line span[style*="color:#6a737d"] {
+    color: #8b949e !important;
+}
+
 /* Ensure mermaid process overview can use full available width and intended background */
 pre.mermaid {
     @apply w-full max-w-full;
@@ -74,20 +80,22 @@ pre.mermaid .edgeLabel {
     font-size: 1rem;
 }
 
-a {
-    @apply text-blue-700 dark:text-blue-300 w-fit underline visited:text-purple-700 visited:dark:text-purple-300 hover:text-blue-900 hover:dark:text-blue-100 focus-visible:text-blue-900 focus-visible:dark:text-blue-100;
-    transition: all 0.3s ease;
-}
+@layer base {
+    a {
+        @apply text-blue-700 dark:text-blue-300 w-fit underline visited:text-purple-700 visited:dark:text-purple-300 hover:text-blue-900 hover:dark:text-blue-100 focus-visible:text-blue-900 focus-visible:dark:text-blue-100;
+        transition: all 0.3s ease;
+    }
 
-a:hover {
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-}
+    a:hover {
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    }
 
-a:focus-visible {
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-    outline: 2px solid currentColor;
-    outline-offset: 2px;
-    transform: translateY(-1px);
+    a:focus-visible {
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        outline: 2px solid currentColor;
+        outline-offset: 2px;
+        transform: translateY(-1px);
+    }
 }
 
 section {
@@ -144,6 +152,10 @@ p {
 
 .skill-category-desc {
     @apply text-xs text-green-300 mt-1 mb-3;
+}
+
+.skill-category-card a {
+    @apply text-green-200 no-underline visited:text-green-300 hover:text-green-100 focus-visible:text-green-100;
 }
 
 .skill-category-list {
@@ -353,4 +365,28 @@ p {
 
 .bookshelf-link-pill:visited {
     @apply text-green-300;
+}
+
+/* GitHub Gist embed contrast overrides for WCAG AA */
+.gist .markdown-body,
+.gist .markdown-body p,
+.gist .markdown-body li {
+    color: #1f2328 !important;
+}
+
+.gist .markdown-body code {
+    color: #1f2328 !important;
+    background-color: #e8e8e8 !important;
+}
+
+.gist .pl-k {
+    color: #a0111f !important;
+}
+
+.gist .pl-v {
+    color: #953800 !important;
+}
+
+.gist .pl-c {
+    color: #59636e !important;
 }

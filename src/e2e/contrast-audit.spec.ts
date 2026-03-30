@@ -14,6 +14,13 @@ const PAGES = [
 	'/404.html',
 ] as const;
 
+async function disableTransitions(page: Page): Promise<void> {
+	await page.addStyleTag({
+		content:
+			'*, *::before, *::after { transition: none !important; animation: none !important; }',
+	});
+}
+
 async function setThemeMode(page: Page, mode: ThemeMode): Promise<void> {
 	await page.evaluate((m: ThemeMode) => {
 		localStorage.setItem('theme', m);
@@ -34,6 +41,7 @@ async function runContrastAudit(
 	mode: ThemeMode,
 ): Promise<void> {
 	await page.goto(url);
+	await disableTransitions(page);
 	await setThemeMode(page, mode);
 	await expect(page.locator('#main-content')).not.toHaveClass(/htmx-loading/);
 
