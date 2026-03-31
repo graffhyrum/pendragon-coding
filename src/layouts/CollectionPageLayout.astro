@@ -49,6 +49,24 @@ const blogSections = [
 			<div class="text-xl">
 				<p>{description}</p>
 			</div>
+			<div id="blog-sort-controls" class="flex gap-2 mt-4 mb-2" aria-label="Sort posts by">
+				<button
+					type="button"
+					data-sort="date"
+					aria-pressed="true"
+					class="text-sm rounded px-3 py-1 border border-green-600 bg-green-600 text-white transition-colors duration-150 hover:bg-green-500"
+				>
+					Newest first
+				</button>
+				<button
+					type="button"
+					data-sort="title"
+					aria-pressed="false"
+					class="text-sm rounded px-3 py-1 border border-green-600 bg-green-900 text-green-300 transition-colors duration-150 hover:bg-green-700"
+				>
+					Title A–Z
+				</button>
+			</div>
 			<ul id="blog-post-list" class={ulClasses} role="list">
 				{items.map((item) => (
 					<BlogCard entry={item} />
@@ -64,5 +82,7 @@ const blogSections = [
 
 <script>
 	import { initTagFilter } from '../scripts/tag-filter';
+	import { initBlogSort } from '../scripts/blog-sort';
 	initTagFilter();
+	initBlogSort();
 </script>
