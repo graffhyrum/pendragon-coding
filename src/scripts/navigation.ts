@@ -7,6 +7,7 @@
  */
 
 import { initSidebar } from './sidebar';
+import { initTagFilter } from './tag-filter';
 
 /** Tracks the URL of the last failed HTMX request for retry functionality */
 let lastFailedUrl: string | null = null;
@@ -197,6 +198,7 @@ export function initNavigation(): void {
 			scrollMainToTop();
 			updateActiveLinks(window.location.pathname);
 			initSidebar();
+			initTagFilter();
 		}
 	});
 
