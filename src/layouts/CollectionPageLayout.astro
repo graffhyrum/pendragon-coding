@@ -49,11 +49,20 @@ const blogSections = [
 			<div class="text-xl">
 				<p>{description}</p>
 			</div>
-			<ul class={ulClasses} role="list">
+			<ul id="blog-post-list" class={ulClasses} role="list">
 				{items.map((item) => (
 					<BlogCard entry={item} />
 				))}
 			</ul>
+			<p id="blog-empty-state" class="text-green-300 text-center mt-8" hidden>
+				No posts match the selected tag(s).
+				<a href="/blog" class="underline text-green-400 ml-1">Clear filter</a>
+			</p>
 		</div>
 	</div>
 </BaseLayout>
+
+<script>
+	import { initTagFilter } from '../scripts/tag-filter';
+	initTagFilter();
+</script>

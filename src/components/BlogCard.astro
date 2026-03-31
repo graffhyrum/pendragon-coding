@@ -5,15 +5,32 @@ import Card from './ui/Card.astro';
 
 const { entry } = Astro.props;
 const excerpt = getExcerpt(entry.data.description, entry.body);
+const tags: string[] = entry.data.tags ?? [];
+// Serialise tags for the <li data-tags> attribute used by the JS filter
+const dataTags = tags.join(',');
 ---
-<Card variant="long-form" maxWidth="max-w-max">
-    <article id={toSlug(entry.data.title)}>
-        <h3 class="text-2xl font-medium text-green-100 mt-4">{entry.data.title}</h3>
-        <p class="text-sm text-green-300 my-2">{entry.data.date.toLocaleDateString('en-US', {
+<Card variant="long-form" maxWidth="max-w-max" data-tags={dataTags}>
+	<article id={toSlug(entry.data.title)}>
+		<h3 class="text-2xl font-medium text-green-100 mt-4">{entry.data.title}</h3>
+		<p class="text-sm text-green-300 my-2">{entry.data.date.toLocaleDateString('en-US', {
 			year: 'numeric',
 			month: 'short',
 			day: 'numeric'
 		})}</p>
-        <p class="text-green-200 text-sm mt-2">{excerpt}</p>
-    </article>
+		<p class="text-green-200 text-sm mt-2">{excerpt}</p>
+		{tags.length > 0 && (
+			<div class="flex flex-wrap gap-1 mt-3">
+				{tags.map((tag) => (
+					<button
+						type="button"
+						data-tag={tag}
+						aria-pressed="false"
+						class="text-xs bg-green-800 text-green-200 rounded-full px-2 py-0.5 cursor-pointer border border-green-600 hover:bg-green-700"
+					>
+						{tag}
+					</button>
+				))}
+			</div>
+		)}
+	</article>
 </Card>
