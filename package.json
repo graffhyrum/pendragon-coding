@@ -38,5 +38,13 @@
 		"oxlint": "1.57.0",
 		"tailwindcss": "^4.2.2",
 		"typescript": "^5.9.3"
+	},
+	"overrides": {
+		"ajv": ">=8.18.0",
+		"mdast-util-to-hast": ">=13.2.1",
+		"picomatch": ">=4.0.4",
+		"rollup": ">=4.59.0",
+		"svgo": ">=4.0.1",
+		"yaml": ">=2.8.3"
 	}
 }
