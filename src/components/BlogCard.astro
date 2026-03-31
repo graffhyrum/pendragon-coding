@@ -1,9 +1,10 @@
 ---
 import { toSlug } from '../utils/slugify';
+import { getExcerpt } from '../utils/excerpt';
 import Card from './ui/Card.astro';
 
 const { entry } = Astro.props;
-const { Content } = await entry.render();
+const excerpt = getExcerpt(entry.data.description, entry.body);
 ---
 <Card variant="long-form" maxWidth="max-w-max">
     <article id={toSlug(entry.data.title)}>
@@ -13,8 +14,6 @@ const { Content } = await entry.render();
 			month: 'short',
 			day: 'numeric'
 		})}</p>
-        <div class="content bullet-list">
-            <Content/>
-        </div>
+        <p class="text-green-200 text-sm mt-2">{excerpt}</p>
     </article>
 </Card>
