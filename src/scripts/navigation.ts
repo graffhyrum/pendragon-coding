@@ -6,6 +6,8 @@
  * Idempotent -- safe to call multiple times (e.g. on htmx:afterSwap).
  */
 
+import { initSidebar } from './sidebar';
+
 /** Tracks the URL of the last failed HTMX request for retry functionality */
 let lastFailedUrl: string | null = null;
 
@@ -194,6 +196,7 @@ export function initNavigation(): void {
 		if (target?.id === 'main-content') {
 			scrollMainToTop();
 			updateActiveLinks(window.location.pathname);
+			initSidebar();
 		}
 	});
 

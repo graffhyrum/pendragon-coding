@@ -6,6 +6,7 @@ const content: ContentTemplate = {
 			title: 'Projects',
 			subtitle: 'This is a collection of projects that I have worked on.',
 			layoutMode: 'grid',
+			contentKind: 'default',
 			content: [
 				{
 					title: 'This website.',
@@ -63,6 +64,7 @@ const content: ContentTemplate = {
 			title: 'Gists',
 			subtitle: 'This is a collection of gists that I have created.',
 			layoutMode: 'single-column',
+			contentKind: 'default',
 			content: [
 				{
 					title: 'Typescript - Recursive Partial Type',

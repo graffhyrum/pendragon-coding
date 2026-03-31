@@ -1,8 +1,8 @@
 ---
 import ContentContainer from '../../components/ContentContainer.astro';
 import testimonials from '../../content/testimonials.ts';
-import ApiContentLayout from '../../layouts/ApiContentLayout.astro';
+import ApiContentWithSidebarLayout from '../../layouts/ApiContentWithSidebarLayout.astro';
 ---
-<ApiContentLayout>
+<ApiContentWithSidebarLayout content={testimonials}>
 	<ContentContainer containerContent={testimonials}></ContentContainer>
-</ApiContentLayout>
+</ApiContentWithSidebarLayout>

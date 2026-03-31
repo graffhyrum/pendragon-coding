@@ -7,6 +7,7 @@ const content: ContentTemplate = {
 			subtitle:
 				'This is a collection of testimonials from people that I have worked with.',
 			layoutMode: 'single-column',
+			contentKind: 'testimonial',
 			content: [
 				{
 					title: 'Ankit Nagpal',

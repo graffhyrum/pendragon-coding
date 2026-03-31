@@ -1,8 +1,8 @@
 ---
 import ContentContainer from '../../components/ContentContainer.astro';
 import shoutouts from '../../content/shoutouts';
-import ApiContentLayout from '../../layouts/ApiContentLayout.astro';
+import ApiContentWithSidebarLayout from '../../layouts/ApiContentWithSidebarLayout.astro';
 ---
-<ApiContentLayout>
+<ApiContentWithSidebarLayout content={shoutouts}>
 	<ContentContainer containerContent={shoutouts}></ContentContainer>
-</ApiContentLayout>
+</ApiContentWithSidebarLayout>

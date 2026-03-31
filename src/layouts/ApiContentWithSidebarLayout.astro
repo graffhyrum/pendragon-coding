@@ -1,0 +1,14 @@
+---
+import SidebarContentFragment from '../components/layout/SidebarContentFragment.astro';
+import type { ContentTemplate } from '../types/ContentTemplate';
+
+interface Props {
+	content: ContentTemplate;
+}
+
+const { content } = Astro.props;
+---
+
+<SidebarContentFragment content={content}>
+	<slot />
+</SidebarContentFragment>

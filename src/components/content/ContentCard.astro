@@ -1,18 +1,20 @@
 ---
 import Card from '../ui/Card.astro';
+import type { ContentKind } from '../../types/ContentTemplate';
 
 interface Props {
 	title: string;
 	links: Array<{ title?: string; href: string }>;
 	description: string;
 	layoutMode: 'grid' | 'single-column';
+	contentKind: ContentKind;
 	contentId?: string;
 }
 
-const { title, links, description, layoutMode, contentId } = Astro.props;
+const { title, links, description, layoutMode, contentKind, contentId } = Astro.props;
 
 const cardVariant = layoutMode === 'single-column' ? 'long-form' : 'short-form';
-const isTestimonial = layoutMode === 'single-column';
+const isTestimonial = contentKind === 'testimonial';
 
 // For testimonials, parse role from description (text before <br><br>)
 let role = '';

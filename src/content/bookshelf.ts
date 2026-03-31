@@ -6,6 +6,7 @@ const content: ContentTemplate = {
 			title: 'Engineering Culture',
 			subtitle:
 				'Thoughts on how we work, learn, and think about software development.',
+			contentKind: 'default',
 			content: [
 				{
 					title: 'The Grug Brained Developer',
@@ -69,6 +70,7 @@ const content: ContentTemplate = {
 			title: 'Architecture & Design',
 			subtitle:
 				'Patterns, principles, and philosophies for building software systems.',
+			contentKind: 'default',
 			content: [
 				{
 					title: 'HTMX on Locality of Behavior',
@@ -144,6 +146,7 @@ const content: ContentTemplate = {
 			title: 'Testing & QA',
 			subtitle:
 				'Resources for quality assurance, test automation, and building confidence in your code.',
+			contentKind: 'default',
 			content: [
 				{
 					title: 'Test IDs. Always.',
@@ -210,6 +213,7 @@ const content: ContentTemplate = {
 		{
 			title: 'Tooling',
 			subtitle: 'Practical tools and utilities that make development easier.',
+			contentKind: 'default',
 			content: [
 				{
 					title: 'Photopea',
@@ -270,6 +274,7 @@ const content: ContentTemplate = {
 		{
 			title: 'Deep Dives',
 			subtitle: 'Long-form content for when you have time to really dig in.',
+			contentKind: 'default',
 			content: [
 				{
 					title: 'Staff Engineer @ Meta by Age 25 | Evan King',

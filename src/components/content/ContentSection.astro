@@ -1,11 +1,13 @@
 ---
 import { toSlug } from '../../utils/slugify';
 import SectionList from './SectionList.astro';
+import type { ContentKind } from '../../types/ContentTemplate';
 
 interface Props {
 	title: string;
 	subtitle: string;
 	layoutMode: 'grid' | 'single-column';
+	contentKind: ContentKind;
 	content: Array<{
 		title: string;
 		link: Array<{ title?: string; href: string }>;
@@ -13,7 +15,7 @@ interface Props {
 	}>;
 }
 
-const { title, subtitle, layoutMode, content } = Astro.props;
+const { title, subtitle, layoutMode, contentKind, content } = Astro.props;
 
 const sectionId = toSlug(title);
 ---
@@ -21,5 +23,5 @@ const sectionId = toSlug(title);
 <section id={sectionId}>
 	<h2>{title}</h2>
 	<p class="text-xl">{subtitle}</p>
-	<SectionList layoutMode={layoutMode} content={content} sectionTitle={title} />
+	<SectionList layoutMode={layoutMode} contentKind={contentKind} content={content} sectionTitle={title} />
 </section>

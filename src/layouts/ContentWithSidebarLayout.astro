@@ -3,7 +3,7 @@ import '../styles/styles.css';
 import Footer from '../components/Footer.astro';
 import Head from '../components/Head.astro';
 import Header from '../components/Header.astro';
-import Sidebar from '../components/navigation/Sidebar.astro';
+import SidebarContentFragment from '../components/layout/SidebarContentFragment.astro';
 import type { ContentTemplate } from '../types/ContentTemplate';
 
 interface Props {
@@ -26,12 +26,9 @@ const { pageTitle, content } = Astro.props;
 </a>
 <Header/>
 <main id="main-content" role="main" class="relative grow h-max row-2 justify-items-stretch px-4 overflow-y-auto">
-    <div class="content-layout">
-        <Sidebar sections={content.sections}/>
-        <div class="main-content">
-            <slot/>
-        </div>
-    </div>
+	<SidebarContentFragment content={content}>
+		<slot/>
+	</SidebarContentFragment>
 </main>
 <Footer/>
 <script is:inline src="/scripts/htmx.min.js"></script>

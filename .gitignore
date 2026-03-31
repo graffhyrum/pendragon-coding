@@ -42,3 +42,5 @@ human_todo.md
 # Beads database files
 .dolt/
 *.db
+/handoff.md
+/test-results/.last-run.json

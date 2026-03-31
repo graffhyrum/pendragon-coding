@@ -6,6 +6,7 @@ const content: ContentTemplate = {
 			title: 'Shoutouts',
 			subtitle:
 				'Content creators that I love and admire.  I would not be where I am today without them. Thank you all!',
+			contentKind: 'default',
 			content: [
 				{
 					title: 'Michael B Paulson AKA Primeagen, The',

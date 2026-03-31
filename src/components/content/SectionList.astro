@@ -1,9 +1,11 @@
 ---
 import { toSlug } from '../../utils/slugify';
 import ContentCard from './ContentCard.astro';
+import type { ContentKind } from '../../types/ContentTemplate';
 
 interface Props {
 	layoutMode: 'grid' | 'single-column';
+	contentKind: ContentKind;
 	content: Array<{
 		title: string;
 		link: Array<{ title?: string; href: string }>;
@@ -12,7 +14,7 @@ interface Props {
 	sectionTitle: string;
 }
 
-const { layoutMode, content, sectionTitle } = Astro.props;
+const { layoutMode, contentKind, content, sectionTitle } = Astro.props;
 
 const baseClasses = ['flex', 'max-w-9/10', 'mx-auto'];
 
@@ -34,6 +36,7 @@ const ulClasses = baseClasses.join(' ');
 				links={contentItem.link}
 				description={contentItem.description}
 				layoutMode={layoutMode}
+				contentKind={contentKind}
 				contentId={contentId}
 			/>
 		);
