@@ -37,27 +37,23 @@ function stripMarkdown(markdown: string): string {
  * Return an excerpt for a blog post card.
  *
  * Priority:
- * 1. If `description` is provided, return it verbatim.
- * 2. Otherwise strip Markdown from `body` and truncate to EXCERPT_LENGTH
- *    characters followed by an ellipsis if the stripped text is longer.
+ * 1. If `description` is a non-empty string, use it as the excerpt source.
+ *    (Empty string is treated as absent — fall through to body.)
+ * 2. Otherwise strip Markdown from `body` and use that as the source.
+ *
+ * In both cases the source is truncated to EXCERPT_LENGTH characters with an
+ * ellipsis appended if the text exceeds that limit.
  */
 export function getExcerpt(
 	description: string | undefined,
 	body: string | undefined,
 ): string {
-	if (description) {
-		return description;
+	// Non-empty description takes priority over body; empty string falls through.
+	const source = description || stripMarkdown(body ?? '');
+
+	if (source.length <= EXCERPT_LENGTH) {
+		return source;
 	}
 
-	if (!body) {
-		return '';
-	}
-
-	const plain = stripMarkdown(body);
-
-	if (plain.length <= EXCERPT_LENGTH) {
-		return plain;
-	}
-
-	return `${plain.slice(0, EXCERPT_LENGTH)}...`;
+	return `${source.slice(0, EXCERPT_LENGTH)}...`;
 }

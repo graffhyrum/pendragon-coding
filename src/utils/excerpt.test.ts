@@ -3,11 +3,21 @@ import { describe, expect, test } from 'bun:test';
 import { getExcerpt } from './excerpt';
 
 describe('getExcerpt', () => {
-	test('returns description verbatim when present', () => {
+	test('returns description when present and short', () => {
 		const description = 'A hand-written summary of the post.';
 		const body =
 			'# Heading\n\nSome **bold** content that is much longer than the description.';
 		expect(getExcerpt(description, body)).toBe(description);
+	});
+
+	test('truncates description to 200 chars with ellipsis when it exceeds 200 chars', () => {
+		const description = 'a'.repeat(201);
+		const result = getExcerpt(description, 'some body');
+		expect(result).toBe(`${'a'.repeat(200)}...`);
+	});
+
+	test('falls back to body when description is empty string', () => {
+		expect(getExcerpt('', 'body content')).toBe('body content');
 	});
 
 	test('returns description even when body is undefined', () => {
