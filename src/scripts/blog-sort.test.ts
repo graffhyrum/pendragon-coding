@@ -181,6 +181,10 @@ describe('initBlogSort (DOM)', () => {
 		globalThis.requestAnimationFrame = happyWindow.requestAnimationFrame.bind(
 			happyWindow,
 		) as unknown as typeof globalThis.requestAnimationFrame;
+		// instanceof HTMLElement must check against happy-dom's class so the
+		// click-handler guard recognises happy-dom elements (no browser built-in here).
+		globalThis.HTMLElement =
+			happyWindow.HTMLElement as unknown as typeof globalThis.HTMLElement;
 	});
 
 	afterEach(() => {
@@ -264,5 +268,59 @@ describe('initBlogSort (DOM)', () => {
 		const order = listOrder(happyWindow.document as unknown as Document);
 		// Zeta 2025-06-01, Alpha 2024-01-01, Beta 2023-05-15
 		expect(order).toEqual(['Zeta', 'Alpha', 'Beta']);
+	});
+
+	test('AC3 (ahg): click on a valid sort button applies sort and updates URL', () => {
+		const doc = happyWindow.document as unknown as Document;
+		buildBlogDom(doc);
+		initBlogSort();
+
+		const titleBtn = doc.querySelector<HTMLButtonElement>(
+			'button[data-sort="title"]',
+		);
+		expect(titleBtn).not.toBeNull();
+		titleBtn!.click();
+
+		// Items should now be in title-ascending order
+		const order = listOrder(doc);
+		expect(order).toEqual(['Alpha', 'Beta', 'Zeta']);
+
+		// URL should carry the sort param
+		expect(happyWindow.location.search).toContain('sort=title');
+	});
+
+	test('AC1 (ahg): click whose target is an SVGElement returns early without error', () => {
+		buildBlogDom(happyWindow.document as unknown as Document);
+		initBlogSort();
+
+		const controls = happyWindow.document.getElementById('blog-sort-controls');
+		const svg = happyWindow.document.createElementNS(
+			'http://www.w3.org/2000/svg',
+			'svg',
+		);
+		controls?.appendChild(svg);
+
+		// Dispatching a click with an SVGElement target must not throw
+		expect(() => {
+			const evt = new happyWindow.MouseEvent('click', { bubbles: true });
+			// Synthetic events land on the element; fire from svg so target is SVGElement
+			svg.dispatchEvent(evt);
+		}).not.toThrow();
+	});
+
+	test('AC2 (ahg): click event with null target returns early without error', () => {
+		buildBlogDom(happyWindow.document as unknown as Document);
+		initBlogSort();
+
+		const controls = happyWindow.document.getElementById('blog-sort-controls');
+
+		// Construct an event and override target to null via a custom object
+		expect(() => {
+			// A click on the controls element itself (target = controls div, not HTMLButtonElement)
+			// represents an unmatched target path — handler must not throw
+			const evt = new happyWindow.MouseEvent('click', { bubbles: false });
+			Object.defineProperty(evt, 'target', { value: null, configurable: true });
+			controls?.dispatchEvent(evt);
+		}).not.toThrow();
 	});
 });

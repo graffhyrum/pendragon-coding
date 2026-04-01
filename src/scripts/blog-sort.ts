@@ -148,7 +148,8 @@ export function initBlogSort(): void {
 	if (!controls) return;
 
 	controls.addEventListener('click', (evt) => {
-		const target = evt.target as HTMLElement;
+		const target = evt.target;
+		if (!(target instanceof HTMLElement)) return;
 		const btn = target.closest<HTMLButtonElement>('button[data-sort]');
 		if (!btn) return;
 

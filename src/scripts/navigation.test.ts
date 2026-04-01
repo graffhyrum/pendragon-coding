@@ -42,6 +42,10 @@ describe('initNavigation — htmx:afterSwap calls initBlogSort', () => {
 		globalThis.requestAnimationFrame = happyWindow.requestAnimationFrame.bind(
 			happyWindow,
 		) as unknown as typeof globalThis.requestAnimationFrame;
+		// instanceof HTMLElement must check against happy-dom's class, not the absent
+		// browser built-in, so the click-handler guard recognises happy-dom elements.
+		globalThis.HTMLElement =
+			happyWindow.HTMLElement as unknown as typeof globalThis.HTMLElement;
 	});
 
 	afterEach(() => {
