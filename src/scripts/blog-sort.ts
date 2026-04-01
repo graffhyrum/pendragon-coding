@@ -92,39 +92,46 @@ export function applySort(key: SortKey, shouldAnnounce = false): void {
 	const list = document.getElementById(POST_LIST_ID);
 	if (!list) return;
 
+	reorderPosts(list, key);
+
+	const controls = document.getElementById(SORT_CONTROLS_ID);
+	if (controls) {
+		updateButtonStates(controls, key);
+	}
+
+	if (shouldAnnounce) {
+		announce(SORT_ANNOUNCEMENTS[key]);
+	}
+}
+
+/** Re-append list items in sorted order (moves existing nodes, no clone needed). */
+function reorderPosts(list: HTMLElement, key: SortKey): void {
 	const items = Array.from(
 		list.querySelectorAll<HTMLElement>('li[data-sort-date]'),
 	);
 	const compareFn = key === 'title' ? compareTitleAsc : compareDateDesc;
 	items.sort(compareFn);
-
-	// Re-append in sorted order (moves existing nodes, no clone needed)
 	for (const item of items) {
 		list.appendChild(item);
 	}
+}
 
-	// Update button active states
-	const controls = document.getElementById(SORT_CONTROLS_ID);
-	if (controls) {
-		const buttons =
-			controls.querySelectorAll<HTMLButtonElement>('button[data-sort]');
-		for (const btn of buttons) {
-			const btnKey = btn.getAttribute('data-sort');
-			if (!isSortKey(btnKey)) continue;
-			const isActive = btnKey === key;
-			btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
-			if (isActive) {
-				btn.classList.add('bg-green-800', 'text-green-50');
-				btn.classList.remove('bg-green-900', 'text-green-300');
-			} else {
-				btn.classList.remove('bg-green-800', 'text-green-50');
-				btn.classList.add('bg-green-900', 'text-green-300');
-			}
+/** Update aria-pressed and CSS classes on sort buttons to reflect the active key. */
+function updateButtonStates(controls: HTMLElement, key: SortKey): void {
+	const buttons =
+		controls.querySelectorAll<HTMLButtonElement>('button[data-sort]');
+	for (const btn of buttons) {
+		const btnKey = btn.getAttribute('data-sort');
+		if (!isSortKey(btnKey)) continue;
+		const isActive = btnKey === key;
+		btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+		if (isActive) {
+			btn.classList.add('bg-green-800', 'text-green-50');
+			btn.classList.remove('bg-green-900', 'text-green-300');
+		} else {
+			btn.classList.remove('bg-green-800', 'text-green-50');
+			btn.classList.add('bg-green-900', 'text-green-300');
 		}
-	}
-
-	if (shouldAnnounce) {
-		announce(SORT_ANNOUNCEMENTS[key]);
 	}
 }
 
