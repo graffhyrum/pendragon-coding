@@ -52,7 +52,10 @@ export function getExcerpt(
 	body: string | undefined,
 ): string {
 	// Non-empty description takes priority over body; empty string falls through.
-	const source = description || stripMarkdown(body ?? '');
+	const source =
+		description !== undefined && description !== ''
+			? description
+			: stripMarkdown(body ?? '');
 
 	if (source.length <= EXCERPT_LENGTH) {
 		return source;
