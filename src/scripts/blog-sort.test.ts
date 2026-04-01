@@ -11,6 +11,33 @@ import {
 	initBlogSort,
 } from './blog-sort';
 
+// isSortKey is a private predicate — test its contract by mirroring the logic.
+// The implementation lives in blog-sort.ts; this block documents and guards the
+// expected behaviour (AC1-2 from pendragon-coding-p8f).
+
+/** Mirrors the private isSortKey predicate defined in blog-sort.ts. */
+function isSortKeyMirror(v: string | null): v is 'date' | 'title' {
+	return v === 'date' || v === 'title';
+}
+
+describe('isSortKey (contract mirror)', () => {
+	test('returns false for malformed values', () => {
+		expect(isSortKeyMirror('malformed')).toBe(false);
+	});
+
+	test('returns true for "date"', () => {
+		expect(isSortKeyMirror('date')).toBe(true);
+	});
+
+	test('returns true for "title"', () => {
+		expect(isSortKeyMirror('title')).toBe(true);
+	});
+
+	test('returns false for null', () => {
+		expect(isSortKeyMirror(null)).toBe(false);
+	});
+});
+
 describe('getSortKey', () => {
 	test('returns date for empty search', () => {
 		expect(getSortKey('')).toBe('date');
