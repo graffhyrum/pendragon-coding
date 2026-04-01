@@ -111,6 +111,34 @@ h1, h2 {
     transition: box-shadow 0.3s ease;
 }
 
+/* 404 hero headings are decorative — exempt from the sticky section-anchor treatment.
+   Scoped selector (0,1,1) beats global h1/h2 (0,0,1) to override the unlayered rule. */
+.page-404-hero h1,
+.page-404-hero h2 {
+    background: transparent;
+    box-shadow: none;
+    position: static;
+    top: auto;
+    width: auto;
+    padding: 0;
+    margin-bottom: 1rem;
+    transition: none;
+    /* Restore readable colors overridden by global text-green-50 */
+    color: var(--color-green-700);
+}
+
+.page-404-hero h2 {
+    color: var(--color-gray-900);
+}
+
+.dark .page-404-hero h1 {
+    color: var(--color-green-400);
+}
+
+.dark .page-404-hero h2 {
+    color: var(--color-gray-100);
+}
+
 .content h3,
 .content h4,
 .content h5,
