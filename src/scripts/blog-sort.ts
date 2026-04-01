@@ -82,6 +82,11 @@ function announce(message: string): void {
 	});
 }
 
+/** Narrow an unknown attribute value to SortKey without casting. */
+function isSortKey(v: string | null): v is SortKey {
+	return v === 'date' || v === 'title';
+}
+
 /** Sort the post list DOM items in-place and announce the change. */
 export function applySort(key: SortKey, shouldAnnounce = false): void {
 	const list = document.getElementById(POST_LIST_ID);
@@ -104,7 +109,8 @@ export function applySort(key: SortKey, shouldAnnounce = false): void {
 		const buttons =
 			controls.querySelectorAll<HTMLButtonElement>('button[data-sort]');
 		for (const btn of buttons) {
-			const btnKey = btn.getAttribute('data-sort') as SortKey;
+			const btnKey = btn.getAttribute('data-sort');
+			if (!isSortKey(btnKey)) continue;
 			const isActive = btnKey === key;
 			btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
 			if (isActive) {
