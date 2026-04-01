@@ -21,7 +21,9 @@ const baseClasses = [
 	// Base styles
 	'outline-solid outline-2 outline-green-700',
 	'w-full m-4 p-5 rounded-xl',
-	'bg-gradient-to-br from-green-950/80 to-green-900/40',
+	// bg-green-950 provides a solid dark base so the semi-transparent gradient
+	// always renders on dark green, not the page body — ensures WCAG AA link contrast
+	'bg-green-950 bg-gradient-to-br from-green-950/80 to-green-900/40',
 
 	// Transitions
 	'transition-all duration-300',

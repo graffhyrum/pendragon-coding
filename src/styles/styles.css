@@ -158,6 +158,12 @@ p {
     @apply text-green-200 no-underline visited:text-green-300 hover:text-green-100 focus-visible:text-green-100;
 }
 
+/* Prose links inside .content areas (BlogCard dark card backgrounds).
+   Blue-300 achieves >= 7.5:1 contrast on the green-950 card base in both modes. */
+.content a {
+    @apply text-blue-300 dark:text-blue-300 visited:text-purple-300 visited:dark:text-purple-300 hover:text-blue-200 hover:dark:text-blue-200 focus-visible:text-blue-200 focus-visible:dark:text-blue-200;
+}
+
 .skill-category-list {
     @apply flex flex-col gap-1 list-none p-0 m-0;
 }
