@@ -67,8 +67,10 @@ function blendRgbaOverHex(base: string): string | null {
 
 // --- Load and parse the github-dark theme ---
 
-// Worktree agents share node_modules with the parent project.
-// Resolve up from .claude/worktrees/<id>/scripts/ to find node_modules.
+// This script was authored to run from inside a worktree at
+// .claude/worktrees/<id>/scripts/, where ../../../../ resolves to the project
+// root. Running it directly from scripts/ in the main checkout will fail.
+// To re-run: copy to a worktree or adjust the relative path below.
 const themePath = join(
 	import.meta.dir,
 	'../../../../node_modules/@shikijs/themes/dist/github-dark.mjs',
