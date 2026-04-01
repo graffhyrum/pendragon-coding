@@ -96,13 +96,44 @@ describe('getExcerpt', () => {
 		const plain = 'word '.repeat(42); // 42 * 5 = 210 chars (with trailing space)
 		const stripped = plain.trim(); // 209 chars
 		const result = getExcerpt(undefined, plain);
-		// Should be truncated since 209 > 200
+		// Word-boundary truncation: last space in first 200 chars is at index 199
+		// slice(0, 199) cuts just before that space → 39 complete words + 'word'
 		expect(result.endsWith('...')).toBe(true);
-		expect(result.slice(0, 200)).toBe(stripped.slice(0, 200));
+		expect(result).toBe(`${stripped.slice(0, 199)}...`);
 	});
 
 	test('handles underscore bold/italic variants', () => {
 		const body = 'This is __bold__ and _italic_ text.';
 		expect(getExcerpt(undefined, body)).toBe('This is bold and italic text.');
+	});
+
+	test('AC1: cuts at last complete word when prose exceeds 200 chars', () => {
+		// 'short ' repeated 31× = 186 chars; 'averylongword' from 186–198; space at 199; then overflow
+		const short = 'short '.repeat(31); // 186 chars, trailing space at index 185
+		const longWord = 'averylongword'; // 13 chars at indices 186–198
+		const tail = ' more words here that push it over'; // space at 199, ensures > 200
+		const body = short + longWord + tail;
+		const result = getExcerpt(undefined, body);
+		expect(result.endsWith('...')).toBe(true);
+		// Cut at last space in slice(0,200) = index 199; content = short + longWord (no trailing space)
+		expect(result).toBe(`${short + longWord}...`);
+	});
+
+	test('AC1 (simple): word-boundary cut leaves no mid-word suffix before ellipsis', () => {
+		// 'word ' × 39 = 195 chars; last char is space at index 194; 'toolongword' starts at 195
+		const prefix = 'word '.repeat(39); // 195 chars, trailing space at index 194
+		const body = `${prefix}toolongword extra content`; // 'toolongword' straddles the 200-char mark
+		const result = getExcerpt(undefined, body);
+		// Last space in slice(0,200) is at index 194; slice(0,194) = prefix without trailing space
+		expect(result).toBe(`${prefix.trimEnd()}...`);
+	});
+
+	test('AC4: trailing space at cut position is stripped before ellipsis', () => {
+		// Space at index 199 (the last position in the 200-char slice)
+		const body = `${'a'.repeat(199)} extra words that push past 200`;
+		const result = getExcerpt(undefined, body);
+		// lastIndexOf(' ') in slice(0,200) = 199; slice(0,199) = 'a'.repeat(199) — no trailing space
+		expect(result).toBe(`${'a'.repeat(199)}...`);
+		expect(result).not.toMatch(/ \.\.\./); // no space immediately before ellipsis
 	});
 });

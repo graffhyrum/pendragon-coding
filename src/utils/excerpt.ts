@@ -55,5 +55,14 @@ export function getExcerpt(
 		return source;
 	}
 
-	return `${source.slice(0, EXCERPT_LENGTH)}...`;
+	const sliced = source.slice(0, EXCERPT_LENGTH);
+	const lastSpace = sliced.lastIndexOf(' ');
+
+	// AC2: no space in first EXCERPT_LENGTH chars — fall back to character boundary
+	if (lastSpace === -1) {
+		return `${sliced}...`;
+	}
+
+	// AC1/AC4: cut at last word boundary, stripping the trailing space
+	return `${source.slice(0, lastSpace)}...`;
 }
