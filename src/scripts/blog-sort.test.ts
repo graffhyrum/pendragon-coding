@@ -143,6 +143,116 @@ describe('compareTitleAsc', () => {
 	});
 });
 
+// ── DOM tests using @happy-dom/global-registrator preload ─────────────────
+
+type HappyWindow = typeof window & {
+	happyDOM: { waitUntilComplete: () => Promise<void> };
+};
+
+/** Build a minimal blog DOM in the globally registered document. */
+function buildPreloadDom(): void {
+	document.body.innerHTML = `
+		<ul id="blog-post-list">
+			<li data-sort-date="2024-01-01" data-sort-title="Alpha">Alpha</li>
+			<li data-sort-date="2025-06-01" data-sort-title="Zeta">Zeta</li>
+			<li data-sort-date="2023-05-15" data-sort-title="Beta">Beta</li>
+		</ul>
+		<div id="blog-sort-controls">
+			<button data-sort="date">Date</button>
+			<button data-sort="title">Title</button>
+		</div>
+		<div id="blog-sort-announcement" aria-live="polite" aria-atomic="true"></div>
+	`;
+}
+
+/** Return text content of each blog post list item, in DOM order. */
+function preloadListOrder(): string[] {
+	return Array.from(
+		document.querySelectorAll<HTMLElement>('#blog-post-list li'),
+	).map((el) => el.textContent?.trim() ?? '');
+}
+
+describe('applySort (DOM via preload)', () => {
+	beforeEach(() => {
+		buildPreloadDom();
+	});
+
+	afterEach(() => {
+		// AC6: state isolation — reset DOM between tests
+		const list = document.getElementById('blog-post-list');
+		list?.removeAttribute('data-blog-sort-initialized');
+		document.body.innerHTML = '';
+	});
+
+	test('AC2: reorders list items in title-ascending (A-Z) order', () => {
+		applySort('title', false);
+		expect(preloadListOrder()).toEqual(['Alpha', 'Beta', 'Zeta']);
+	});
+
+	test('AC3: sets aria-pressed=true on title button and false on date button', () => {
+		applySort('title', false);
+		const titleBtn = document.querySelector<HTMLButtonElement>(
+			'button[data-sort="title"]',
+		);
+		const dateBtn = document.querySelector<HTMLButtonElement>(
+			'button[data-sort="date"]',
+		);
+		expect(titleBtn?.getAttribute('aria-pressed')).toBe('true');
+		expect(dateBtn?.getAttribute('aria-pressed')).toBe('false');
+	});
+
+	test('AC5: aria-live region contains announcement text after waitUntilComplete', async () => {
+		applySort('date', true);
+		await (window as unknown as HappyWindow).happyDOM.waitUntilComplete();
+		const liveRegion = document.getElementById('blog-sort-announcement');
+		expect(liveRegion?.textContent).toBe('Sorted by date, newest first');
+	});
+});
+
+describe('initBlogSort idempotency (DOM via preload)', () => {
+	beforeEach(() => {
+		buildPreloadDom();
+	});
+
+	afterEach(() => {
+		// AC6: state isolation
+		const list = document.getElementById('blog-post-list');
+		list?.removeAttribute('data-blog-sort-initialized');
+		document.body.innerHTML = '';
+	});
+
+	test('AC4: calling initBlogSort twice then clicking once sets aria-pressed=true on clicked button', async () => {
+		initBlogSort();
+		initBlogSort();
+
+		const titleBtn = document.querySelector<HTMLButtonElement>(
+			'button[data-sort="title"]',
+		);
+		titleBtn?.click();
+
+		await (window as unknown as HappyWindow).happyDOM.waitUntilComplete();
+
+		expect(titleBtn?.getAttribute('aria-pressed')).toBe('true');
+	});
+
+	test('AC4: double-init then single click does not duplicate aria-live announcement text', async () => {
+		initBlogSort();
+		initBlogSort();
+
+		const titleBtn = document.querySelector<HTMLButtonElement>(
+			'button[data-sort="title"]',
+		);
+		titleBtn?.click();
+
+		await (window as unknown as HappyWindow).happyDOM.waitUntilComplete();
+
+		const liveRegion = document.getElementById('blog-sort-announcement');
+		// If two click handlers fired, both rAF callbacks set same text; test exact match
+		// to catch any duplication-on-announcement side-effects
+		expect(liveRegion?.textContent).toBe('Sorted by title, A to Z');
+	});
+});
+
 // ── DOM-dependent tests using happy-dom ──────────────────────────────────────
 
 /** Build a minimal blog DOM inside the given document and return the list element. */
