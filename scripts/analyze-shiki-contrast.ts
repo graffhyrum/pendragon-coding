@@ -97,11 +97,12 @@ const lightBg = blendRgbaOverHex(GREEN_200)!;
 
 console.log(`Theme: ${theme.displayName} (${theme.name})`);
 console.log(`Dark bg (Shiki inline wins): ${darkBg}`);
-console.log(`Light bg (CSS pre rule wins, rgba(255,255,255,0.5) over ${GREEN_200}): ${lightBg}`);
+console.log(
+	`Light bg (CSS pre rule wins, rgba(255,255,255,0.5) over ${GREEN_200}): ${lightBg}`,
+);
 console.log('');
 
 // Collect all unique foreground colors with their scope names
-type ColorEntry = { color: string; scopes: string[] };
 const colorMap = new Map<string, string[]>(); // hex -> scope names
 
 for (const tc of theme.tokenColors) {
@@ -170,10 +171,13 @@ console.log('-'.repeat(120));
 
 for (const r of results) {
 	const darkStr = r.contrastDark !== null ? r.contrastDark.toFixed(2) : 'N/A';
-	const lightStr = r.contrastLight !== null ? r.contrastLight.toFixed(2) : 'N/A';
+	const lightStr =
+		r.contrastLight !== null ? r.contrastLight.toFixed(2) : 'N/A';
 	const darkFail = r.failsDark ? 'FAIL' : 'pass';
 	const lightFail = r.failsLight ? 'FAIL' : 'pass';
-	const scopeStr = r.scopes.slice(0, 3).join(', ') + (r.scopes.length > 3 ? ` (+${r.scopes.length - 3})` : '');
+	const scopeStr =
+		r.scopes.slice(0, 3).join(', ') +
+		(r.scopes.length > 3 ? ` (+${r.scopes.length - 3})` : '');
 	console.log(
 		`${r.color.padEnd(10)} | ${darkStr.padEnd(14)} | ${lightStr.padEnd(15)} | ${darkFail.padEnd(10)} | ${lightFail.padEnd(11)} | ${scopeStr}`,
 	);
@@ -188,12 +192,20 @@ console.log(
 	`Summary — Dark bg: ${darkFailCount} FAIL, ${darkPassCount} pass | Light bg: ${lightFailCount} FAIL, ${lightPassCount} pass`,
 );
 console.log('');
-console.log('=== Failing colors on DARK bg (Scenario 1 — Shiki inline bg wins) ===');
-for (const r of results.filter((r) => r.failsDark)) {
-	console.log(`  ${r.color}  ratio=${r.contrastDark?.toFixed(2)}  scopes: ${r.scopes.join(', ')}`);
+console.log(
+	'=== Failing colors on DARK bg (Scenario 1 — Shiki inline bg wins) ===',
+);
+for (const entry of results.filter((r) => r.failsDark)) {
+	console.log(
+		`  ${entry.color}  ratio=${entry.contrastDark?.toFixed(2)}  scopes: ${entry.scopes.join(', ')}`,
+	);
 }
 console.log('');
-console.log('=== Failing colors on LIGHT bg (Scenario 2 — CSS pre rule wins) ===');
-for (const r of results.filter((r) => r.failsLight)) {
-	console.log(`  ${r.color}  ratio=${r.contrastLight?.toFixed(2)}  scopes: ${r.scopes.join(', ')}`);
+console.log(
+	'=== Failing colors on LIGHT bg (Scenario 2 — CSS pre rule wins) ===',
+);
+for (const entry of results.filter((r) => r.failsLight)) {
+	console.log(
+		`  ${entry.color}  ratio=${entry.contrastLight?.toFixed(2)}  scopes: ${entry.scopes.join(', ')}`,
+	);
 }
