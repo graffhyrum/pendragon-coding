@@ -44,7 +44,7 @@ const blogSections = [
 <BaseLayout pageTitle={pageTitle}>
 	<div class="content-layout">
 		{showSidebar && <Sidebar sections={blogSections} />}
-		<div class="main-content">
+		<div class="main-content" hx-history="false">
 			<h2>{pageTitle}</h2>
 			<div class="text-xl">
 				<p>{description}</p>
