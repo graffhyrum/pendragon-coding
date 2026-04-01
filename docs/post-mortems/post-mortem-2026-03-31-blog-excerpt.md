@@ -99,9 +99,9 @@ This is a gap in acceptance criteria coverage, not a logic error.
 
 ## 4. Follow-up Items Created
 
-| Item | Type | Rationale |
-| ---- | ---- | --------- |
-| Word-boundary truncation | New bead (yellow) | Current truncation cuts at exactly 200 chars, potentially mid-word. Truncating at the last word boundary before the limit is a UX improvement. |
+| Item                     | Type              | Rationale                                                                                                                                                    |
+| ------------------------ | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Word-boundary truncation | New bead (yellow) | Current truncation cuts at exactly 200 chars, potentially mid-word. Truncating at the last word boundary before the limit is a UX improvement.               |
 | Setext heading stripping | New bead (yellow) | `stripMarkdown` handles ATX headings (`# Heading`) but not setext headings (underline style: `Heading\n=====`). Low-frequency in practice for this codebase. |
 
 ---
