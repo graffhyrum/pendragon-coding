@@ -204,6 +204,14 @@ export function initNavigation(): void {
 		}
 	});
 
+	// Re-apply sort state when HTMX restores a page from its history cache.
+	// Raw pushState changes (from blog-sort.ts) bypass HTMX's snapshot mechanism,
+	// so the restored URL may carry a ?sort= param that the cached DOM doesn't
+	// reflect. Re-calling initBlogSort reads the restored URL and reorders the list.
+	document.body.addEventListener('htmx:historyRestore', () => {
+		initBlogSort();
+	});
+
 	// Handle browser back/forward -- active links must update
 	window.addEventListener('popstate', () => {
 		updateActiveLinks(window.location.pathname);

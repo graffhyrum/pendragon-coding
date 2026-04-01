@@ -102,4 +102,23 @@ describe('initNavigation — htmx:afterSwap calls initBlogSort', () => {
 		// Default sort is date-desc: Zeta (2025), Alpha (2024), Beta (2023)
 		expect(listOrder(doc)).toEqual(['Zeta', 'Alpha', 'Beta']);
 	});
+
+	test('AC4: htmx:historyRestore calls initBlogSort — blog-post-list gets data-blog-sort-initialized', () => {
+		const doc = happyWindow.document as unknown as Document;
+		buildBlogDom(doc);
+
+		initNavigation();
+
+		// Confirm the list does not yet have the initialized attribute
+		const list = doc.getElementById('blog-post-list');
+		expect(list?.hasAttribute('data-blog-sort-initialized')).toBe(false);
+
+		// Dispatch htmx:historyRestore on document.body (HTMX fires it there)
+		doc.body.dispatchEvent(
+			new happyWindow.CustomEvent('htmx:historyRestore') as unknown as Event,
+		);
+
+		// initBlogSort should have run and marked the list as initialized
+		expect(list?.getAttribute('data-blog-sort-initialized')).toBe('true');
+	});
 });
