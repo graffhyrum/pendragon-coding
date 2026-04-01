@@ -31,17 +31,19 @@ Dispatched Ralph to clear the WCAG contrast queue. Three beads were closed auton
 
 ## Key Decisions
 
-| Decision | Rationale | Outcome |
-|----------|-----------|---------|
-| Let Ralph handle all three beads without grooming intervention | All beads were already groomed; queue was clean | All three closed successfully |
+| Decision                                                       | Rationale                                          | Outcome                        |
+| -------------------------------------------------------------- | -------------------------------------------------- | ------------------------------ |
+| Let Ralph handle all three beads without grooming intervention | All beads were already groomed; queue was clean    | All three closed successfully  |
 | Fix changeset quote drift in /done rather than creating a bead | Mechanical one-line fix, no design judgment needed | Fixed inline, no bead overhead |
 
 ## Lessons Learned
 
 ### Applicable Everywhere
+
 - Spike beads doing enumeration work may need a longer timeout than the default 15-minute ceiling — they legitimately require reading many files before producing output.
 
 ### Specific to This Work
+
 - The Shiki contrast investigation confirmed that CSS `::highlight()` overrides are the correct remediation path (Option A), and that only the comment token needed fixing — already done. The remaining two failing token types (`carriage-return`, `markup.ignored`) are not reachable from Astro's blog pages.
 
 ## Remediation

@@ -1,5 +1,5 @@
 ---
-"pendragon-coding": patch
+'pendragon-coding': patch
 ---
 
 fix(a11y): blog sort button and prose link contrast for WCAG AA

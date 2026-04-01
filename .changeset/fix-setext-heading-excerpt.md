@@ -1,5 +1,5 @@
 ---
-"pendragon-coding": patch
+'pendragon-coding': patch
 ---
 
 fix(excerpt): strip setext-style headings in blog excerpt markdown stripper

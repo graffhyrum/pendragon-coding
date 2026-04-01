@@ -1,5 +1,5 @@
 ---
-"pendragon-coding": patch
+'pendragon-coding': patch
 ---
 
 fix(excerpt): word-boundary truncation in blog excerpt utility
