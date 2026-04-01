@@ -136,4 +136,32 @@ describe('getExcerpt', () => {
 		expect(result).toBe(`${'a'.repeat(199)}...`);
 		expect(result).not.toMatch(/ \.\.\./); // no space immediately before ellipsis
 	});
+
+	describe('setext headings (x9f)', () => {
+		test('AC1: strips setext heading with === underline', () => {
+			const body = 'My Heading\n==========\n\nBody text here.';
+			expect(getExcerpt(undefined, body)).toBe('Body text here.');
+		});
+
+		test('AC2: strips setext heading with --- underline', () => {
+			const body = 'My Heading\n----------\n\nBody text here.';
+			expect(getExcerpt(undefined, body)).toBe('Body text here.');
+		});
+
+		test('AC3: strips mix of ATX and setext headings', () => {
+			const body =
+				'# ATX Heading\n\nSetext Heading\n==============\n\nBody text.';
+			expect(getExcerpt(undefined, body)).toBe('ATX Heading Body text.');
+		});
+
+		test('AC4: preserves body text following setext heading', () => {
+			const body = 'The Title\n=========\n\nThis is the body text.';
+			expect(getExcerpt(undefined, body)).toBe('This is the body text.');
+		});
+
+		test('AC5: strips standalone --- as horizontal rule not setext underline', () => {
+			const body = 'Before.\n\n---\n\nAfter.';
+			expect(getExcerpt(undefined, body)).toBe('Before. After.');
+		});
+	});
 });

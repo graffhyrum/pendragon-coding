@@ -20,6 +20,9 @@ function stripMarkdown(markdown: string): string {
 			.replace(/<[^>]+>/g, '')
 			// Remove headings (# ## ### etc.)
 			.replace(/^#{1,6}\s+/gm, '')
+			// Remove setext headings (heading text followed by === or --- underline)
+			// Must run before horizontal rules so the heading text is removed along with the underline
+			.replace(/^.+\n(?:=+|-+)[ \t]*$/gm, '')
 			// Remove blockquote markers
 			.replace(/^>\s*/gm, '')
 			// Remove horizontal rules
