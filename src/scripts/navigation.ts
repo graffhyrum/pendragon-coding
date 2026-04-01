@@ -6,6 +6,7 @@
  * Idempotent -- safe to call multiple times (e.g. on htmx:afterSwap).
  */
 
+import { initBlogSort } from './blog-sort';
 import { initSidebar } from './sidebar';
 import { initTagFilter } from './tag-filter';
 
@@ -199,6 +200,7 @@ export function initNavigation(): void {
 			updateActiveLinks(window.location.pathname);
 			initSidebar();
 			initTagFilter();
+			initBlogSort();
 		}
 	});
 
