@@ -108,10 +108,10 @@ export function applySort(key: SortKey, shouldAnnounce = false): void {
 			const isActive = btnKey === key;
 			btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
 			if (isActive) {
-				btn.classList.add('bg-green-600', 'text-white');
+				btn.classList.add('bg-green-800', 'text-green-50');
 				btn.classList.remove('bg-green-900', 'text-green-300');
 			} else {
-				btn.classList.remove('bg-green-600', 'text-white');
+				btn.classList.remove('bg-green-800', 'text-green-50');
 				btn.classList.add('bg-green-900', 'text-green-300');
 			}
 		}
