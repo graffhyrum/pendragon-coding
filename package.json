@@ -19,7 +19,8 @@
 		"test:watch": "bun test --watch",
 		"test:coverage": "bun test --coverage",
 		"test:contrast": "bunx playwright test",
-		"vet": "bun typecheck && bun check && bun test"
+		"security": "bun audit",
+		"vet": "bun typecheck && bun check && bun test && bun audit --ignore GHSA-mh29-5h37-fv8m"
 	},
 	"dependencies": {
 		"@astrojs/check": "^0.9.8"
