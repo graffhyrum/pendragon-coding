@@ -13,6 +13,9 @@ const SORT_CONTROLS_ID = 'blog-sort-controls';
 const INITIALIZED_ATTR = 'data-blog-sort-initialized';
 const LIVE_REGION_ID = 'blog-sort-announcement';
 
+const ACTIVE_BUTTON_CLASSES = ['bg-green-800', 'text-green-50'] as const;
+const INACTIVE_BUTTON_CLASSES = ['bg-green-900', 'text-green-300'] as const;
+
 const SORT_ANNOUNCEMENTS: Record<SortKey, string> = {
 	date: 'Sorted by date, newest first',
 	title: 'Sorted by title, A to Z',
@@ -126,11 +129,11 @@ function updateButtonStates(controls: HTMLElement, key: SortKey): void {
 		const isActive = btnKey === key;
 		btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
 		if (isActive) {
-			btn.classList.add('bg-green-800', 'text-green-50');
-			btn.classList.remove('bg-green-900', 'text-green-300');
+			btn.classList.add(...ACTIVE_BUTTON_CLASSES);
+			btn.classList.remove(...INACTIVE_BUTTON_CLASSES);
 		} else {
-			btn.classList.remove('bg-green-800', 'text-green-50');
-			btn.classList.add('bg-green-900', 'text-green-300');
+			btn.classList.remove(...ACTIVE_BUTTON_CLASSES);
+			btn.classList.add(...INACTIVE_BUTTON_CLASSES);
 		}
 	}
 }
