@@ -1,5 +1,99 @@
 # pendragon-coding
 
+## 2.7.0
+
+### Minor Changes
+
+- b125efa: Add breadcrumb navigation component for multi-level page context (Home > Blog > Article Title)
+- d90e7c4: feat: add visual system design tokens for shadows, transitions, and easing
+
+  - Define shadow presets (card, card-hover, heading, glow-green) in Tailwind v4 @theme block
+  - Define transition duration scale (fast/normal/slow) and easing curves (default/in-out/spring)
+  - Mirror tokens in tailwind.config.js extend for editor intellisense support
+
+- 74b4c32: Add Playwright-based WCAG AA contrast regression tests using axe-core. Tests 8 pages in both light and dark mode (16 test cases). Includes Playwright config, scoped tsconfig for Playwright types, and test:contrast npm script.
+- d6bd63b: refactor: deepen frontend architecture — extract utilities, fix bugs, consolidate components
+
+  - Extract shared slug utility (toSlug) from 4 duplicated implementations, fixing a regex ordering bug in CollectionPageLayout
+  - Consolidate 4 duplicate component pairs (Card, Skill, Skills, Navigation) into canonical locations
+  - Merge HTMX attributes and active-page detection into Navigation (was missing from live site)
+  - Fix Card responsive sizing with min() wrapper to prevent mobile overflow
+  - Fix sidebar dark mode bug: convert from broken @media prefers-color-scheme to class-based dark: utilities
+  - Extract sidebar client script to standalone module with htmx:afterSwap support
+  - Add theme contract constants with sync guard tests for inline scripts
+  - Extract shared layout CSS from duplicate style blocks
+  - Delete dead STYLING_CONFIG (zero imports)
+
+- 18a19c7: Add visual feedback for HTMX navigation: loading indicator, error toasts, active link updates after swap, fade transitions, and scroll-to-top
+- e1214be: Preserve sidebar in HTMX navigation: API partials now include the sidebar fragment so navigating between sidebar pages via HTMX keeps the section navigation visible. Fixes gist embed regression by introducing ContentKind type to distinguish testimonial blockquote rendering from default card rendering.
+
+### Patch Changes
+
+- 0b7183e: fix: exclude e2e tests from default `bun test` run
+
+  E2E tests require a running preview server and now only run when
+  explicitly targeted. Unit tests run cleanly via `bun test` and `bun vet`.
+
+- 741c97c: fix: resolve remaining WCAG AA contrast violations on 404 page in both light and dark modes
+- e2ffb40: fix: 404 page heading text contrast — ensure h2 "Page Not Found" uses gray-900/gray-100 for WCAG AA compliance in both light and dark modes
+- bc17a2c: fix(a11y): blog sort button and prose link contrast for WCAG AA
+
+  - Sort button active state: `bg-green-600 text-white` (3.21:1) → `bg-green-800 text-green-50` (passes 4.5:1) in both light and dark modes
+  - `.content a` prose links: `text-blue-300` in light mode (1.5:1 on bg-green-200) → `text-blue-700` (passes 4.5:1); dark mode stays `text-blue-300`
+  - Closes pendragon-coding-we9: all 16 axe-core contrast audit tests pass across 8 pages × 2 modes
+
+- 8ad3546: fix(blog-sort): add initBlogSort to htmx:afterSwap init chain so sort controls work after HTMX navigation
+- 396dcf2: fix(blog-sort): replace unsound SortKey cast with isSortKey type predicate
+
+  Adds a private `isSortKey` type predicate to guard `applySort`'s button
+  iteration loop, replacing the unsafe `as SortKey` cast. Buttons with
+  unrecognised `data-sort` attribute values are now skipped rather than
+  silently indexing `SORT_ANNOUNCEMENTS` with `undefined`.
+
+- 85f9617: fix(blog-sort): guard popstate handler registration against duplicate calls
+
+  Move popstate listener inside the INITIALIZED_ATTR guard so that calling
+  initBlogSort() multiple times (e.g. on htmx:afterSwap on the same element)
+  does not accumulate duplicate handlers. Adds DOM integration tests using
+  happy-dom covering AC1 (double-init does not double-fire) and AC2 (popstate
+  applies sort from URL on single init).
+
+  Closes pendragon-coding-0yf
+
+- a9e3bc7: fix: BlogLayout date text contrast — replace text-green-400 (1.44:1 on light background) with text-green-900 dark:text-green-400 achieving >= 4.5:1 WCAG AA in both light and dark modes
+- d4f6bab: fix: card-internal date/role text contrast — upgrade role text from text-green-300 to text-green-200 and description text from text-green-300/80 to text-green-200 in ContentCard.astro to eliminate semi-transparent text and ensure WCAG AA contrast on both light and dark modes
+- 004701f: fix: card background solid base and prose link contrast for WCAG AA — add bg-green-950 solid base to Card so semi-transparent gradient always renders on dark green; add .content a rule with blue-300 text achieving >=7.5:1 contrast on card backgrounds in both light and dark modes
+- 49c7e26: Coordinate sort URL pushState with HTMX history: add htmx:historyRestore listener in navigation.ts to re-apply sort state on HTMX back/forward restores, and add hx-history="false" to the CollectionPageLayout main-content wrapper to prevent stale sorted DOM snapshots being cached.
+- a3dff36: fix(excerpt): strip setext-style headings in blog excerpt markdown stripper
+
+  ATX headings (`# Heading`) were already stripped but setext headings (heading text
+  followed by `===` or `---` underlines) were not. The horizontal-rule regex was
+  stripping the underline while leaving the heading text orphaned. A new regex runs
+  before the horizontal-rule step to remove the heading text and its underline together.
+
+- 1ef1801: fix: override Shiki github-dark comment token color for WCAG AA contrast
+
+  Lightens comment token #6a737d to #8b949e on github-dark bg #24292e,
+  achieving a 4.77:1 contrast ratio (WCAG AA requires 4.5:1).
+
+- 729f26c: fix: improve sidebar content-link contrast from green-700 to green-800 for WCAG AA compliance on /myWork/ page
+- 8e23770: fix: theme toggle moon icon contrast in dark mode — add aria-hidden="true" to sun and moon SVG icons in ThemeToggle.astro; icons are decorative (button carries aria-label and aria-checked), marking them hidden removes them from axe-core contrast checks and correctly signals their presentational role
+- 429b417: fix(excerpt): word-boundary truncation in blog excerpt utility
+
+  `getExcerpt` now cuts at the last complete word at or before 200 characters
+  instead of slicing at byte boundary. Falls back to character-boundary cut
+  when the first 200 characters contain no space. Trailing space at the cut
+  position is stripped before appending the ellipsis.
+
+- fc77431: Improve header layout responsiveness: stack vertically on mobile, show headshot at all breakpoints, responsive font sizes, and touch-friendly nav tap targets (min 48px)
+- ab5582d: fix: remove dark-mode text-shadow from ContentWithSidebarLayout
+
+  Removes the `html.dark body { text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }` block from
+  ContentWithSidebarLayout that was missed when the same rule was removed from BaseLayout.
+  Bookshelf, MyWork, Shoutouts, and Testimonials pages now render sharp text in dark mode.
+
+- 2bf37e3: Fix WCAG AA color contrast violations across multiple components in light mode: h1/h2 headings on green-800 background, card-internal h3 headings and date/role text on dark gradient backgrounds, sidebar link colors and active states, BlogPostLayout date text, and skill category card opacity and text colors.
+
 ## 2.6.1
 
 ### Patch Changes
@@ -63,6 +157,7 @@
   Implemented a theme toggle component that allows users to switch between light and dark modes with a smooth sliding animation. The theme preference is persisted in localStorage and respects system preferences on first visit.
 
   **New Features:**
+
   - Theme toggle button with sliding animation positioned at the right edge of the header
   - Sun and moon icons that smoothly transition based on the selected theme
   - localStorage persistence to remember user's theme preference across sessions
@@ -70,6 +165,7 @@
   - Smooth color transitions throughout the site when switching themes (300ms duration)
 
   **Improvements:**
+
   - Light mode uses a clean gray-50 background with dark text for improved readability during daytime
   - Dark mode maintains the existing green-950 background with light text optimized for low-light environments
   - Navigation underlines adapt to theme: green-600 in light mode, green-400 in dark mode
@@ -77,6 +173,7 @@
   - Accessible implementation with proper ARIA attributes and keyboard focus states
 
   **Technical Details:**
+
   - Created ThemeToggle.astro component with inline script for theme management
   - Configured Tailwind CSS with class-based dark mode strategy
   - Added tailwind.config.js with dark mode enabled
@@ -88,12 +185,14 @@
 
 - e5e448b: Add Bun test runner tooling to the project. Includes test scripts in package.json (test, test:watch, test:coverage), example test file demonstrating Bun's test syntax, and updated documentation in CLAUDE.md with testing commands and conventions.
 - b090c8e: Add GitHub Action for opencode integration on issue comments
+
   - Add .github/workflows/opencode.yml to enable opencode AI assistance
   - Triggers on issue comments containing '/oc' or '/opencode' commands
   - Uses sst/opencode/github action with opencode/big-pickle model
   - Includes proper permissions for repository access
 
 - 201f90b: Migrate blog and testimonials to Astro Content Collections API
+
   - Create content config with Zod schemas for type safety
   - Move markdown files from pages to content directory
   - Standardize blog dates to ISO format
@@ -105,6 +204,7 @@
 
 - 930f48e: Add article on DORA metrics misuse to bookshelf
 - b090c8e: Refactor testimonials to use ContentSection component like myWork page
+
   - Convert testimonials from Astro Content Collections to static TypeScript data file
   - Update testimonials page to use ContentContainer and BaseLayout instead of CollectionPageLayout
   - Remove individual testimonial markdown files and dynamic routing
@@ -126,6 +226,7 @@
   This release introduces a modern navigation system using HTMX that provides a single-page application experience while maintaining progressive enhancement and SEO-friendly fallbacks.
 
   **New Features:**
+
   - HTMX-powered navigation that swaps content without full page reloads
   - Smooth transitions between pages using HTMX's built-in transition system
   - Browser history and URL preservation with `hx-push-url`
@@ -133,18 +234,21 @@
   - Progressive enhancement: navigation works with and without JavaScript
 
   **Improvements:**
+
   - Fixed animation stutter by eliminating conflicting CSS animations during HTMX transitions
   - Added `noAnimation` prop system to Skills and Skill components for conditional animation control
   - Faster page navigation with reduced bandwidth usage (only content updates, not full page)
   - Maintained SEO compatibility with full-page fallbacks for search engine crawlers
 
   **Code Quality Refactors:**
+
   - Refactored Navigation component to use data-driven link array, reducing code from ~93 lines to ~38 lines
   - Extracted HTMX configuration into reusable constants for maintainability
   - Created ApiContentLayout wrapper to eliminate duplication across API endpoints
   - Improved code maintainability: adding/removing navigation links now requires only updating the data array
 
   **Technical Details:**
+
   - Navigation links use `hx-get`, `hx-target`, `hx-swap`, and `hx-push-url` attributes
   - Original page routes remain unchanged for direct access and SEO
   - API endpoints share components with full pages, ensuring consistency

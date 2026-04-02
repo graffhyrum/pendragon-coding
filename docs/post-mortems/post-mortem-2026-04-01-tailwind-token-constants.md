@@ -10,6 +10,7 @@ Bead pendragon-coding-cuw extracted two inline Tailwind class string groups (`bg
 ## Bead Outcomes
 
 <!-- From: br diff (Phase 0c) -->
+
 - Closed: pendragon-coding-cuw
 - Opened: pendragon-coding-3jb (deferred test coverage gap)
 - Modified: none
@@ -33,11 +34,11 @@ Bead pendragon-coding-cuw extracted two inline Tailwind class string groups (`bg
 
 ## Key Decisions
 
-| Decision | Rationale | Outcome |
-|----------|-----------|---------|
-| `as const` on tuple arrays | Preserves literal types so TypeScript tracks the exact token strings, not `string[]` | Correct — spread accepts `readonly string[]` without widening |
-| Defer classList.contains test coverage | Gap is real but low-risk for this tiny bead; creating pendragon-coding-3jb keeps the scope tight | Acceptable — bead created, risk is tracked |
-| Module-scope constants (not exported) | These tokens are an implementation detail of `updateButtonStates`; no external consumer needs them | Correct — keeps the module API surface minimal |
+| Decision                               | Rationale                                                                                          | Outcome                                                       |
+| -------------------------------------- | -------------------------------------------------------------------------------------------------- | ------------------------------------------------------------- |
+| `as const` on tuple arrays             | Preserves literal types so TypeScript tracks the exact token strings, not `string[]`               | Correct — spread accepts `readonly string[]` without widening |
+| Defer classList.contains test coverage | Gap is real but low-risk for this tiny bead; creating pendragon-coding-3jb keeps the scope tight   | Acceptable — bead created, risk is tracked                    |
+| Module-scope constants (not exported)  | These tokens are an implementation detail of `updateButtonStates`; no external consumer needs them | Correct — keeps the module API surface minimal                |
 
 ## Lessons Learned
 
@@ -53,14 +54,15 @@ Bead pendragon-coding-cuw extracted two inline Tailwind class string groups (`bg
 
 ### Remediation Hierarchy (mandatory)
 
-| Tier | Mechanism | Properties | Example |
-|------|-----------|------------|---------|
-| 1 | **Hook** (PreToolUse / PostToolUse) | Deterministic, zero context cost, always fires | Block `br close` without commits |
-| 2 | **Script** (shell/TS in .claude/scripts/) | Deterministic, invoked by hooks or commands | Validate worktree scope |
-| 3 | **Skill/command update** | Loaded on demand, structured workflow | Add Phase 0 check to bead-cycle |
-| 4 | **CLAUDE.md rule** | Non-deterministic, always-loaded context cost | Last resort only |
+| Tier | Mechanism                                 | Properties                                     | Example                          |
+| ---- | ----------------------------------------- | ---------------------------------------------- | -------------------------------- |
+| 1    | **Hook** (PreToolUse / PostToolUse)       | Deterministic, zero context cost, always fires | Block `br close` without commits |
+| 2    | **Script** (shell/TS in .claude/scripts/) | Deterministic, invoked by hooks or commands    | Validate worktree scope          |
+| 3    | **Skill/command update**                  | Loaded on demand, structured workflow          | Add Phase 0 check to bead-cycle  |
+| 4    | **CLAUDE.md rule**                        | Non-deterministic, always-loaded context cost  | Last resort only                 |
 
 For the "missing value-pinning test on constant extraction" pattern:
+
 - **Tier 3 is sufficient** — the `bead-cycle` skill's expert-review phase already catches this at yellow confidence. The lesson is already in the workflow; it just needs to be internalized. A cm-rule is appropriate to inject this reminder in future extraction sessions.
 - No hook or script can mechanically enforce "write a test for the value of this constant" — it is a semantic coupling that requires intent.
 
@@ -72,6 +74,7 @@ For the "missing value-pinning test on constant extraction" pattern:
 ### Skill Coverage
 
 <!-- From: ms suggest --machine --cwd . (Phase 0e) -->
+
 Skills relevant to this session: api-integrations, github-cli, data-patterns (low confidence; none closely match this domain)
 Skills actually loaded: post-mortem
 Gap: no highly-relevant skill suggested for "extract Tailwind tokens to constants" — expected, this is a small mechanical refactor
