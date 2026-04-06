@@ -19,8 +19,10 @@
 		"test:watch": "bun test --watch",
 		"test:coverage": "bun test --coverage",
 		"test:contrast": "bunx playwright test",
+		"test:e2e": "bunx playwright test",
 		"security": "bun audit",
-		"vet": "bun typecheck && bun check && bun test && bun audit"
+		"fastvet": "bun typecheck && bun check && bun test && bun audit",
+		"vet": "bun fastvet && bun test:e2e"
 	},
 	"dependencies": {
 		"@astrojs/check": "^0.9.8"
