@@ -6,9 +6,9 @@ export default defineConfig({
 	testMatch: '**/*.spec.ts',
 	use: {
 		baseURL,
-		trace:'on'
+		trace: 'on',
 	},
-	reporter:[['html', {open: 'never'}], ['list']],
+	reporter: [['html', { open: 'never' }], ['list']],
 	webServer: {
 		command: 'bun run build && bun run preview',
 		url: baseURL,
