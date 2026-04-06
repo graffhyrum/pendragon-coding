@@ -11,7 +11,8 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
-
+/test-results/
+/playwright-report/
 
 # environment variables
 .env
@@ -35,6 +36,9 @@ webP.sh
 .claude/
 documents/post-mortem-*
 human_todo.md
+/handoff.md
+.specstory/
+docs/post-mortems/
 
 # bv (beads viewer) local config and caches
 .bv/
@@ -42,5 +46,4 @@ human_todo.md
 # Beads database files
 .dolt/
 *.db
-/handoff.md
-/test-results/.last-run.json
+
