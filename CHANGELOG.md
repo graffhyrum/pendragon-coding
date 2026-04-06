@@ -1,5 +1,14 @@
 # pendragon-coding
 
+## 2.7.1
+
+### Patch Changes
+
+- Restore the `@axe-core/playwright` typing patch so `bun typecheck` succeeds reliably with current Playwright resolution.
+- 453eadb: Improve Playwright test observability with shared base URL constant, always-on traces, and deterministic HTML/list reporting.
+- 2f98478: Harden dependency resolution by enforcing safer override versions and run full audit in `vet` without an ignored advisory.
+- eb520b1: Clean repository docs and local-ignore rules by removing obsolete agent guidance and ignoring generated test/report artifacts.
+
 ## 2.7.0
 
 ### Minor Changes
