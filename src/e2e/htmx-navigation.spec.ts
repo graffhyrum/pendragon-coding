@@ -13,9 +13,16 @@
  *
  * Requires: bun run build && bun run preview
  */
-import { expect, test } from '@playwright/test';
+import { expect, type Page, test } from '@playwright/test';
 
 const SIDEBAR_SELECTOR = 'aside[aria-label="Section navigation"]';
+const MY_WORK_LINK_NAME = 'My Work';
+
+const myWorkNavLink = (page: Page) =>
+	page.locator('header nav').getByRole('link', {
+		name: MY_WORK_LINK_NAME,
+		exact: true,
+	});
 
 test.describe('HTMX navigation to sidebar page', () => {
 	test('sidebar appears after navigating from home to My Work', async ({
@@ -27,7 +34,7 @@ test.describe('HTMX navigation to sidebar page', () => {
 		await expect(page.locator(SIDEBAR_SELECTOR)).not.toBeAttached();
 
 		// Click My Work nav link (triggers HTMX swap)
-		await page.getByRole('link', { name: 'My Work' }).click();
+		await myWorkNavLink(page).click();
 
 		// Sidebar becomes visible — serves as synchronization point
 		await expect(page.locator(SIDEBAR_SELECTOR)).toBeVisible();
@@ -37,7 +44,7 @@ test.describe('HTMX navigation to sidebar page', () => {
 		page,
 	}) => {
 		await page.goto('/');
-		await page.getByRole('link', { name: 'My Work' }).click();
+		await myWorkNavLink(page).click();
 
 		// Wait for sidebar as sync point
 		await expect(page.locator(SIDEBAR_SELECTOR)).toBeVisible();
@@ -80,7 +87,7 @@ test.describe('browser back/forward', () => {
 		await page.goto('/');
 
 		// Navigate to My Work via HTMX
-		await page.getByRole('link', { name: 'My Work' }).click();
+		await myWorkNavLink(page).click();
 		await expect(page.locator(SIDEBAR_SELECTOR)).toBeVisible();
 
 		// Go back
