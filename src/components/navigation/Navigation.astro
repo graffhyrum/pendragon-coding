@@ -9,15 +9,16 @@ const currentPath = Astro.url.pathname;
 	<ul class="flex flex-wrap items-start justify-center sm:justify-start p-0 *:px-3 text-lg gap-2" role="list">
 		{NAVIGATION_CONFIG.links.map(({ href, api, label }) => {
 			const isActive = isRouteActive(href, currentPath);
+			const useHtmx = href !== '/myWork/';
 			return (
 				<li class="relative group">
 					<a
 						href={href}
-						hx-get={api}
-						hx-target={NAVIGATION_CONFIG.htmx.target}
-						hx-swap={NAVIGATION_CONFIG.htmx.swap}
-						hx-push-url={href}
-						hx-request='{"timeout": 10000}'
+						hx-get={useHtmx ? api : undefined}
+						hx-target={useHtmx ? NAVIGATION_CONFIG.htmx.target : undefined}
+						hx-swap={useHtmx ? NAVIGATION_CONFIG.htmx.swap : undefined}
+						hx-push-url={useHtmx ? href : undefined}
+						hx-request={useHtmx ? '{"timeout": 10000}' : undefined}
 						aria-current={isActive ? 'page' : undefined}
 						class={`relative inline-block py-3 sm:py-1 min-h-[48px] flex items-center ${isActive ? 'font-semibold text-green-900 dark:text-green-300' : ''}`}>
 						{label}

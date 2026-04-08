@@ -40,19 +40,15 @@ test.describe('HTMX navigation to sidebar page', () => {
 		await expect(page.locator(SIDEBAR_SELECTOR)).toBeVisible();
 	});
 
-	test('gist script tags are present after HTMX navigation', async ({
-		page,
-	}) => {
+	test('gists render after HTMX navigation', async ({ page }) => {
 		await page.goto('/');
 		await myWorkNavLink(page).click();
 
 		// Wait for sidebar as sync point
 		await expect(page.locator(SIDEBAR_SELECTOR)).toBeVisible();
 
-		// Gist scripts should be attached in the DOM (not visible — they're script tags)
-		await expect(
-			page.locator('script[src*="gist.github.com"]').first(),
-		).toBeAttached();
+		// Gist embed should be rendered, not just script tag presence.
+		await expect(page.locator('.gist').first()).toBeVisible();
 	});
 });
 

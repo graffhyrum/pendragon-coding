@@ -34,8 +34,7 @@ function isLinkActive(linkHref: string, currentPath: string): boolean {
 
 /** Update aria-current, active classes, and underline on all nav links */
 function updateActiveLinks(currentPath: string): void {
-	const navLinks =
-		document.querySelectorAll<HTMLAnchorElement>('nav a[hx-get]');
+	const navLinks = document.querySelectorAll<HTMLAnchorElement>('nav a[href]');
 	for (const link of navLinks) {
 		const href =
 			link.getAttribute('hx-push-url') ?? link.getAttribute('href') ?? '';
@@ -87,7 +86,7 @@ function retryLastRequest(): void {
 	document.querySelector('.nav-error-toast')?.remove();
 	// Re-issue the request via htmx's JS API
 	(
-		window as unknown as {
+		globalThis as unknown as {
 			htmx: { ajax: (method: string, url: string, target: string) => void };
 		}
 	).htmx.ajax('GET', url, MAIN_CONTENT_SELECTOR);
@@ -130,7 +129,7 @@ function showErrorToast(message: string): void {
 	document.body.append(toast);
 
 	// Trigger reflow so CSS transition activates
-	void toast.offsetHeight;
+	const _ = toast.offsetHeight;
 	toast.classList.add('visible');
 
 	setTimeout(() => {
@@ -150,7 +149,7 @@ function scrollMainToTop(): void {
 export function initNavigation(): void {
 	// Active link update after HTMX pushes URL into history
 	document.body.addEventListener('htmx:pushedIntoHistory', () => {
-		updateActiveLinks(window.location.pathname);
+		updateActiveLinks(globalThis.location.pathname);
 	});
 
 	// Loading indicator
@@ -197,7 +196,7 @@ export function initNavigation(): void {
 		const target = (evt as CustomEvent).detail?.target;
 		if (target?.id === 'main-content') {
 			scrollMainToTop();
-			updateActiveLinks(window.location.pathname);
+			updateActiveLinks(globalThis.location.pathname);
 			initSidebar();
 			initTagFilter();
 			initBlogSort();
@@ -213,7 +212,7 @@ export function initNavigation(): void {
 	});
 
 	// Handle browser back/forward -- active links must update
-	window.addEventListener('popstate', () => {
-		updateActiveLinks(window.location.pathname);
+	globalThis.addEventListener('popstate', () => {
+		updateActiveLinks(globalThis.location.pathname);
 	});
 }
