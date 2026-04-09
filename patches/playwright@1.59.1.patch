@@ -1,0 +1,21 @@
+--- a/lib/reporters/html.js
++++ b/lib/reporters/html.js
+@@ -170,6 +170,9 @@
+     return true;
+   return void 0;
+ }
++function escapeClosingScriptTag(text) {
++  return text.replace(/<\/script/gi, "<\\/script");
++}
+ function standaloneDefaultFolder() {
+   return reportFolderFromEnv() ?? (0, import_util.resolveReporterOutputPath)("playwright-report", process.cwd(), void 0);
+ }
+@@ -325,7 +328,7 @@
+         import_fs.default.promises.readFile(import_path.default.join(appFolder, "report.js"), "utf-8"),
+         import_fs.default.promises.readFile(import_path.default.join(appFolder, "report.css"), "utf-8")
+       ]);
+-      html = html.replace(/<script type="module"[^>]*><\/script>/, () => `<script type="module">${js}</script>`);
++      html = html.replace(/<script type="module"[^>]*><\/script>/, () => `<script type="module">${escapeClosingScriptTag(js)}</script>`);
+       html = html.replace(/<link rel="stylesheet"[^>]*>/, () => `<style type='text/css'>${css}</style>`);
+       await import_fs.default.promises.writeFile(reportIndexFile, html);
+     }
