@@ -34,7 +34,7 @@
 		"@happy-dom/global-registrator": "^20.8.9",
 		"@playwright/test": "^1.59.1",
 		"@types/bun": "^1.3.11",
-		"@typescript/native-preview": "^7.0.0-dev.20260409.1",
+		"@typescript/native-preview": "^7.0.0-dev.20260410.1",
 		"astro": "^6.1.5",
 		"caniuse-lite": "^1.0.30001787",
 		"happy-dom": "^20.8.9",
@@ -54,7 +54,6 @@
 		"yaml": ">=2.8.3"
 	},
 	"patchedDependencies": {
-		"@axe-core/playwright@4.11.1": "patches/@axe-core%2Fplaywright@4.11.1.patch",
-		"playwright@1.59.1": "patches/playwright@1.59.1.patch"
+		"@axe-core/playwright@4.11.1": "patches/@axe-core%2Fplaywright@4.11.1.patch"
 	}
 }
