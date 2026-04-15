@@ -13,12 +13,6 @@ const blog = defineCollection({
 	}),
 });
 
-const testimonials = defineCollection({
-	loader: glob({ pattern: 'testimonials.ts', base: './src/content' }),
-	schema: z.object({}).optional(),
-});
-
 export const collections = {
 	blog,
-	testimonials,
 };
