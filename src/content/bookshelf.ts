@@ -266,18 +266,18 @@ const content: ContentTemplate = {
 							href: 'https://userjot.com/blog/best-practices-building-agentic-ai-systems',
 						},
 					],
-description:
-					'I found a lot of value from this article. Hopefully it doesn\'t age out in 3 months.',
-			},
-			{
-				title: 'OxygenPDF',
-				link: [
-					{
-						href: 'https://oxygenpdf.com/',
-					},
-				],
-				description: 'Free online PDF editor and merger.',
-			},
+					description:
+						"I found a lot of value from this article. Hopefully it doesn't age out in 3 months.",
+				},
+				{
+					title: 'OxygenPDF',
+					link: [
+						{
+							href: 'https://oxygenpdf.com/',
+						},
+					],
+					description: 'Free online PDF editor and merger.',
+				},
 			],
 		},
 		{
