@@ -5,6 +5,7 @@ import { readingTime } from '../utils/reading-time';
 import Card from './ui/Card.astro';
 
 const { entry } = Astro.props;
+const slug = toSlug(entry.data.title);
 const excerpt = getExcerpt(entry.data.description, entry.body);
 const tags: string[] = entry.data.tags ?? [];
 // Serialise tags for the <li data-tags> attribute used by the JS filter
@@ -15,7 +16,9 @@ const isoDate = entry.data.date.toISOString().slice(0, 10);
 ---
 <Card variant="long-form" maxWidth="max-w-max" data-tags={dataTags} data-sort-date={isoDate} data-sort-title={entry.data.title}>
 	<article id={toSlug(entry.data.title)}>
-		<h3 class="text-2xl font-medium text-green-100 mt-4">{entry.data.title}</h3>
+		<h3 class="text-2xl font-medium text-green-100 mt-4">
+			<a href={`/blog/${slug}`} class="hover:underline decoration-green-400 underline-offset-4">{entry.data.title}</a>
+		</h3>
 		<div class="flex items-center gap-3 my-2">
 			<p class="text-sm text-green-300">{entry.data.date.toLocaleDateString('en-US', {
 				year: 'numeric',

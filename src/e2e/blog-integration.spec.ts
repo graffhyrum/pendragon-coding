@@ -20,7 +20,7 @@ const CARD_SELECTOR = 'ul#blog-post-list > li[data-tags]';
 const EMPTY_STATE_SELECTOR = '#blog-empty-state';
 
 test.describe('blog post card structure', () => {
-	test('each post card has title, date, reading time badge, and non-empty excerpt', async ({
+	test('each post card has title, date, reading time badge, non-empty excerpt, and a link to the full post', async ({
 		page,
 	}) => {
 		const consoleErrors: string[] = [];
@@ -40,11 +40,15 @@ test.describe('blog post card structure', () => {
 		for (let i = 0; i < cardCount; i++) {
 			const card = cards.nth(i);
 
-			// Title: h3 inside the article
-			const title = card.locator('article h3');
-			await expect(title).toBeVisible();
-			const titleText = await title.textContent();
+			// Title: h3 with a link inside
+			const titleLink = card.locator('article h3 a');
+			await expect(titleLink).toBeVisible();
+			const titleText = await titleLink.textContent();
 			expect(titleText?.trim().length).toBeGreaterThan(0);
+
+			// Link points to a valid blog post page
+			const href = await titleLink.getAttribute('href');
+			expect(href).toMatch(/^\/blog\/.+/);
 
 			// Date element: <p> inside the flex row following the h3
 			const dateEl = card.locator('article p.text-sm.text-green-300');
