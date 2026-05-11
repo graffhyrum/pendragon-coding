@@ -67,6 +67,64 @@ const content: ContentTemplate = {
 			],
 		},
 		{
+			title: 'AI',
+			subtitle:
+				'Agent workflows, tooling, and research automation for AI-assisted engineering.',
+			contentKind: 'default',
+			content: [
+				{
+					title: 'Agent Flywheel overview',
+					link: [
+						{
+							href: 'https://agent-flywheel.com/flywheel',
+						},
+					],
+					description:
+						'A hub for the Flywheel ecosystem: tools, workflows, prompts, and the "flywheel effect" across multi-agent projects. It explains how the pieces compose into a system for parallel work, review, coordination, and safety.',
+				},
+				{
+					title: 'Matt Pocock skills library',
+					link: [
+						{
+							href: 'https://github.com/mattpocock/skills',
+						},
+					],
+					description:
+						'A curated collection of practical AI agent skills aimed at real engineering workflows. The repo emphasizes small, composable skills for grilling, planning, TDD, diagnosis, and architecture.',
+				},
+				{
+					title: 'Compound engineering plugin',
+					link: [
+						{
+							href: 'https://github.com/EveryInc/compound-engineering-plugin',
+						},
+					],
+					description:
+						'A plugin ecosystem for agent-assisted engineering work built around planning, review, execution, and learning loops. It frames "compound engineering" as making each unit of work easier for the next one.',
+				},
+				{
+					title: 'Last 30 Days research skill',
+					link: [
+						{
+							href: 'https://github.com/mvanhorn/last30days-skill',
+						},
+					],
+					description:
+						'An AI research skill that gathers and synthesizes recent signals from sources like Reddit, X, YouTube, GitHub, HN, and more. A strong example of multi-source research automation.',
+				},
+				{
+					title: 'Autoresearch loop',
+					link: [
+						{
+							href: 'https://github.com/uditgoenka/autoresearch',
+						},
+					],
+					description:
+						'An autonomous iteration engine for improving code, docs, or other measurable work through goal/metric/loop discipline. Focuses on repeatable improvement cycles with verification, rollback, and logging.',
+				},
+			],
+		},
+		{
 			title: 'Architecture & Design',
 			subtitle:
 				'Patterns, principles, and philosophies for building software systems.',
