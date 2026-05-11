@@ -40,6 +40,10 @@
   installation directory (~/.bun/bin) to your PATH.
 - Generate a changeset entry for each unit of work completed.
 
+## Voice & Tone
+
+Follow the rules in `docs/voice-dna.md` for all site content. Reference the writing samples (first three blog entries) for voice calibration. The Voice DNA is not optional: it defines how this site sounds, and violating it is a hard fail.
+
 ## GitHub CLI Usage
 
 - **PR Description**: Use `--body-file <file>` to set PR descriptions with markdown content. Create a markdown file first, then use `gh pr edit <number> --body-file <file>` for proper formatting. Verify the description was applied correctly with `gh pr view <number>`, then clean up the markdown file.
