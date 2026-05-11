@@ -44,16 +44,18 @@
 		"typescript": "^6.0.3"
 	},
 	"overrides": {
-		"ajv": ">=8.18.0",
+		"ajv": ">=8.20.0",
 		"defu": ">=6.1.5",
+		"fast-uri": ">=3.1.2",
 		"js-yaml": ">=3.14.2",
 		"mdast-util-to-hast": ">=13.2.1",
 		"picomatch": ">=4.0.4",
+		"postcss": ">=8.5.10",
 		"rollup": ">=4.59.0",
 		"svgo": ">=4.0.1",
 		"yaml": ">=2.8.3"
 	},
 	"patchedDependencies": {
-		"@axe-core/playwright@4.11.1": "patches/@axe-core%2Fplaywright@4.11.1.patch"
+		"@axe-core/playwright@4.11.3": "patches/@axe-core%2Fplaywright@4.11.3.patch"
 	}
 }
