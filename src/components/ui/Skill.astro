@@ -1,7 +1,7 @@
 ---
 import { Picture } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
-import type { SkillData, SkillProficiency } from '../../types/Skill';
+import type { SkillData } from '../../types/Skill';
 
 interface Props {
 	s: SkillData;
@@ -14,18 +14,6 @@ if (!images[`/src/assets/${s.imagePath}`])
 	throw new Error(
 		`"${s.imagePath}" does not exist in glob\nList: ${Object.keys(images)}`,
 	);
-
-// Map proficiency to filled dot count for the visual indicator
-const proficiencyDots: Record<SkillProficiency, number> = {
-	expert: 3,
-	advanced: 2,
-	intermediate: 1,
-};
-const filled = proficiencyDots[s.proficiency];
-const totalDots = 3;
-
-// Accessible label for the proficiency level
-const proficiencyLabel = `${s.proficiency} proficiency`;
 ---
 
 <li class="skill-item group">
@@ -40,17 +28,5 @@ const proficiencyLabel = `${s.proficiency} proficiency`;
 		<p class="text-base m-0 truncate">
 			{s.skill_doc_link ? <a href={s.skill_doc_link}>{s.title}</a> : s.title}
 		</p>
-	</div>
-	<div class="flex items-center gap-1" role="img" aria-label={proficiencyLabel} title={proficiencyLabel}>
-		{Array.from({ length: totalDots }).map((_, i) => (
-			<span
-				class:list={[
-					'w-2 h-2 rounded-full transition-colors duration-300',
-					i < filled
-						? 'bg-green-400 group-hover:bg-green-300'
-						: 'bg-green-900/40 group-hover:bg-green-800/40',
-				]}
-			/>
-		))}
 	</div>
 </li>

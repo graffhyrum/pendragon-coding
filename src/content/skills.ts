@@ -7,7 +7,6 @@ const skills: SkillData[] = [
 		title: 'Typescript',
 		skill_doc_link: 'https://www.typescriptlang.org/docs/',
 		category: 'QA & Testing',
-		proficiency: 'expert',
 	},
 	{
 		imagePath: 'playwright-logo.webp',
@@ -15,7 +14,6 @@ const skills: SkillData[] = [
 		title: 'Playwright',
 		skill_doc_link: 'https://playwright.dev/',
 		category: 'QA & Testing',
-		proficiency: 'expert',
 	},
 	{
 		imagePath: 'automation.webp',
@@ -23,7 +21,6 @@ const skills: SkillData[] = [
 		title: 'Test Automation',
 		skill_doc_link: '',
 		category: 'QA & Testing',
-		proficiency: 'expert',
 	},
 	{
 		imagePath: 'accessibility.webp',
@@ -31,7 +28,6 @@ const skills: SkillData[] = [
 		title: 'Accessibility',
 		skill_doc_link: '',
 		category: 'QA & Testing',
-		proficiency: 'advanced',
 	},
 	{
 		imagePath: 'documentation.webp',
@@ -39,7 +35,6 @@ const skills: SkillData[] = [
 		title: 'Documentation',
 		skill_doc_link: '',
 		category: 'Engineering',
-		proficiency: 'expert',
 	},
 	{
 		imagePath: 'project_management.webp',
@@ -47,7 +42,6 @@ const skills: SkillData[] = [
 		title: 'Project Management',
 		skill_doc_link: '',
 		category: 'Engineering',
-		proficiency: 'advanced',
 	},
 	{
 		imagePath: 'process_improvement.webp',
@@ -55,7 +49,6 @@ const skills: SkillData[] = [
 		title: 'Process Improvement',
 		skill_doc_link: '',
 		category: 'Leadership',
-		proficiency: 'advanced',
 	},
 	{
 		imagePath: 'planning.webp',
@@ -63,7 +56,6 @@ const skills: SkillData[] = [
 		title: 'Strategic Planning',
 		skill_doc_link: '',
 		category: 'Leadership',
-		proficiency: 'advanced',
 	},
 	{
 		imagePath: 'leadership.webp',
@@ -71,7 +63,6 @@ const skills: SkillData[] = [
 		title: 'Team Leadership',
 		skill_doc_link: '',
 		category: 'Leadership',
-		proficiency: 'advanced',
 	},
 	{
 		imagePath: 'public_speaking.webp',
@@ -79,7 +70,6 @@ const skills: SkillData[] = [
 		title: 'Public Speaking',
 		skill_doc_link: '',
 		category: 'Leadership',
-		proficiency: 'intermediate',
 	},
 ];
 

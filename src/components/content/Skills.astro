@@ -3,19 +3,11 @@ import skills from '../../content/skills';
 import type { SkillCategory } from '../../types/Skill';
 import Skill from '../ui/Skill.astro';
 
-// Group skills by category, preserving insertion order
 const categoryOrder: SkillCategory[] = ['QA & Testing', 'Engineering', 'Leadership'];
 const grouped = new Map<SkillCategory, typeof skills>();
 for (const cat of categoryOrder) {
 	grouped.set(cat, skills.filter((s) => s.category === cat));
 }
-
-// Category descriptions for visual hierarchy
-const categoryDescriptions: Record<SkillCategory, string> = {
-	'QA & Testing': 'Test frameworks, automation, and quality assurance',
-	'Engineering': 'Technical practices and delivery',
-	'Leadership': 'People, process, and communication',
-};
 ---
 
 <section>
@@ -24,7 +16,6 @@ const categoryDescriptions: Record<SkillCategory, string> = {
 		{categoryOrder.map((category) => (
 			<div class="skill-category-card">
 				<h3 class="skill-category-heading">{category}</h3>
-				<p class="skill-category-desc">{categoryDescriptions[category]}</p>
 				<ul role="list" class="skill-category-list">
 					{grouped.get(category)!.map((s) => (
 						<Skill s={s} />
