@@ -10,5 +10,6 @@
 				"name": "@astrojs/ts-plugin"
 			}
 		]
-	}
+	},
+	"exclude": ["dist", "playwright-report", "test-results"]
 }
