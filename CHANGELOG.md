@@ -1,5 +1,21 @@
 # pendragon-coding
 
+## 2.8.0
+
+### Minor Changes
+
+- 11225a7: Rewrite about section to reposition as AI/Context engineer. Updated homepage and API bio copy to reflect current focus on LLM-enabled workflows, agentic systems, and developer tooling. Added Voice DNA documentation for consistent site voice.
+- 0a33359: Add AI section to bookshelf page. Curated entries for agent workflows, AI tooling, and research automation resources.
+- 9062c7c: Remove proficiency indicators from skills section. Simplified skills display by removing proficiency dots, category descriptions, and scale hover effects for a more compact, readable layout.
+
+### Patch Changes
+
+- 333646e: Persist design context for future sessions in `.impeccable.md` and `.cursorrules`.
+
+  This captures the portfolio's users, brand personality, aesthetic direction, and design principles so future work stays visually and experientially consistent.
+
+- 44328f7: Add build artifact directories to tsconfig exclude list to prevent type-checking dist, playwright-report, and test-results.
+
 ## 2.7.1
 
 ### Patch Changes
@@ -15,12 +31,14 @@
 
 - b125efa: Add breadcrumb navigation component for multi-level page context (Home > Blog > Article Title)
 - d90e7c4: feat: add visual system design tokens for shadows, transitions, and easing
+
   - Define shadow presets (card, card-hover, heading, glow-green) in Tailwind v4 @theme block
   - Define transition duration scale (fast/normal/slow) and easing curves (default/in-out/spring)
   - Mirror tokens in tailwind.config.js extend for editor intellisense support
 
 - 74b4c32: Add Playwright-based WCAG AA contrast regression tests using axe-core. Tests 8 pages in both light and dark mode (16 test cases). Includes Playwright config, scoped tsconfig for Playwright types, and test:contrast npm script.
 - d6bd63b: refactor: deepen frontend architecture — extract utilities, fix bugs, consolidate components
+
   - Extract shared slug utility (toSlug) from 4 duplicated implementations, fixing a regex ordering bug in CollectionPageLayout
   - Consolidate 4 duplicate component pairs (Card, Skill, Skills, Navigation) into canonical locations
   - Merge HTMX attributes and active-page detection into Navigation (was missing from live site)
@@ -44,6 +62,7 @@
 - 741c97c: fix: resolve remaining WCAG AA contrast violations on 404 page in both light and dark modes
 - e2ffb40: fix: 404 page heading text contrast — ensure h2 "Page Not Found" uses gray-900/gray-100 for WCAG AA compliance in both light and dark modes
 - bc17a2c: fix(a11y): blog sort button and prose link contrast for WCAG AA
+
   - Sort button active state: `bg-green-600 text-white` (3.21:1) → `bg-green-800 text-green-50` (passes 4.5:1) in both light and dark modes
   - `.content a` prose links: `text-blue-300` in light mode (1.5:1 on bg-green-200) → `text-blue-700` (passes 4.5:1); dark mode stays `text-blue-300`
   - Closes pendragon-coding-we9: all 16 axe-core contrast audit tests pass across 8 pages × 2 modes
@@ -163,6 +182,7 @@
   Implemented a theme toggle component that allows users to switch between light and dark modes with a smooth sliding animation. The theme preference is persisted in localStorage and respects system preferences on first visit.
 
   **New Features:**
+
   - Theme toggle button with sliding animation positioned at the right edge of the header
   - Sun and moon icons that smoothly transition based on the selected theme
   - localStorage persistence to remember user's theme preference across sessions
@@ -170,6 +190,7 @@
   - Smooth color transitions throughout the site when switching themes (300ms duration)
 
   **Improvements:**
+
   - Light mode uses a clean gray-50 background with dark text for improved readability during daytime
   - Dark mode maintains the existing green-950 background with light text optimized for low-light environments
   - Navigation underlines adapt to theme: green-600 in light mode, green-400 in dark mode
@@ -177,6 +198,7 @@
   - Accessible implementation with proper ARIA attributes and keyboard focus states
 
   **Technical Details:**
+
   - Created ThemeToggle.astro component with inline script for theme management
   - Configured Tailwind CSS with class-based dark mode strategy
   - Added tailwind.config.js with dark mode enabled
@@ -188,12 +210,14 @@
 
 - e5e448b: Add Bun test runner tooling to the project. Includes test scripts in package.json (test, test:watch, test:coverage), example test file demonstrating Bun's test syntax, and updated documentation in CLAUDE.md with testing commands and conventions.
 - b090c8e: Add GitHub Action for opencode integration on issue comments
+
   - Add .github/workflows/opencode.yml to enable opencode AI assistance
   - Triggers on issue comments containing '/oc' or '/opencode' commands
   - Uses sst/opencode/github action with opencode/big-pickle model
   - Includes proper permissions for repository access
 
 - 201f90b: Migrate blog and testimonials to Astro Content Collections API
+
   - Create content config with Zod schemas for type safety
   - Move markdown files from pages to content directory
   - Standardize blog dates to ISO format
@@ -205,6 +229,7 @@
 
 - 930f48e: Add article on DORA metrics misuse to bookshelf
 - b090c8e: Refactor testimonials to use ContentSection component like myWork page
+
   - Convert testimonials from Astro Content Collections to static TypeScript data file
   - Update testimonials page to use ContentContainer and BaseLayout instead of CollectionPageLayout
   - Remove individual testimonial markdown files and dynamic routing
@@ -226,6 +251,7 @@
   This release introduces a modern navigation system using HTMX that provides a single-page application experience while maintaining progressive enhancement and SEO-friendly fallbacks.
 
   **New Features:**
+
   - HTMX-powered navigation that swaps content without full page reloads
   - Smooth transitions between pages using HTMX's built-in transition system
   - Browser history and URL preservation with `hx-push-url`
@@ -233,18 +259,21 @@
   - Progressive enhancement: navigation works with and without JavaScript
 
   **Improvements:**
+
   - Fixed animation stutter by eliminating conflicting CSS animations during HTMX transitions
   - Added `noAnimation` prop system to Skills and Skill components for conditional animation control
   - Faster page navigation with reduced bandwidth usage (only content updates, not full page)
   - Maintained SEO compatibility with full-page fallbacks for search engine crawlers
 
   **Code Quality Refactors:**
+
   - Refactored Navigation component to use data-driven link array, reducing code from ~93 lines to ~38 lines
   - Extracted HTMX configuration into reusable constants for maintainability
   - Created ApiContentLayout wrapper to eliminate duplication across API endpoints
   - Improved code maintainability: adding/removing navigation links now requires only updating the data array
 
   **Technical Details:**
+
   - Navigation links use `hx-get`, `hx-target`, `hx-swap`, and `hx-push-url` attributes
   - Original page routes remain unchanged for direct access and SEO
   - API endpoints share components with full pages, ensuring consistency
