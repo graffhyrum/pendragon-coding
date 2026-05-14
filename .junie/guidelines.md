@@ -8,7 +8,7 @@ Prerequisites
 
 - Bun: Primary package manager and runtime. Verified with Bun v1.2.20 during preparation of these notes.
 - Node.js: Required by some tooling and IDEs, but daily commands are executed via Bun.
-- Git: Version control; Netlify auto-deploys on pushes to the default branch.
+- Git: Version control; production deploys via GitHub Actions on `v*` tags, not Netlify Git builds on `main` (`netlify.toml` ignore).
 
 Install
 
@@ -29,7 +29,7 @@ Core scripts (package.json)
 Astro configuration
 
 - astro.config.mjs integrates Tailwind via @astrojs/tailwind; no other integrations or adapters configured. Static site by default.
-- Netlify: netlify.toml uses command = "bun run build" and publish = "dist". No blanket ignore; Git builds follow Netlify UI rules. Tag deploys via GHA. Project skill: .cursor/skills/netlify-cli/SKILL.md.
+- Netlify: netlify.toml uses command = "bun run build", publish = "dist", and ignore = "exit 0" so Netlify does not build on every main push; tag pipeline deploys via GHA. Project skill: .cursor/skills/netlify-cli/SKILL.md.
 
 TypeScript configuration
 

@@ -1,6 +1,6 @@
 ---
 name: netlify-cli
-description: Netlify CLI for this repo — auth, link, dev, deploy, status, functions. Use when working with Netlify, pendragon-coding.netlify.app, netlify.toml, deploy previews, or local Netlify emulation.
+description: Netlify CLI for this repo — auth, link, dev, deploy, status, functions; tag-only production via GHA and intentional `ignore = exit 0`. Use when working with Netlify, pendragon-coding.netlify.app, netlify.toml, deploy previews, canceled Netlify Git builds, or local Netlify emulation.
 ---
 
 # Netlify CLI (pendragon-coding)
@@ -37,13 +37,18 @@ Build output for this Astro app is always `dist/` (see `netlify.toml`).
 
 ## Ignore builds (`netlify.toml`)
 
-Netlify runs an optional **ignore** command before building. **Exit 0 = cancel build** (“nothing to do”). **Exit 1 = run build**. A literal `ignore = "exit 0"` cancels **every** git-triggered build, which looks like a failed or “canceled” deploy in the UI. Use a real diff check (see [reference.md](reference.md)) or omit `ignore` if Netlify should build on git events.
+Netlify’s optional **ignore** command runs before a Git-triggered build: **exit 0 = skip build**, **non-zero = run build**.
 
-**Build hooks** (per Netlify docs) can still trigger builds regardless of ignore — prefer hooks or `netlify deploy --trigger` when you need a build that must not be skipped.
+**This repo** sets `ignore = "exit 0"` on all contexts so Netlify **never** runs its builder on routine `main` pushes. You will see skipped/canceled Netlify **Git** builds — that is intentional. **Production** updates when a `v*` tag triggers `.github/workflows/deploy.yml`, which builds in Actions and deploys `dist/` via the Netlify API.
+
+To run Netlify’s builder for a branch (not this project’s default), change or remove `ignore` in `netlify.toml` or use [reference.md](reference.md) for diff-based ignore patterns.
+
+**Build hooks** (Netlify docs) may still trigger builds regardless of `ignore` — use when you need an exception.
 
 ## Repo deploy model
 
-- **Releases**: Changesets on `main` → version PR → tag `v*` → `.github/workflows/deploy.yml` builds with Bun and deploys `dist/` via `NETLIFY_AUTH_TOKEN`.
-- **Netlify git**: Builds when your Netlify site’s branch/context rules say so (no blanket `exit 0` in `netlify.toml`).
+- **Routine `main`**: No Netlify Git build (`exit 0` ignore).
+- **Release**: Merge Version PR → `release.yml` publishes → pushes `v*` tag → `deploy.yml` builds and deploys to Netlify.
+- **Manual**: `bun run build && netlify deploy --prod --dir dist` (CLI), or push a `v*` tag to trigger `deploy.yml`.
 
 More commands, env vars, and official doc links: [reference.md](reference.md).

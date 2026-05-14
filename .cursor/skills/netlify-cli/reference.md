@@ -29,10 +29,10 @@ Scope paths after `$COMMIT_REF` if only certain directories should affect builds
 
 ## This project
 
-| File / secret                           | Role                                            |
-| --------------------------------------- | ----------------------------------------------- |
-| `netlify.toml`                          | `bun run build`, publish `dist/`                |
-| `.github/workflows/deploy.yml`          | Tag `v*` → Bun build → `nwtgck/actions-netlify` |
-| `NETLIFY_AUTH_TOKEN`, `NETLIFY_SITE_ID` | GitHub Actions secrets for API deploy           |
+| File / secret                           | Role                                                                              |
+| --------------------------------------- | --------------------------------------------------------------------------------- |
+| `netlify.toml`                          | `bun run build`, publish `dist/`, `ignore` skips all Git-triggered Netlify builds |
+| `.github/workflows/deploy.yml`          | Tag `v*` → Bun build → `nwtgck/actions-netlify`                                   |
+| `NETLIFY_AUTH_TOKEN`, `NETLIFY_SITE_ID` | GitHub Actions secrets for API deploy                                             |
 
-When debugging “build canceled” on Netlify, read the deploy log line for **ignore command** and confirm `netlify.toml` does not force `exit 0` unless you truly want all git builds skipped.
+A **canceled/skipped** Netlify deploy whose log cites the **ignore command** and `exit 0` is **expected** for pushes to `main`. Confirm releases via **GitHub Actions** (`deploy.yml` on the new tag) and a Netlify deploy produced by that workflow (API), not a Netlify-only Git build for every merge.

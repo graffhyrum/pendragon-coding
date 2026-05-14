@@ -1,6 +1,12 @@
 [build]
 command = "bun run build"
 publish = "dist"
+# Exit 0 = Netlify skips this git-triggered build. Production deploys run only from
+# GitHub Actions when a v* tag is pushed (see .github/workflows/deploy.yml), not on every main commit.
+ignore = "exit 0"
 
-# Git-connected builds run when Netlify detects eligible commits.
-# Versioned releases still go through GitHub Actions on v* tags (see .github/workflows/deploy.yml).
+[context.production]
+ignore = "exit 0"
+
+[context.branch-deploy]
+ignore = "exit 0"

@@ -4,7 +4,15 @@ How pendragon-coding gets from source to production on Netlify.
 
 ## Deployment Model
 
-**Production releases** are driven by GitHub Actions on version tags (`v*`): the workflow builds with Bun and uploads `dist/` to Netlify using the Netlify API (`nwtgck/actions-netlify`). **Git-connected Netlify builds** also run when commits match your site's branch/context rules in the Netlify UI — there is no blanket `ignore = "exit 0"` in `netlify.toml` (that pattern exits 0 before every build and makes Netlify report a canceled/skipped deploy). Align Netlify branch deploy settings with this repo if you want previews only or want to avoid duplicate builds on the same ref.
+**Production** updates only when a **git tag** `v*` is pushed and `.github/workflows/deploy.yml` runs: it builds with Bun and uploads `dist/` to Netlify via the Netlify API (`nwtgck/actions-netlify`). That tag is created by `release.yml` after Changesets **publishes** when you merge the “Version packages” PR — not on every routine merge to `main`.
+
+**Netlify’s Git-connected builder** is intentionally disabled for all contexts: `netlify.toml` sets `ignore = "exit 0"`, so Netlify **skips** every build triggered by pushes to `main` (or branches). You avoid a redundant Netlify build and deploy on every commit; the live site still updates when the tag pipeline finishes.
+
+### Verifying a release
+
+1. Merge the Version PR → watch **GitHub Actions** → `Release` completes with publish and **Create Git Tag** pushing `v{version}`.
+2. **Deploy to Production** (`deploy.yml`) runs on that tag push — this is the deploy that matters.
+3. In the Netlify UI, a **skipped/canceled** Git build for `main` is **expected**; look for a **successful** deploy produced by the API / Actions (deploy message like `Deploy from tag v…`), not a completed Netlify “build from Git” for every `main` commit.
 
 ## Release Pipeline
 
@@ -105,7 +113,7 @@ From `netlify.toml`:
 
 - **Build command**: `bun run build`
 - **Publish directory**: `dist/`
-- **Ignore builds**: Not set in-repo. To skip builds when specific paths are unchanged, use a custom `ignore` command per [Netlify ignore builds](https://docs.netlify.com/build/configure-builds/ignore-builds/) (exit 0 skips the build; non-zero runs it). Avoid `ignore = "exit 0"` unless you intend to cancel every git-triggered Netlify build.
+- **Ignore builds**: `ignore = "exit 0"` on `[build]`, `[context.production]`, and `[context.branch-deploy]` — Netlify **never** runs its own build for Git events; see [Netlify ignore builds](https://docs.netlify.com/build/configure-builds/ignore-builds/) (exit 0 skips the build). Production traffic is updated by **Actions** on tag deploys only.
 
 ## See Also
 
