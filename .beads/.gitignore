@@ -10,6 +10,7 @@ sync-state.json
 last-touched
 .sync.lock
 export-state/
+.write.lock
 
 # Local version tracking
 .local_version

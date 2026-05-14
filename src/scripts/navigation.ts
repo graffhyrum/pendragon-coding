@@ -129,7 +129,7 @@ function showErrorToast(message: string): void {
 	document.body.append(toast);
 
 	// Trigger reflow so CSS transition activates
-	const _ = toast.offsetHeight;
+	void toast.offsetHeight;
 	toast.classList.add('visible');
 
 	setTimeout(() => {
