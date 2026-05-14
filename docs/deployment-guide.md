@@ -43,13 +43,13 @@ flowchart TD
 
 ### deploy.yml
 
-| Field       | Value                                                                          |
-| ----------- | ------------------------------------------------------------------------------ |
-| **Trigger** | Git tags matching `v*`                                                         |
-| **Runner**  | Ubuntu latest                                                                  |
-| **Steps**   | Checkout -> Setup Bun -> `bun install` -> `bun run build` -> Deploy to Netlify |
-| **Action**  | `nwtgck/actions-netlify@v3.0`                                                  |
-| **Secrets** | `NETLIFY_AUTH_TOKEN`, `NETLIFY_SITE_ID`, `GITHUB_TOKEN`                        |
+| Field       | Value                                                                                           |
+| ----------- | ----------------------------------------------------------------------------------------------- |
+| **Trigger** | Git tags matching `v*`                                                                          |
+| **Runner**  | Ubuntu latest                                                                                   |
+| **Steps**   | Checkout -> Setup Node 22 -> Setup Bun -> `bun install` -> `bun run build` -> Deploy to Netlify |
+| **Action**  | `nwtgck/actions-netlify@v3.0`                                                                   |
+| **Secrets** | `NETLIFY_AUTH_TOKEN`, `NETLIFY_SITE_ID`, `GITHUB_TOKEN`                                         |
 
 ### release.yml
 
@@ -73,13 +73,13 @@ flowchart TD
 The `prebuild` script runs automatically before `bun run build`:
 
 ```
-tsgo --noEmit && bun x astro check
+tsgo --noEmit && bunx astro check
 ```
 
 - `tsgo --noEmit` -- TypeScript type checking without emitting files
-- `bun x astro check` -- Astro-specific template and configuration validation (uses Bun; avoids `bunx`/`.bin/astro` delegating to the runner’s Node 20, which Astro 6 rejects)
+- `bunx astro check` -- Astro-specific template and configuration validation
 
-If either check fails, the build aborts and the deploy does not proceed.
+If either check fails, the build aborts and the deploy does not proceed. **CI:** Astro 6’s `engines.node` is `>=22.12`; `bunx astro check` resolves the `astro` bin (`#!/usr/bin/env node`) against **PATH**, so `deploy.yml` runs `actions/setup-node` with Node 22 before Bun. Bun remains the package manager and script runner.
 
 ## Manual Deployment
 
