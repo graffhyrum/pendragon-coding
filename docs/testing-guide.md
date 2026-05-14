@@ -82,7 +82,7 @@ Use `bun vet` as the primary command to verify code health during development.
 Runs before every production build:
 
 ```
-tsgo --noEmit && bunx astro check
+tsgo --noEmit && bun x astro check
 ```
 
 This validates types and Astro templates but does **not** run tests. Tests are expected to pass via `bun vet` before pushing.
