@@ -36,7 +36,7 @@ flowchart TD
 2. **Merge PR to main** -- the `release.yml` workflow fires on every push to `main`.
 3. **Changesets action** -- if unreleased changesets exist, the action opens a "Version Packages" PR that bumps `package.json` and updates `CHANGELOG.md`. If that PR is already open, it updates it.
 4. **Merge the Version PR** -- Changesets publishes: it consumes the changeset files, finalizes the changelog, and commits the version bump.
-5. **Tag creation** -- the release workflow creates a git tag `v{version}` and pushes it.
+5. **Tag sync** -- after each `release.yml` run, **Ensure version git tag exists on origin** checks `git ls-remote` for `refs/tags/v{version}` matching `package.json`. If the tag is missing on origin, the workflow creates and pushes it so `deploy.yml` can run (covers merges of the Version PR where Changesets does not set `published`).
 6. **Deploy** -- the tag push triggers `deploy.yml`, which checks out the code, installs dependencies with Bun, runs `bun run build`, and deploys the `dist/` directory to Netlify using `nwtgck/actions-netlify@v3.0`.
 
 ## GitHub Actions Workflows
@@ -53,13 +53,13 @@ flowchart TD
 
 ### release.yml
 
-| Field           | Value                                                                |
-| --------------- | -------------------------------------------------------------------- |
-| **Trigger**     | Push to `main`                                                       |
-| **Concurrency** | Serialized per workflow (prevents race conditions)                   |
-| **Permissions** | Write access to `contents` and `pull-requests`                       |
-| **Steps**       | Checkout -> Setup Bun -> `bun install` -> Changesets action          |
-| **On publish**  | Creates git tag `v{version}` and pushes, which triggers `deploy.yml` |
+| Field           | Value                                                                                                            |
+| --------------- | ---------------------------------------------------------------------------------------------------------------- |
+| **Trigger**     | Push to `main`                                                                                                   |
+| **Concurrency** | Serialized per workflow (prevents race conditions)                                                               |
+| **Permissions** | Write access to `contents` and `pull-requests`                                                                   |
+| **Steps**       | Checkout -> Setup Bun -> `bun install` -> Changesets action -> ensure `v{package.json version}` exists on origin |
+| **Tag sync**    | After Changesets, push annotated `v{version}` if absent on `origin` (triggers `deploy.yml` on new tags)          |
 
 ### opencode.yml
 

@@ -36,17 +36,17 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Create Git Tag
-        if: steps.changesets.outputs.published == 'true'
+      - name: Ensure version git tag exists on origin
         run: |
-          # Tag after successful changeset publication
+          set -euo pipefail
           VERSION=$(node -p "require('./package.json').version")
-          if git rev-parse "v$VERSION" >/dev/null 2>&1; then
-            echo "Tag v$VERSION already exists"
-          else
-            git config user.name "github-actions[bot]"
-            git config user.email "github-actions[bot]@users.noreply.github.com"
-            git tag -a "v$VERSION" -m "Release v$VERSION"
-            git push origin "v$VERSION"
-            echo "Created and pushed tag v$VERSION"
+          TAG="v${VERSION}"
+          if git ls-remote --tags origin "refs/tags/${TAG}" | grep -q .; then
+            echo "Remote tag ${TAG} already exists — skipping"
+            exit 0
           fi
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git tag -a "${TAG}" -m "Release ${TAG}"
+          git push origin "refs/tags/${TAG}"
+          echo "Created and pushed ${TAG}"

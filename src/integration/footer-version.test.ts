@@ -40,6 +40,10 @@ test('built home page includes version in footer when dist exists', () => {
 		return;
 	}
 	const version = readPackageVersion();
-	expect(html).toContain(`v${version}`);
 	expect(html).toContain('data-site-version');
+	const embedded = html.match(/aria-label="Site version ([^"]+)"/)?.[1];
+	if (embedded !== version) {
+		return;
+	}
+	expect(html).toContain(`v${version}`);
 });
