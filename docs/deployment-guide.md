@@ -43,13 +43,13 @@ flowchart TD
 
 ### deploy.yml
 
-| Field       | Value                                                                          |
-| ----------- | ------------------------------------------------------------------------------ |
-| **Trigger** | Git tags matching `v*`                                                         |
-| **Runner**  | Ubuntu latest                                                                  |
-| **Steps**   | Checkout -> Setup Bun -> `bun install` -> `bun run build` -> Deploy to Netlify |
-| **Action**  | `nwtgck/actions-netlify@v3.0`                                                  |
-| **Secrets** | `NETLIFY_AUTH_TOKEN`, `NETLIFY_SITE_ID`, `GITHUB_TOKEN`                        |
+| Field       | Value                                                                                           |
+| ----------- | ----------------------------------------------------------------------------------------------- |
+| **Trigger** | Git tags matching `v*`                                                                          |
+| **Runner**  | Ubuntu latest                                                                                   |
+| **Steps**   | Checkout -> Setup Node 22 -> Setup Bun -> `bun install` -> `bun run build` -> Deploy to Netlify |
+| **Action**  | `nwtgck/actions-netlify@v3.0`                                                                   |
+| **Secrets** | `NETLIFY_AUTH_TOKEN`, `NETLIFY_SITE_ID`, `GITHUB_TOKEN`                                         |
 
 ### release.yml
 
@@ -79,7 +79,7 @@ tsgo --noEmit && bunx astro check
 - `tsgo --noEmit` -- TypeScript type checking without emitting files
 - `bunx astro check` -- Astro-specific template and configuration validation
 
-If either check fails, the build aborts and the deploy does not proceed.
+If either check fails, the build aborts and the deploy does not proceed. **CI note:** `astro check` requires Node **>= 22.12** (Astro 6). `deploy.yml` installs Node 22 before Bun so `prebuild` does not pick up the runner’s default Node 20.
 
 ## Manual Deployment
 
