@@ -43,23 +43,23 @@ flowchart TD
 
 ### deploy.yml
 
-| Field       | Value                                                                                           |
-| ----------- | ----------------------------------------------------------------------------------------------- |
-| **Trigger** | Git tags matching `v*`                                                                          |
-| **Runner**  | Ubuntu latest                                                                                   |
-| **Steps**   | Checkout -> Setup Node 24 -> Setup Bun -> `bun install` -> `bun run build` -> Deploy to Netlify |
-| **Action**  | `nwtgck/actions-netlify@v3.0`                                                                   |
-| **Secrets** | `NETLIFY_AUTH_TOKEN`, `NETLIFY_SITE_ID`, `GITHUB_TOKEN`                                         |
+| Field       | Value                                                                                                                           |
+| ----------- | ------------------------------------------------------------------------------------------------------------------------------- |
+| **Trigger** | Git tags matching `v*`; manual **`workflow_dispatch`** with input `tag` (e.g. `v2.8.2`) if an automated tag did not start a run |
+| **Runner**  | Ubuntu latest                                                                                                                   |
+| **Steps**   | Checkout -> Setup Node 24 -> Setup Bun -> `bun install` -> `bun run build` -> Deploy to Netlify                                 |
+| **Action**  | `nwtgck/actions-netlify@v3.0`                                                                                                   |
+| **Secrets** | `NETLIFY_AUTH_TOKEN`, `NETLIFY_SITE_ID`, `GITHUB_TOKEN`                                                                         |
 
 ### release.yml
 
-| Field           | Value                                                                                                            |
-| --------------- | ---------------------------------------------------------------------------------------------------------------- |
-| **Trigger**     | Push to `main`                                                                                                   |
-| **Concurrency** | Serialized per workflow (prevents race conditions)                                                               |
-| **Permissions** | Write access to `contents` and `pull-requests`                                                                   |
-| **Steps**       | Checkout -> Setup Bun -> `bun install` -> Changesets action -> ensure `v{package.json version}` exists on origin |
-| **Tag sync**    | After Changesets, push annotated `v{version}` if absent on `origin` (triggers `deploy.yml` on new tags)          |
+| Field           | Value                                                                                                                                                                                                                                                              |
+| --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **Trigger**     | Push to `main`                                                                                                                                                                                                                                                     |
+| **Concurrency** | Serialized per workflow (prevents race conditions)                                                                                                                                                                                                                 |
+| **Permissions** | Write access to `contents` and `pull-requests`                                                                                                                                                                                                                     |
+| **Steps**       | Checkout -> Setup Bun -> `bun install` -> Changesets action -> ensure `v{package.json version}` exists on origin                                                                                                                                                   |
+| **Tag sync**    | After Changesets, push annotated `v{version}` if absent on `origin`. **GitHub:** pushes using only `GITHUB_TOKEN` do not start other workflows — set optional repo secret **`RELEASE_REPO_PAT`** so checkout uses a PAT and tag pushes still trigger `deploy.yml`. |
 
 ### opencode.yml
 
@@ -108,6 +108,12 @@ git push origin v2.6.2
 ```
 
 This triggers `deploy.yml` directly, bypassing the Changesets flow. Use this only for hotfixes or when the automated pipeline is not suitable.
+
+**Manual deploy for an existing tag** (e.g. tag created by CI before `RELEASE_REPO_PAT` was set):
+
+```bash
+gh workflow run "Deploy to Production" --repo graffhyrum/pendragon-coding -f tag=v2.8.2
+```
 
 ## Rollback
 
