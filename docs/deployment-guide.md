@@ -43,13 +43,13 @@ flowchart TD
 
 ### deploy.yml
 
-| Field       | Value                                                                                               |
-| ----------- | --------------------------------------------------------------------------------------------------- |
-| **Trigger** | Git tags matching `v*`                                                                              |
-| **Runner**  | Ubuntu latest                                                                                       |
-| **Steps**   | Checkout -> Setup Node 22.12+ -> Setup Bun -> `bun install` -> `bun run build` -> Deploy to Netlify |
-| **Action**  | `nwtgck/actions-netlify@v3.0`                                                                       |
-| **Secrets** | `NETLIFY_AUTH_TOKEN`, `NETLIFY_SITE_ID`, `GITHUB_TOKEN`                                             |
+| Field       | Value                                                                                           |
+| ----------- | ----------------------------------------------------------------------------------------------- |
+| **Trigger** | Git tags matching `v*`                                                                          |
+| **Runner**  | Ubuntu latest                                                                                   |
+| **Steps**   | Checkout -> Setup Node 24 -> Setup Bun -> `bun install` -> `bun run build` -> Deploy to Netlify |
+| **Action**  | `nwtgck/actions-netlify@v3.0`                                                                   |
+| **Secrets** | `NETLIFY_AUTH_TOKEN`, `NETLIFY_SITE_ID`, `GITHUB_TOKEN`                                         |
 
 ### release.yml
 
@@ -95,7 +95,7 @@ If either check fails, the build aborts and the deploy does not proceed.
 
 **Netlify logs** for this repo: Git builds are skipped by `ignore = "exit 0"`, so you will see “Canceled build due to no content change” / ignore exit 0 — that is **not** the same failure as the Actions log above. Production depends on `deploy.yml` succeeding after the tag push.
 
-**Fix:** `deploy.yml` runs `actions/setup-node` with Node **≥22.12** before `bun install` / `bun run build` so `node` on `PATH` satisfies Astro’s CLI. Bun remains the package manager and script runner.
+**Fix:** `deploy.yml` runs `actions/setup-node` with Node **24** (matches Netlify UI; satisfies Astro’s `>=22.12`) before `bun install` / `bun run build` so `node` on `PATH` satisfies Astro’s CLI. Bun remains the package manager and script runner.
 
 ## Manual Deployment
 

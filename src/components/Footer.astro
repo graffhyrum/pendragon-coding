@@ -1,4 +1,7 @@
 ---
+import pkg from '../../package.json';
+
+const appVersion = pkg.version;
 const links = [
 	{
 		name: 'LinkedIn',
@@ -29,4 +32,6 @@ const links = [
 			{name}
 		</a>
 	))}
+	<span class="text-sm tabular-nums text-green-800/90 dark:text-green-200/80" data-site-version
+		aria-label={`Site version ${appVersion}`}>v{appVersion}</span>
 </footer>
