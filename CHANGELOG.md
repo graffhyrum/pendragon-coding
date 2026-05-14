@@ -1,5 +1,11 @@
 # pendragon-coding
 
+## 2.8.2
+
+### Patch Changes
+
+- de485ef: Ensure `release.yml` always pushes `v{package.json version}` when missing on origin so deploy runs after version PR merges.
+
 ## 2.8.1
 
 ### Patch Changes
