@@ -4,7 +4,7 @@ How pendragon-coding gets from source to production on Netlify.
 
 ## Deployment Model
 
-Deploys happen **only** through GitHub Actions triggered by version tags (`v*`). Netlify's built-in auto-deploy is disabled across all contexts via `ignore = "exit 0"` in `netlify.toml` -- this causes Netlify's build hook to exit early and skip every automatic build. The only path to production is the tag-based GitHub Actions workflow.
+**Production releases** are driven by GitHub Actions on version tags (`v*`): the workflow builds with Bun and uploads `dist/` to Netlify using the Netlify API (`nwtgck/actions-netlify`). **Git-connected Netlify builds** also run when commits match your site's branch/context rules in the Netlify UI — there is no blanket `ignore = "exit 0"` in `netlify.toml` (that pattern exits 0 before every build and makes Netlify report a canceled/skipped deploy). Align Netlify branch deploy settings with this repo if you want previews only or want to avoid duplicate builds on the same ref.
 
 ## Release Pipeline
 
@@ -105,7 +105,7 @@ From `netlify.toml`:
 
 - **Build command**: `bun run build`
 - **Publish directory**: `dist/`
-- **Auto-deploy override**: All contexts set `ignore = "exit 0"`, which tells Netlify to skip its own build trigger entirely. Deploys are controlled exclusively by GitHub Actions.
+- **Ignore builds**: Not set in-repo. To skip builds when specific paths are unchanged, use a custom `ignore` command per [Netlify ignore builds](https://docs.netlify.com/build/configure-builds/ignore-builds/) (exit 0 skips the build; non-zero runs it). Avoid `ignore = "exit 0"` unless you intend to cancel every git-triggered Netlify build.
 
 ## See Also
 

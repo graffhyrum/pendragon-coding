@@ -1,12 +1,6 @@
 [build]
 command = "bun run build"
 publish = "dist"
-ignore = "exit 0"
 
-# Disable auto-deploys from branch pushes
-# Production deploys only happen via GitHub Actions on version tags
-[context.production]
-ignore = "exit 0"
-
-[context.branch-deploy]
-ignore = "exit 0"
+# Git-connected builds run when Netlify detects eligible commits.
+# Versioned releases still go through GitHub Actions on v* tags (see .github/workflows/deploy.yml).

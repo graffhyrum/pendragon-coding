@@ -197,24 +197,16 @@ The green color scheme used throughout the site comes from Tailwind's built-in g
 
 ```toml
 [build]
-  command = "bun run build"
-  publish = "dist"
-  ignore = "exit 0"
-
-[context.production]
-  ignore = "exit 0"
-
-[context.branch-deploy]
-  ignore = "exit 0"
+	command = "bun run build"
+	publish = "dist"
 ```
 
-| Setting                 | Value           | Purpose                                       |
-| ----------------------- | --------------- | --------------------------------------------- |
-| `build.command`         | `bun run build` | Runs Astro build with pre-build type checking |
-| `build.publish`         | `dist`          | Astro's default output directory              |
-| `ignore` (all contexts) | `exit 0`        | Disables Netlify's automatic deploy triggers  |
+| Setting         | Value           | Purpose                                       |
+| --------------- | --------------- | --------------------------------------------- |
+| `build.command` | `bun run build` | Runs Astro build with pre-build type checking |
+| `build.publish` | `dist`          | Astro's default output directory              |
 
-Auto-deploys are disabled across all contexts. Production deploys happen exclusively through GitHub Actions on version tags, not from branch pushes.
+Optional `ignore` under `[build]` or `[context.*]` can skip Netlify git builds when a shell command exits **0** (see Netlify docs). This repo leaves `ignore` unset so Netlify builds when your site's Git rules say to; tagged releases still deploy via GitHub Actions.
 
 ## Changeset Configuration
 

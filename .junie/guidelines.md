@@ -29,7 +29,7 @@ Core scripts (package.json)
 Astro configuration
 
 - astro.config.mjs integrates Tailwind via @astrojs/tailwind; no other integrations or adapters configured. Static site by default.
-- Netlify: netlify.toml uses command = "bun run build" and publish = "dist". No extra redirects/functions configured.
+- Netlify: netlify.toml uses command = "bun run build" and publish = "dist". No blanket ignore; Git builds follow Netlify UI rules. Tag deploys via GHA. Project skill: .cursor/skills/netlify-cli/SKILL.md.
 
 TypeScript configuration
 
