@@ -43,13 +43,13 @@ flowchart TD
 
 ### deploy.yml
 
-| Field       | Value                                                                                           |
-| ----------- | ----------------------------------------------------------------------------------------------- |
-| **Trigger** | Git tags matching `v*`                                                                          |
-| **Runner**  | Ubuntu latest                                                                                   |
-| **Steps**   | Checkout -> Setup Node 22 -> Setup Bun -> `bun install` -> `bun run build` -> Deploy to Netlify |
-| **Action**  | `nwtgck/actions-netlify@v3.0`                                                                   |
-| **Secrets** | `NETLIFY_AUTH_TOKEN`, `NETLIFY_SITE_ID`, `GITHUB_TOKEN`                                         |
+| Field       | Value                                                                                               |
+| ----------- | --------------------------------------------------------------------------------------------------- |
+| **Trigger** | Git tags matching `v*`                                                                              |
+| **Runner**  | Ubuntu latest                                                                                       |
+| **Steps**   | Checkout -> Setup Node 22.12+ -> Setup Bun -> `bun install` -> `bun run build` -> Deploy to Netlify |
+| **Action**  | `nwtgck/actions-netlify@v3.0`                                                                       |
+| **Secrets** | `NETLIFY_AUTH_TOKEN`, `NETLIFY_SITE_ID`, `GITHUB_TOKEN`                                             |
 
 ### release.yml
 
@@ -79,7 +79,23 @@ tsgo --noEmit && bunx astro check
 - `tsgo --noEmit` -- TypeScript type checking without emitting files
 - `bunx astro check` -- Astro-specific template and configuration validation
 
-If either check fails, the build aborts and the deploy does not proceed. **CI:** Astro 6’s `engines.node` is `>=22.12`; `bunx astro check` resolves the `astro` bin (`#!/usr/bin/env node`) against **PATH**, so `deploy.yml` runs `actions/setup-node` with Node 22 before Bun. Bun remains the package manager and script runner.
+If either check fails, the build aborts and the deploy does not proceed.
+
+### RCA: “Node.js v20.20.2 is not supported by Astro” in GitHub Actions
+
+| What the log implies         | What actually failed                                                                                           |
+| ---------------------------- | -------------------------------------------------------------------------------------------------------------- |
+| `tsgo --noEmit` printed last | `prebuild` runs `bun typecheck && bunx astro check`. `tsgo` finished; the next step is **`bunx astro check`**. |
+
+**Proof (local tree):**
+
+1. `package.json` `prebuild` is `bun typecheck && bunx astro check` — Astro runs in the second clause after typecheck.
+2. `node_modules/astro/package.json` declares `"engines": { "node": ">=22.12.0" }`.
+3. `node_modules/astro/bin/astro.mjs` starts with `#!/usr/bin/env node` and hardcodes `const engines = '>=22.12.0';` — the CLI is executed by **Node from `PATH`**, not the Bun runtime, so the runner’s default Node (historically **20.x** on `ubuntu-latest` when `setup-node` is missing) produces exactly: `Node.js v20.20.2 is not supported by Astro!`.
+
+**Netlify logs** for this repo: Git builds are skipped by `ignore = "exit 0"`, so you will see “Canceled build due to no content change” / ignore exit 0 — that is **not** the same failure as the Actions log above. Production depends on `deploy.yml` succeeding after the tag push.
+
+**Fix:** `deploy.yml` runs `actions/setup-node` with Node **≥22.12** before `bun install` / `bun run build` so `node` on `PATH` satisfies Astro’s CLI. Bun remains the package manager and script runner.
 
 ## Manual Deployment
 
