@@ -1,5 +1,15 @@
 # pendragon-coding
 
+## 2.8.1
+
+### Patch Changes
+
+- 3912249: Restore `bunx` for Astro; document that `deploy.yml` sets Node 22 before Bun so `bunx astro check` satisfies Astro 6’s Node engine on the runner.
+- 86e0793: Pin Node 22.12+ in deploy workflow for Astro CLI; document engines and GHA RCA in deployment guide.
+- 4ac3b1c: Show package version in site footer after Links for live deploy verification.
+- 7ae331c: Remove blanket Netlify `ignore = "exit 0"` so git-triggered builds can run. Add `.cursor/skills/netlify-cli` and align deployment docs.
+- b54cec5: Restore Netlify `ignore = exit 0` for tag-only GHA deploys; align deployment docs and netlify-cli skill with release flow.
+
 ## 2.8.0
 
 ### Minor Changes
