@@ -47,3 +47,4 @@ docs/post-mortems/
 .dolt/
 *.db
 
+.cursor/hooks/state/continual-learning.json
