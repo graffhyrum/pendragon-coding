@@ -58,6 +58,66 @@ const content: ContentTemplate = {
 					description:
 						'A customer experience management platform that helps businesses collect and analyze customer feedback. I contributed to this project by triaging (and sometimes fixing) bugs, and was the primary developer for the automated testing framework.',
 				},
+				{
+					title: 'Python SDET Demo',
+					link: [
+						{
+							href: 'https://github.com/graffhyrum/pythonsdetdemo',
+						},
+					],
+					description:
+						'Marketing-event validation platform in Python: contract-first schemas, behavior-first tests, SQL-backed checks, release gates, and observability hooks. Built as a portfolio slice of how I structure SDET work outside the browser.',
+				},
+				{
+					title: 'mutate4ts',
+					link: [
+						{
+							href: 'https://github.com/graffhyrum/mutate4ts',
+						},
+					],
+					description:
+						'Mutation testing CLI for TypeScript. Injects faults, runs your suite per mutation, reports survivors. Answers whether these tests actually catch bugs without hand-waving about coverage %.',
+				},
+				{
+					title: 'crap4ts',
+					link: [
+						{
+							href: 'https://github.com/graffhyrum/crap4ts',
+						},
+					],
+					description:
+						'CRAP score calculator for TS/JS: cyclomatic complexity times coverage to flag change-risk hotspots. Clean-room port of crap4clj; useful when you want risk numbers, not just line coverage.',
+				},
+				{
+					title: 'rule-validator',
+					link: [
+						{
+							href: 'https://github.com/graffhyrum/rule-validator',
+						},
+					],
+					description:
+						'CLI and library that scans TS/JS against custom rules (including AGENTS.md-style policies). Pairs with the Custom Rule Validator gist: same problem, shippable tool.',
+				},
+				{
+					title: 'Playwright Parameterized Users',
+					link: [
+						{
+							href: 'https://github.com/graffhyrum/playwright-parameterized-user-example',
+						},
+					],
+					description:
+						'Fixture-driven matrix of user configs in Playwright Test, with CI. Smaller than playwright-project-demo but shows how I avoid copy-paste when roles and environments multiply.',
+				},
+				{
+					title: 'stepdown-rule',
+					link: [
+						{
+							href: 'https://github.com/graffhyrum/stepdown-rule',
+						},
+					],
+					description:
+						'AST analyzer enforcing the stepdown rule (high-level functions up top, details below). TS CLI for keeping large test and support files readable without moving stuff until lint shuts up.',
+				},
 			],
 		},
 		{
