@@ -6,6 +6,7 @@ interface Props {
 	maxWidth?: string;
 	minWidth?: string;
 	className?: string;
+	gridCell?: boolean;
 	[key: string]: unknown;
 }
 
@@ -14,34 +15,21 @@ const {
 	maxWidth = '',
 	minWidth = '',
 	className = '',
+	gridCell = false,
 	...rest
 } = Astro.props;
 
-const baseClasses = [
-	// Base styles
-	'outline-solid outline-2 outline-green-700',
-	'w-full m-4 p-5 rounded-xl',
-	// bg-green-950 provides a solid dark base so the semi-transparent gradient
-	// always renders on dark green, not the page body — ensures WCAG AA link contrast
-	'bg-green-950 bg-gradient-to-br from-green-950/80 to-green-900/40',
-
-	// Transitions
-	'transition-all duration-300',
-
-	// Interactive states
-	'hover:outline-green-500 hover:shadow-lg hover:shadow-green-900/50',
-	'hover:-translate-y-1 hover:scale-[1.02]',
-	'focus-within:outline-green-500 focus-within:shadow-lg focus-within:shadow-green-900/50',
-	'focus-within:-translate-y-1 focus-within:scale-[1.02]',
+const fillsCell = variant === 'long-form' || gridCell;
+const chromeClasses = [
+	'card-chrome',
+	gridCell ? 'card-chrome--grid-cell' : 'card-chrome--inset',
+	fillsCell ? 'max-w-full' : 'min-w-[min(var(--content-card-min),100%)] max-w-full',
 ].join(' ');
 
-const sizeStyle =
-	variant === 'long-form'
-		? `max-width: 100%; ${minWidth ? `min-width: ${minWidth};` : ''}`
-		: `min-width: min(360px, 100%); max-width: min(20vw, 100%); ${minWidth ? `min-width: ${minWidth};` : ''}`;
+const sizeStyle = minWidth ? `min-width: ${minWidth};` : undefined;
 ---
 <li
-	class={`${baseClasses} ${maxWidth} ${className}`}
+	class={`${chromeClasses} ${maxWidth} ${className}`}
 	style={sizeStyle}
 	{...rest}
 >

@@ -29,7 +29,7 @@ if (isTestimonial && description.includes('<br><br>')) {
 const isLinkedIn = (href: string) => href.includes('linkedin.com');
 ---
 
-<Card variant={cardVariant} id={contentId}>
+<Card variant={cardVariant} id={contentId} gridCell={layoutMode === 'grid'}>
 	{isTestimonial ? (
 		<div class="testimonial-card">
 			{/* Quote icon */}

@@ -16,15 +16,12 @@ interface Props {
 
 const { layoutMode, contentKind, content, sectionTitle } = Astro.props;
 
-const baseClasses = ['flex', 'max-w-9/10', 'mx-auto'];
+const listLayout = 'w-full gap-4';
+const ulClasses =
+	layoutMode === 'single-column'
+		? `flex flex-col ${listLayout} items-stretch`
+		: `grid ${listLayout} min-w-0 grid-cols-[repeat(auto-fill,minmax(min(var(--content-card-min),100%),1fr))]`;
 
-if (layoutMode === 'single-column') {
-	baseClasses.push('flex-col', 'items-center', 'gap-4');
-} else {
-	baseClasses.push('flex-wrap', 'justify-center');
-}
-
-const ulClasses = baseClasses.join(' ');
 ---
 
 <ul class={ulClasses} role="list">
