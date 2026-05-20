@@ -113,3 +113,14 @@ ubs --staged                               # Scan staged files only
 ```
 
 Run `ubs --diff` before every commit. Convert critical/high findings to P0/P1 beads.
+
+## Learned User Preferences
+
+- Prefer Bun/TypeScript scripts over PowerShell for repo maintenance that calls GitHub APIs or must run on Windows without a full git checkout
+
+## Learned Workspace Facts
+
+- Do not use `:` in tracked file paths (including agent-generated distillation filenames); Git for Windows rejects them and blocks `git pull` / checkout on this repo's primary dev machine
+- Record domain vocabulary in `UBIQUITOUS_LANGUAGE.md`; this repo does not use `CONTEXT.md`
+- Colocate unit tests beside implementation as `src/**/*.test.ts` (there is no top-level `tests/` tree for unit tests)
+- Production canonical site URL is `https://pendragon-coding.dev` (`Astro.site` in `astro.config.mjs`)

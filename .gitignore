@@ -48,3 +48,4 @@ docs/post-mortems/
 *.db
 
 .cursor/hooks/state/continual-learning.json
+.cursor/hooks/state/continual-learning-index.json
