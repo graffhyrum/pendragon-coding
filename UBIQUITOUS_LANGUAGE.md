@@ -16,6 +16,12 @@
 | **Changeset** (new)   | A versioning entry that records release-impacting changes for changelog and publish flow.              | Release note stub, random note |
 | **Post-mortem** (new) | A structured retrospective artifact that captures outcomes, failures, and improvements from a session. | Debrief note, diary            |
 
+## Site content
+
+| Term                | Definition                                                                                             | Aliases to avoid           |
+| ------------------- | ------------------------------------------------------------------------------------------------------ | -------------------------- |
+| **Share bar** (new) | Sticky cluster of per-post share actions (copy link and outbound intents) on individual article pages. | Social buttons, share menu |
+
 ## Agent workflow
 
 | Term                  | Definition                                                                                       | Aliases to avoid       |

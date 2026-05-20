@@ -4,6 +4,7 @@ export interface PageMetaProps {
 	pageTitle: string;
 	description?: string;
 	ogType?: OgType;
+	canonicalUrl?: string;
 }
 
 export const SITE_CONFIG = {

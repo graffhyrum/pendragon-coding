@@ -16,6 +16,6 @@ const { entry } = Astro.props;
 const { Content } = await render(entry);
 ---
 
-<BlogPostLayout frontmatter={entry.data}>
+<BlogPostLayout frontmatter={entry.data} body={entry.body}>
 	<Content />
 </BlogPostLayout>

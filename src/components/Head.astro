@@ -7,6 +7,7 @@ const {
 	pageTitle,
 	description = SITE_CONFIG.description,
 	ogType = 'website',
+	canonicalUrl,
 } = Astro.props;
 ---
 
@@ -17,6 +18,8 @@ const {
     <meta property="og:title" content={pageTitle}/>
     <meta property="og:description" content={description}/>
     <meta property="og:type" content={ogType}/>
+    {canonicalUrl && <meta property="og:url" content={canonicalUrl}/>}
+    {canonicalUrl && <link rel="canonical" href={canonicalUrl}/>}
     <link rel="icon" type="image/ico" href="/favicon_io/favicon.ico"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">

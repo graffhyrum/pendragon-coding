@@ -1,27 +1,60 @@
 ---
 import BaseLayout from './BaseLayout.astro';
 import Breadcrumb from '../components/Breadcrumb.astro';
+import BlogShareBar from '../components/BlogShareBar.astro';
 import type { CollectionEntry } from 'astro:content';
+import { getExcerpt } from '../utils/excerpt';
+import {
+	facebookShareUrl,
+	linkedinShareUrl,
+	xShareUrl,
+} from '../utils/share-urls';
 
 interface Props {
 	frontmatter: CollectionEntry<'blog'>['data'];
+	body?: string;
 }
 
-const { frontmatter } = Astro.props;
+const { frontmatter, body } = Astro.props;
 
 const crumbs = [
 	{ label: 'Home', href: '/' },
 	{ label: 'Blog', href: '/blog' },
 	{ label: frontmatter.title },
 ];
+
+const description = getExcerpt(frontmatter.description, body);
+const site = Astro.site?.href ?? 'https://pendragon-coding.dev';
+const canonicalUrl = new URL(Astro.url.pathname, site).href;
+const linkedinUrl = linkedinShareUrl(canonicalUrl);
+const xUrl = xShareUrl(canonicalUrl, frontmatter.title);
+const facebookUrl = facebookShareUrl(canonicalUrl);
 ---
-<BaseLayout pageTitle={frontmatter.title} description={frontmatter.description} ogType="article">
+<BaseLayout
+	pageTitle={frontmatter.title}
+	description={description}
+	ogType="article"
+	canonicalUrl={canonicalUrl}
+>
 	<Breadcrumb crumbs={crumbs} />
-	<h3 class="text-2xl font-medium text-green-800 dark:text-green-100 mt-4"
-	>{frontmatter.title}</h3>
-	<p class="text-sm text-green-900 dark:text-green-400 my-2"
-	>{frontmatter.date}</p>
-	<div class="content bullet-list">
-		<slot/>
+	<div class="blog-post-content relative max-w-3xl">
+		<BlogShareBar
+			url={canonicalUrl}
+			linkedinUrl={linkedinUrl}
+			xUrl={xUrl}
+			facebookUrl={facebookUrl}
+		/>
+		<h3 class="text-2xl font-medium text-green-800 dark:text-green-100 mt-4"
+		>{frontmatter.title}</h3>
+		<p class="text-sm text-green-900 dark:text-green-400 my-2"
+		>{frontmatter.date}</p>
+		<div class="content bullet-list">
+			<slot/>
+		</div>
 	</div>
 </BaseLayout>
+
+<script>
+	import { initBlogShare } from '../scripts/blog-share';
+	initBlogShare();
+</script>

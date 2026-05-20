@@ -7,11 +7,11 @@ import type { PageMetaProps } from '../config/site';
 
 type Props = PageMetaProps;
 
-const { pageTitle, description, ogType } = Astro.props;
+const { pageTitle, description, ogType, canonicalUrl } = Astro.props;
 ---
 
 <html class="scroll-smooth" lang="en">
-<Head pageTitle={pageTitle} description={description} ogType={ogType}/>
+<Head pageTitle={pageTitle} description={description} ogType={ogType} canonicalUrl={canonicalUrl}/>
 <body class="bg-green-200 dark:bg-green-950 flex flex-col h-screen m-0 leading-loose font-sans box-border text-gray-900 dark:text-gray-100 divide-y divide-green-200 dark:divide-green-700/80 transition-colors duration-300"
       style="font-family: 'Roboto', sans-serif;">
 <a
