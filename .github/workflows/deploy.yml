@@ -1,24 +1,52 @@
 name: Deploy to Production
 
 on:
-  push:
-    tags:
-      - 'v*'
   workflow_dispatch:
     inputs:
       tag:
-        description: 'Existing tag to deploy (e.g. v2.8.2)'
+        description: 'Existing tag to deploy (e.g. v2.9.0). Ignored when ref is set.'
+        required: false
+        type: string
+      ref:
+        description: 'Git ref to deploy (e.g. refs/heads/main or a8185be). Overrides tag.'
+        required: false
+        type: string
+  workflow_call:
+    inputs:
+      ref:
+        description: 'Git ref to build and deploy'
         required: true
         type: string
+      deploy_message:
+        description: 'Netlify deploy message'
+        required: false
+        type: string
+        default: ''
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
+      - name: Resolve checkout ref
+        id: checkout_ref
+        run: |
+          set -euo pipefail
+          if [ -n "${{ inputs.ref }}" ]; then
+            REF="${{ inputs.ref }}"
+          elif [ -n "${{ github.event.inputs.ref }}" ]; then
+            REF="${{ github.event.inputs.ref }}"
+          elif [ -n "${{ github.event.inputs.tag }}" ]; then
+            REF="${{ github.event.inputs.tag }}"
+          else
+            REF="${{ github.ref }}"
+          fi
+          echo "ref=${REF}" >> "$GITHUB_OUTPUT"
+          echo "Checkout ref: ${REF}"
+
       - name: Checkout code
         uses: actions/checkout@v5
         with:
-          ref: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.tag || github.ref }}
+          ref: ${{ steps.checkout_ref.outputs.ref }}
 
       - name: Setup Node
         uses: actions/setup-node@v4
@@ -42,7 +70,7 @@ jobs:
           publish-dir: './dist'
           production-deploy: true
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          deploy-message: 'Deploy from tag ${{ github.ref_name }}'
+          deploy-message: ${{ inputs.deploy_message || format('Deploy {0}', steps.checkout_ref.outputs.ref) }}
           enable-pull-request-comment: false
           enable-commit-comment: false
         env:

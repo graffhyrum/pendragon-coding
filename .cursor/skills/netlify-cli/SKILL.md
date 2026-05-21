@@ -39,7 +39,7 @@ Build output for this Astro app is always `dist/` (see `netlify.toml`).
 
 Netlify’s optional **ignore** command runs before a Git-triggered build: **exit 0 = skip build**, **non-zero = run build**.
 
-**This repo** sets `ignore = "exit 0"` on all contexts so Netlify **never** runs its builder on routine `main` pushes. You will see skipped/canceled Netlify **Git** builds — that is intentional. **Production** updates when a `v*` tag triggers `.github/workflows/deploy.yml`, which builds in Actions and deploys `dist/` via the Netlify API.
+**This repo** sets `ignore = "exit 0"` on all contexts so Netlify **never** runs its builder on routine `main` pushes. You will see skipped/canceled Netlify **Git** builds — that is intentional. **Production** updates when `release.yml` calls `.github/workflows/deploy.yml` after tagging `origin/main` at `v*` (workflow_call), not from Netlify Git builds.
 
 To run Netlify’s builder for a branch (not this project’s default), change or remove `ignore` in `netlify.toml` or use [reference.md](reference.md) for diff-based ignore patterns.
 
@@ -48,7 +48,7 @@ To run Netlify’s builder for a branch (not this project’s default), change o
 ## Repo deploy model
 
 - **Routine `main`**: No Netlify Git build (`exit 0` ignore).
-- **Release**: Merge Version PR → `release.yml` publishes → pushes `v*` tag → `deploy.yml` builds and deploys to Netlify.
-- **Manual**: `bun run build && netlify deploy --prod --dir dist` (CLI), or push a `v*` tag to trigger `deploy.yml`.
+- **Release**: Merge Version PR → `release.yml` tags `origin/main` at `v*` → `deploy.yml` via `workflow_call` (not Netlify Git builds).
+- **Manual**: `bun run build && netlify deploy --prod --dir dist` (CLI), or `gh workflow run "Deploy to Production" -f ref=refs/heads/main`.
 
 More commands, env vars, and official doc links: [reference.md](reference.md).

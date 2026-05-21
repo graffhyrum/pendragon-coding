@@ -4,15 +4,15 @@ How pendragon-coding gets from source to production on Netlify.
 
 ## Deployment Model
 
-**Production** updates only when a **git tag** `v*` is pushed and `.github/workflows/deploy.yml` runs: it builds with Bun and uploads `dist/` to Netlify via the Netlify API (`nwtgck/actions-netlify`). That tag is created by `release.yml` after Changesets **publishes** when you merge the “Version packages” PR — not on every routine merge to `main`.
+**Production** updates when `release.yml` finishes a **version release on `main`**: it tags `origin/main` at `v{package.json version}`, then calls `.github/workflows/deploy.yml` via `workflow_call` to build and upload `dist/` to Netlify (`nwtgck/actions-netlify`). Tags are **not** cut when Changesets only opens or updates the Version PR. Routine merges to `main` without a version bump do not deploy.
 
 **Netlify’s Git-connected builder** is intentionally disabled for all contexts: `netlify.toml` sets `ignore = "exit 0"`, so Netlify **skips** every build triggered by pushes to `main` (or branches). You avoid a redundant Netlify build and deploy on every commit; the live site still updates when the tag pipeline finishes.
 
 ### Verifying a release
 
-1. Merge the Version PR → watch **GitHub Actions** → `Release` completes with publish and **Create Git Tag** pushing `v{version}`.
-2. **Deploy to Production** (`deploy.yml`) runs on that tag push — this is the deploy that matters.
-3. In the Netlify UI, a **skipped/canceled** Git build for `main` is **expected**; look for a **successful** deploy produced by the API / Actions (deploy message like `Deploy from tag v…`), not a completed Netlify “build from Git” for every `main` commit.
+1. Merge the Version PR → **Release** runs on `main` with `hasChangesets=false` and no new Version PR number.
+2. **Sync release tag on main** creates or moves `v{version}` to `origin/main` HEAD, then the **Deploy release** job runs `deploy.yml` (workflow_call).
+3. In the Netlify UI, a **skipped/canceled** Git build for `main` is **expected**; look for a **successful** API deploy (message like `Deploy release v…`), not a completed Netlify “build from Git” for every `main` commit.
 
 ## Release Pipeline
 
@@ -23,8 +23,8 @@ flowchart TD
     C --> D{Changesets action}
     D -->|unreleased changesets| E[Creates Version PR]
     D -->|Version PR merged| F[Publishes: updates package.json + CHANGELOG.md]
-    F --> G[Creates git tag v{version}]
-    G --> H[Tag push triggers deploy.yml]
+    F --> G[Tags origin/main at v{version}]
+    G --> H[release.yml calls deploy.yml]
     H --> I[bun install + bun run build]
     I --> J[nwtgck/actions-netlify@v3.0 deploys dist/ to Netlify]
     J --> K[pendragon-coding.netlify.app updated]
@@ -36,30 +36,30 @@ flowchart TD
 2. **Merge PR to main** -- the `release.yml` workflow fires on every push to `main`.
 3. **Changesets action** -- if unreleased changesets exist, the action opens a "Version Packages" PR that bumps `package.json` and updates `CHANGELOG.md`. If that PR is already open, it updates it.
 4. **Merge the Version PR** -- Changesets publishes: it consumes the changeset files, finalizes the changelog, and commits the version bump.
-5. **Tag sync** -- after each `release.yml` run, **Ensure version git tag exists on origin** checks `git ls-remote` for `refs/tags/v{version}` matching `package.json`. If the tag is missing on origin, the workflow creates and pushes it so `deploy.yml` can run (covers merges of the Version PR where Changesets does not set `published`).
-6. **Deploy** -- the tag push triggers `deploy.yml`, which checks out the code, installs dependencies with Bun, runs `bun run build`, and deploys the `dist/` directory to Netlify using `nwtgck/actions-netlify@v3.0`.
+5. **Tag sync** -- only when `hasChangesets=false`, no Version PR was opened in that run, and the job checks out `origin/main` (not `changeset-release/main`). Creates or moves `v{version}` to `main` HEAD; skips deploy if the tag already points at `main` HEAD.
+6. **Deploy** -- `release.yml` invokes `deploy.yml` with `ref: refs/tags/v{version}` so production does not depend on Netlify Git builds or tag-push webhooks.
 
 ## GitHub Actions Workflows
 
 ### deploy.yml
 
-| Field       | Value                                                                                                                           |
-| ----------- | ------------------------------------------------------------------------------------------------------------------------------- |
-| **Trigger** | Git tags matching `v*`; manual **`workflow_dispatch`** with input `tag` (e.g. `v2.8.2`) if an automated tag did not start a run |
-| **Runner**  | Ubuntu latest                                                                                                                   |
-| **Steps**   | Checkout -> Setup Node 24 -> Setup Bun -> `bun install` -> `bun run build` -> Deploy to Netlify                                 |
-| **Action**  | `nwtgck/actions-netlify@v3.0`                                                                                                   |
-| **Secrets** | `NETLIFY_AUTH_TOKEN`, `NETLIFY_SITE_ID`, `GITHUB_TOKEN`                                                                         |
+| Field       | Value                                                                                                                               |
+| ----------- | ----------------------------------------------------------------------------------------------------------------------------------- |
+| **Trigger** | `workflow_call` from `release.yml`; manual **`workflow_dispatch`** with `ref` (e.g. `refs/heads/main`) and/or `tag` (e.g. `v2.9.0`) |
+| **Runner**  | Ubuntu latest                                                                                                                       |
+| **Steps**   | Checkout -> Setup Node 24 -> Setup Bun -> `bun install` -> `bun run build` -> Deploy to Netlify                                     |
+| **Action**  | `nwtgck/actions-netlify@v3.0`                                                                                                       |
+| **Secrets** | `NETLIFY_AUTH_TOKEN`, `NETLIFY_SITE_ID`, `GITHUB_TOKEN`                                                                             |
 
 ### release.yml
 
-| Field           | Value                                                                                                                                                                                                                                                              |
-| --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| **Trigger**     | Push to `main`                                                                                                                                                                                                                                                     |
-| **Concurrency** | Serialized per workflow (prevents race conditions)                                                                                                                                                                                                                 |
-| **Permissions** | Write access to `contents` and `pull-requests`                                                                                                                                                                                                                     |
-| **Steps**       | Checkout -> Setup Bun -> `bun install` -> Changesets action -> ensure `v{package.json version}` exists on origin                                                                                                                                                   |
-| **Tag sync**    | After Changesets, push annotated `v{version}` if absent on `origin`. **GitHub:** pushes using only `GITHUB_TOKEN` do not start other workflows — set optional repo secret **`RELEASE_REPO_PAT`** so checkout uses a PAT and tag pushes still trigger `deploy.yml`. |
+| Field           | Value                                                                                                                                                                                                                                                             |
+| --------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Trigger**     | Push to `main`                                                                                                                                                                                                                                                    |
+| **Concurrency** | Serialized per workflow (prevents race conditions)                                                                                                                                                                                                                |
+| **Permissions** | Write access to `contents` and `pull-requests`                                                                                                                                                                                                                    |
+| **Steps**       | Checkout -> Setup Bun -> `bun install` -> Changesets action -> sync tag on `origin/main` -> optional `deploy` job (`workflow_call`)                                                                                                                               |
+| **Tag sync**    | Runs only when no pending changesets and no Version PR was created/updated in that run; always tags `origin/main`, never `changeset-release/main`. Deploy uses `workflow_call`, not tag-push webhooks. Set **`RELEASE_REPO_PAT`** so checkout/tag push use a PAT. |
 
 ### opencode.yml
 
@@ -102,18 +102,16 @@ If either check fails, the build aborts and the deploy does not proceed.
 To deploy a specific commit manually:
 
 ```bash
-# Create and push a tag
-git tag v2.6.2
-git push origin v2.6.2
+gh workflow run "Deploy to Production" --repo graffhyrum/pendragon-coding -f ref=refs/heads/main
 ```
 
-This triggers `deploy.yml` directly, bypassing the Changesets flow. Use this only for hotfixes or when the automated pipeline is not suitable.
-
-**Manual deploy for an existing tag** (e.g. tag created by CI before `RELEASE_REPO_PAT` was set):
+Or deploy an existing tag:
 
 ```bash
-gh workflow run "Deploy to Production" --repo graffhyrum/pendragon-coding -f tag=v2.8.2
+gh workflow run "Deploy to Production" --repo graffhyrum/pendragon-coding -f tag=v2.9.0
 ```
+
+Use `ref=` when the tag points at the wrong commit; use `tag=` when the tag is correct.
 
 ## Rollback
 
