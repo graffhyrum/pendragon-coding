@@ -11,15 +11,20 @@ A portfolio website for Joshua Pendragon (SDET), built with Astro. Features a bl
 ### Prerequisites
 
 - [Bun](https://bun.sh/) (JavaScript runtime and package manager)
+- [Node.js](https://nodejs.org/) 24+ (for the portless dev proxy CLI)
+- OpenSSL (Windows: `winget install -e --id ShiningLight.OpenSSL.Dev`; the installer often does **not** add `C:\Program Files\OpenSSL-Win64\bin` to PATH — `bun run dev` prepends it automatically, or add it permanently and restart the terminal)
 
 ### Install and Run
 
 ```bash
 bun install
+bunx portless trust   # once: trust local HTTPS CA (Windows may need an elevated terminal)
 bun run dev
 ```
 
-The dev server starts with hot reload at `http://localhost:4321`.
+The dev server is available at **https://pendragon-coding.localhost** (HTTPS via [portless](https://github.com/vercel-labs/portless)).
+
+To run Astro without the proxy: `PORTLESS=0 bun run dev:app` (plain `http://localhost:4321`).
 
 ### Quality Check
 

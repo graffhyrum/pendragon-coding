@@ -2,6 +2,8 @@
 
 ## Commands
 
+- **Dev**: `bun run dev` or `bun run start` (`scripts/run-portless.ts` → portless → https://pendragon-coding.localhost)
+- **Dev (direct)**: `bun run dev:app` or `PORTLESS=0 bun run dev:app` (Astro only, no proxy)
 - **Build**: `bun run build` (includes type checking)
 - **Lint**: `bun run lint` (oxlint auto-fix)
 - **Format**: `bun run format` (oxfmt)
@@ -113,6 +115,14 @@ ubs --staged                               # Scan staged files only
 ```
 
 Run `ubs --diff` before every commit. Convert critical/high findings to P0/P1 beads.
+
+### portless — Local dev URLs
+
+Vendored from [vercel-labs/portless](https://github.com/vercel-labs/portless/tree/main/skills/portless) at v0.13.0. Read `.cursor/skills/portless/SKILL.md` (general) and `.cursor/skills/portless/reference.md` (this repo) before changing dev scripts or proxy setup.
+
+- `bun run dev` runs Astro through portless; child processes get `PORTLESS_URL`
+- Do not route `bun vet` / Playwright e2e through portless (preview on port 3456)
+- Browser automation should open `PORTLESS_URL` or https://pendragon-coding.localhost
 
 ## Learned User Preferences
 

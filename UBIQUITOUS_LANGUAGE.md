@@ -22,6 +22,12 @@
 | ------------------- | ------------------------------------------------------------------------------------------------------ | -------------------------- |
 | **Share bar** (new) | Sticky cluster of per-post share actions (copy link and outbound intents) on individual article pages. | Social buttons, share menu |
 
+## Local development
+
+| Term                    | Definition                                                                                                                                                                | Aliases to avoid        |
+| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------- |
+| **Local Dev URL** (new) | Stable HTTPS hostname for local development via portless (e.g. `https://pendragon-coding.localhost`). Not production (`pendragon-coding.dev`) or e2e preview (port 3456). | localhost:4321, dev URL |
+
 ## Agent workflow
 
 | Term                  | Definition                                                                                       | Aliases to avoid       |
