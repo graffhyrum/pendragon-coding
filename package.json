@@ -61,6 +61,8 @@
 		"node": ">=22.12.0"
 	},
 	"patchedDependencies": {
-		"@axe-core/playwright@4.11.3": "patches/@axe-core%2Fplaywright@4.11.3.patch"
+		"@axe-core/playwright@4.11.3": "patches/@axe-core%2Fplaywright@4.11.3.patch",
+		"@tailwindcss/node@4.3.0": "patches/@tailwindcss%2Fnode@4.3.0.patch",
+		"playwright@1.60.0": "patches/playwright@1.60.0.patch"
 	}
 }

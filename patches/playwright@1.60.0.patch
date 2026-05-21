@@ -1,0 +1,92 @@
+diff --git a/lib/common/index.js b/lib/common/index.js
+index 3cd74b2..47926ae 100644
+--- a/lib/common/index.js
++++ b/lib/common/index.js
+@@ -1174,14 +1174,22 @@ var PortTransport = class {
+ 
+ // packages/playwright/src/common/esmLoaderHost.ts
+ var loaderChannel;
++var loaderRegisteredWithRegisterHooks = false;
+ function registerESMLoader() {
+   if (process.env.PW_DISABLE_TS_ESM)
+     return true;
+   if ("Bun" in globalThis)
+     return true;
+-  if (loaderChannel)
++  if (loaderChannel || loaderRegisteredWithRegisterHooks)
+     return true;
+-  const register = require("node:module").register;
++  const nodeModule = require("node:module");
++  const esmLoader = require("../transform/esmLoader.js");
++  if (typeof nodeModule.registerHooks === "function") {
++    nodeModule.registerHooks({ resolve: esmLoader.resolveSync, load: esmLoader.loadSync });
++    loaderRegisteredWithRegisterHooks = true;
++    return true;
++  }
++  const register = nodeModule.register;
+   if (!register)
+     return false;
+   const { port1, port2 } = new MessageChannel();
+diff --git a/lib/transform/esmLoader.js b/lib/transform/esmLoader.js
+index 9076610..fa16921 100644
+--- a/lib/transform/esmLoader.js
++++ b/lib/transform/esmLoader.js
+@@ -5880,7 +5880,7 @@ async function nextTask() {
+ 
+ // packages/playwright/src/transform/esmLoader.ts
+ var esmPreflightExtension = ".esm.preflight";
+-async function resolve(originalSpecifier, context, defaultResolve) {
++function resolveSpecifier(originalSpecifier, context) {
+   let specifier = originalSpecifier.replace(esmPreflightExtension, "");
+   if (context.parentURL && context.parentURL.startsWith("file://")) {
+     const filename = import_url3.default.fileURLToPath(context.parentURL);
+@@ -5888,13 +5888,23 @@ async function resolve(originalSpecifier, context, defaultResolve) {
+     if (resolved !== void 0)
+       specifier = import_url3.default.pathToFileURL(resolved).toString();
+   }
+-  const result2 = await defaultResolve(specifier, context, defaultResolve);
++  return specifier;
++}
++function finishResolve(originalSpecifier, result2) {
+   if (result2?.url && result2.url.startsWith("file://"))
+     currentFileDepsCollector()?.add(import_url3.default.fileURLToPath(result2.url));
+   if (originalSpecifier.endsWith(esmPreflightExtension))
+     result2.url = result2.url + esmPreflightExtension;
+   return result2;
+ }
++async function resolve(originalSpecifier, context, defaultResolve) {
++  const specifier = resolveSpecifier(originalSpecifier, context);
++  return finishResolve(originalSpecifier, await defaultResolve(specifier, context, defaultResolve));
++}
++function resolveSync(originalSpecifier, context, defaultResolve) {
++  const specifier = resolveSpecifier(originalSpecifier, context);
++  return finishResolve(originalSpecifier, defaultResolve(specifier, context, defaultResolve));
++}
+ var kSupportedFormats = /* @__PURE__ */ new Map([
+   ["commonjs", "commonjs"],
+   ["module", "module"],
+@@ -5903,7 +5913,7 @@ var kSupportedFormats = /* @__PURE__ */ new Map([
+   [null, null],
+   [void 0, void 0]
+ ]);
+-async function load(moduleUrl, context, defaultLoad) {
++function loadSync(moduleUrl, context, defaultLoad) {
+   if (!kSupportedFormats.has(context.format))
+     return defaultLoad(moduleUrl, context, defaultLoad);
+   if (!moduleUrl.startsWith("file://"))
+@@ -5924,6 +5934,9 @@ async function load(moduleUrl, context, defaultLoad) {
+     shortCircuit: true
+   };
+ }
++async function load(moduleUrl, context, defaultLoad) {
++  return loadSync(moduleUrl, context, defaultLoad);
++}
+ var transport;
+ function initialize(data) {
+   transport = createTransport(data?.port);
+@@ -5954,4 +5967,4 @@ function createTransport(port) {
+     }
+   });
+ }
+-module.exports = { initialize, load, resolve };
++module.exports = { initialize, load, loadSync, resolve, resolveSync };
