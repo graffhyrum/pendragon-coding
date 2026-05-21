@@ -1,5 +1,23 @@
 # pendragon-coding
 
+## 2.9.0
+
+### Minor Changes
+
+- eda2781: Add sticky Share bar on blog post pages (copy URL, LinkedIn, X, Facebook) and minimal per-post OG metadata (description excerpt, canonical URL).
+
+### Patch Changes
+
+- cada961: Wire blog CollectionPageLayout to shared CardList stack layout (one post per row). Content pages keep CardList grid with auto-fill columns; remove viewport aspect-ratio rules that forced single-column grids on non-blog pages.
+- cada961: Add section sidebar navigation to the blog listing page and HTMX `/api/blog.html` partial, matching myWork, bookshelf, and testimonials.
+- 1ae28de: Fix CardList and content cards for light/dark theme parity, and unify theme init/toggle through shared applyTheme so refresh matches toggle.
+- a0c8515: Add Cursor `stop` hook that runs `bun vet` and reopens the agent with fix instructions when the quality gate fails (up to 3 follow-up loops, 15 min timeout). Pin `devalue` and `ws` via overrides so `bun audit` passes. Run Playwright e2e on port 3456 against a fresh preview build so vet does not collide with `astro dev` on 4321.
+- ba3c45f: Add six GitHub project cards to My Work (Python SDET demo, mutate4ts, crap4ts, rule-validator, Playwright parameterized users, stepdown-rule).
+- 1c0a384: Update homepage About section copy to reflect AI enablement, QA, accessibility focus, career path, SecurityScorecard work, and target roles.
+- c69e039: Patch Playwright and @tailwindcss/node to use Node `module.registerHooks()` on Node 24+, removing DEP0205 deprecation noise during e2e (upstream: tailwindlabs/tailwindcss#20028, microsoft/playwright#40877).
+- 96b6a9f: Route local dev through portless for a stable Local Dev URL (`https://pendragon-coding.localhost`). Add split `dev` / `dev:app` scripts, pin portless as a devDependency, bump Node engines to >=24, vendor the upstream portless agent skill, and prepend Windows OpenSSL to PATH via `scripts/run-portless.ts` when winget does not.
+- 9117845: Tighten SectionList layout: full-width CSS grid for card sections, remove viewport-capped short-form card width, and use vertical-only card margins in grid cells to prevent horizontal overflow past main-content.
+
 ## 2.8.2
 
 ### Patch Changes
@@ -48,12 +66,14 @@
 
 - b125efa: Add breadcrumb navigation component for multi-level page context (Home > Blog > Article Title)
 - d90e7c4: feat: add visual system design tokens for shadows, transitions, and easing
+
   - Define shadow presets (card, card-hover, heading, glow-green) in Tailwind v4 @theme block
   - Define transition duration scale (fast/normal/slow) and easing curves (default/in-out/spring)
   - Mirror tokens in tailwind.config.js extend for editor intellisense support
 
 - 74b4c32: Add Playwright-based WCAG AA contrast regression tests using axe-core. Tests 8 pages in both light and dark mode (16 test cases). Includes Playwright config, scoped tsconfig for Playwright types, and test:contrast npm script.
 - d6bd63b: refactor: deepen frontend architecture — extract utilities, fix bugs, consolidate components
+
   - Extract shared slug utility (toSlug) from 4 duplicated implementations, fixing a regex ordering bug in CollectionPageLayout
   - Consolidate 4 duplicate component pairs (Card, Skill, Skills, Navigation) into canonical locations
   - Merge HTMX attributes and active-page detection into Navigation (was missing from live site)
@@ -77,6 +97,7 @@
 - 741c97c: fix: resolve remaining WCAG AA contrast violations on 404 page in both light and dark modes
 - e2ffb40: fix: 404 page heading text contrast — ensure h2 "Page Not Found" uses gray-900/gray-100 for WCAG AA compliance in both light and dark modes
 - bc17a2c: fix(a11y): blog sort button and prose link contrast for WCAG AA
+
   - Sort button active state: `bg-green-600 text-white` (3.21:1) → `bg-green-800 text-green-50` (passes 4.5:1) in both light and dark modes
   - `.content a` prose links: `text-blue-300` in light mode (1.5:1 on bg-green-200) → `text-blue-700` (passes 4.5:1); dark mode stays `text-blue-300`
   - Closes pendragon-coding-we9: all 16 axe-core contrast audit tests pass across 8 pages × 2 modes
@@ -196,6 +217,7 @@
   Implemented a theme toggle component that allows users to switch between light and dark modes with a smooth sliding animation. The theme preference is persisted in localStorage and respects system preferences on first visit.
 
   **New Features:**
+
   - Theme toggle button with sliding animation positioned at the right edge of the header
   - Sun and moon icons that smoothly transition based on the selected theme
   - localStorage persistence to remember user's theme preference across sessions
@@ -203,6 +225,7 @@
   - Smooth color transitions throughout the site when switching themes (300ms duration)
 
   **Improvements:**
+
   - Light mode uses a clean gray-50 background with dark text for improved readability during daytime
   - Dark mode maintains the existing green-950 background with light text optimized for low-light environments
   - Navigation underlines adapt to theme: green-600 in light mode, green-400 in dark mode
@@ -210,6 +233,7 @@
   - Accessible implementation with proper ARIA attributes and keyboard focus states
 
   **Technical Details:**
+
   - Created ThemeToggle.astro component with inline script for theme management
   - Configured Tailwind CSS with class-based dark mode strategy
   - Added tailwind.config.js with dark mode enabled
@@ -221,12 +245,14 @@
 
 - e5e448b: Add Bun test runner tooling to the project. Includes test scripts in package.json (test, test:watch, test:coverage), example test file demonstrating Bun's test syntax, and updated documentation in CLAUDE.md with testing commands and conventions.
 - b090c8e: Add GitHub Action for opencode integration on issue comments
+
   - Add .github/workflows/opencode.yml to enable opencode AI assistance
   - Triggers on issue comments containing '/oc' or '/opencode' commands
   - Uses sst/opencode/github action with opencode/big-pickle model
   - Includes proper permissions for repository access
 
 - 201f90b: Migrate blog and testimonials to Astro Content Collections API
+
   - Create content config with Zod schemas for type safety
   - Move markdown files from pages to content directory
   - Standardize blog dates to ISO format
@@ -238,6 +264,7 @@
 
 - 930f48e: Add article on DORA metrics misuse to bookshelf
 - b090c8e: Refactor testimonials to use ContentSection component like myWork page
+
   - Convert testimonials from Astro Content Collections to static TypeScript data file
   - Update testimonials page to use ContentContainer and BaseLayout instead of CollectionPageLayout
   - Remove individual testimonial markdown files and dynamic routing
@@ -259,6 +286,7 @@
   This release introduces a modern navigation system using HTMX that provides a single-page application experience while maintaining progressive enhancement and SEO-friendly fallbacks.
 
   **New Features:**
+
   - HTMX-powered navigation that swaps content without full page reloads
   - Smooth transitions between pages using HTMX's built-in transition system
   - Browser history and URL preservation with `hx-push-url`
@@ -266,18 +294,21 @@
   - Progressive enhancement: navigation works with and without JavaScript
 
   **Improvements:**
+
   - Fixed animation stutter by eliminating conflicting CSS animations during HTMX transitions
   - Added `noAnimation` prop system to Skills and Skill components for conditional animation control
   - Faster page navigation with reduced bandwidth usage (only content updates, not full page)
   - Maintained SEO compatibility with full-page fallbacks for search engine crawlers
 
   **Code Quality Refactors:**
+
   - Refactored Navigation component to use data-driven link array, reducing code from ~93 lines to ~38 lines
   - Extracted HTMX configuration into reusable constants for maintainability
   - Created ApiContentLayout wrapper to eliminate duplication across API endpoints
   - Improved code maintainability: adding/removing navigation links now requires only updating the data array
 
   **Technical Details:**
+
   - Navigation links use `hx-get`, `hx-target`, `hx-swap`, and `hx-push-url` attributes
   - Original page routes remain unchanged for direct access and SEO
   - API endpoints share components with full pages, ensuring consistency
