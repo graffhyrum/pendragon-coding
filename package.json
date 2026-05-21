@@ -1,6 +1,6 @@
 {
 	"name": "pendragon-coding",
-	"version": "2.8.2",
+	"version": "2.9.0",
 	"type": "module",
 	"scripts": {
 		"dev": "bun scripts/run-portless.ts",
