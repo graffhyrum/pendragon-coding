@@ -139,3 +139,5 @@ Vendored from [vercel-labs/portless](https://github.com/vercel-labs/portless/tre
 - Class-based theme toggles `dark` on `<html>`; `src/scripts/theme-init.ts` is the single source for Head inline FOUC script and ThemeToggle (keep toggle/refresh idempotent)
 - Blog listing uses `CardList` with `layoutMode="single-column"` (one post per row); myWork/bookshelf/shoutouts use `CardList` grid via SectionList `layoutMode="grid"`
 - `.gitattributes` enforces `* text=auto eol=lf`; phantom dirty files on Windows with empty diffs usually mean `core.autocrlf` / index stat drift, not real content changes
+- Production: `release.yml` tags `origin/main` at `v*` then `workflow_call` `deploy.yml` (Actions build + Netlify API). `netlify.toml` `ignore = "exit 0"` skips Netlify Git builds on `main` — canceled/skipped Netlify deploys are expected, not build failures
+- Manual production deploy: `gh workflow run "Deploy to Production" -f ref=...` (tag or branch); see `.cursor/skills/netlify-cli/` for deploy model details
