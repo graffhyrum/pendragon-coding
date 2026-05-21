@@ -167,9 +167,17 @@ describe('theme toggle e2e', () => {
 		expect(homeHtml).toContain('Toggle dark mode');
 	});
 
-	it('FOUC prevention script references localStorage in head', () => {
-		expect(homeHtml).toContain("localStorage.getItem('theme')");
-		expect(homeHtml).toContain("classList.add('dark')");
+	it('FOUC prevention script references theme storage in head', () => {
+		expect(homeHtml).toContain("'theme'");
+		expect(homeHtml).toContain("'theme-explicit'");
+		expect(homeHtml).toContain('classList.add');
+	});
+
+	it('blog cards emit semantic theme-aware title classes', async () => {
+		const blogHtml = await fetchPage('/blog/');
+		expect(blogHtml).toContain('card-title');
+		expect(blogHtml).toContain('card-meta');
+		expect(blogHtml).toContain('card-body');
 	});
 
 	it('theme toggle handles htmx:afterSwap for reinitialization', () => {

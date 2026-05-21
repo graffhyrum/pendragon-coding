@@ -366,14 +366,63 @@ p {
 
 /* Shared <li> chrome for Card.astro (content pages + blog) */
 .card-chrome {
-    @apply outline-solid outline-2 outline-green-700 w-full p-5 rounded-xl
-        bg-green-950 bg-gradient-to-br from-green-950/80 to-green-900/40
-        transition-all duration-300;
+    @apply outline-solid outline-2 outline-green-400 w-full p-5 rounded-xl
+        bg-green-50 bg-gradient-to-br from-green-50 to-green-100/80
+        dark:outline-green-700 dark:bg-green-950 dark:bg-gradient-to-br dark:from-green-950/80 dark:to-green-900/40
+        transition-colors duration-300 transition-transform;
 }
 
 .card-chrome:hover,
 .card-chrome:focus-within {
-    @apply outline-green-500 shadow-lg shadow-green-900/50 -translate-y-1 scale-[1.02];
+    @apply outline-green-600 shadow-lg shadow-green-800/20 -translate-y-1 scale-[1.02]
+        dark:outline-green-500 dark:shadow-green-900/50;
+}
+
+.card-title {
+    @apply text-green-900 dark:text-green-100;
+}
+
+.card-meta {
+    @apply text-green-800 dark:text-green-300;
+}
+
+.card-body {
+    @apply text-green-800 dark:text-green-200;
+}
+
+.card-pill {
+    @apply bg-green-200/80 text-green-900 border-green-500
+        dark:bg-green-800 dark:text-green-200 dark:border-green-600;
+}
+
+.card-pill:hover {
+    @apply bg-green-300/90 dark:bg-green-700;
+}
+
+.card-link {
+    @apply transition-all duration-200 hover:shadow-none
+        focus-visible:outline-2 focus-visible:outline-green-600 focus-visible:outline-offset-2
+        dark:focus-visible:outline-green-400;
+    text-decoration: none !important;
+    text-shadow: none !important;
+}
+
+.card-link:visited {
+    @apply text-green-900 dark:text-green-200;
+}
+
+/* Blog listing sort controls — state via aria-pressed (blog-sort.ts) */
+.blog-sort-btn {
+    @apply text-sm rounded px-3 py-1 border transition-colors duration-150
+        border-green-600 bg-green-100 text-green-900
+        hover:bg-green-200
+        dark:border-green-600 dark:bg-green-900 dark:text-green-300 dark:hover:bg-green-800;
+}
+
+.blog-sort-btn[aria-pressed='true'] {
+    @apply border-green-700 bg-green-700 text-green-50
+        hover:bg-green-800
+        dark:border-green-600 dark:bg-green-800 dark:text-green-50 dark:hover:bg-green-700;
 }
 
 .card-chrome--inset {
@@ -395,26 +444,11 @@ p {
 }
 
 .testimonial-linkedin-link {
-    @apply inline-flex items-center justify-center w-9 h-9 rounded-lg
-    bg-green-800/40 text-green-300
-    transition-all duration-200
-    hover:bg-green-700/60 hover:text-green-100 hover:shadow-none
-    focus-visible:outline-2 focus-visible:outline-green-400 focus-visible:outline-offset-2;
-    /* Override global anchor styles for icon buttons */
-    text-decoration: none !important;
-    text-shadow: none !important;
-}
-
-.testimonial-linkedin-link:visited {
-    @apply text-green-300;
+    @apply inline-flex items-center justify-center w-9 h-9 rounded-lg;
 }
 
 .testimonial-quote-text {
-    @apply border-l-3 border-green-600/50 pl-4 mt-2;
-}
-
-.testimonial-quote-text p {
-    @apply text-base text-green-200/90 leading-relaxed italic;
+    @apply border-l-3 border-green-500/60 pl-4 mt-2 dark:border-green-600/50;
 }
 
 /* --- Bookshelf card styles --- */
@@ -424,19 +458,7 @@ p {
 }
 
 .bookshelf-link-pill {
-    @apply inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full
-    text-xs font-medium
-    bg-green-800/50 text-green-300
-    transition-all duration-200
-    hover:bg-green-700/60 hover:text-green-100 hover:shadow-none
-    focus-visible:outline-2 focus-visible:outline-green-400 focus-visible:outline-offset-2;
-    /* Override global anchor styles for pill links */
-    text-decoration: none !important;
-    text-shadow: none !important;
-}
-
-.bookshelf-link-pill:visited {
-    @apply text-green-300;
+    @apply inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium;
 }
 
 /* GitHub Gist embed contrast overrides for WCAG AA */

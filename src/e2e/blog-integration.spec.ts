@@ -51,7 +51,7 @@ test.describe('blog post card structure', () => {
 			expect(href).toMatch(/^\/blog\/.+/);
 
 			// Date element: <p> inside the flex row following the h3
-			const dateEl = card.locator('article p.text-sm.text-green-300');
+			const dateEl = card.locator('article .card-meta.text-sm');
 			await expect(dateEl).toBeVisible();
 			const dateText = await dateEl.textContent();
 			expect(dateText?.trim().length).toBeGreaterThan(0);
@@ -61,8 +61,8 @@ test.describe('blog post card structure', () => {
 			await expect(readingTimeBadge).toBeVisible();
 			await expect(readingTimeBadge).toContainText('min read');
 
-			// Excerpt: <p class="text-green-200 ..."> with non-empty text
-			const excerpt = card.locator('article p.text-green-200');
+			// Excerpt with non-empty text
+			const excerpt = card.locator('article p.card-body');
 			await expect(excerpt).toBeVisible();
 			const excerptText = await excerpt.textContent();
 			expect(excerptText?.trim().length).toBeGreaterThan(0);

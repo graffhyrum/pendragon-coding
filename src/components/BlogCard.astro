@@ -13,10 +13,8 @@ const { entry } = Astro.props;
 const slug = toSlug(entry.data.title);
 const excerpt = getExcerpt(entry.data.description, entry.body);
 const tags: string[] = entry.data.tags ?? [];
-// Serialise tags for the <li data-tags> attribute used by the JS filter
 const dataTags = tags.join(',');
 const mins = readingTime(entry.body ?? '');
-// ISO 8601 date string for lexical sort (YYYY-MM-DD sorts chronologically)
 const isoDate = entry.data.date.toISOString().slice(0, 10);
 ---
 <Card
@@ -26,20 +24,20 @@ const isoDate = entry.data.date.toISOString().slice(0, 10);
 	data-sort-title={entry.data.title}
 >
 	<article id={toSlug(entry.data.title)}>
-		<h3 class="text-2xl font-medium text-green-100 mt-4">
-			<a href={`/blog/${slug}`} class="hover:underline decoration-green-400 underline-offset-4">{entry.data.title}</a>
+		<h3 class="card-title text-2xl font-medium mt-4">
+			<a href={`/blog/${slug}`} class="hover:underline decoration-green-600 dark:decoration-green-400 underline-offset-4">{entry.data.title}</a>
 		</h3>
 		<div class="flex items-center gap-3 my-2">
-			<p class="text-sm text-green-300">{entry.data.date.toLocaleDateString('en-US', {
+			<p class="card-meta text-sm">{entry.data.date.toLocaleDateString('en-US', {
 				year: 'numeric',
 				month: 'short',
 				day: 'numeric'
 			})}</p>
-			<span class="text-xs bg-green-800 text-green-300 rounded-full px-2 py-0.5 border border-green-600" aria-label={`${mins} minute read`}>
+			<span class="card-pill text-xs rounded-full px-2 py-0.5 border" aria-label={`${mins} minute read`}>
 				{mins} min read
 			</span>
 		</div>
-		<p class="text-green-200 text-sm mt-2">{excerpt}</p>
+		<p class="card-body text-sm mt-2">{excerpt}</p>
 		{tags.length > 0 && (
 			<div class="flex flex-wrap gap-1 mt-3">
 				{tags.map((tag) => (
@@ -47,7 +45,7 @@ const isoDate = entry.data.date.toISOString().slice(0, 10);
 						type="button"
 						data-tag={tag}
 						aria-pressed="false"
-						class="text-xs bg-green-800 text-green-200 rounded-full px-2 py-0.5 cursor-pointer border border-green-600 hover:bg-green-700"
+						class="card-pill text-xs rounded-full px-2 py-0.5 cursor-pointer border"
 					>
 						{tag}
 					</button>

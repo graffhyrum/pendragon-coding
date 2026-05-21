@@ -17,20 +17,10 @@ const { pageTitle = 'Blog', description, items } = Astro.props;
 	<p>{description}</p>
 </div>
 <div id="blog-sort-controls" class="flex gap-2 mt-4 mb-2" aria-label="Sort posts by">
-	<button
-		type="button"
-		data-sort="date"
-		aria-pressed="true"
-		class="text-sm rounded px-3 py-1 border border-green-800 bg-green-800 text-green-50 transition-colors duration-150 hover:bg-green-700"
-	>
+	<button type="button" data-sort="date" aria-pressed="true" class="blog-sort-btn">
 		Newest first
 	</button>
-	<button
-		type="button"
-		data-sort="title"
-		aria-pressed="false"
-		class="text-sm rounded px-3 py-1 border border-green-600 bg-green-900 text-green-300 transition-colors duration-150 hover:bg-green-700"
-	>
+	<button type="button" data-sort="title" aria-pressed="false" class="blog-sort-btn">
 		Title A–Z
 	</button>
 </div>
@@ -39,7 +29,7 @@ const { pageTitle = 'Blog', description, items } = Astro.props;
 		<BlogCard entry={item} />
 	))}
 </CardList>
-<p id="blog-empty-state" class="text-green-300 text-center mt-8" hidden>
+<p id="blog-empty-state" class="card-meta text-center mt-8" hidden>
 	No posts match the selected tag(s).
-	<a href="/blog/" class="underline text-green-400 ml-1">Clear filter</a>
+	<a href="/blog/" class="underline text-green-700 dark:text-green-400 ml-1">Clear filter</a>
 </p>

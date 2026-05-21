@@ -5,7 +5,7 @@
 <button
 	id="theme-toggle"
 	type="button"
-	class="relative inline-flex h-8 w-16 items-center rounded-full bg-gray-300 dark:bg-gray-600 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-offset-2 focus:ring-offset-green-950 dark:focus:ring-offset-gray-900"
+	class="relative inline-flex h-8 w-16 items-center rounded-full bg-gray-300 dark:bg-gray-600 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-offset-2 focus:ring-offset-green-200 dark:focus:ring-offset-gray-900"
 	role="switch"
 	aria-checked="false"
 	aria-label="Toggle dark mode"
@@ -35,41 +35,13 @@
 	</span>
 </button>
 
-<script is:inline>
-	// Set up theme toggle functionality
-	function setupThemeToggle() {
-		const button = document.getElementById('theme-toggle');
-		if (!button) return;
+<script>
+	import { setupThemeToggle } from '../scripts/theme-init';
 
-		// Update button state based on current theme
-		const isDark = document.documentElement.classList.contains('dark');
-		button.setAttribute('aria-checked', isDark ? 'true' : 'false');
-
-		// Remove any existing listeners to avoid duplicates
-		const newButton = button.cloneNode(true);
-		button.parentNode?.replaceChild(newButton, button);
-
-		// Add click handler
-		newButton.addEventListener('click', function() {
-			const element = document.documentElement;
-			element.classList.toggle('dark');
-
-			const nowDark = element.classList.contains('dark');
-			localStorage.setItem('theme', nowDark ? 'dark' : 'light');
-			localStorage.setItem('theme-explicit', 'true');
-
-			// Update aria-checked attribute
-			this.setAttribute('aria-checked', nowDark ? 'true' : 'false');
-		});
-	}
-
-	// Set up toggle on initial load
 	if (document.readyState === 'loading') {
 		document.addEventListener('DOMContentLoaded', setupThemeToggle);
 	} else {
 		setupThemeToggle();
 	}
-
-	// Re-initialize after HTMX swaps (in case header is replaced)
 	document.body.addEventListener('htmx:afterSwap', setupThemeToggle);
 </script>

@@ -1,7 +1,10 @@
 ---
 import { SITE_CONFIG, type PageMetaProps } from '../config/site';
+import { buildHeadInlineScript } from '../scripts/theme-init';
 
 type Props = PageMetaProps;
+
+const themeInitScript = buildHeadInlineScript();
 
 const {
 	pageTitle,
@@ -32,35 +35,5 @@ const {
     <link rel="manifest" href="/favicon_io/site.webmanifest">
 
     <!-- Theme initialization script - runs before page render to prevent flash -->
-    <script is:inline>
-        (function() {
-            var explicit = localStorage.getItem('theme-explicit');
-            var mq = window.matchMedia('(prefers-color-scheme: dark)');
-            var theme;
-
-            if (explicit) {
-                theme = localStorage.getItem('theme') || 'light';
-            } else {
-                theme = mq.matches ? 'dark' : 'light';
-            }
-
-            if (theme === 'dark') {
-                document.documentElement.classList.add('dark');
-            } else {
-                document.documentElement.classList.remove('dark');
-            }
-
-            // Listen for system preference changes when no explicit choice
-            if (!explicit) {
-                mq.addEventListener('change', function(e) {
-                    if (localStorage.getItem('theme-explicit')) return;
-                    if (e.matches) {
-                        document.documentElement.classList.add('dark');
-                    } else {
-                        document.documentElement.classList.remove('dark');
-                    }
-                });
-            }
-        })();
-    </script>
+    <script is:inline set:html={themeInitScript}></script>
 </head>

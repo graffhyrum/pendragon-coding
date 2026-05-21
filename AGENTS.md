@@ -117,6 +117,8 @@ Run `ubs --diff` before every commit. Convert critical/high findings to P0/P1 be
 ## Learned User Preferences
 
 - Prefer Bun/TypeScript scripts over PowerShell for repo maintenance that calls GitHub APIs or must run on Windows without a full git checkout
+- Theme-aware UI should use light-first base styles with `dark:` overrides on shared surfaces (cards, controls), not dark-only palettes that ignore `html.dark`
+- Cursor `stop` hook runs `bun vet` as a session quality gate; treat vet failures as blocking before ending a session
 
 ## Learned Workspace Facts
 
@@ -124,3 +126,6 @@ Run `ubs --diff` before every commit. Convert critical/high findings to P0/P1 be
 - Record domain vocabulary in `UBIQUITOUS_LANGUAGE.md`; this repo does not use `CONTEXT.md`
 - Colocate unit tests beside implementation as `src/**/*.test.ts` (there is no top-level `tests/` tree for unit tests)
 - Production canonical site URL is `https://pendragon-coding.dev` (`Astro.site` in `astro.config.mjs`)
+- Class-based theme toggles `dark` on `<html>`; `src/scripts/theme-init.ts` is the single source for Head inline FOUC script and ThemeToggle (keep toggle/refresh idempotent)
+- Blog listing uses `CardList` with `layoutMode="single-column"` (one post per row); myWork/bookshelf/shoutouts use `CardList` grid via SectionList `layoutMode="grid"`
+- `.gitattributes` enforces `* text=auto eol=lf`; phantom dirty files on Windows with empty diffs usually mean `core.autocrlf` / index stat drift, not real content changes
