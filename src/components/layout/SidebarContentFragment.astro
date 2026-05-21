@@ -1,17 +1,18 @@
 ---
 import Sidebar from '../navigation/Sidebar.astro';
-import type { ContentTemplate } from '../../types/ContentTemplate';
+import type { SidebarSections } from '../../types/sidebarSections';
 
 interface Props {
-	content: ContentTemplate;
+	sections: SidebarSections;
+	hxHistory?: boolean;
 }
 
-const { content } = Astro.props;
+const { sections, hxHistory = true } = Astro.props;
 ---
 
 <div class="content-layout">
-	<Sidebar sections={content.sections} />
-	<div class="main-content">
+	<Sidebar sections={sections} />
+	<div class="main-content" hx-history={hxHistory ? undefined : 'false'}>
 		<slot />
 	</div>
 </div>

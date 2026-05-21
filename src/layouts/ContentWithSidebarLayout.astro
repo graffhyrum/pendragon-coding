@@ -26,7 +26,7 @@ const { pageTitle, content } = Astro.props;
 </a>
 <Header/>
 <main id="main-content" role="main" class="relative grow h-max row-2 justify-items-stretch px-4 overflow-y-auto">
-	<SidebarContentFragment content={content}>
+	<SidebarContentFragment sections={content.sections}>
 		<slot/>
 	</SidebarContentFragment>
 </main>

@@ -1,5 +1,6 @@
 ---
 import { toSlug } from '../../utils/slugify';
+import CardList from './CardList.astro';
 import ContentCard from './ContentCard.astro';
 import type { ContentKind } from '../../types/ContentTemplate';
 
@@ -16,15 +17,9 @@ interface Props {
 
 const { layoutMode, contentKind, content, sectionTitle } = Astro.props;
 
-const listLayout = 'w-full gap-4';
-const ulClasses =
-	layoutMode === 'single-column'
-		? `flex flex-col ${listLayout} items-stretch`
-		: `grid ${listLayout} min-w-0 grid-cols-[repeat(auto-fill,minmax(min(var(--content-card-min),100%),1fr))]`;
-
 ---
 
-<ul class={ulClasses} role="list">
+<CardList layoutMode={layoutMode}>
 	{content.map((contentItem) => {
 		const contentId = `${toSlug(sectionTitle)}-${toSlug(contentItem.title)}`;
 		return (
@@ -38,4 +33,4 @@ const ulClasses =
 			/>
 		);
 	})}
-</ul>
+</CardList>

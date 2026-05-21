@@ -24,7 +24,7 @@
     --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
     --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
 
-    /* Content card grid: min track width (SectionList + flex short-form cards) */
+    /* Content card grid: min track width (CardList grid + flex short-form cards) */
     --content-card-min: 360px;
 }
 
@@ -203,6 +203,31 @@ p {
 
 .content-layout > .main-content {
     @apply flex-1 min-w-0 max-md:w-full;
+    container-type: inline-size;
+    container-name: main-content;
+}
+
+/* Card lists: SectionList (grid/stack), blog (#blog-post-list stack only) */
+.card-list {
+    @apply w-full min-w-0 list-none p-0 m-0 gap-4;
+}
+
+.card-list--stack {
+    @apply flex flex-col items-stretch;
+}
+
+.card-list--grid {
+    display: grid;
+    grid-template-columns: repeat(
+        auto-fill,
+        minmax(min(var(--content-card-min), 100%), 1fr)
+    );
+}
+
+@container main-content (max-width: 32rem) {
+    .card-list--grid {
+        grid-template-columns: 1fr;
+    }
 }
 
 /* --- HTMX navigation feedback --- */
@@ -352,7 +377,7 @@ p {
 }
 
 .card-chrome--inset {
-    @apply m-4;
+    @apply my-4 mx-0 min-w-0 max-w-full;
 }
 
 .card-chrome--grid-cell {
@@ -362,11 +387,11 @@ p {
 /* --- Testimonial card styles --- */
 
 .testimonial-card {
-    @apply relative;
+    @apply relative pr-14;
 }
 
 .testimonial-quote-icon {
-    @apply absolute top-0 right-0 w-12 h-12 text-green-800/30;
+    @apply absolute top-0 right-0 w-12 h-12 text-green-800/30 pointer-events-none;
 }
 
 .testimonial-linkedin-link {

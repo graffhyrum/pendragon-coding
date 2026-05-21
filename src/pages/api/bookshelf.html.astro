@@ -3,6 +3,6 @@ import ContentContainer from '../../components/ContentContainer.astro';
 import bookshelf from '../../content/bookshelf';
 import ApiContentWithSidebarLayout from '../../layouts/ApiContentWithSidebarLayout.astro';
 ---
-<ApiContentWithSidebarLayout content={bookshelf}>
+<ApiContentWithSidebarLayout sections={bookshelf.sections}>
 	<ContentContainer containerContent={bookshelf}></ContentContainer>
 </ApiContentWithSidebarLayout>

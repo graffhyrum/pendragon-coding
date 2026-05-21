@@ -1,8 +1,13 @@
 ---
+import type { CollectionEntry } from 'astro:content';
 import { toSlug } from '../utils/slugify';
 import { getExcerpt } from '../utils/excerpt';
 import { readingTime } from '../utils/reading-time';
 import Card from './ui/Card.astro';
+
+interface Props {
+	entry: CollectionEntry<'blog'>;
+}
 
 const { entry } = Astro.props;
 const slug = toSlug(entry.data.title);
@@ -14,7 +19,12 @@ const mins = readingTime(entry.body ?? '');
 // ISO 8601 date string for lexical sort (YYYY-MM-DD sorts chronologically)
 const isoDate = entry.data.date.toISOString().slice(0, 10);
 ---
-<Card variant="long-form" maxWidth="max-w-max" data-tags={dataTags} data-sort-date={isoDate} data-sort-title={entry.data.title}>
+<Card
+	variant="long-form"
+	data-tags={dataTags}
+	data-sort-date={isoDate}
+	data-sort-title={entry.data.title}
+>
 	<article id={toSlug(entry.data.title)}>
 		<h3 class="text-2xl font-medium text-green-100 mt-4">
 			<a href={`/blog/${slug}`} class="hover:underline decoration-green-400 underline-offset-4">{entry.data.title}</a>

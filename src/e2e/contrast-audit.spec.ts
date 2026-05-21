@@ -11,7 +11,7 @@ const PAGES = [
 	'/shoutouts/',
 	'/testimonials/',
 	'/myWork/',
-	'/blog/0001',
+	'/blog/the-first-blog',
 	'/404.html',
 ] as const;
 type PageUrl = (typeof PAGES)[number];

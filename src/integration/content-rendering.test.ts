@@ -98,6 +98,7 @@ describe('sidebar in API partials', () => {
 	let apiBookshelf: string;
 	let apiTestimonials: string;
 	let apiShoutouts: string;
+	let apiBlog: string;
 	let apiHome: string;
 
 	beforeAll(async () => {
@@ -107,6 +108,7 @@ describe('sidebar in API partials', () => {
 			fetchPage('/api/bookshelf.html'),
 			fetchPage('/api/testimonials.html'),
 			fetchPage('/api/shoutouts.html'),
+			fetchPage('/api/blog.html'),
 			fetchPage('/api/home.html'),
 		]);
 		for (const result of results) {
@@ -116,7 +118,8 @@ describe('sidebar in API partials', () => {
 		apiBookshelf = (results[1] as PromiseFulfilledResult<string>).value;
 		apiTestimonials = (results[2] as PromiseFulfilledResult<string>).value;
 		apiShoutouts = (results[3] as PromiseFulfilledResult<string>).value;
-		apiHome = (results[4] as PromiseFulfilledResult<string>).value;
+		apiBlog = (results[4] as PromiseFulfilledResult<string>).value;
+		apiHome = (results[5] as PromiseFulfilledResult<string>).value;
 	});
 
 	const sidebarPages = [
@@ -124,6 +127,7 @@ describe('sidebar in API partials', () => {
 		{ name: 'bookshelf', getHtml: () => apiBookshelf },
 		{ name: 'testimonials', getHtml: () => apiTestimonials },
 		{ name: 'shoutouts', getHtml: () => apiShoutouts },
+		{ name: 'blog', getHtml: () => apiBlog },
 	];
 
 	for (const { name, getHtml } of sidebarPages) {

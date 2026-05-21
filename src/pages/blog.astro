@@ -1,5 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
+import { BLOG_LISTING_DESCRIPTION } from '../content/blogListing';
 import CollectionPageLayout from '../layouts/CollectionPageLayout.astro';
 
 const pageTitle = 'Blog';
@@ -10,8 +11,6 @@ const allBlogs = (await getCollection('blog')).toSorted(
 
 <CollectionPageLayout
 	pageTitle={pageTitle}
-	description="Putting things to paper helps me think. Come here to watch the sausage get made."
-	layoutMode="single-column"
+	description={BLOG_LISTING_DESCRIPTION}
 	items={allBlogs}
-	showSidebar={true}
 />

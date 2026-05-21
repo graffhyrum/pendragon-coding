@@ -1,14 +1,15 @@
 ---
 import SidebarContentFragment from '../components/layout/SidebarContentFragment.astro';
-import type { ContentTemplate } from '../types/ContentTemplate';
+import type { SidebarSections } from '../types/sidebarSections';
 
 interface Props {
-	content: ContentTemplate;
+	sections: SidebarSections;
+	hxHistory?: boolean;
 }
 
-const { content } = Astro.props;
+const { sections, hxHistory } = Astro.props;
 ---
 
-<SidebarContentFragment content={content}>
+<SidebarContentFragment sections={sections} hxHistory={hxHistory}>
 	<slot />
 </SidebarContentFragment>

@@ -1,0 +1,21 @@
+---
+interface Props {
+	layoutMode: 'grid' | 'single-column';
+	id?: string;
+	class?: string;
+}
+
+const { layoutMode, id, class: extraClass = '' } = Astro.props;
+
+const listClass = [
+	'card-list',
+	layoutMode === 'grid' ? 'card-list--grid' : 'card-list--stack',
+	extraClass,
+]
+	.filter(Boolean)
+	.join(' ');
+---
+
+<ul class={listClass} id={id} role="list">
+	<slot />
+</ul>

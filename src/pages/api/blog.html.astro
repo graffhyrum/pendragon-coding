@@ -1,20 +1,17 @@
 ---
 import { getCollection } from 'astro:content';
-import BlogCard from '../../components/BlogCard.astro';
-import ApiContentLayout from '../../layouts/ApiContentLayout.astro';
+import BlogListingContent from '../../components/blog/BlogListingContent.astro';
+import { BLOG_LISTING_DESCRIPTION } from '../../content/blogListing';
+import ApiContentWithSidebarLayout from '../../layouts/ApiContentWithSidebarLayout.astro';
+import { buildBlogSidebarSections } from '../../utils/blogSidebar';
 
 const allBlogs = (await getCollection('blog')).toSorted(
 	(a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
 );
 ---
-<ApiContentLayout>
-	<h2>Blog</h2>
-	<div class="text-xl">
-		<p>Putting things to paper helps me think. Come here to watch the sausage get made.</p>
-		<ul class="flex flex-wrap max-w-max" role="list">
-			{allBlogs.map((blog) => (
-					<BlogCard entry={blog} />
-				))}
-		</ul>
-	</div>
-</ApiContentLayout>
+<ApiContentWithSidebarLayout
+	sections={buildBlogSidebarSections(allBlogs)}
+	hxHistory={false}
+>
+	<BlogListingContent description={BLOG_LISTING_DESCRIPTION} items={allBlogs} />
+</ApiContentWithSidebarLayout>

@@ -1,0 +1,45 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import BlogCard from '../BlogCard.astro';
+import CardList from '../content/CardList.astro';
+
+interface Props {
+	pageTitle?: string;
+	description: string;
+	items: CollectionEntry<'blog'>[];
+}
+
+const { pageTitle = 'Blog', description, items } = Astro.props;
+---
+
+<h2>{pageTitle}</h2>
+<div class="text-xl">
+	<p>{description}</p>
+</div>
+<div id="blog-sort-controls" class="flex gap-2 mt-4 mb-2" aria-label="Sort posts by">
+	<button
+		type="button"
+		data-sort="date"
+		aria-pressed="true"
+		class="text-sm rounded px-3 py-1 border border-green-800 bg-green-800 text-green-50 transition-colors duration-150 hover:bg-green-700"
+	>
+		Newest first
+	</button>
+	<button
+		type="button"
+		data-sort="title"
+		aria-pressed="false"
+		class="text-sm rounded px-3 py-1 border border-green-600 bg-green-900 text-green-300 transition-colors duration-150 hover:bg-green-700"
+	>
+		Title A–Z
+	</button>
+</div>
+<CardList id="blog-post-list" layoutMode="single-column">
+	{items.map((item) => (
+		<BlogCard entry={item} />
+	))}
+</CardList>
+<p id="blog-empty-state" class="text-green-300 text-center mt-8" hidden>
+	No posts match the selected tag(s).
+	<a href="/blog/" class="underline text-green-400 ml-1">Clear filter</a>
+</p>

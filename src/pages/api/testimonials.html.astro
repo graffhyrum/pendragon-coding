@@ -3,6 +3,6 @@ import ContentContainer from '../../components/ContentContainer.astro';
 import testimonials from '../../content/testimonials.ts';
 import ApiContentWithSidebarLayout from '../../layouts/ApiContentWithSidebarLayout.astro';
 ---
-<ApiContentWithSidebarLayout content={testimonials}>
+<ApiContentWithSidebarLayout sections={testimonials.sections}>
 	<ContentContainer containerContent={testimonials}></ContentContainer>
 </ApiContentWithSidebarLayout>

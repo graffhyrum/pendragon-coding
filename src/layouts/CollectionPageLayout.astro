@@ -1,81 +1,24 @@
 ---
 import type { CollectionEntry } from 'astro:content';
-import BlogCard from '../components/BlogCard.astro';
+import BlogListingContent from '../components/blog/BlogListingContent.astro';
 import Sidebar from '../components/navigation/Sidebar.astro';
-import { toSlug } from '../utils/slugify';
+import { buildBlogSidebarSections } from '../utils/blogSidebar';
 import BaseLayout from './BaseLayout.astro';
 
 interface Props {
 	pageTitle: string;
 	description: string;
-	layoutMode?: 'single-column' | 'grid';
 	items: CollectionEntry<'blog'>[];
-	showSidebar?: boolean;
 }
 
-const {
-	pageTitle,
-	description,
-	layoutMode = 'grid',
-	items,
-	showSidebar = false,
-} = Astro.props;
-
-const ulClasses =
-	layoutMode === 'single-column'
-		? 'flex flex-col items-center mx-auto'
-		: 'flex flex-wrap justify-center';
-
-// Generate section data for sidebar
-const blogSections = [
-	{
-		title: 'All Posts',
-		content: items.map((item) => ({
-			title: item.data.title,
-			link: [
-				{
-					href: `#${toSlug(item.data.title)}`,
-				},
-			],
-		})),
-	},
-];
+const { pageTitle, description, items } = Astro.props;
+const blogSections = buildBlogSidebarSections(items);
 ---
 <BaseLayout pageTitle={pageTitle}>
 	<div class="content-layout">
-		{showSidebar && <Sidebar sections={blogSections} />}
+		<Sidebar sections={blogSections} />
 		<div class="main-content" hx-history="false">
-			<h2>{pageTitle}</h2>
-			<div class="text-xl">
-				<p>{description}</p>
-			</div>
-			<div id="blog-sort-controls" class="flex gap-2 mt-4 mb-2" aria-label="Sort posts by">
-				<button
-					type="button"
-					data-sort="date"
-					aria-pressed="true"
-					class="text-sm rounded px-3 py-1 border border-green-800 bg-green-800 text-green-50 transition-colors duration-150 hover:bg-green-700"
-				>
-					Newest first
-				</button>
-				<button
-					type="button"
-					data-sort="title"
-					aria-pressed="false"
-					class="text-sm rounded px-3 py-1 border border-green-600 bg-green-900 text-green-300 transition-colors duration-150 hover:bg-green-700"
-				>
-					Title A–Z
-				</button>
-			</div>
-			<ul id="blog-post-list" class={ulClasses} role="list">
-				{items.map((item) => (
-					<BlogCard entry={item} />
-				))}
-			</ul>
-			<p id="blog-empty-state" class="text-green-300 text-center mt-8" hidden>
-				No posts match the selected tag(s).
-				<a href="/blog" class="underline text-green-400 ml-1">Clear filter</a>
-			</p>
+			<BlogListingContent pageTitle={pageTitle} description={description} items={items} />
 		</div>
 	</div>
 </BaseLayout>
