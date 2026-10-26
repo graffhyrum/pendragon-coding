@@ -27,7 +27,7 @@ The site showcases Joshua Pendragon's professional experience as a Software Deve
 | oxlint + oxfmt          | 1.57.0/0.42.0 | Linter and formatter (OXC toolchain)                |
 | @changesets/cli         | ^2.29.8       | Versioning and changelog generation                 |
 | @astrojs/check          | ^0.9.6        | Astro template type checking                        |
-| happy-dom               | ^20.0.11      | Lightweight DOM for tests                           |
+| happy-dom               | ^21.0.4       | Lightweight DOM for tests                           |
 | caniuse-lite            | ^1.0.30001760 | Browser compatibility data (Tailwind dependency)    |
 | HTMX                    | (vendored)    | HTML-over-the-wire client-side navigation           |
 

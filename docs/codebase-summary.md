@@ -132,7 +132,7 @@ Headshots (`headshot.webp`, `headshot_sm.webp`), skill icons (`playwright-logo.w
 | typescript              | ^5.9.3        | dev     | TypeScript compiler                      |
 | @typescript/native-prev | ^7.0.0-dev    | dev     | Native TS type checker (tsgo)            |
 | @types/bun              | ^1.3.5        | dev     | Bun runtime type definitions             |
-| happy-dom               | ^20.0.11      | dev     | Lightweight DOM implementation for tests |
+| happy-dom               | ^21.0.4       | dev     | Lightweight DOM implementation for tests |
 | @changesets/cli         | ^2.29.8       | dev     | Version management and changelog         |
 | caniuse-lite            | ^1.0.30001760 | dev     | Browser compatibility data               |
 | @astrojs/check          | ^0.9.6        | runtime | Astro template diagnostics               |
