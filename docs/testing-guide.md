@@ -8,7 +8,7 @@ Tests use Bun's built-in test runner via the `bun:test` module. No external test
 
 ## Test Environment
 
-[happy-dom](https://github.com/nicedayfor/happy-dom) (v20.0.11) is configured as the test environment, providing DOM simulation for any tests that need browser-like APIs without a real browser.
+[happy-dom](https://github.com/nicedayfor/happy-dom) (v21.0.4) is configured as the test environment, providing DOM simulation for any tests that need browser-like APIs without a real browser.
 
 ## Current Coverage
 
